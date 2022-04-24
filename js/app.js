@@ -3,12 +3,23 @@
  */
 document.addEventListener("DOMContentLoaded", load);
 /**
- * funcion para cargar eventos en la pagina 
+ * funcion para cargar eventos en la pagina e identificar en que archivo html estamos
  */
 function load(){
-    document.getElementById('btnlogin').addEventListener("click",enviaLogin);
+    let ubi = document.body.baseURI;
+    
+    if(ubi.includes("/Login.html")){
+        console.log(ubi)
+        document.getElementById('btnlogin').addEventListener("click",enviaLogin);
+    }
+    if(ubi.includes("/reestablecercontrasena1.html")){
+        console.log(ubi)
+    }
     
 }
+/**
+ * 
+ */
 function enviaLogin(e){
     e.preventDefault();
     let form =document.getElementById('loginform')
