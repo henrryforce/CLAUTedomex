@@ -25,7 +25,9 @@ function enviaLogin(e){
     let form =document.getElementById('loginform')
     let data = new FormData(form);
     
-    
+    /**
+     * consulta al archivo PHP de login
+     */
     fetch("../php/login.php",{
         method:'POST',
         body:data

@@ -1,4 +1,7 @@
 <?php
+/**
+ * Variables post de login creadas y validacion de su existencia y validacion de cadenas vacias
+ */
 $user = $_POST['email'];
 $pass = $_POST['password'];
 if(isset($user) && isset($pass)){
