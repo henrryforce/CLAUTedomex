@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", load);
 function load(){
     let ubi = document.body.baseURI;
     
-    if(ubi.includes("/Login.html")){
+    if(ubi.includes("/Login.php")){
         console.log(ubi)
         document.getElementById('btnlogin').addEventListener("click",enviaLogin);
     }
@@ -34,7 +34,8 @@ function enviaLogin(e){
     })
     .then(res => res.json())
     .then(data =>{
-        console.log(data);
+        console.table(data);
+        /*
         if(data ==="Datos Recibidos"){
             console.log('Login Correcto')
         }
@@ -43,7 +44,8 @@ function enviaLogin(e){
         }
         if(data ==="Datos incompletos"){
             console.log('Login Incompleto')
-        }
+        }*/
+        
     })
     ;
     /*
