@@ -68,6 +68,25 @@ body{
 .top-menu-sction ul{
 	margin-bottom: 0;
 }
+
+
+
+
+/* ESTILOS PARA BOTONES Y Hs (H1,H2, etc */
+
+.h4, h4 {
+    font-size: calc(1.275rem + .3vw);
+    font-weight: 800;
+}
+
+
+
+
+
+
+
+
+
 .socal-btn a,
 .top-menu-sction a{
     text-decoration: none;
