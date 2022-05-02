@@ -73,9 +73,30 @@ body{
 
 
 /* ESTILOS PARA BOTONES Y Hs (H1,H2, etc */
+/* ESTILOS PARA BOTONES Y Hs (H1,H2, etc */
+/* ESTILOS PARA BOTONES Y Hs (H1,H2, etc */
+/* ESTILOS PARA BOTONES Y Hs (H1,H2, etc */
+
 
 .h4, h4 {
     font-size: calc(1.275rem + .3vw);
+    font-weight: 800;
+}
+
+.btn-primary {
+    width: 110px;
+	text-transform: uppercase;
+	background: rgba(245,173,13,96%);
+	border-color: rgba(245,173,13,96%); ;
+	color: #fff;
+	font-weight: 600;
+	display: inline-block;
+	
+}
+
+
+.h5, h5 {
+    font-size: 1.25rem;
     font-weight: 800;
 }
 
