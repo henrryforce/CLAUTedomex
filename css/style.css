@@ -78,6 +78,18 @@ body{
 /* ESTILOS PARA BOTONES Y Hs (H1,H2, etc */
 
 
+label {
+    display: inline-block;
+    font-weight: 600;
+}
+
+
+.border-primary {
+    border-color: #dee2e6!important;
+}
+
+
+
 .h4, h4 {
     font-size: calc(1.275rem + .3vw);
     font-weight: 800;
