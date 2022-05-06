@@ -1,5 +1,38 @@
 @charset "utf-8";
-/* CSS Document */
+
+
+/* Estilos extra */
+
+label {
+    display: inline-block;
+    font-weight: 600;
+}
+
+
+.border-primary {
+    border-color: #dee2e6!important;
+}
+
+
+
+.h4, h4 {
+    font-size: calc(1.275rem + .3vw);
+    font-weight: 800;
+}
+
+.
+
+
+.h5, h5 {
+    font-size: 1.25rem;
+    font-weight: 800;
+}
+
+
+
+
+
+/* Fin estilos extra */
 *{
 	padding: 0;
 	margin: 0;
@@ -22,7 +55,7 @@ body{
 	z-index: 3;
 }
 .top-menu-sction{
-	background-color: #262a6e;
+	background-color: #1156ab;
 	padding: 10px 0;
 	width: 100%;
 }
@@ -52,7 +85,7 @@ body{
 	
 }
 .video-bg{
-	background: #13161a url(../images/video-bg.webp) center center repeat;
+	background: #011023ad url(../images/video-bg.webp) center center repeat;
     width: 100%;
     height: 100%;
     position: absolute;
@@ -68,58 +101,6 @@ body{
 .top-menu-sction ul{
 	margin-bottom: 0;
 }
-
-
-
-
-/* ESTILOS PARA BOTONES Y Hs (H1,H2, etc */
-/* ESTILOS PARA BOTONES Y Hs (H1,H2, etc */
-/* ESTILOS PARA BOTONES Y Hs (H1,H2, etc */
-/* ESTILOS PARA BOTONES Y Hs (H1,H2, etc */
-
-
-label {
-    display: inline-block;
-    font-weight: 600;
-}
-
-
-.border-primary {
-    border-color: #dee2e6!important;
-}
-
-
-
-.h4, h4 {
-    font-size: calc(1.275rem + .3vw);
-    font-weight: 800;
-}
-
-.btn-primary {
-    width: 110px;
-	text-transform: uppercase;
-	background: rgba(245,173,13,96%);
-	border-color: rgba(245,173,13,96%); ;
-	color: #fff;
-	font-weight: 600;
-	display: inline-block;
-	
-}
-
-
-.h5, h5 {
-    font-size: 1.25rem;
-    font-weight: 800;
-}
-
-
-
-
-
-
-
-
-
 .socal-btn a,
 .top-menu-sction a{
     text-decoration: none;
@@ -136,10 +117,10 @@ label {
 	font-weight: 400;
 }
 .main-menu-div .navbar-nav .nav-link:hover{
-	color: #38cc19;
+	color: #ff0811;
 }
 .main-menu-div .navbar-nav .nav-link.active{
-	color: #38cc19;
+	color: #ff0811;
 	
 }
 .dropdown-menu1{
@@ -209,11 +190,11 @@ label {
 	font-family: 'Open Sans', sans-serif;
 	line-height: 65px;
 	font-size: 62px;
-    border-left: solid 2px #38cc19;
+    border-left: solid 2px #ff0811;
     padding-left: 30px;
 }
 .banner-content-sec h1 span{
-	color: #38cc19;
+	color: #ff0811;
 }
 .banner-content-sec h6{
 	font-family: 'Open Sans', sans-serif;
@@ -226,7 +207,7 @@ label {
 	font-size: 20px;
 }
 .read-more{
-	background: #38cc19;
+	background: #ff0811;
 	color: #fff;
 	font-family: 'Open Sans', sans-serif;
 	text-transform: uppercase;
@@ -265,7 +246,7 @@ label {
 }
 .contact-btn{
 	background: #fff;
-	color: #38cc19;
+	color: #ff0811;
 	font-family: 'Open Sans', sans-serif;
 	text-transform: uppercase;
 	font-weight:400;
@@ -281,7 +262,7 @@ label {
 	right: 0;
 	top:0;
 	content: "";
-	background:#38cc19;
+	background:#ff0811;
 	color: #fff;
 	width: 100%;
 	height: 100%;
@@ -337,8 +318,8 @@ label {
 }
 .icon{
 	float: left;
-	width: 80px;
-	height: 80px;
+	width: 120px;
+	height: 100px;
 	overflow: hidden;
 	margin:5px 0 0 0;
 }
@@ -424,7 +405,7 @@ label {
 	color: #fff;
 }
 .inside-part .row > div:nth-child(2) .top-services{
-	background: #38cc19;
+	background: #ff0811;
 	color: #fff;
 }
 .inside-part .row > div:nth-child(2) .top-services a{
@@ -451,14 +432,14 @@ label {
 	align-items: center;
 }
 .about-home ul li i{
-	color: #38cc19;
+	color: #ff0811;
 	font-size: 25px;
 	margin-right: 10px;
 }
 .about-home h6{
-	border-left: solid 2px #38cc19;
+	border-left: solid 2px #ff0811;
 	padding-left: 10px;
-	color: #38cc19;
+	color: #ff0811;
 }
 .get-qute{
 	display: block;
@@ -482,7 +463,7 @@ label {
 .heading-one h6{
 	font-family: 'Open Sans', sans-serif;
 	font-size: 25px;
-	color: #38cc19;
+	color: #ff0811;
 }
 .heading-one h2{
 	font-size: 40px;
@@ -508,7 +489,7 @@ label {
 }
 .get-qute h6{
 	font-size: 20px;
-	color: #38cc19;
+	color: #ff0811;
 	font-family: 'Roboto', sans-serif;
 	font-weight: 600;
 }
@@ -540,7 +521,7 @@ label {
 
 }
 .submit-btn2:hover{
-	background:#38cc19;
+	background:#ff0811;
 	color: #fff;
 }
 .comon-div-clients{
@@ -558,7 +539,7 @@ label {
 	transition: all 0.5s;
 }
 .comon-div-clients h2{
-   color: #38cc19;
+   color: #ff0811;
    font-family: 'Open Sans', sans-serif;
    font-weight: 700;
    margin-top: 12px;
@@ -577,7 +558,7 @@ label {
 	font-size: 16px;
 }
 .sub-text{
-	color: #38cc19;
+	color: #ff0811;
    font-family: 'Open Sans', sans-serif;
    font-size: 20px;
 }
@@ -588,7 +569,7 @@ label {
     line-height: 44px;
 }
 .read-btn{
-	background: #38cc19;
+	background: #ff0811;
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 700;
 	padding: 10px 20px;
@@ -611,7 +592,7 @@ label {
 	position: absolute;
 	top:-350px;
 	z-index: 1;
-	background: #38cc19;
+	background: #1156ab;
 	left: 0;
 	right: 0;
 	content: "";
@@ -723,7 +704,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	
 }
 .all-projects-btn{
-	background: #38cc19;
+	background: #ff0811;
 	color: #fff;
 	padding: 10px 20px;
 	margin: auto;
@@ -733,7 +714,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	text-transform: uppercase;
 }
 .contact-div-home{
-	background: #1c2a44 url(../images/bg-home-call.jpg) no-repeat;
+	background: #041A32 url(../images/bg-home-call.jpg) no-repeat;
 	background-size: cover;
 	background-position: center center;
 	height: 350px;
@@ -741,7 +722,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	align-content: center;
 }
 .contact-div-home h5{
-	color: #38cc19;
+	color: #5c9ae7;
 	font-size: 25px;
 	font-family: 'Open Sans', sans-serif;
 }
@@ -752,7 +733,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	margin-bottom: 15px;
 }
 .started-btn{
-	background: #38cc19;
+	background: #ff0811;
 	color: #fff;
 	padding: 10px 20px;
 	margin: auto;
@@ -766,13 +747,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	display: block;
 }
 .faq-home h6{
-	color: #38cc19;
+	color: #ff0811;
 	font-size: 25px;
 	font-family: 'Open Sans', sans-serif;
 }
 .how-it-work{
 	 display: block;
-	 background-color: #262a6e;
+	 background-color: #1156ab;
 }
 
 .how-it-work h2{
@@ -870,7 +851,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
    font-family: 'FontAwesome';
 }
 .faq-home .accordion-button:not(.collapsed){
-	background-color: #38cc19;
+	background-color: #ff0811;
 	color: #000;
 	
 	font-family: 'Open Sans', sans-serif;
@@ -889,7 +870,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
    font-weight: 600;
 }
 .ask-any-qus{
-	background-color: #38cc19;
+	background-color: #ff0811;
 	padding: 30px;
 	border-radius: 0 0 0 30px;
 	height: 480px;
@@ -943,7 +924,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	color: #000;
 }
 .blog-sec-home h6{
-	color: #38cc19;
+	color: #ff0811;
 }
 .blog-sec-home h1{
 	color: #f3f3f3;
@@ -975,7 +956,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 600;
 	font-size: 16px;
-	color: #38cc19;
+	color: #ff0811;
 }
 .content-blog-item .blog-item-titel{
     font-family: 'Open Sans', sans-serif;
@@ -991,7 +972,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	transition: all 0.5s;
 }
 .content-blog-item .blog-item-titel:hover{
-	color: #38cc19;
+	color: #ff0811;
 }
 .red-btn-post{
 	font-family: 'Open Sans', sans-serif;
@@ -1010,10 +991,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	content: "\f30b";
 }
 .red-btn-post:hover{
-	color: #38cc19;
+	color: #ff0811;
 }
 .clients-div-home{
-	background:#262a6e;
+	background:#1156ab;
 	display: block;
 }
 .clients-div-home h6{
@@ -1041,7 +1022,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	font-weight: 700;
 }
 .texttimonial-sec-div{
-	background:#262a6e url(../images/pattern.1f34b942c4043164cd96.png) center center;
+	background:#1156ab url(../images/pattern.1f34b942c4043164cd96.png) center center;
 	background-size: cover;
 	width: 100%;
 }
@@ -1061,7 +1042,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	width: 100%;
 	padding: 30px;
 	margin-top: 80px;
-	background: #38cc19;
+	background: #ff0811;
 	border: solid 2px #fff;
 }
 .client-says-item p,
@@ -1078,7 +1059,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     color: #fff;
     padding: 5px 20px;
     font-family: 'FontAwesome';
-    background: #38cc19;
+    background: #ff0811;
 }
 .client-says-item figure{
 	width: 50px;
@@ -1168,7 +1149,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	font-size: 20px;
 }
 .ft-call{
-	color: #38cc19;
+	color: #ff0811;
 	font-family: 'Open Sans', sans-serif;
 	font-size: 25px;
 	font-weight: 700;
@@ -1206,7 +1187,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 /* design home 2 */
 
 .desgin-2 .top-menu-sction {
-    background-color: #38cc19;
+    background-color: #ff0811;
     padding: 10px 0;
     width: 100%;
 }
@@ -1244,7 +1225,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     opacity: .8;
 }
 .desgin-2 .read-more {
-    background: #38cc19;
+    background: #ff0811;
     color: #fff;
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
@@ -1252,7 +1233,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 }
 .desgin-2 .contact-btn {
     background: #fff;
-    color: #38cc19;
+    color: #ff0811;
     font-family: 'Open Sans', sans-serif;
     text-transform: uppercase;
     font-weight: 400;
@@ -1268,7 +1249,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     right: 0;
     top: 0;
     content: "";
-    background: #38cc19;
+    background: #ff0811;
     color: #fff;
     width: 100%;
     height: 100%;
@@ -1278,32 +1259,32 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 }
 
 .desgin-2 .about-home h6 {
-    border-left: solid 2px #38cc19;
+    border-left: solid 2px #ff0811;
     padding-left: 10px;
-    color: #38cc19;
+    color: #ff0811;
 }
 .desgin-2 .how-it-work {
     display: block;
-    background-color: #38cc19;
+    background-color: #ff0811;
 }
 .desgin-2 .how-it-work h1 {
     color: #f3bb3e;
     font-weight: 500;
 }
 .desgin-2 .sub-text {
-    color: #38cc19;
+    color: #ff0811;
     font-family: 'Open Sans', sans-serif;
     font-size: 20px;
 }
 .desgin-2 .read-btn {
-    background: #38cc19;
+    background: #ff0811;
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
     padding: 10px 20px;
     color: #fff;
 }
 .desgin-2 .comon-div-clients h2 {
-    color: #38cc19;
+    color: #ff0811;
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
     margin-top: 12px;
@@ -1312,45 +1293,45 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 }
 .desgin-2 .heading-one h6,
 .desgin-2 .contact-div-home h5{
-	color: #38cc19;
+	color: #ff0811;
 }
 .desgin-2 .comon-services:after{
-   background: #38cc19;
+   background: #ff0811;
 }
 .desgin-2 .all-projects-btn,
 .desgin-2 .started-btn,
 .desgin-2 .ask-any-qus,
 .desgin-2 .client-says-item,
 .desgin-2 .client-says-item:after{
-	background: #38cc19;
+	background: #ff0811;
 }
 .desgin-2 .faq-home .accordion-button:not(.collapsed){
-	background: #38cc19;
+	background: #ff0811;
 	color: #fff !important;
 }
 .desgin-2 .content-blog-item span{
-	color: #38cc19;
+	color: #ff0811;
 }
 
 .desgin-2 .texttimonial-sec-div h1{
 	color: #ffbc29;
 }
 .desgin-2 .texttimonial-sec-div{
-     background-color: #38cc19;
+     background-color: #ff0811;
 }
 .desgin-2 .texttimonial-sec-div h6{
 	color: #fff;
 }
 .desgin-2 .inside-part-footer{
-	background: #38cc19;
+	background: #ff0811;
 }
 .desgin-2 .ft-call,
 .desgin-2 .faq-home h6{
-	color: #38cc19;
+	color: #ff0811;
 }
 .desgin-2 .subscribe,
 .desgin-2 .main-menu-div .navbar-nav .nav-link:hover{
-	color: #38cc19;
+	color: #ff0811;
 }
 
 
@@ -1404,7 +1385,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     margin-right: 10px;
 }
 .wearhouse-location li i {
-	color: #38cc19;
+	color: #ff0811;
     font-size: 25px;
     margin-right: 10px;
 }
@@ -1488,13 +1469,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	transform: scale(1.1);
 }
 .comon-projects-1 .content-projects h5 span{
-	color: #38cc19;
+	color: #ff0811;
 	font-weight: 500;
 	font-size: 15px;
 	padding-bottom: 5px;
 }
 .comon-projects-1 .read-btn2{
-	background: #38cc19;
+	background: #ff0811;
     color: #fff;
     display: inline-block;
     width: 40px;
@@ -1558,11 +1539,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	margin-bottom: 0;
 }
 .team-details p{
-	color: #38cc19;
+	color: #ff0811;
 	font-size: 18px;
 }
 .our-vision{
-	background: #38cc19;
+	background: #ff0811;
 }
 .icon-new2{
 	background: #fff;
@@ -1608,7 +1589,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 .our-mission-div li i{
 	font-size: 24px;
 	margin-right: 8px;
-	color: #38cc19;
+	color: #ff0811;
 }
 .our-mission-div li{
 	margin-bottom: 15px;
@@ -1815,7 +1796,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     border-radius: 50%;
     display: grid;
     align-content: center;
-    background: rgba(245,173,13,96%);
+    background: rgba(255,10,17,1);
     color: #fff;
     justify-content: center;
     font-size: 18px;
@@ -1827,7 +1808,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 .text-c small {
     font-weight: 600 !important;
     font-size: 19px;
-    color: rgba(245,173,13,96%);
+    color: rgba(255,10,17,1);
 }
 .text-c {
     font-weight: 600;
@@ -1853,7 +1834,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     resize: none;
 }
 .leave-sec-part .subimt-comment, .subimt-message, .quick-contact .subimt-comment {
-    background: rgba(245,173,13,96%);
+    background:rgba(255,10,17,1);
     color: #fff;
     font-weight: 600;
 }
