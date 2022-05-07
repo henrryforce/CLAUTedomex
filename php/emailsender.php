@@ -54,5 +54,41 @@ class enviarCorreo{
         return "No se pudo enviar el mensaje. Error de correo: {$mail->ErrorInfo}";
     }
     }
+    function sendCode($code){
+        $mail = new PHPMailer(true);
+
+        try {
+        //Configuración del servidor
+        $mail->SMTPDebug = SMTP::DEBUG_OFF;             //Habilitar los mensajes de depuración
+        $mail->isSMTP();                                   //Enviar usando SMTP
+        $mail->Host       = 'smtp.gmail.com';            //Configurar el servidor SMTP
+        $mail->SMTPAuth   = true;                          //Habilitar autenticación SMTP
+        $mail->Username   = 'allstarblaster98@gmail.com';            //Nombre de usuario SMTP
+        $mail->Password   = 'zorabel98';                      //Contraseña SMTP
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;   //Habilitar el cifrado TLS
+        $mail->Port       = 587;                           //Puerto TCP al que conectarse; use 587 si configuró `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+        //Emisor
+        $mail->setFrom('allstarblaster98@gmail.com', 'Registro BAM 24/7');
+        //Destinatarios
+        $mail->addAddress($this->to);     //Añadir un destinatario, el nombre es opcional
+
+          //Nombre opcional
+          $mail->isHTML(true);                         //Establecer el formato de correo electrónico en HTMl
+          $mail->Subject = $this->subject;
+            
+          $body = '<div>
+          <h1>Bienvenido</h1>
+          <h2>Este es tu codigo de verificacíon</h2>
+          <h3>'.$code.'</h3>
+      </div>';
+      $mail->CharSet = 'UTF-8';
+      $mail->Body  =$body;
+      $mail->AltBody = 'Codigo de Verificacion :'. $code ;
+          $mail->send();    //Enviar correo eletrónico
+        return 'El mensaje ha sido enviado';
+    } catch (Exception $e) {
+        return "No se pudo enviar el mensaje. Error de correo: {$mail->ErrorInfo}";
+    }
+    }
 }
 ?>
