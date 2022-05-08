@@ -1,5 +1,5 @@
 // JavaScript Document
-
+let ubi = document.body.baseURI;
 
 $(document).ready(function() {
     $( window ).scroll(function() {
@@ -96,7 +96,9 @@ $(document).ready(function() {
 });
 
 
-//BACK TO TOP BUTTON//
+
+if(ubi.includes("/index.html")){
+  //BACK TO TOP BUTTON//
 let mybutton = document.getElementById("btn-back-to-top");
 
 // When the user scrolls down 20px from the top of the document, show the button
@@ -115,11 +117,14 @@ function scrollFunction() {
   }
 }
 // When the user clicks on the button, scroll to the top of the document
-mybutton.addEventListener("click", backToTop);
+  mybutton.addEventListener("click", backToTop);
 
 function backToTop() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
 }
+  
+}
+
 
 //END BACK TO TOP BUTTON//
