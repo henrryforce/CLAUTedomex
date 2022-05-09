@@ -1,5 +1,17 @@
+<?php
+  include_once "php/Conexion.php";
+  require_once "php/addContactos.php";
+  $database=new Conexion;
+  $id_usr=2;                              
+  $database-> query("SELECT * FROM contacto WHERE id_usuario=$id_usr");
+  $rows = $database->resultSet(); 
+  foreach ($rows as $row):
+  endforeach;
+  ?>
+<?php setcookie("user_id", $row['ID_usuario']);?>
+
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -30,7 +42,16 @@
     <link rel="stylesheet" href="css/owl.theme.default.min.css"/>
    
   </head>
-
+  <script type="text/javascript"> 
+    function mostrarEditar() {
+      //document.getElementById("tabEditar").style.display = "block";
+      $('#tabEditar').removeAttr('style');
+      $('#tabEditar').show();
+    }
+    function ocultarEditar(){
+      document.getElementById("tabEditar").style.display = "none";
+    }
+  </script>
 <body>
 
   
@@ -119,12 +140,9 @@
  </div>
 
  <section class="main-body pt-5 float-start industry-pages">
-                <!-- CONTENEDOR DE ELEMENTOS-->
-                <!-- COLOCAR CONTENIDO AQUÍ-->
-                <!-- COLOCAR CONTENIDO AQUÍ-->
-                <!-- COLOCAR CONTENIDO AQUÍ-->
-                <!-- COLOCAR CONTENIDO AQUÍ-->                
-                <!-- UP BAR BUTTONS -->
+                <!--------------------------------- CONTENEDOR DE ELEMENTOS --------------------------------->
+                <!--------------------------------- COLOCAR CONTENIDO AQUÍ --------------------------------->           
+                <!--------------------------------- UP BAR BUTTONS --------------------------------->
 				<div class="profile-userbuttons text-center mb-4">
 					<button type="button" class="btn btn-success">Administrar Perfil</button>
 					<button type="button" class="btn btn-success">Realizar pago</button>
@@ -136,262 +154,215 @@
                     <section class="Profile-header text-center">
                         <div>
                             <!-- IMAGEN Y DIMENSIONES DE LA MISMA-->                            
-                            <img src="images/client-dark-01.jpg" alt="profile" class="img-rounded mb-3" width=230" height="120">
+                            <img src="images/client-dark-01.jpg" alt="profile" class="img-rounded mb-3" width="230" height="120">
                         </div>                        
                         <h4 class="">NOMBRE DE LA EMPRESA</h4>                        
                         <a href="#" class="text-dark font-weight-bold text-decoration-none">Información personal</a>                        
-                </div>                                
-                <!-- LINEA DEPARADORA-->
+                </div>
+                <!-- LINEA SEPARADORA-->
                 <div class="container mb-4">
                     <hr width="100%"/>                    
                 </div>
-            <!-- TABLA 1--> 
-            <!-- TABLA 1--> 
-            <!-- TABLA 1--> 
-            <!-- TABLA 1-->             
-            <div class="container">
-              <div class="table-responsive">
+            <!--------------------------------- TABLA EDITAR --------------------------------->    
+            <section id = "tabEditar" class="container mt-2 mb-2 p-2 ">
+              <form action="php/addContactos.php" method="POST">                
+                <div class="table-responsive">
                   <div class="table-wrapper">
                       <div class="table-title">
                           <div class="row">
                               <div class="col-xs-6">                                  
                               </div>
                               <!-- BOTONES DE LA TABLA--> 
-                              <!-- BOTONES DE LA TABLA--> 
-                              <div class="col-xs-6 mb-3">
-                                  <a href="#" class="btn btn-success"data-bs-toggle="modal" data-bs-target="#exampleModal"> <span>Agregar</span></a>
-                                  <a href="#" class="btn btn-success"data-bs-toggle="modal" data-bs-target="#exampleModal"> <span>Editar</span></a>						
+                                <div class="col-xs-6 mb-3">                                  
+                                  <?php if($update == true):?>
+                                    <button type="submit" class="btn btn-success" name="update">Actualizar</button>
+                                  <?php else:?>                                                                
+                                    <button type="submit" class="btn btn-success" name="update">Guardar</button>
+                                  <?php endif; ?>                                    
+                                </div>                                                          
+                          </div>
+                      </div>
+                      <!-- BOTONES DE LA TABLA--> 
+                      <table class="table table-hover table-hover text-center">
+                          <thead>
+                              <tr>                                                                                                   
+                                  <th>Nombre</th>
+                                  <th>Puesto</th>
+                                  <th>Email</th>
+                                  <th>Teléfono</th>
+                                  <th>Extensión</th>
+                                  <th>Celular</th>                                                                    
+                              </tr>
+                          </thead>                          
+                          <tbody>                                                            
+                              <tr>
+                                  <input type="hidden" id="ed_id" name="ed_id" value="<?php echo $id_cont; ?>">
+                                  <td><input type="text" id="ed_name" name="ed_name" value="<?php echo $name; ?>" placeholder="Nombre"></td>
+                                  <td><input type="text" id="ed_job" name="ed_job" value="<?php echo $job; ?>" placeholder="Puesto"></td>
+                                  <td><input type="text" id="ed_mail" name="ed_mail" value="<?php echo$mail; ?>" placeholder="Email"></td>
+                                  <td><input type="text" id="ed_tel" name="ed_tel" value="<?php echo $tele; ?>" placeholder="Telefono"></td>
+                                  <td><input type="text" id="ed_ext" name="ed_ext" value="<?php echo $exte; ?>" placeholder="Extensión"></td>
+                                  <td><input type="text" id="ed_cel" name="ed_cel" value="<?php echo $cel; ?>" placeholder="Celular"></td>                                  
+                              </tr>
+                          </tbody>
+                      </table>
+                    </div>
+                </div>             
+              </form>
+            </section>
+            <!--------------------------------- TABLA 1 --------------------------------->             
+            <div class="container">
+              <form action="php/addContactos.php" id="addContacts" name="adc" method="POST">
+                <div class="table-responsive">
+                  <div class="table-wrapper">
+                      <div class="table-title">
+                          <div class="row">
+                              <div class="col-xs-6">                                  
                               </div>
+                              <!-- BOTONES DE LA TABLA-->                               
+                                <div class="col-xs-6 mb-3">                                 
+                                  <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tablaModal"> <span>Agregar</span></a>                                  
+                                </div>                                                          
                           </div>
                       </div>
                       <!-- BOTONES DE LA TABLA--> 
                       <table class="table table-striped table-hover text-center">
                           <thead>
                               <tr>                                  
+                                  <th>ID_contacto</th>
                                   <th>Nombre</th>
                                   <th>Puesto</th>
                                   <th>Email</th>
                                   <th>Teléfono</th>
                                   <th>Extensión</th>
-                                  <th>Celular</th>
+                                  <th>Celular</th>                                  
                                   <th>Opciones</th>
                               </tr>
                           </thead>                          
-                          <tbody>
+                          <tbody>                              
+                              <?php foreach($rows as $row) :?> 
                               <tr>                                  
-                                  <td>Alejandro Lopez Lopez</td>
-                                  <td>IT Support</td>
-                                  <td>ale2201@outlook.es</td>
-                                  <td>5512899235</td>
-                                  <td>2201</td>
-                                  <td>5512899235</td>
+                                  <td><?php echo $row['ID_contacto']?></td>
+                                  <td><?php echo $row['Nombre']?></td>
+                                  <td><?php echo $row['Puesto']?></td>
+                                  <td><?php echo $row['Email']?></td>
+                                  <td><?php echo $row['Tel']?></td>
+                                  <td><?php echo $row['Ext']?></td>
+                                  <td><?php echo $row['Cel']?></td>                                  
                                   <!-- OPCIONES--> 
                                   <td>
-                                      <a href="#" class="edit" data-toggle="modal">Editar</a>                                       
-                                      <a href="#" class="delete" data-toggle="modal">Eliminar</a>
+                                      <a href="PaginaprincipalDeProveedores.php?edit=<?php $id_cont =$row['ID_contacto']; echo $row['ID_contacto'];?>" onclick="mostrarEditar()">Edit</a>
+                                      <a href="php/addContactos.php?delete=<?php echo $row['ID_contacto'];?>">Delete</a>
                                   </td>
                               </tr>
-                              <tr>                                  
-                                  <td>Alejandro Lopez Lopez</td>
-                                  <td>IT Support</td>
-                                  <td>ale2201@outlook.es</td>
-                                  <td>5512899235</td>
-                                  <td>2201</td>
-                                  <td>5512899235</td>
-                                  <!-- OPCIONES--> 
-                                  <td>
-                                      <a href="#" class="edit" data-toggle="modal">Editar</a>
-                                      <a href="#" class="delete" data-toggle="modal">Eliminar</a>
-                                  </td>
-                              </tr>                              
+                              <?php endforeach; ?>        
+
                           </tbody>
-                      </table>                      
-              <!-- Modal -->
-              <!-- Modal -->
-              <!-- Modal -->
-              <!-- Modal -->
-              <!-- Modal -->
-              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      </table>
+                    </div>
+                </div>
+              </form>
+              <!------------------------------------------ MODAL  ------------------------------------------>          
+
+              <form action="php/addContactos.php" id="addContacts" name="adc" method="post">
+              <div class="modal fade" id="tablaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog">
               <div class="modal-content">
               <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">CONTACTO</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-
-
               <!-- ELEMENTOS CONTENIDOS EN EL MODAL -->
-              <!-- ELEMENTOS CONTENIDOS EN EL MODAL -->
-              <!-- ELEMENTOS CONTENIDOS EN EL MODAL -->
-
-
-              <div class="modal-body">
-              
-                <form>
-
+              <div class="modal-body">              
+                <form action="php/addProducts.php" id="addContacts" name="apd" method="POST">
                   <div class="form-group">
                     <label for="exampleFormControlInput1">Nombre</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Ejemplo: Alejandro Lopez Lopez">
+                    <input type="text" class="form-control" id="txt_nombre" name="txt_nombre" placeholder="Ejemplo: Alejandro Lopez Lopez">
                   </div>
-
                   <div class="form-group mt-3">
                     <label for="exampleFormControlInput2">Puesto</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Ejemplo: IT Support">
+                    <input type="text" class="form-control" id="txt_puesto" name="txt_puesto"  placeholder="Ejemplo: IT Support">
                   </div>
-
                   <div class="form-group mt-3">
                     <label for="exampleFormControlInput3">Email</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Ejemplo: ale2201@example.com">
+                    <input type="email" class="form-control" id="txt_mail" name="txt_mail" placeholder="Ejemplo: ale2201@example.com">
                   </div>
-
                   <div class="form-group mt-3">
                     <label for="exampleFormControlInput4">Teléfono</label>
-                    <input type="tel" class="form-control" id="exampleFormControlInput1" placeholder="Ejemplo: 55-55-55-55">
+                    <input type="tel" class="form-control" id="txt_tel" name="txt_tel" placeholder="Ejemplo: 55-55-55-55">
                   </div>
-
                   <div class="form-group mt-3">
                     <label for="exampleFormControlInput5">Extensión</label>
-                    <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Ejemplo: 2201">
+                    <input type="number" class="form-control" id="txt_ext" name="txt_ext" placeholder="Ejemplo: 2201">
                   </div>
-
                   <div class="form-group mt-3">
                     <label for="exampleFormControlInput6">Celular</label>
-                    <input type="tel" class="form-control" id="exampleFormControlInput1" placeholder="Ejemplo: 55-55-55-55">
-                  </div>
-
-
-                  
-                </form>
-              
-            
-            
-            
+                    <input type="tel" class="form-control" id="txt_cel" name = "txt_cel" placeholder="Ejemplo: 55-55-55-55">
+                  </div>                  
+                </form>                                                  
               </div>
-
               <!-- FIN ELEMENTOS CONTENIDOS EN EL MODAL -->
-              <!-- FIN ELEMENTOS CONTENIDOS EN EL MODAL -->
-              <!-- FIN ELEMENTOS CONTENIDOS EN EL MODAL -->
-
               <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <a class="btn btn-primary" href="#">Guardar</a>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>-
+              <input href="PaginaprincipalDeProveedores.php?edit=<?php echo $row['ID_contacto'];?>" type="submit" name= "btnadd" class="btn btn-primary" value="Guardar">
               </div>
               </div>
               </div>
               </div>
+              </form>
                <!-- END MODAL -->
                <!-- END MODAL -->
-               <!-- END MODAL -->
-               
-                      
-
-                     <!-- PAGINACIÓN DE LA TABLA-->  
-                      <div class="clearfix">
-                          
-                          <ul class="pagination">
-                              
-                              <li class="page-item active"><a href="#" class="page-link">1</a></li>
-                              <li class="page-item"><a href="#" class="page-link">2</a></li>
-                              <li class="page-item"><a href="#" class="page-link">3</a></li>
-                              <li class="page-item"><a href="#" class="page-link">4</a></li>
-                              <li class="page-item"><a href="#" class="page-link">5</a></li>
-                              
-                          </ul>
-                      </div>
+               <!-- END MODAL -->                                     
                   </div>
               </div>        
-          </div>
-
-               
-
-
+          </div>              
           <!-- LINEA DEPARADORA-->
           <div class="container mb-4 mt-4">
-              <hr width="100%"/>
-              
+              <hr width="100%"/>              
           </div>
-
-
-
-
-
-          <!-- TABLA 2--> 
-          <!-- TABLA 2--> 
-          <!-- TABLA 2--> 
-          <!-- TABLA 2--> 
-          
+          <!------------------------------------------- TABLA 2 ------------------------------------------->     
           <div class="container">
-              
-              <div class="table-responsive">
-                  
+            <form action="php/addProducts.php" id="addContacts" name="adc" method="POST">
+              <div class="table-responsive">                  
                   <div class="table-wrapper">
                       <div class="table-title">
                           <h4 class="text-center mt-2">Productos agregados</h4>
                           <div class="row">
-                              <div class="col-xs-6">
-                                  
+                              <div class="col-xs-6">                                  
                               </div>
                               <!-- BOTONES DE LA TABLA--> 
-                              <!-- BOTONES DE LA TABLA--> 
                               <div class="col-xs-6 mb-3">
-                                  <a href="#" class="btn btn-success"data-bs-toggle="modal" data-bs-target="#exampleModal2"> <span>Agregar</span></a>
-                                  <a href="#" class="btn btn-success"data-bs-toggle="modal" data-bs-target="#exampleModal2"> <span>Editar</span></a>						
+                                  <a href="#" class="btn btn-success"data-bs-toggle="modal" data-bs-target="#exampleModal2"> <span>Agregar</span></a>				
                               </div>
                           </div>
                       </div>
-
                       <!-- BOTONES DE LA TABLA--> 
                       <table class="table table-striped table-hover text-center">
                           <thead>
-                              <tr>
-                                  
+                              <tr>                                  
                                   <th>ID</th>
                                   <th>Producto</th>
-                                  <th>Opciones</th>
-                                  
+                                  <th>Opciones</th>                                  
                               </tr>
-                          </thead>
-                          
+                          </thead>                          
                           <tbody>
-                              <tr>
-                                  
-                                  <td>2201</td>
-                                  <td>Termostato Mini Cooper S R56 2013</td>
-                                  
-                                  <!-- OPCIONES--> 
-                                  <td>
-                                      <a href="#" class="edit" data-toggle="modal">Editar</a> 
-                                      
-                                      <a href="#" class="delete" data-toggle="modal">Eliminar</a>
-                                  </td>
+                              <tr>                                                                 
+
                               </tr>
-                              <tr>
-
-
-                                  
-                                  <td>2201</td>
-                                  <td>Termostato Mini Cooper S R56 2013</td>
-                                  
+                              <tr>                                                            
                                   <!-- OPCIONES--> 
                                   <td>
-                                      <a href="#" class="edit" data-toggle="modal">Editar</a> 
-                                      
+                                      <a href="#" class="edit" data-toggle="modal">Editar</a>                                       
                                       <a href="#" class="delete" data-toggle="modal">Eliminar</a>
                                   </td>
                               </tr>
                               
                           </tbody>
                       </table>
+            </form>
 
-
-
-                      <!-- Modal 2 -->
-              <!-- Modal2 -->
-              <!-- Modal2 -->
-              <!-- Modal2 -->
-              <!-- Modal2 -->
-
-
+                      <!------------------------------------------ MODAL 2  ------------------------------------------>         
+              <form action="php/addProducts.php" id="addContacts" name="adc" method="POST">
               <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                 <div class="modal-content">
@@ -399,106 +370,48 @@
                 <h5 class="modal-title" id="exampleModalLabel">AGREGAR PRODUCTO</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-
-
                 <!-- ELEMENTOS CONTENIDOS EN EL MODAL2 -->
-                <!-- ELEMENTOS CONTENIDOS EN EL MODAL2 -->
-                <!-- ELEMENTOS CONTENIDOS EN EL MODAL2 -->
-
-
-                <div class="modal-body">
-                
+                <div class="modal-body">                
                   <form>
-
                     <div class="form-group">
-                      <label for="exampleFormControlSelect1">Tipo de requerimiento</label>
-                      <select class="form-control" id="exampleFormControlSelect1">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                      <label for="exampleFormControlSelect1">Comodity </label>
+                      <select class="form-control" name="comodity" id="comodity">
+                        <option>- Seleccione una opción -</option>
+                        <option value="1">Producto</option>
+                        <option value="2">Proceso</option>
+                        <option value="3">Materia prima</option>
+                        <option value="4">Servicios indirectos</option>                        
                       </select>
                     </div>
-
                     <div class="form-group mt-3">
-                      <label for="exampleFormControlSelect1">Comodity</label>
-                      <select class="form-control" id="exampleFormControlSelect1">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                      </select>
-                    </div>
-
-                    
-
+                      <label for="exampleFormControlSelect1">Producto</label>
+                      <input type="text" class="form-control" id="txt_prod" name="txt_prod" placeholder="Ejemplo: Termostato Mini Cooper">
+                    </div>                    
                     <div class="form-group mt-3">
                       <label for="exampleFormControlTextarea1">Observaciones</label>
                       <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
-                    </div>
-
-                    
-
-                    
-                  </form>
-                
-              
-              
-              
+                    </div>                                  
+                  </form>                                                          
                 </div>
-
                 <!-- FIN ELEMENTOS CONTENIDOS EN EL MODAL2 -->
-                <!-- FIN ELEMENTOS CONTENIDOS EN EL MODAL2 -->
-                <!-- FIN ELEMENTOS CONTENIDOS EN EL MODAL2 -->
-
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <a class="btn btn-primary" href="#">Guardar</a>
+                <input href="PaginaprincipalDeProveedores.php?edit=<?php echo $row['ID_contacto'];?>" type="submit" name= "btnaddp" class="btn btn-primary" value="Guardar">
                 </div>
                 </div>
                 </div>
                 </div>
                  <!-- END MODAL2 -->
-                 <!-- END MODAL2 -->
-                 <!-- END MODAL2 -->
-
-                     <!-- PAGINACIÓN DE LA TABLA-->  
-                      <div class="clearfix">
-                          
-                          <ul class="pagination">
-                              
-                              <li class="page-item active"><a href="#" class="page-link">1</a></li>
-                              <li class="page-item"><a href="#" class="page-link">2</a></li>
-                              <li class="page-item"><a href="#" class="page-link">3</a></li>
-                              <li class="page-item"><a href="#" class="page-link">4</a></li>
-                              <li class="page-item"><a href="#" class="page-link">5</a></li>
-                              
-                          </ul>
-                      </div>
                   </div>
               </div>        
-          </div>        
-
-              
-   
-    <!-- FINAL DEL CONTENEDOR -->
-    <!-- FINAL DEL CONTENEDOR -->
-    <!-- FINAL DEL CONTENEDOR -->
-    <!-- FINAL DEL CONTENEDOR -->
+          </div>
+          </form>                       
     <!-- FINAL DEL CONTENEDOR -->
     <!-- YA NO COLOQUE ELEMENTOS :) -->
-   
-    
+       
 </section>
 
-
-  <!-- FOOTER -->
- <!-- FOOTER -->
- <!-- FOOTER -->
- <!-- FOOTER -->
-
+                           <!------------------------------------ FOOTER ------------------------------------>
 
  <div class="footer-link-div float-start pt-5">
   <div class="container">
