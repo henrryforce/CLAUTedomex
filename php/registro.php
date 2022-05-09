@@ -41,8 +41,28 @@ if(isset($_POST['email'])&&isset($_POST['codigo'])){
             
             echo json_encode("No se encontro el correo");
         }else{
-            echo json_encode($respuesta);
+            if($codigo !== $respuesta[0]["mail_code"]){
+                echo json_encode("Codigo erroneo");
+            }else{
+                $obj -> query("UPDATE `usuarios` SET `mail_status`= 1 WHERE `username` = '$email'");
+                $obj -> resultSet();
+                echo json_encode("Codigo correcto");
+            }
+            
         }
+    }
+}
+if(isset($_POST['email'])&& isset($_POST['reenvio'])){
+    $email = $_POST['email'];
+    $obj = new Conexion();
+    $obj -> query("SELECT `mail_code` FROM `usuarios` WHERE `username` = '$email'");
+    $respuesta = $obj -> resultSet();
+    try{
+        $mail = new enviarCorreo($email,'Codigo de verificación');
+        $mail -> sendCode($respuesta[0]["mail_code"]);
+        echo json_encode("enviado");
+    }catch (Exception $e) {
+        echo json_encode($e->getMessage());
     }
 }
 ?>
