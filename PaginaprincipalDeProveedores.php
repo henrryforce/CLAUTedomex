@@ -233,7 +233,7 @@
                               <!-- BOTONES DE LA TABLA--> 
                               
                                 <div class="col-xs-6 mb-3">                                 
-                                  <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tablaModal" style="background-color: #0371F1;"> <span>Agregar</span></a>                                  
+                                  <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tablaModal" style="background-color: #1156AB;"> <span>Agregar</span></a>                                  
                                 </div>                                                          
                           </div>
                       </div>
@@ -324,7 +324,7 @@
               <!-- FIN ELEMENTOS CONTENIDOS EN EL MODAL -->
               <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>-
-              <input href="PaginaprincipalDeProveedores.php?edit=<?php echo $row['ID_contacto'];?>" type="submit" name= "btnadd" class="btn btn-primary" value="Guardar">
+              <input href="PaginaprincipalDeProveedores.php?edit=<?php echo $row['ID_contacto'];?>" type="submit" name= "btnadd" class="btn btn-primary" style="background-color: #1156AB;" value="Guardar">
               </div>
               </div>
               </div>
@@ -360,7 +360,7 @@
                               <!-- BOTONES DE LA TABLA--> 
                                 <div class="col-xs-6 mb-3">                                  
                                   <?php if($update == true):?>
-                                    <button type="submit" class="btn btn-primary" name="update" style="display: show">Actualizar</button>
+                                    <button type="submit" class="btn btn-primary" name="update" style="display: show" style="background-color: #1156AB;">Actualizar</button>
                                   <?php else:?>                                                                
                                     <button type="submit" class="btn btn-primary" name="update" style="display:none;">Guardar</button>
                                   <?php endif; ?>                                    
@@ -408,7 +408,7 @@
                               <!-- BOTONES DE LA TABLA--> 
                               <!-- BOTONES DE LA TABLA--> 
                               <div class="col-xs-6 mb-3">
-                                  <a href="#" class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#exampleModal2"> <span>Agregar</span></a>				
+                                  <a href="#" class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#exampleModal2" style="background-color: #1156AB;> <span>Agregar</span></a>				
                               </div>
                           </div>
                       </div>
@@ -474,7 +474,7 @@
                 <!-- FIN ELEMENTOS CONTENIDOS EN EL MODAL2 -->
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <input href="PaginaprincipalDeProveedores.php?edit=<?php echo $row['ID_producto'];?>" type="submit" name= "btnaddp" class="btn btn-primary" value="Guardar">
+                <input href="PaginaprincipalDeProveedores.php?edit=<?php echo $row['ID_producto'];?>" type="submit" name= "btnaddp" class="btn btn-primary" style="background-color: #1156AB;" value="Guardar">
                 </div>
                 </div>
                 </div>
