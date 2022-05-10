@@ -4,6 +4,17 @@
 /* Estilos extra */
 /* Estilos extra */
 
+/* BARRA LATERAL RESPONSIVE (MADIBLE MENU) - HOVER ACTIVE */
+
+.mobile-menu-sec .active-m a {
+    background: #1156AB;
+    color: #fff;
+}
+
+
+
+
+
 /* TAMAÑO DE LETRA TEXTO EN NAVBAR */
 
 .main-menu-div .navbar-nav .nav-link {
