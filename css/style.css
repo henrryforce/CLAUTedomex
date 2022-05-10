@@ -6,7 +6,7 @@
 
 /* ESTILOS TABLAS */
 tbody, td, tfoot, th, thead, tr {
-    border-color: inherit;
+    border-color: #C1C1C1;
     border-style: solid;
     border-width: thin;
 }
