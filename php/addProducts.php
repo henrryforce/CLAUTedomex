@@ -42,7 +42,7 @@
 
         		break;
         	case '2':
-                $database->query("SELECT `producto` FROM `catalogo_proceseo` WHERE producto LIKE '%$producto%'");
+                $database->query("SELECT `producto` FROM `catalogo_proceso` WHERE producto LIKE '%$producto%'");
                 $res = $database->resultSet();
                 if(!empty($res)){
                     $database->query("INSERT INTO producto(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");
@@ -51,7 +51,7 @@
                     $database->bind(3, $selected);
                     $database->execute();
                 }else{
-                    $database->query("INSERT INTO catalogo_producto(producto) VALUES(?)");
+                    $database->query("INSERT INTO catalogo_productos(producto) VALUES(?)");
                     $database->bind(1, $producto);
                     $database->execute();
                 }
@@ -85,7 +85,7 @@
                 $database->query("SELECT `producto` FROM `catalogo_indirectos` WHERE producto LIKE '%$producto%'");
                 $res = $database->resultSet();
                 if(!empty($res)){
-                    $database->query("INSERT INTO producto(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");
+                    $database->query("INSERT INTO producto(Producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");
                     $database->bind(1, $producto);
                     $database->bind(1, $id_user);
                     $database->bind(1, $selected);
@@ -95,7 +95,7 @@
                     $database->bind(1, $producto);
                     $database->execute();
                 }
-                $database->query("INSERT INTO producto(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");
+                $database->query("INSERT INTO producto(Producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");
                 $database->bind(1, $producto);
                 $database->bind(1, $id_user);
                 $database->bind(1, $selected);

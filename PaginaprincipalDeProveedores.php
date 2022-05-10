@@ -1,9 +1,14 @@
 <?php
+ session_start();
+ if(!isset($_SESSION['id_usuario'])){
+  header("location: /Login.html");
+ }
   include_once "php/Conexion.php";
   require_once "php/addContactos.php";
+ 
   $database=new Conexion;
-  $id_usr=2;                              
-  $database-> query("SELECT * FROM contacto WHERE id_usuario=$id_usr");
+  $id_usr=$_SESSION['id_usuario'];                              
+  $database-> query("SELECT * FROM contacto WHERE `ID_usuario`=$id_usr");
   $rows = $database->resultSet(); 
   foreach ($rows as $row):
   endforeach;
@@ -251,7 +256,7 @@
                                   <td><?php echo $row['Cel']?></td>                                  
                                   <!-- OPCIONES--> 
                                   <td>
-                                      <a href="PaginaprincipalDeProveedores.php?edit=<?php $id_cont =$row['ID_contacto']; echo $row['ID_contacto'];?>" onclick="mostrarEditar()">Edit</a>
+                                      <a href="/PaginaprincipalDeProveedores.php?edit=<?php $id_cont =$row['ID_contacto']; echo $row['ID_contacto'];?>" onclick="mostrarEditar()">Edit</a>
                                       <a href="php/addContactos.php?delete=<?php echo $row['ID_contacto'];?>">Delete</a>
                                   </td>
                               </tr>
@@ -304,7 +309,7 @@
               <!-- FIN ELEMENTOS CONTENIDOS EN EL MODAL -->
               <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>-
-              <input href="PaginaprincipalDeProveedores.php?edit=<?php echo $row['ID_contacto'];?>" type="submit" name= "btnadd" class="btn btn-primary" value="Guardar">
+              <input href="/PaginaprincipalDeProveedores.php?edit=<?php echo $row['ID_contacto'];?>" type="submit" name= "btnadd" class="btn btn-primary" value="Guardar">
               </div>
               </div>
               </div>
@@ -396,7 +401,7 @@
                 <!-- FIN ELEMENTOS CONTENIDOS EN EL MODAL2 -->
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <input href="PaginaprincipalDeProveedores.php?edit=<?php echo $row['ID_contacto'];?>" type="submit" name= "btnaddp" class="btn btn-primary" value="Guardar">
+                <input href="/PaginaprincipalDeProveedores.php?edit=<?php echo $row['ID_contacto'];?>" type="submit" name= "btnaddp" class="btn btn-primary" value="Guardar">
                 </div>
                 </div>
                 </div>

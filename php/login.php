@@ -11,16 +11,18 @@ if(isset($_POST['email']) && isset($_POST['password']) && !isset($_POST['resetPa
     $user = $_POST['email'];
     $pass = $_POST['password'];
     $obj = new Conexion();
-    $obj -> query("SELECT `password`, `mail_status` FROM `usuarios` WHERE `username` = '$user'");
+    $obj -> query("SELECT `contrasenia`, `Estatus_mail`, `ID_usuario`,`ID_tipo_usr` FROM `usuario` WHERE `usuario` = '$user'");
     $respuesta = $obj -> resultSet();
     if($respuesta === []){
         echo json_encode("Bad email");
     }
-    else if(password_verify($pass, $respuesta[0]['password'])){
-        if($respuesta[0]['mail_status']){
+    else if(password_verify($pass, $respuesta[0]['contrasenia'])){
+        if($respuesta[0]['Estatus_mail']){
             session_start();
             $_SESSION['email'] = $user;
-            echo json_encode("Correcta");
+            $_SESSION['id_usuario'] = $respuesta[0]['ID_usuario'];
+            echo json_encode($respuesta[0]['ID_tipo_usr']);
+            
         }else{
             echo json_encode("Sin Verificar");
         }
@@ -35,13 +37,13 @@ if(isset($_POST['email']) && isset($_POST['password']) && !isset($_POST['resetPa
 if(isset($_POST['email'])&&isset($_POST['restablecer'])){
     $email = $_POST['email'];
     $obj = new Conexion();
-    $obj -> query("SELECT  `mail_status` FROM `usuarios` WHERE `username` = '$email'");
+    $obj -> query("SELECT  `Estatus_mail` FROM `usuario` WHERE `usuario` = '$email'");
     $respuesta = $obj -> resultSet();
     if($respuesta === []){
         echo json_encode("Bad email");
-    }else if($respuesta[0]['mail_status']){
+    }else if($respuesta[0]['Estatus_mail']){
         $codigo = rand(999999,111111);
-        $obj -> query("UPDATE `usuarios` SET `mail_code`=$codigo  WHERE `username` = '$email'");
+        $obj -> query("UPDATE `usuario` SET `Codigo_verificacion`=$codigo  WHERE `usuario` = '$email'");
         try{
             $obj -> resultSet();
             $mail = new enviarCorreo($email,'Codigo de verificación');
@@ -64,7 +66,7 @@ if(isset($_POST['password'])&&isset($_POST['password_c'])&&isset($_POST['email']
     $pass = $_POST['password'];
     $hash = password_hash($pass,PASSWORD_BCRYPT);
     $obj = new Conexion();
-    $obj -> query("UPDATE `usuarios` SET `password`= '$hash'  WHERE `username` = '$email'");
+    $obj -> query("UPDATE `usuario` SET `contrasenia`= '$hash'  WHERE `usuario` = '$email'");
     try{
         $obj -> resultSet();
         echo json_encode("OK");
