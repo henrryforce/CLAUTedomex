@@ -4,7 +4,7 @@
   $database=new Conexion;
   $id_usr=2;                              
   $database-> query("SELECT * FROM contacto WHERE id_usuario=$id_usr");
-  $rows = $database->resultSet(); 
+  $rows = $database->resultSet();
   foreach ($rows as $row):
   endforeach;
   ?>
@@ -53,10 +53,8 @@
     }
   </script>
 <body>
-
-  
   <div class="main-menu-div float-start w-100">
-    <div class="top-menu-sction float-start w-100 d-none d-md-none d-lg-block">
+    <div class="top-menu-sction float-start w-100 d-none d-md-none d-lg-block">      
         <div class="container">
              <div class="row row-cols-1 row-cols-lg-2">
                <div class="col">
@@ -163,21 +161,33 @@
                 <div class="container mb-4">
                     <hr width="100%"/>                    
                 </div>
+                <div class="Profile-header text-center">
+                  <h5 class="text-dark font-weight-bold text-decoration-none">Editar información</a>                        
+                </div>
+            
             <!--------------------------------- TABLA EDITAR --------------------------------->    
             <section id = "tabEditar" class="container mt-2 mb-2 p-2 ">
               <form action="php/addContactos.php" method="POST">                
                 <div class="table-responsive">
                   <div class="table-wrapper">
-                      <div class="table-title">
+                      <div class="table-title">                        
                           <div class="row">
-                              <div class="col-xs-6">                                  
+                              <div class="col-xs-6">
+                                <?php if(isset($_SESSION['message'])): ?>              
+                                        <div class="alert alert-<?=$_SESSION['msg_type']?>"  role="alert">
+                                <?php 
+                                          echo $_SESSION['message'];
+                                          unset($_SESSION['message']);
+                                ?>
+                                        </div>
+                                <?php endif ?>
                               </div>
                               <!-- BOTONES DE LA TABLA--> 
                                 <div class="col-xs-6 mb-3">                                  
                                   <?php if($update == true):?>
-                                    <button type="submit" class="btn btn-success" name="update">Actualizar</button>
+                                    <button type="submit" class="btn btn-success" name="update" style="display: show">Actualizar</button>
                                   <?php else:?>                                                                
-                                    <button type="submit" class="btn btn-success" name="update">Guardar</button>
+                                    <button type="submit" class="btn btn-success" name="update" style="display:none;">Guardar</button>
                                   <?php endif; ?>                                    
                                 </div>                                                          
                           </div>
@@ -219,17 +229,18 @@
                           <div class="row">
                               <div class="col-xs-6">                                  
                               </div>
-                              <!-- BOTONES DE LA TABLA-->                               
+                              <!-- BOTONES DE LA TABLA--> 
+                              <!-- BOTONES DE LA TABLA--> 
+                              
                                 <div class="col-xs-6 mb-3">                                 
-                                  <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tablaModal"> <span>Agregar</span></a>                                  
+                                  <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tablaModal" style="background-color: #0371F1;"> <span>Agregar</span></a>                                  
                                 </div>                                                          
                           </div>
                       </div>
                       <!-- BOTONES DE LA TABLA--> 
                       <table class="table table-striped table-hover text-center">
                           <thead>
-                              <tr>                                  
-                                  <th>ID_contacto</th>
+                              <tr>
                                   <th>Nombre</th>
                                   <th>Puesto</th>
                                   <th>Email</th>
@@ -239,10 +250,9 @@
                                   <th>Opciones</th>
                               </tr>
                           </thead>                          
-                          <tbody>                              
-                              <?php foreach($rows as $row) :?> 
+                          <tbody>                                   
+                              <?php foreach($rows as $row) :?>
                               <tr>                                  
-                                  <td><?php echo $row['ID_contacto']?></td>
                                   <td><?php echo $row['Nombre']?></td>
                                   <td><?php echo $row['Puesto']?></td>
                                   <td><?php echo $row['Email']?></td>
@@ -251,12 +261,11 @@
                                   <td><?php echo $row['Cel']?></td>                                  
                                   <!-- OPCIONES--> 
                                   <td>
-                                      <a href="PaginaprincipalDeProveedores.php?edit=<?php $id_cont =$row['ID_contacto']; echo $row['ID_contacto'];?>" onclick="mostrarEditar()">Edit</a>
+                                      <a href="PaginaprincipalDeProveedores.php?edit=<?php $id_cont =$row['ID_contacto']; echo $row['ID_contacto'];?>">Edit</a>
                                       <a href="php/addContactos.php?delete=<?php echo $row['ID_contacto'];?>">Delete</a>
                                   </td>
                               </tr>
-                              <?php endforeach; ?>        
-
+                              <?php endforeach; ?>
                           </tbody>
                       </table>
                     </div>
@@ -272,29 +281,40 @@
               <h5 class="modal-title" id="exampleModalLabel">CONTACTO</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
+
+
               <!-- ELEMENTOS CONTENIDOS EN EL MODAL -->
+              <!-- ELEMENTOS CONTENIDOS EN EL MODAL -->
+              <!-- ELEMENTOS CONTENIDOS EN EL MODAL -->
+
+
               <div class="modal-body">              
                 <form action="php/addProducts.php" id="addContacts" name="apd" method="POST">
                   <div class="form-group">
                     <label for="exampleFormControlInput1">Nombre</label>
                     <input type="text" class="form-control" id="txt_nombre" name="txt_nombre" placeholder="Ejemplo: Alejandro Lopez Lopez">
                   </div>
+
                   <div class="form-group mt-3">
                     <label for="exampleFormControlInput2">Puesto</label>
                     <input type="text" class="form-control" id="txt_puesto" name="txt_puesto"  placeholder="Ejemplo: IT Support">
                   </div>
+
                   <div class="form-group mt-3">
                     <label for="exampleFormControlInput3">Email</label>
                     <input type="email" class="form-control" id="txt_mail" name="txt_mail" placeholder="Ejemplo: ale2201@example.com">
                   </div>
+
                   <div class="form-group mt-3">
                     <label for="exampleFormControlInput4">Teléfono</label>
                     <input type="tel" class="form-control" id="txt_tel" name="txt_tel" placeholder="Ejemplo: 55-55-55-55">
                   </div>
+
                   <div class="form-group mt-3">
                     <label for="exampleFormControlInput5">Extensión</label>
                     <input type="number" class="form-control" id="txt_ext" name="txt_ext" placeholder="Ejemplo: 2201">
                   </div>
+
                   <div class="form-group mt-3">
                     <label for="exampleFormControlInput6">Celular</label>
                     <input type="tel" class="form-control" id="txt_cel" name = "txt_cel" placeholder="Ejemplo: 55-55-55-55">
@@ -320,6 +340,61 @@
           <div class="container mb-4 mt-4">
               <hr width="100%"/>              
           </div>
+          <!--------------------------------- TABLA EDITAR 2 --------------------------------->
+            <section id = "tabEditar2" class="container mt-2 mb-2 p-2 ">
+              <form action="php/addContactos.php" method="POST">                
+                <div class="table-responsive">
+                  <div class="table-wrapper">
+                      <div class="table-title">                        
+                          <div class="row">
+                              <div class="col-xs-6">
+                                <?php if(isset($_SESSION['message'])): ?>              
+                                        <div class="alert alert-<?=$_SESSION['msg_type']?>"  role="alert">
+                                <?php 
+                                          echo $_SESSION['message'];
+                                          unset($_SESSION['message']);
+                                ?>
+                                        </div>
+                                <?php endif ?>
+                              </div>
+                              <!-- BOTONES DE LA TABLA--> 
+                                <div class="col-xs-6 mb-3">                                  
+                                  <?php if($update == true):?>
+                                    <button type="submit" class="btn btn-primary" name="update" style="display: show">Actualizar</button>
+                                  <?php else:?>                                                                
+                                    <button type="submit" class="btn btn-primary" name="update" style="display:none;">Guardar</button>
+                                  <?php endif; ?>                                    
+                                </div>                                                          
+                          </div>
+                      </div>
+                      <!-- BOTONES DE LA TABLA--> 
+                      <table class="table table-hover table-hover text-center">
+                          <thead>
+                              <tr>                                                                                                   
+                                  <th>Nombre</th>
+                                  <th>Puesto</th>
+                                  <th>Email</th>
+                                  <th>Teléfono</th>
+                                  <th>Extensión</th>
+                                  <th>Celular</th>                                                                    
+                              </tr>
+                          </thead>                          
+                          <tbody>                                                            
+                              <tr>
+                                <input type="hidden" id="ed_id" name="ed_id" value="<?php echo $id_cont; ?>">
+                                <td><input type="text" id="ed_name" name="ed_name" value="<?php echo $name; ?>" placeholder="Nombre"></td>
+                                <td><input type="text" id="ed_job" name="ed_job" value="<?php echo $job; ?>" placeholder="Puesto"></td>
+                                <td><input type="text" id="ed_mail" name="ed_mail" value="<?php echo$mail; ?>" placeholder="Email"></td>
+                                <td><input type="text" id="ed_tel" name="ed_tel" value="<?php echo $tele; ?>" placeholder="Telefono"></td>
+                                <td><input type="text" id="ed_ext" name="ed_ext" value="<?php echo $exte; ?>" placeholder="Extensión"></td>
+                                <td><input type="text" id="ed_cel" name="ed_cel" value="<?php echo $cel; ?>" placeholder="Celular"></td>
+                              </tr>
+                          </tbody>
+                      </table>
+                    </div>
+                </div>                         
+             </form>
+            </select>
           <!------------------------------------------- TABLA 2 ------------------------------------------->     
           <div class="container">
             <form action="php/addProducts.php" id="addContacts" name="adc" method="POST">
@@ -331,8 +406,9 @@
                               <div class="col-xs-6">                                  
                               </div>
                               <!-- BOTONES DE LA TABLA--> 
+                              <!-- BOTONES DE LA TABLA--> 
                               <div class="col-xs-6 mb-3">
-                                  <a href="#" class="btn btn-success"data-bs-toggle="modal" data-bs-target="#exampleModal2"> <span>Agregar</span></a>				
+                                  <a href="#" class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#exampleModal2"> <span>Agregar</span></a>				
                               </div>
                           </div>
                       </div>
@@ -346,17 +422,19 @@
                               </tr>
                           </thead>                          
                           <tbody>
-                              <tr>                                                                 
-
-                              </tr>
-                              <tr>                                                            
+                            <?php $database->query("SELECT ID_producto, Producto from Producto WHERE id_usuario=$id_usr");
+                            $res = $database->resultSet();?>
+                            <?php foreach($res as $row) :?>
+                              <tr>                                
+                                <td><?php echo $row['ID_producto']?></td>
+                                <td><?php echo $row['Producto']?></td>
                                   <!-- OPCIONES--> 
                                   <td>
                                       <a href="#" class="edit" data-toggle="modal">Editar</a>                                       
                                       <a href="#" class="delete" data-toggle="modal">Eliminar</a>
                                   </td>
                               </tr>
-                              
+                              <?php endforeach; ?>
                           </tbody>
                       </table>
             </form>
@@ -396,7 +474,7 @@
                 <!-- FIN ELEMENTOS CONTENIDOS EN EL MODAL2 -->
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <input href="PaginaprincipalDeProveedores.php?edit=<?php echo $row['ID_contacto'];?>" type="submit" name= "btnaddp" class="btn btn-primary" value="Guardar">
+                <input href="PaginaprincipalDeProveedores.php?edit=<?php echo $row['ID_producto'];?>" type="submit" name= "btnaddp" class="btn btn-primary" value="Guardar">
                 </div>
                 </div>
                 </div>
@@ -407,11 +485,21 @@
           </div>
           </form>                       
     <!-- FINAL DEL CONTENEDOR -->
+    <!-- FINAL DEL CONTENEDOR -->
+    <!-- FINAL DEL CONTENEDOR -->
+    <!-- FINAL DEL CONTENEDOR -->
+    <!-- FINAL DEL CONTENEDOR -->
     <!-- YA NO COLOQUE ELEMENTOS :) -->
-       
+   
+    
 </section>
 
-                           <!------------------------------------ FOOTER ------------------------------------>
+
+  <!-- FOOTER -->
+ <!-- FOOTER -->
+ <!-- FOOTER -->
+ <!-- FOOTER -->
+
 
  <div class="footer-link-div float-start pt-5">
   <div class="container">
