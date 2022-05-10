@@ -3,6 +3,17 @@
 
 /* Estilos extra */
 
+.btn {
+    
+    line-height: 1.9;
+    }
+
+	.btn-outline-secondary {
+		color: #6c757d;
+		border-color: #F1F1F1;
+	}
+	
+
 
 #btn-back-to-top {
 	position: fixed;
