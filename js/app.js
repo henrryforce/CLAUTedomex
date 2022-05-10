@@ -89,6 +89,7 @@ function enviaLogin (e) {
     })
       .then(res => res.json())
       .then(data => {
+        
         if (data === 'Bad email') {
           creaNotificacion(noti, 'El correo no esta registrado')
         }
@@ -106,8 +107,9 @@ function enviaLogin (e) {
         if (data === 'Incorrecta') {
           creaNotificacion(noti, 'Contraseña incorrecta')
         }
-        if (data === 'Correcta') {
-          creaNotificacion(noti, 'Contraseña Correcta')
+        if (data === '2') {
+          creaNotificacion(noti, 'Contraseña Correcta');
+          window.location.assign('/PaginaprincipalDeProveedores.php')
         }
       })
   }
@@ -117,9 +119,9 @@ function enviaLogin (e) {
  * Funcion para generar el registro
  */
 function enviarRegistro (e) {
-  e.preventDefault()
-  let form = document.getElementById('formRegistro')
-  let data = new FormData(form)
+  e.preventDefault();
+  let form = document.getElementById('formRegistro');
+  let data = new FormData(form);
   let notifica = document.getElementById('notificaciones')
 
   if (data.get('password') !== data.get('password_confirm')) {
@@ -151,6 +153,9 @@ function enviarRegistro (e) {
     data.get('usertype') !== null &&
     data.get('password').length >= 8
   ) {
+    for(var a of data.values()){
+      console.log(a);
+    }
     localStorage.setItem('email', data.get('email'))
     fetch('../php/registro.php', {
       method: 'POST',
