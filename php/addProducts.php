@@ -1,8 +1,9 @@
 <?php 	
 	require_once "Conexion.php";    
     $database = new Conexion;
-
+    $id_cont ='';
     $update = false;
+    $producto='';
 
     if(isset($_POST['btnaddp'])){
     	if(!empty($_POST['comodity'])){
@@ -44,7 +45,7 @@
 
         		break;
         	case '2':
-                $database->query("SELECT `producto` FROM `catalogo_proceso` WHERE producto LIKE '%$producto%'");
+                $database->query("SELECT `producto` FROM `catalogo_proceseo` WHERE producto LIKE '%$producto%'");
                 $res = $database->resultSet();
                 if(!empty($res)){
                     $database->query("INSERT INTO producto(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");
@@ -54,7 +55,7 @@
                     $database->execute();
                     break;
                 }else{
-                    $database->query("INSERT INTO catalogo_productos(producto) VALUES(?)");
+                    $database->query("INSERT INTO catalogo_producto(producto) VALUES(?)");
                     $database->bind(1, $producto);
                     $database->execute();
                 }
@@ -89,7 +90,7 @@
                 $database->query("SELECT `producto` FROM `catalogo_indirectos` WHERE producto LIKE '%$producto%'");
                 $res = $database->resultSet();
                 if(!empty($res)){
-                    $database->query("INSERT INTO producto(Producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");
+                    $database->query("INSERT INTO producto(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");
                     $database->bind(1, $producto);
                     $database->bind(1, $id_user);
                     $database->bind(1, $selected);
@@ -100,7 +101,7 @@
                     $database->bind(1, $producto);
                     $database->execute();
                 }
-                $database->query("INSERT INTO producto(Producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");
+                $database->query("INSERT INTO producto(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");
                 $database->bind(1, $producto);
                 $database->bind(1, $id_user);
                 $database->bind(1, $selected);
@@ -114,8 +115,25 @@
 
     }
     
-    if (isset($_POST['variable'])) {
-        // code...
+    if(isset($_GET['delete'])){
+        $id = $_GET['delete'];
+        $_SESSION['message'] = "¡Se ha eliminado con éxito el contacto!";
+        $_SESSION['msg_type'] = "danger";
+
+        $database->query("DELETE FROM `producto` WHERE `ID_producto` = $id");
+        $database->resultSet();
+
+        header("location: /CLAUTedomex/PaginaprincipalDeProveedores.php");
     }
 
+    if(isset($_GET['editP'])){
+        $id = $_GET['editP'];
+        $database->query("SELECT * FROM producto WHERE ID_producto = $id");
+        $rows = $database->resultSet();
+        $update = true;
+        foreach ($rows as $row ) :
+            $id_cont= $row['ID_producto'];           
+            $producto = $row['Producto'];            
+        endforeach;        
+    }
 ?>

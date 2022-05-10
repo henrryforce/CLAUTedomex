@@ -1,4 +1,6 @@
 <?php
+    
+    session_start();
 
     require_once "Conexion.php";    
     $database = new Conexion;
@@ -22,6 +24,8 @@
         $cel = isset($_POST['txt_cel']) ? $_POST['txt_cel'] : '';    
         $id_user = $_COOKIE['user_id'];        
         
+        $_SESSION['message'] = "¡Se ha agregado con éxito el contacto!";
+        $_SESSION['msg_type'] = "success";
         $database->query("INSERT INTO contacto(nombre, puesto, email, tel, ext, cel, ID_usuario) VALUES (?,?,?,?,?,?,?) ");
         $database->bind(1, $nombre);
         $database->bind(2, $puesto);
@@ -32,15 +36,18 @@
         $database->bind(7, $id_user);
         $database->execute();
 
-        header("location: /PaginaprincipalDeProveedores.php");
+        header("location: /CLAUTedomex/PaginaprincipalDeProveedores.php");
     }
 
     if(isset($_GET['delete'])){
         $id = $_GET['delete'];
+        $_SESSION['message'] = "¡Se ha eliminado con éxito el contacto!";
+        $_SESSION['msg_type'] = "danger";
+
         $database->query("DELETE FROM `contacto` WHERE `contacto`.`ID_contacto` = $id");
         $database->resultSet();
 
-        header("location: /PaginaprincipalDeProveedores.php");
+        header("location: /CLAUTedomex/PaginaprincipalDeProveedores.php");
     }
 
     if(isset($_GET['edit'])){
@@ -68,6 +75,9 @@
         $exte= $_POST['ed_ext'] ? $_POST['ed_ext']: '';
         $cel= $_POST['ed_cel'] ? $_POST['ed_cel']: ''; 
         
+        $_SESSION['message'] = "¡Se ha modificado con éxito el contacto!";
+        $_SESSION['msg_type'] = "warning";
+
         $database->query("UPDATE `contacto` SET `Nombre` =?, `Puesto` = ?, `Email` = ?, `Tel` = ?, `Ext` = ?, `Cel` = ? WHERE `contacto`.`ID_contacto` = ?");
         $database->bind(1, $name);
         $database->bind(2, $job);
@@ -78,6 +88,6 @@
         $database->bind(7, $id_cont);
         $database->execute();
         
-        header("location: /PaginaprincipalDeProveedores.php");
+        header("location: /CLAUTedomex/PaginaprincipalDeProveedores.php");
     }
 ?>
