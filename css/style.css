@@ -4,20 +4,6 @@
 /* Estilos extra */
 /* Estilos extra */
 
-/* BARRA LATERAL RESPONSIVE (MADIBLE MENU) - HOVER ACTIVE */
-
-.mobile-menu-sec .active-m a {
-    background: #1156AB;
-    color: #fff;
-}
-
-.mobile-menu-sec .active-m a {
-    background: #1156AB;
-    color: #fff;
-}
-
-
-
 
 
 /* TAMAÑO DE LETRA TEXTO EN NAVBAR */
@@ -1909,7 +1895,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     width: 320px;
 }
 .mobile-menu-sec .active-m a {
-    background: rgba(245,173,13,96%);
+    background: #1156AB;
     color: #fff;
 }
 .mobile-menu-sec li a, .mobile-menu-sec li .dropdown .btn {
