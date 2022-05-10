@@ -1,17 +1,15 @@
 <?php
- session_start();
- if(!isset($_SESSION['id_usuario'])){
+session_start();
+if(!isset($_SESSION['id_usuario'])){
   header("location: /Login.html");
- }
+}else{
+  $id_usr=$_SESSION['id_usuario'];
+}
   include_once "php/Conexion.php";
   require_once "php/addContactos.php";
- 
   $database=new Conexion;
-  $id_usr=$_SESSION['id_usuario'];                              
-  $database-> query("SELECT * FROM contacto WHERE `ID_usuario`=$id_usr");
-  $rows = $database->resultSet(); 
-  $id_usr=2;                              
-  $database-> query("SELECT * FROM contacto WHERE id_usuario=$id_usr");
+                                
+  $database-> query("SELECT * FROM contacto WHERE `id_usuario`=$id_usr");
   $rows = $database->resultSet();
   foreach ($rows as $row):
   endforeach;
@@ -241,7 +239,7 @@
                               <!-- BOTONES DE LA TABLA--> 
                               
                                 <div class="col-xs-6 mb-3">                                 
-                                  <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tablaModal" style="background-color: #1156AB;"> <span>Agregar</span></a>                                  
+                                  <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tablaModal" style="background-color: #0371F1;"> <span>Agregar</span></a>                                  
                                 </div>                                                          
                           </div>
                       </div>
@@ -332,7 +330,7 @@
               <!-- FIN ELEMENTOS CONTENIDOS EN EL MODAL -->
               <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>-
-              <input href="PaginaprincipalDeProveedores.php?edit=<?php echo $row['ID_contacto'];?>" type="submit" name= "btnadd" class="btn btn-primary" style="background-color: #1156AB;" value="Guardar">
+              <input href="PaginaprincipalDeProveedores.php?edit=<?php echo $row['ID_contacto'];?>" type="submit" name= "btnadd" class="btn btn-primary" value="Guardar">
               </div>
               </div>
               </div>
@@ -368,7 +366,7 @@
                               <!-- BOTONES DE LA TABLA--> 
                                 <div class="col-xs-6 mb-3">                                  
                                   <?php if($update == true):?>
-                                    <button type="submit" class="btn btn-primary" name="update" style="display: show" style="background-color: #1156AB;">Actualizar</button>
+                                    <button type="submit" class="btn btn-primary" name="update" style="display: show">Actualizar</button>
                                   <?php else:?>                                                                
                                     <button type="submit" class="btn btn-primary" name="update" style="display:none;">Guardar</button>
                                   <?php endif; ?>                                    
@@ -416,7 +414,7 @@
                               <!-- BOTONES DE LA TABLA--> 
                               <!-- BOTONES DE LA TABLA--> 
                               <div class="col-xs-6 mb-3">
-                                  <a href="#" class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#exampleModal2" style="background-color: #1156AB;> <span>Agregar</span></a>				
+                                  <a href="#" class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#exampleModal2"> <span>Agregar</span></a>				
                               </div>
                           </div>
                       </div>
@@ -430,7 +428,7 @@
                               </tr>
                           </thead>                          
                           <tbody>
-                            <?php $database->query("SELECT ID_producto, Producto from Producto WHERE id_usuario=$id_usr");
+                            <?php $database->query("SELECT `ID_producto`, `Producto` from `Producto` WHERE `id_usuario`=$id_usr");
                             $res = $database->resultSet();?>
                             <?php foreach($res as $row) :?>
                               <tr>                                
@@ -482,7 +480,7 @@
                 <!-- FIN ELEMENTOS CONTENIDOS EN EL MODAL2 -->
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <input href="PaginaprincipalDeProveedores.php?edit=<?php echo $row['ID_producto'];?>" type="submit" name= "btnaddp" class="btn btn-primary" style="background-color: #1156AB;" value="Guardar">
+                <input href="PaginaprincipalDeProveedores.php?edit=<?php echo $row['ID_producto'];?>" type="submit" name= "btnaddp" class="btn btn-primary" value="Guardar">
                 </div>
                 </div>
                 </div>
