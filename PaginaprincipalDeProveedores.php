@@ -1,15 +1,10 @@
 <?php
-session_start();
-if(!isset($_SESSION['id_usuario'])){
-  header("location: /Login.html");
-}else{
-  $id_usr=$_SESSION['id_usuario'];
-}
   include_once "php/Conexion.php";
   require_once "php/addContactos.php";
+  require_once "php/addProducts.php";
   $database=new Conexion;
-                                
-  $database-> query("SELECT * FROM contacto WHERE `id_usuario`=$id_usr");
+  $id_usr=2;                              
+  $database-> query("SELECT * FROM contacto WHERE id_usuario=$id_usr");
   $rows = $database->resultSet();
   foreach ($rows as $row):
   endforeach;
@@ -346,6 +341,9 @@ if(!isset($_SESSION['id_usuario'])){
           <div class="container mb-4 mt-4">
               <hr width="100%"/>              
           </div>
+          <div class="Profile-header text-center">
+                  <h5 class="text-dark font-weight-bold text-decoration-none">Editar información</a>                        
+                </div>
           <!--------------------------------- TABLA EDITAR 2 --------------------------------->
             <section id = "tabEditar2" class="container mt-2 mb-2 p-2 ">
               <form action="php/addContactos.php" method="POST">                
@@ -377,23 +375,16 @@ if(!isset($_SESSION['id_usuario'])){
                       <table class="table table-hover table-hover text-center">
                           <thead>
                               <tr>                                                                                                   
-                                  <th>Nombre</th>
-                                  <th>Puesto</th>
-                                  <th>Email</th>
-                                  <th>Teléfono</th>
-                                  <th>Extensión</th>
-                                  <th>Celular</th>                                                                    
+                                  
+                                  <th>Producto</th>
+                                  <th>Comentarios</th>
                               </tr>
                           </thead>                          
                           <tbody>                                                            
                               <tr>
-                                <input type="hidden" id="ed_id" name="ed_id" value="<?php echo $id_cont; ?>">
-                                <td><input type="text" id="ed_name" name="ed_name" value="<?php echo $name; ?>" placeholder="Nombre"></td>
-                                <td><input type="text" id="ed_job" name="ed_job" value="<?php echo $job; ?>" placeholder="Puesto"></td>
-                                <td><input type="text" id="ed_mail" name="ed_mail" value="<?php echo$mail; ?>" placeholder="Email"></td>
-                                <td><input type="text" id="ed_tel" name="ed_tel" value="<?php echo $tele; ?>" placeholder="Telefono"></td>
-                                <td><input type="text" id="ed_ext" name="ed_ext" value="<?php echo $exte; ?>" placeholder="Extensión"></td>
-                                <td><input type="text" id="ed_cel" name="ed_cel" value="<?php echo $cel; ?>" placeholder="Celular"></td>
+                                <input type="hidden" id="ed_idp" name="ed_idp" value="<?php echo $id_cont; ?>">
+                                <td><input type="text" id="ed_namep" name="ed_namep" value="<?php echo $producto; ?>" placeholder="Producto"></td>
+                                <td><input type="text" id="ed_obp" name="ed_obp" value="<?php echo $job; ?>" placeholder="Observaciones"></td>
                               </tr>
                           </tbody>
                       </table>
@@ -428,7 +419,7 @@ if(!isset($_SESSION['id_usuario'])){
                               </tr>
                           </thead>                          
                           <tbody>
-                            <?php $database->query("SELECT `ID_producto`, `Producto` from `Producto` WHERE `id_usuario`=$id_usr");
+                            <?php $database->query("SELECT ID_producto, Producto from Producto WHERE id_usuario=$id_usr");
                             $res = $database->resultSet();?>
                             <?php foreach($res as $row) :?>
                               <tr>                                
@@ -436,8 +427,8 @@ if(!isset($_SESSION['id_usuario'])){
                                 <td><?php echo $row['Producto']?></td>
                                   <!-- OPCIONES--> 
                                   <td>
-                                      <a href="#" class="edit" data-toggle="modal">Editar</a>                                       
-                                      <a href="#" class="delete" data-toggle="modal">Eliminar</a>
+                                      <a href="PaginaprincipalDeProveedores.php?editP=<?php echo $row['ID_producto'];?>">Edit</a>
+                                      <a href="php/addProducts.php?deleteP=<?php echo $row['ID_producto'];?>">Delete</a>
                                   </td>
                               </tr>
                               <?php endforeach; ?>
