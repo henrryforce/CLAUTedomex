@@ -1,14 +1,12 @@
 <?php
-/*
-include 'emailsender.php';
-$obj = new enviarCorreo('luis15ago98@gmail.com','Prueba con Plantilla HTML5 con CSS 88');
-echo $obj -> enviar();
-*/
-
-echo 'hola';
-include 'Conexion.php';
-$obj = new Conexion();
-$obj -> query("SELECT * FROM `comprador`");
-
-var_dump($obj -> resultSet());
+include '../php/emailsender.php';
+if(isset($_POST['name']) && isset($_POST['email'])&&isset($_POST['phone'])&&isset($_POST['subject'])&&isset($_POST['message'])){
+    $mail = new enviarCorreo("self",'Solicitud de Contacto');
+    try{
+        $mail ->correoContacto($_POST['name'],$_POST['email'],$_POST['phone'],$_POST['subject'],$_POST['message']);
+        echo json_encode("send");
+    }catch (Exception $e) {
+        echo json_encode($e->getMessage());
+    }
+}
 ?>

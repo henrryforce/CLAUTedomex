@@ -1,7 +1,5 @@
 <?php
     
-    session_start();
-
     require_once "Conexion.php";    
     $database = new Conexion;
     
@@ -36,7 +34,7 @@
         $database->bind(7, $id_user);
         $database->execute();
 
-        header("location: /CLAUTedomex/PaginaprincipalDeProveedores.php");
+        header("location: /PaginaprincipalDeProveedores.php");
     }
 
     if(isset($_GET['delete'])){
@@ -47,7 +45,7 @@
         $database->query("DELETE FROM `contacto` WHERE `contacto`.`ID_contacto` = $id");
         $database->resultSet();
 
-        header("location: /CLAUTedomex/PaginaprincipalDeProveedores.php");
+        header("location: /PaginaprincipalDeProveedores.php");
     }
 
     if(isset($_GET['edit'])){
@@ -88,6 +86,6 @@
         $database->bind(7, $id_cont);
         $database->execute();
         
-        header("location: /CLAUTedomex/PaginaprincipalDeProveedores.php");
+        header("location: /PaginaprincipalDeProveedores.php");
     }
 ?>
