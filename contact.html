@@ -157,7 +157,8 @@
                     <div class="conatct-form-div mb-5">
                         <h6 class="mb-0">Para poder contactarnos</h6>
                         <h2> Completa el formulario </h2>
-                        <form action="contact.php" name="frm" method="post">
+                        <div id="notificaciones"></div>
+                        <form action="#" name="frm" id="formContacto" method="post">
                           <div class="row mt-4">
                               <div class="col-lg-6">
                                   <input type="text" class="form-control" name="name" placeholder="Nombre" required>
@@ -175,7 +176,7 @@
                                 <textarea class="form-control" name="message" placeholder="Mensaje" required></textarea>
                             </div>
                             <div class="col-lg-12">
-                                <input type="submit" name="btnsubmit" class="btn subimt-message" value="Enviar">
+                                <input type="submit" name="btnContacto" id="btnContacto" class="btn subimt-message" value="Enviar">
                             </div>
                           </div>
                         </form>
@@ -317,7 +318,7 @@
 
 
 
-
+<script src="js/app.js"></script>
 <script src="js/bootstrap.bundle.min.js" ></script>
 <script src="js/jquery.min.js" ></script>
 </script>

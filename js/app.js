@@ -71,6 +71,12 @@ function load () {
       window.location.assign('/Login.html')
     }, 1000);
   }
+  if(ubi.includes('/PaginaprincipalDeProveedores.php')){
+    document.getElementById('btnAdminPerfil').addEventListener('click',AdminPerfilProveedor);
+  }
+  if(ubi.includes('/contact.html')){
+    document.getElementById('btnContacto').addEventListener('click',contactoform);
+  }
 }
 /**
  *
@@ -89,7 +95,7 @@ function enviaLogin (e) {
     })
       .then(res => res.json())
       .then(data => {
-        
+        console.log(data);
         if (data === 'Bad email') {
           creaNotificacion(noti, 'El correo no esta registrado')
         }
@@ -280,17 +286,62 @@ function cambiarPass(e){
   }
 }
 /**
+ * funcion para administrar el perfil de proveefores
+ */
+function AdminPerfilProveedor(){
+console.log("Administrar");
+}
+/**
  * Funcion para eliminar los nodos de un elemento padre
  */
 function eliminaNodos (padre) {
   setTimeout(() => {
-    padre.removeChild(padre.firstElementChild)
-  }, 3500)
+    padre.removeChild(padre.firstElementChild);
+    padre.classList.remove('alert-danger');
+    padre.classList.remove('alert');
+  }, 3500);
+ 
 }
+/**
+ * funcion vista contacto
+ */
+ function contactoform(e){
+   e.preventDefault();
+   let form = document.getElementById('formContacto');
+  let noti = document.getElementById('notificaciones');
+  let data = new FormData(form);
+  if(data.get('name')===''){
+    creaNotificacion(noti,"Debes agregar un nombre");
+  }
+  if(data.get('email')===''){
+    creaNotificacion(noti,"Debes agregar un email");
+  }
+  if(data.get('phone')===''){
+    creaNotificacion(noti,"Debes agregar un telefono de contacto");
+  }
+  if(data.get('subject')===''){
+    creaNotificacion(noti,"Debes agregar un asunto");
+  }
+  if(data.get('message')===''){
+    creaNotificacion(noti,"Debes agregar un mensaje");
+  }
+  if(data.get('name')!='' &&data.get('email')!=''&&data.get('phone')!=''&&data.get('subject')!=''&&data.get('message')!=''){
+    fetch('../php/contact.php', {
+      method: 'POST',
+      body: data
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+       
+      })
+  }
+ }
 /*
  *Funcion para crear un elemento <p> para notificaciones en el DOM 
  */
 function creaNotificacion (padre, texto) {
+  padre.className="alert alert-danger";
   var noti = document.createElement('p')
   noti.innerText = texto
   padre.appendChild(noti)

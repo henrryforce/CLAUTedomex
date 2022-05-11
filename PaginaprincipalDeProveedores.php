@@ -1,9 +1,15 @@
 <?php
+session_start();
+if(!isset($_SESSION['id_usuario'])){
+  header("location: /Login.html");
+ }else{
+  $id_usr=$_SESSION['id_usuario'];
+}
   include_once "php/Conexion.php";
   require_once "php/addContactos.php";
   require_once "php/addProducts.php";
   $database=new Conexion;
-  $id_usr=2;                              
+                                 
   $database-> query("SELECT * FROM contacto WHERE id_usuario=$id_usr");
   $rows = $database->resultSet();
   foreach ($rows as $row):
@@ -143,9 +149,9 @@
                 <!--------------------------------- COLOCAR CONTENIDO AQUÍ --------------------------------->           
                 <!--------------------------------- UP BAR BUTTONS --------------------------------->
 				<div class="profile-userbuttons text-center mb-4">
-					<button type="button" class="btn btn-success">Administrar Perfil</button>
-					<button type="button" class="btn btn-success">Realizar pago</button>
-                    <button type="button" class="btn btn-success">Lista de tractoras</button>
+					<button type="button" id="btnAdminPerfil" class="btn btn-success" style="background-color: #0371F1;">Administrar Perfil</button>
+					<button type="button" class="btn btn-success" style="background-color: #0371F1;">Realizar pago</button>
+                    <button type="button" class="btn btn-success" style="background-color: #0371F1;">Lista de tractoras</button>
 				</div>
                 <!-- ROW(->) COL(v)-->                                    
                 <!-- LOGO Y NOMBRE DE LA MARCA-->
@@ -608,7 +614,7 @@
 </div>
 </div>
 
-
+<script src="js/app.js"></script>
 <script src="js/bootstrap.bundle.min.js" ></script>
 <script src="js/jquery.min.js" ></script>
 </script>
