@@ -77,6 +77,9 @@ function load () {
   if(ubi.includes('/contact.html')){
     document.getElementById('btnContacto').addEventListener('click',contactoform);
   }
+  if(ubi.includes('/cuenta-proveedor.php')){
+    document.getElementById('btnPassword').addEventListener('click',changePassPerfilProveedor);
+  }
 }
 /**
  *
@@ -114,7 +117,6 @@ function enviaLogin (e) {
           creaNotificacion(noti, 'Contraseña incorrecta')
         }
         if (data === '2') {
-          creaNotificacion(noti, 'Contraseña Correcta');
           window.location.assign('/PaginaprincipalDeProveedores.php')
         }
       })
@@ -289,7 +291,9 @@ function cambiarPass(e){
  * funcion para administrar el perfil de proveefores
  */
 function AdminPerfilProveedor(){
-console.log("Administrar");
+document.getElementById('btnAdminPerfil').addEventListener('click',()=>{
+  window.location.assign('/cuenta-proveedor.php');
+});
 }
 /**
  * Funcion para eliminar los nodos de un elemento padre
@@ -336,6 +340,50 @@ function eliminaNodos (padre) {
        
       })
   }
+ }
+ function changePassPerfilProveedor(e){
+   e.preventDefault();
+   let form = document.getElementById('formPassword');
+   let noti = document.getElementById('notificaciones');
+   let data = new FormData(form);
+   if(data.get('email')===''){
+    creaNotificacion(noti,"El campo correo no puede estar vacio");
+  }
+  if(data.get('password')===''){
+    creaNotificacion(noti,"El campo contraseña no puede estar vacio");
+  }
+  if(data.get('password2')===''){
+    creaNotificacion(noti,"El campo de confirmacion de contraseña no puede estar vacio");
+  }
+  if(data.get('email')!=='' && data.get('password')!=='' && data.get('password2')!==''){
+    var toast = new bootstrap.Toast(document.getElementById('liveToast'));
+    toast.show();
+    document.getElementById('btnToastCambiar').addEventListener('click',()=>{
+      data = new FormData(document.getElementById('formPassword'));
+      data.append('cambioPassword',1);
+      console.log(data.get('password'));
+      fetch('../php/Gestorcuenta.php', {
+        method: 'POST',
+        body: data
+      })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+         
+        })
+      document.getElementById('formPassword').reset();
+      toast.hide();
+      creaNotificacion(document.getElementById('notificaciones'),"Contrasesena actualizada");
+      document.getElementById('notificaciones').className="alert alert-success";
+    });
+  }
+ }
+ function enviarNewP(){
+   form = new FormData(document.getElementById('formPassword'));
+   for(i of form.values()){
+    console.log(i);
+  }
+  document.getElementById('formPassword').reset();
  }
 /*
  *Funcion para crear un elemento <p> para notificaciones en el DOM 
