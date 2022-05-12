@@ -355,7 +355,10 @@ function eliminaNodos (padre) {
   if(data.get('password2')===''){
     creaNotificacion(noti,"El campo de confirmacion de contraseña no puede estar vacio");
   }
-  if(data.get('email')!=='' && data.get('password')!=='' && data.get('password2')!==''){
+  if(data.get('password') !==data.get('password2')){
+    creaNotificacion(noti,"Las contraseñas no coinciden");
+  }
+  if(data.get('email')!=='' && data.get('password')!=='' && data.get('password2')!=='' && data.get('password') ===data.get('password2') ){
     var toast = new bootstrap.Toast(document.getElementById('liveToast'));
     toast.show();
     document.getElementById('btnToastCambiar').addEventListener('click',()=>{
