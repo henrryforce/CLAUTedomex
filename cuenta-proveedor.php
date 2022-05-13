@@ -1,5 +1,17 @@
+<?php
+session_start();
+if(!isset($_SESSION['id_usuario'])){
+  header("location: /Login.html");
+ }else{
+  $id_usr=$_SESSION['id_usuario'];
+include_once "php/Conexion.php";  
+  $obj=new Conexion;                               
+  $obj-> query("SELECT * FROM usuario WHERE id_usuario=$id_usr");
+  $respuesta= $obj -> resultSet();
+  
+?>
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -34,6 +46,24 @@
 <body>
 
   
+<div class="toast-container position-absolute p-3 top-50 start-50 translate-middle"   style="z-index: 11">
+  <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      
+      <strong class="me-auto">Actualizar Contraseña</strong>
+      
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+      <span>¿Estas seguro de actualizar tu contraseña?</span>
+      <span><?php echo $respuesta[0]['usuario'] ?></span>
+      <div class="mt-2 pt-2 border-top">
+      <button type="button" class="btn btn-primary btn-sm" id="btnToastCambiar">Cambiar</button>
+      <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Cerrar</button>
+    </div>
+    </div>
+  </div>
+</div>
   <div class="main-menu-div float-start w-100">
     <div class="top-menu-sction float-start w-100 d-none d-md-none d-lg-block">
         <div class="container">
@@ -148,7 +178,7 @@
                 <div class="container mb-4 text-center">
                     <!-- ENCABEZADOS-->
                     <h4>CUENTA - PROVEEDOR</h4>
-                    <a class="text-decoration-none" href="#">Administra tu perfil</a>
+                    <a class="text-decoration-none" href="/PaginaprincipalDeProveedores.php">Regresar al Menu Principal</a>
                 </div>
 
                 <!-- LABELS -->
@@ -160,34 +190,26 @@
                           </div>
                         <!-- LABELS -->
                         <div class="card-body mb-1">
-
-
+                          
+                          <form action="#" id="formPassword">
+                            <div id="notificaciones"></div>
                              <!-- LABEL 1 -->
                             <div class="col-lg-6 mx-auto mt-2">
-                                
-                                
-                                <input type="email" class="form-control" name="email" placeholder="Email" disabled>
+                                <input type="email" class="form-control" name="email" placeholder="Email" value="<?php echo $respuesta[0]['usuario'];?>" disabled >
                               </div>
-
                                <!-- LABEL 2 -->
-                              <div class="col-lg-6 mx-auto mt-3">
-                                
-                                <input type="password" class="form-control" name="password" placeholder="Password" disabled>
+                              <div class="col-lg-6 mx-auto mt-3">                              
+                                <input type="password" class="form-control" name="password" placeholder="Password" >
                               </div>  
-
                                <!-- LABEL 3 -->
-                              <div class="col-lg-6 mx-auto mt-3">
-                                
-                                <input type="password" class="form-control" name="password" placeholder="Confirmar Password" disabled>
-                              </div>
-                              
+                              <div class="col-lg-6 mx-auto mt-3">                      
+                                <input type="password" class="form-control" name="password2" placeholder="Confirmar Password" >
+                              </div>                          
                               <!-- BOTON ACTUALIZAR -->
                               <div class="container text-center mt-3">
-
-                                <a href="#" class="btn btn-primary text-center mb-1">Actualizar</a>
-            
+                                <button id="btnPassword" class="btn btn-primary text-center mb-1">Actualizar</button>
                             </div>
-
+                          </form>
                             
                           
                         </div>
@@ -626,7 +648,7 @@
 </div>
 </div>
 </div>
-
+<script src="js/app.js"></script>
 <script src="js/bootstrap.bundle.min.js" ></script>
 <script src="js/jquery.min.js" ></script>
 </script>
@@ -647,3 +669,6 @@ AOS.init({
 </script>
 </body>
 </html>
+<?php
+ }
+?>
