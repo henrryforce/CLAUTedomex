@@ -174,6 +174,9 @@ function enviarRegistro (e) {
         if (data === 'Registrado Correctamente') {
           window.location.assign('/confirmarregistro1.html')
         }
+        if(data === 'El correo ya existe'){
+          creaNotificacion(notifica, data);
+        }
       })
   }
 }
