@@ -76,7 +76,7 @@ class enviarCorreo{
           $mail->Subject = $this->subject;
           $mail->AddEmbeddedImage("logo-main.png", "my-attach", "logo-main.png");        //path, ID a buscar cid:el ID, nombre archivo  
           $html = file_get_contents('CodigoEmail.html');
-          $html = str_replace('{{code}}',$$code,$html);
+          $html = str_replace('{{code}}',$code,$html);
       $mail->CharSet = 'UTF-8';
       $mail->Body  =$html;
       $mail->AltBody = 'Codigo de Verificacion :'. $code ;
