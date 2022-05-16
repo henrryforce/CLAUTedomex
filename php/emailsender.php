@@ -74,14 +74,11 @@ class enviarCorreo{
           //Nombre opcional
           $mail->isHTML(true);                         //Establecer el formato de correo electrónico en HTMl
           $mail->Subject = $this->subject;
-            
-          $body = '<div>
-          <h1>Bienvenido</h1>
-          <h2>Este es tu codigo de verificacíon</h2>
-          <h3>'.$code.'</h3>
-      </div>';
+          $mail->AddEmbeddedImage("logo-main.png", "my-attach", "logo-main.png");        //path, ID a buscar cid:el ID, nombre archivo  
+          $html = file_get_contents('CodigoEmail.html');
+          $html = str_replace('{{code}}',$$code,$html);
       $mail->CharSet = 'UTF-8';
-      $mail->Body  =$body;
+      $mail->Body  =$html;
       $mail->AltBody = 'Codigo de Verificacion :'. $code ;
           $mail->send();    //Enviar correo eletrónico
         return 'El mensaje ha sido enviado';
