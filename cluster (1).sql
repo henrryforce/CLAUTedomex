@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 10-05-2022 a las 01:37:40
+-- Tiempo de generación: 17-05-2022 a las 04:42:22
 -- Versión del servidor: 8.0.27
 -- Versión de PHP: 7.4.26
 
@@ -41,7 +41,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `addUsersF` (IN `usuario` VARCHAR(50
     set id_detalleE =(select @@identity);
     insert into empresa (Empresa,ID_dtl_empresa) Values (empresa,id_detalleE);
     set id_empresa = (select @@identity);
-    insert into usuario (usuario,contrasenia,Codigo_verificacion,ID_tipo_usr) values (usuario,pass,mail_cod,tipo);
+    insert into usuario (usuario,contrasenia,Codigo_verificacion,ID_tipo_usr,ID_empresa) values (usuario,pass,mail_cod,tipo,id_empresa);
     set id_user = (select @@identity);
     select id_archivo,id_direccion,id_detalleE,id_empresa,id_user;
 END$$
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `archivos` (
   `Logo` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `Presentacion` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`ID_archivo`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `archivos`
@@ -78,7 +78,66 @@ INSERT INTO `archivos` (`ID_archivo`, `Logo`, `Presentacion`) VALUES
 (9, ' ', ' '),
 (10, ' ', ' '),
 (11, ' ', ' '),
-(12, ' ', ' ');
+(12, ' ', ' '),
+(13, ' ', ' '),
+(14, ' ', ' '),
+(15, ' ', ' '),
+(16, ' ', ' '),
+(17, ' ', ' '),
+(18, ' ', ' '),
+(19, ' ', ' '),
+(20, ' ', ' ');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `catalogo_estados`
+--
+
+DROP TABLE IF EXISTS `catalogo_estados`;
+CREATE TABLE IF NOT EXISTS `catalogo_estados` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(25) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `catalogo_estados`
+--
+
+INSERT INTO `catalogo_estados` (`id`, `nombre`) VALUES
+(1, 'Aguascalientes'),
+(2, 'Baja California'),
+(3, 'Baja California Sur'),
+(4, 'Campeche'),
+(5, 'Chiapas'),
+(6, 'Chihuahua'),
+(7, 'Coahuila'),
+(8, 'Colima'),
+(9, 'Ciudad de México'),
+(10, 'Durango'),
+(11, 'Guanajuato'),
+(12, 'Guerrero'),
+(13, 'Hidalgo'),
+(14, 'Jalisco'),
+(15, 'México'),
+(16, 'Michoacán'),
+(17, 'Morelos'),
+(18, 'Nayarit'),
+(19, 'Nuevo León'),
+(20, 'Oaxaca'),
+(21, 'Puebla'),
+(22, 'Querétaro'),
+(23, 'Quintana Roo'),
+(24, 'San Luis Potosí'),
+(25, 'Sinaloa'),
+(26, 'Sonora'),
+(27, 'Tabasco'),
+(28, 'Tamaulipas'),
+(29, 'Tlaxcala'),
+(30, 'Veracruz'),
+(31, 'Yucatán'),
+(32, 'Zacatecas');
 
 -- --------------------------------------------------------
 
@@ -372,7 +431,7 @@ CREATE TABLE IF NOT EXISTS `catalogo_productos` (
   `producto` varchar(700) NOT NULL,
   PRIMARY KEY (`idproducto`),
   UNIQUE KEY `producto` (`producto`)
-) ENGINE=InnoDB AUTO_INCREMENT=249 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=250 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `catalogo_productos`
@@ -613,6 +672,7 @@ INSERT INTO `catalogo_productos` (`idproducto`, `producto`) VALUES
 (209, 'VIBRATION CONTROL'),
 (210, 'VISION AND CONTROL SYSTEMS'),
 (211, 'VISUAL AND INDUSTRIAL SIGNS'),
+(249, 'Volante'),
 (212, 'WASHERS'),
 (213, 'WAX'),
 (214, 'WHEEL CYLINDERS'),
@@ -734,7 +794,7 @@ CREATE TABLE IF NOT EXISTS `contacto` (
   `ID_usuario` int NOT NULL,
   PRIMARY KEY (`ID_contacto`),
   KEY `ID_usuario` (`ID_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `contacto`
@@ -758,7 +818,8 @@ INSERT INTO `contacto` (`ID_contacto`, `Nombre`, `Puesto`, `Email`, `Tel`, `Ext`
 (19, 'Paula', 'limpieza', 'Paula@mail.com', 56987623, 2005, 6997644, 0),
 (22, 'Gerardo ', 'Desarrollador JR', 'gerardo_s_v@outlook.com', 2147483647, 0, 56987623, 1),
 (23, 'Casandra', 'De Taquitos', 'casandra@mail.com.mx', 2147483647, 0, 56987623, 1),
-(31, 'Clara ambar', 'Limpieza', 'lacasandruki@gmail.com', 2147483647, 666, 2147483647, 9);
+(31, 'Clara ambar', 'Limpieza', 'lacasandruki@gmail.com', 2147483647, 666, 2147483647, 9),
+(32, 'allan', 'jefe', 'allan@dasd.com', 2147483647, 54545, 5464324, 9);
 
 -- --------------------------------------------------------
 
@@ -780,7 +841,7 @@ CREATE TABLE IF NOT EXISTS `detalle_empresa` (
   PRIMARY KEY (`ID_dtl_empresa`),
   KEY `ID_archivo` (`ID_archivo`,`ID_direccion`),
   KEY `ID_direccion` (`ID_direccion`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `detalle_empresa`
@@ -796,7 +857,15 @@ INSERT INTO `detalle_empresa` (`ID_dtl_empresa`, `Descripcion`, `Pagina_web`, `T
 (10, '', NULL, NULL, NULL, NULL, NULL, 9, 10),
 (11, '', NULL, NULL, NULL, NULL, NULL, 10, 11),
 (12, '', NULL, NULL, NULL, NULL, NULL, 11, 12),
-(13, '', NULL, NULL, NULL, NULL, NULL, 12, 13);
+(13, '', NULL, NULL, NULL, NULL, NULL, 12, 13),
+(14, '', NULL, NULL, NULL, NULL, NULL, 13, 14),
+(15, '', NULL, NULL, NULL, NULL, NULL, 14, 15),
+(16, '', NULL, NULL, NULL, NULL, NULL, 15, 16),
+(17, '', NULL, NULL, NULL, NULL, NULL, 16, 17),
+(18, '', NULL, NULL, NULL, NULL, NULL, 17, 18),
+(19, '', NULL, NULL, NULL, NULL, NULL, 18, 19),
+(20, '', NULL, NULL, NULL, NULL, NULL, 19, 20),
+(21, '', NULL, NULL, NULL, NULL, NULL, 20, 21);
 
 -- --------------------------------------------------------
 
@@ -830,7 +899,7 @@ CREATE TABLE IF NOT EXISTS `direccion` (
   `Alcaldia` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `ID_estado` int DEFAULT NULL,
   PRIMARY KEY (`ID_direccion`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `direccion`
@@ -849,7 +918,15 @@ INSERT INTO `direccion` (`ID_direccion`, `Calle`, `Colonia`, `N_Int`, `N_Ext`, `
 (10, '', NULL, NULL, NULL, NULL, NULL, NULL),
 (11, '', NULL, NULL, NULL, NULL, NULL, NULL),
 (12, '', NULL, NULL, NULL, NULL, NULL, NULL),
-(13, '', NULL, NULL, NULL, NULL, NULL, NULL);
+(13, '', NULL, NULL, NULL, NULL, NULL, NULL),
+(14, '', NULL, NULL, NULL, NULL, NULL, NULL),
+(15, '', NULL, NULL, NULL, NULL, NULL, NULL),
+(16, '', NULL, NULL, NULL, NULL, NULL, NULL),
+(17, '', NULL, NULL, NULL, NULL, NULL, NULL),
+(18, '', NULL, NULL, NULL, NULL, NULL, NULL),
+(19, '', NULL, NULL, NULL, NULL, NULL, NULL),
+(20, '', NULL, NULL, NULL, NULL, NULL, NULL),
+(21, '', NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -865,7 +942,7 @@ CREATE TABLE IF NOT EXISTS `empresa` (
   `ID_dtl_empresa` int NOT NULL,
   PRIMARY KEY (`ID_empresa`),
   KEY `ID_dtl_empresa` (`ID_dtl_empresa`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `empresa`
@@ -880,7 +957,15 @@ INSERT INTO `empresa` (`ID_empresa`, `Empresa`, `Descripcion`, `ID_dtl_empresa`)
 (6, 'dasdas', NULL, 10),
 (7, 'dasdas', NULL, 11),
 (8, 'WeFE', NULL, 12),
-(9, 'WEFE', NULL, 13);
+(9, 'WEFE', NULL, 13),
+(10, 'WEF', NULL, 14),
+(11, 'wefe', NULL, 15),
+(12, 'rwerew', NULL, 16),
+(13, 'gsd', NULL, 17),
+(14, 'Despacho Avila', NULL, 18),
+(15, '$nom_empresa', NULL, 19),
+(16, '$nom_empresa', NULL, 20),
+(17, 'Empresa', NULL, 21);
 
 -- --------------------------------------------------------
 
@@ -921,7 +1006,7 @@ CREATE TABLE IF NOT EXISTS `producto` (
   `ID_catalogo` int NOT NULL,
   PRIMARY KEY (`ID_producto`),
   KEY `ID_dtl_producto` (`ID_dtl_producto`,`ID_usuario`,`ID_catalogo`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `producto`
@@ -932,7 +1017,8 @@ INSERT INTO `producto` (`ID_producto`, `Producto`, `ID_dtl_producto`, `ID_usuari
 (2, 'Bomba de gasolina', 0, 2, 1),
 (3, 'Termostato Mini Cooper', 0, 2, 1),
 (4, 'Termostatp', 0, 9, 2),
-(5, 'fsdfds', 0, 9, 1);
+(5, 'fsdfds', 0, 9, 1),
+(6, 'Volante', 0, 17, 1);
 
 -- --------------------------------------------------------
 
@@ -994,17 +1080,19 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   PRIMARY KEY (`ID_usuario`),
   KEY `ID_empresa` (`ID_empresa`,`ID_tipo_usr`),
   KEY `ID_tipo_usr` (`ID_tipo_usr`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
 INSERT INTO `usuario` (`ID_usuario`, `usuario`, `contrasenia`, `Estatus_mail`, `Estatus_pago`, `Fecha_pago`, `Codigo_verificacion`, `ID_empresa`, `ID_tipo_usr`) VALUES
-(4, 'luis', 'dassdfgds', '0', '0', '0000-00-00', '456789', 0, 1),
+(4, 'luis', '', '0', '0', '0000-00-00', '456789', 0, 1),
 (5, 'GErardo', 'contra', '0', '0', '0000-00-00', '456789', 0, 1),
 (7, 'asdasd@das', '$2y$10$rY1pKUq9HRZHOmN7UwFs.ObKByzz3ve8xSBTQdZ3Zf.rwDBDaTsuu', '1', '0', '0000-00-00', '491956', 0, 2),
-(9, 'luis15ago98@gmail.com', '$2y$10$GKytCm5vBpRiHFtoJ/neB.73uNauSRmX6a3bmqcRaDX8/zDUgXUSS', '1', '0', '0000-00-00', '545736', 0, 2);
+(9, 'luis15ago98@gmail.com', '$2y$10$C9VLnVlRzfP.QeYo7SBwHeth4n3QKAnzwFXP4e.iSOBtlPUwFOqLK', '1', '0', '0000-00-00', '545736', 9, 2),
+(13, 'algo@gmas.com', '$2y$10$UePq2sdT/pUvkoaSCp.rWus3krc.ZOXXFACCaXUC7UJR5c.iVqSTy', '0', '0', '0000-00-00', '751462', 0, 2),
+(17, 'luisenriqueall@hotmail.com', '$2y$10$tEbJM/AGfpeMqVtkev2uQeNa1dZeK7ea6Wi896K1ft9C2koJoT08u', '1', '0', '0000-00-00', '670202', 17, 2);
 
 --
 -- Restricciones para tablas volcadas
