@@ -1,8 +1,8 @@
 <?php 	
 	require_once "Conexion.php";    
     $database = new Conexion;
-    $id_cont ='';
-    $update = false;
+    $id_prod ='';
+    $update2 = false;
     $producto='';
 
     if(isset($_POST['btnaddp'])){
@@ -14,7 +14,7 @@
     	}
         $tipo = isset($_POST['comodity']) ? $_POST['comodity']:'';
         $producto = isset($_POST['txt_prod']) ? $_POST['txt_prod']:'';    	
-        $id_user = $_COOKIE['user_id'];
+        $id_user = isset($_POST['txt_usr']) ? $_POST['txt_usr'] : '';
         echo "ID_usuario: ".$id_user." | ";
         echo "nombre del producto; ".$producto;
         switch ($selected){
@@ -132,7 +132,7 @@
         $rows = $database->resultSet();
         $update = true;
         foreach ($rows as $row ) :
-            $id_cont= $row['ID_producto'];           
+            $id_prod= $row['ID_producto'];           
             $producto = $row['Producto'];            
         endforeach;        
     }

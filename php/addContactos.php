@@ -20,8 +20,9 @@
         $tel = isset($_POST['txt_tel']) ? $_POST['txt_tel'] : '';
         $ext = isset($_POST['txt_ext']) ? $_POST['txt_ext'] : '';
         $cel = isset($_POST['txt_cel']) ? $_POST['txt_cel'] : '';    
-        $id_user = $_COOKIE['user_id'];        
+        $id_user = isset($_POST['txt_usr']) ? $_POST['txt_usr'] : '';
         
+        echo ($id_user);
         $_SESSION['message'] = "¡Se ha agregado con éxito el contacto!";
         $_SESSION['msg_type'] = "success";
         $database->query("INSERT INTO contacto(nombre, puesto, email, tel, ext, cel, ID_usuario) VALUES (?,?,?,?,?,?,?) ");
@@ -34,7 +35,7 @@
         $database->bind(7, $id_user);
         $database->execute();
 
-        header("location: /PaginaprincipalDeProveedores.php");
+        header("location: ../PaginaprincipalDeProveedores.php");
     }
 
     if(isset($_GET['delete'])){
@@ -51,8 +52,9 @@
     if(isset($_GET['edit'])){
         $id = $_GET['edit'];
         $database->query("SELECT * FROM contacto WHERE ID_contacto = $id");
-        $rows = $database->resultSet();
+        $rows = $database->resultSet();        
         $update = true;
+
         foreach ($rows as $row ) :
             $id_cont= $row['ID_contacto'];           
             $name = $row['Nombre'];            
