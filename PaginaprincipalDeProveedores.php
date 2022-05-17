@@ -9,11 +9,6 @@ if(!isset($_SESSION['id_usuario'])){
   require_once "php/addContactos.php";
   require_once "php/addProducts.php";
   $database=new Conexion;
-                                 
-  $database-> query("SELECT * FROM contacto WHERE id_usuario=$id_usr");
-  $rows = $database->resultSet();
-  foreach ($rows as $row):
-  endforeach;
   ?>
 <?php setcookie("user_id", $_SESSION['id_usuario']);?>
 
@@ -49,18 +44,8 @@ if(!isset($_SESSION['id_usuario'])){
     <link rel="stylesheet" href="css/owl.theme.default.min.css"/>
    
   </head>
-  <script type="text/javascript"> 
-    function mostrarEditar() {
-      //document.getElementById("tabEditar").style.display = "block";
-      $('#tabEditar').removeAttr('style');
-      $('#tabEditar').show();
-    }
-    function ocultarEditar(){
-      document.getElementById("tabEditar").style.display = "none";
-    }
-  </script>
 <body>
-  <div class="main-menu-div float-start w-100">
+ <div class="main-menu-div float-start w-100">
     <div class="top-menu-sction float-start w-100 d-none d-md-none d-lg-block">      
         <div class="container">
              <div class="row row-cols-1 row-cols-lg-2">
@@ -175,7 +160,7 @@ if(!isset($_SESSION['id_usuario'])){
                               <!-- BOTONES DE LA TABLA--> 
                                 <div class="col-xs-6 mb-3">                                  
                                   <?php if($update == true):?>
-                                    <button type="submit" class="btn btn-success" name="update" style="display: show">Actualizar</button>
+                                    <button type="submit" class="btn btn-success" name="update" style="display:show;">Actualizar</button>
                                   <?php else:?>                                                                
                                     <button type="submit" class="btn btn-success" name="update" style="display:none;">Guardar</button>
                                   <?php endif; ?>                                    
@@ -220,8 +205,7 @@ if(!isset($_SESSION['id_usuario'])){
                               <div class="col-xs-6">                                  
                               </div>
                               <!-- BOTONES DE LA TABLA--> 
-                              <!-- BOTONES DE LA TABLA--> 
-                              
+                              <!-- BOTONES DE LA TABLA-->                               
                                 <div class="col-xs-6 mb-3">                                 
                                   <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tablaModal" style="background-color: #0371F1;"> <span>Agregar</span></a>                                  
                                 </div>                                                          
@@ -240,20 +224,22 @@ if(!isset($_SESSION['id_usuario'])){
                                   <th>Opciones</th>
                               </tr>
                           </thead>                          
-                          <tbody>                                   
+                          <tbody>      
+                            <?php $database-> query("SELECT * FROM contacto WHERE id_usuario=$id_usr");?>
+                            <?php $rows = $database->resultSet();?>
                               <?php foreach($rows as $row) :?>
-                              <tr>                                  
-                                  <td><?php echo $row['Nombre']?></td>
-                                  <td><?php echo $row['Puesto']?></td>
-                                  <td><?php echo $row['Email']?></td>
-                                  <td><?php echo $row['Tel']?></td>
-                                  <td><?php echo $row['Ext']?></td>
-                                  <td><?php echo $row['Cel']?></td>                                  
-                                  <!-- OPCIONES--> 
-                                  <td>
-                                      <a href="PaginaprincipalDeProveedores.php?edit=<?php $id_cont =$row['ID_contacto']; echo $row['ID_contacto'];?>">Edit</a>
-                                      <a href="php/addContactos.php?delete=<?php echo $row['ID_contacto'];?>">Delete</a>
-                                  </td>
+                              <tr>                                                                    
+                                <td><?php echo $row['Nombre']?></td>
+                                <td><?php echo $row['Puesto']?></td>
+                                <td><?php echo $row['Email']?></td>
+                                <td><?php echo $row['Tel']?></td>
+                                <td><?php echo $row['Ext']?></td>
+                                <td><?php echo $row['Cel']?></td>                                
+                                <!-- OPCIONES--> 
+                                <td>
+                                    <a href="PaginaprincipalDeProveedores.php?edit=<?php $id_cont =$row['ID_contacto']; echo $row['ID_contacto'];?>">Edit</a>
+                                    <a href="php/addContactos.php?delete=<?php echo $row['ID_contacto'];?>">Delete</a>
+                                </td>
                               </tr>
                               <?php endforeach; ?>
                           </tbody>
@@ -263,21 +249,17 @@ if(!isset($_SESSION['id_usuario'])){
               </form>
               <!------------------------------------------ MODAL  ------------------------------------------>          
 
-              <form action="php/addContactos.php" id="addContacts" name="adc" method="post">
-              <div class="modal fade" id="tablaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-              <div class="modal-content">
-              <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">CONTACTO</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-
-
+<form action="php/addContactos.php" id="addContacts" name="adc" method="post">
+  <div class="modal fade" id="tablaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">CONTACTO</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
               <!-- ELEMENTOS CONTENIDOS EN EL MODAL -->
               <!-- ELEMENTOS CONTENIDOS EN EL MODAL -->
               <!-- ELEMENTOS CONTENIDOS EN EL MODAL -->
-
-
               <div class="modal-body">              
                 <form action="php/addProducts.php" id="addContacts" name="apd" method="POST">
                   <div class="form-group">
@@ -308,6 +290,7 @@ if(!isset($_SESSION['id_usuario'])){
                   <div class="form-group mt-3">
                     <label for="exampleFormControlInput6">Celular</label>
                     <input type="tel" class="form-control" id="txt_cel" name = "txt_cel" placeholder="Ejemplo: 55-55-55-55">
+                    <input type="hidden" id="txt_usr" name="txt_usr" value="<?php echo $id_usr?>">
                   </div>                  
                 </form>                                                  
               </div>
@@ -352,7 +335,7 @@ if(!isset($_SESSION['id_usuario'])){
                               </div>
                               <!-- BOTONES DE LA TABLA--> 
                                 <div class="col-xs-6 mb-3">                                  
-                                  <?php if($update == true):?>
+                                  <?php if($update2 == true):?>
                                     <button type="submit" class="btn btn-primary" name="update" style="display: show">Actualizar</button>
                                   <?php else:?>                                                                
                                     <button type="submit" class="btn btn-primary" name="update" style="display:none;">Guardar</button>
@@ -373,7 +356,7 @@ if(!isset($_SESSION['id_usuario'])){
                               <tr>
                                 <input type="hidden" id="ed_idp" name="ed_idp" value="<?php echo $id_cont; ?>">
                                 <td><input type="text" id="ed_namep" name="ed_namep" value="<?php echo $producto; ?>" placeholder="Producto"></td>
-                                <td><input type="text" id="ed_obp" name="ed_obp" value="<?php echo $job; ?>" placeholder="Observaciones"></td>
+                                <td><input type="text" id="ed_obp" name="ed_obp" value="<?php //echo $job; ?>" placeholder="Observaciones"></td>
                               </tr>
                           </tbody>
                       </table>
@@ -426,7 +409,7 @@ if(!isset($_SESSION['id_usuario'])){
             </form>
 
                       <!------------------------------------------ MODAL 2  ------------------------------------------>         
-              <form action="php/addProducts.php" id="addContacts" name="adc" method="POST">
+                      <form action="php/addProducts.php" id="addContacts" name="adc" method="POST">
               <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                 <div class="modal-content">
@@ -469,7 +452,7 @@ if(!isset($_SESSION['id_usuario'])){
                   </div>
               </div>        
           </div>
-          </form>                       
+          </form>                        
     <!-- FINAL DEL CONTENEDOR -->
     <!-- FINAL DEL CONTENEDOR -->
     <!-- FINAL DEL CONTENEDOR -->

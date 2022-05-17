@@ -57,8 +57,8 @@ DELIMITER ;
 DROP TABLE IF EXISTS `archivos`;
 CREATE TABLE IF NOT EXISTS `archivos` (
   `ID_archivo` int NOT NULL AUTO_INCREMENT,
-  `Logo` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Presentacion` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `Logo` varchar(25) DEFAULT NULL,
+  `Presentacion` varchar(25) DEFAULT NULL,
   PRIMARY KEY (`ID_archivo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
