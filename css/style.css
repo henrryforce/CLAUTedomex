@@ -5,6 +5,14 @@
 /* Estilos extra */
 
 
+/* ESTILOS NAV ITEM "CERRAR SESIÓN" */
+
+.accordion-item {
+    background-color: #1156AB;
+    border: 1px #1156AB;
+}
+
+
 
 /* ESTILOS TABLAS */
 tbody, td, tfoot, th, thead, tr {
