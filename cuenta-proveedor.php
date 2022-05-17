@@ -720,3 +720,6 @@ include_once "php/Conexion.php";
 </script>
 </body>
 </html>
+<?php
+ }
+ ?>
