@@ -55,7 +55,7 @@
                     $database->execute();
                     break;
                 }else{
-                    $database->query("INSERT INTO catalogo_producto(producto) VALUES(?)");
+                    $database->query("INSERT INTO catalogo_productos(producto) VALUES(?)");
                     $database->bind(1, $producto);
                     $database->execute();
                 }
@@ -111,7 +111,7 @@
         		echo "Error en la consulta";
         		break;
         }
-         header("location: /CLAUTedomex/PaginaprincipalDeProveedores.php");
+         header("location: /PaginaprincipalDeProveedores.php");
 
     }
     
@@ -123,7 +123,7 @@
         $database->query("DELETE FROM `producto` WHERE `ID_producto` = $id");
         $database->resultSet();
 
-        header("location: /CLAUTedomex/PaginaprincipalDeProveedores.php");
+        header("location: /PaginaprincipalDeProveedores.php");
     }
 
     if(isset($_GET['editP'])){

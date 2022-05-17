@@ -28,7 +28,7 @@
 
         $database->execute();
 
-        header("location: /CLAUTedomex/PaginaprincipalDeTractoras.php");
+        header("location: /PaginaprincipalDeTractoras.php");
 	}
 	if(isset($_GET['deleteq'])){
         $id = $_GET['deleteq'];
@@ -38,7 +38,7 @@
         $database->query("DELETE FROM `requerimiento_producto` WHERE `ID_req_producto` = $id");
         $database->resultSet();
 
-        header("location: /CLAUTedomex/PaginaprincipalDeTractoras.php");
+        header("location: /PaginaprincipalDeTractoras.php");
     }
     if(isset($_GET['editq'])){
         $id = $_GET['editq'];
@@ -68,7 +68,7 @@
         $database->bind(4, $id_req);
         $database->execute();
         
-        header("location: /CLAUTedomex/PaginaprincipalDeTractoras.php");
+        header("location: /PaginaprincipalDeTractoras.php");
     }
 
  ?>

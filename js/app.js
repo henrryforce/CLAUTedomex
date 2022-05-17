@@ -98,7 +98,7 @@ function enviaLogin (e) {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(typeof(data));
+        console.log(data);
         if (data === 'Bad email') {
           creaNotificacion(noti, 'El correo no esta registrado')
         }
@@ -117,6 +117,9 @@ function enviaLogin (e) {
           creaNotificacion(noti, 'Contraseña incorrecta')
         }
         if (data === '2') {
+          window.location.assign('/PaginaprincipalDeProveedores.php')
+        }
+        if(data === '1'){
           window.location.assign('/PaginaprincipalDeProveedores.php')
         }
       })

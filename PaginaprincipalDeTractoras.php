@@ -1,10 +1,16 @@
 <?php
+/*session_start();
+if(!isset($_SESSION['id_usuario'])){
+  header("location: /Login.html");
+ }else{
+  $id_usr=$_SESSION['id_usuario'];
+}*/
   include_once "php/Conexion.php";
   require_once "php/addContactos.php";
   require_once "php/addProducts.php";
   require_once "php/addRequ.php";
   $database=new Conexion;
-  $id_usr=1;                              
+  $id_usr=9;                              
   $database-> query("SELECT * FROM contacto WHERE id_usuario=$id_usr");
   $rows = $database->resultSet();
   foreach ($rows as $row):
@@ -606,7 +612,7 @@
 </div>
 </div>
 
-
+<script src="js/app.js" ></script>
 <script src="js/bootstrap.bundle.min.js" ></script>
 <script src="js/jquery.min.js" ></script>
 </script>
