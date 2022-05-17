@@ -15,7 +15,7 @@ if(!isset($_SESSION['id_usuario'])){
   foreach ($rows as $row):
   endforeach;
   ?>
-<?php setcookie("user_id", $row['ID_usuario']);?>
+<?php setcookie("user_id", $_SESSION['id_usuario']);?>
 
 <!doctype html>
 <html lang="es">

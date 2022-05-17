@@ -8,7 +8,13 @@ include_once "php/Conexion.php";
   $obj=new Conexion;                               
   $obj-> query("SELECT * FROM usuario WHERE id_usuario=$id_usr");
   $respuesta= $obj -> resultSet();
-  
+  $id_empresa=intval($respuesta[0]['ID_empresa']);
+  $obj-> query("SELECT `Empresa` FROM `empresa` WHERE `ID_empresa` = $id_empresa");
+  $emp= $obj -> resultSet();
+  $obj -> query("SELECT * FROM `catalogo_estados` order by `nombre`");
+  $estados = $obj -> resultSet();
+//  print_r($estados[0]['nombre'])
+
 ?>
 <!doctype html>
 <html lang="es">
@@ -47,7 +53,7 @@ include_once "php/Conexion.php";
 
   
 <div class="toast-container position-absolute p-3 top-50 start-50 translate-middle"   style="z-index: 11">
-  <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+  <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false" >
     <div class="toast-header">
       
       <strong class="me-auto">Actualizar Contraseña</strong>
@@ -244,7 +250,7 @@ include_once "php/Conexion.php";
                         </div>
                         <div class="col-sm">
                             <!-- BOTON ACTIVA MODAL #1-->
-                <a href="#" class="btn btn-success"data-bs-toggle="modal" data-bs-target="#exampleModal"> <span>Visualizar</span></a>
+                <a href="#" class="btn btn-success"data-bs-toggle="modal" data-bs-target="#modalDatosGenerales"> <span>Visualizar</span></a>
 
                 </div>
 
@@ -297,7 +303,7 @@ include_once "php/Conexion.php";
               <!-- Modal1 -->
 
 
-              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal fade" id="modalDatosGenerales" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                 <div class="modal-content">
                 <div class="modal-header">
@@ -312,50 +318,85 @@ include_once "php/Conexion.php";
   
   
                 <div class="modal-body">
-                
+                <div class="form-group">
+                        <label for="nom_empresa" style="background-color: #94181c; color:white">Todos los campos son necesarios</label>
                     <form>
-    
+ </div>
                       <div class="form-group">
-                        <label for="exampleFormControlInput1">Nombre de la empresa</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Escriba aquí">
+                        <label for="nom_empresa">Nombre de la empresa</label>
+                      
+                        <input type="text" class="form-control" id="nom_empresa" placeholder="Escriba aquí" value="<?php echo $emp[0]['Empresa']?>">
+                      </div>
+    
+                      
+    
+                      <div class="form-group mt-3">
+                        <label for="">Calle</label>
+                        <input type="text" class="form-control" id="calle" placeholder="Escriba aquí">
+                      </div>
+                      <div class="form-group mt-3">
+                        <label for="">Numero Exterior</label>
+                        <input type="text" class="form-control" id="num_ext" placeholder="Escriba aquí">
+                      </div>
+                      <div class="form-group mt-3">
+                        <label for="">Numero Interior</label>
+                        <input type="text" class="form-control" id="nim_int" placeholder="Escriba aquí">
+                      </div>
+                      <div class="form-group mt-3">
+                        <label for="">Código Postal</label>
+                        <input type="text" class="form-control" id="cp" placeholder="Escriba aquí">
+                      </div>
+                      <div class="form-group mt-3">
+                        <label for="">Colonia</label>
+                        <input type="text" class="form-control" id="colonia" placeholder="Escriba aquí">
+                      </div>
+                      
+                      <div class="form-group mt-3">
+                        <label for="">Alcaldía o Delegación</label>
+                        <input type="text" class="form-control" id="delegacion" placeholder="Escriba aquí">
+                      </div>
+                      <div class="form-group mt-3">
+                        <label for="">Estado</label>
+                        <select type="text" class="form-control" id="estados" placeholder="Escriba aquí">
+                          <option value="Selecicona un valor">Selecicona un valor</option>
+                          <?php
+                          foreach($estados as $row):
+                            //echo $row['nombre'];
+                            $es=$row['nombre'];
+                            echo "<option value=".$es.">$es</option>";
+                          endforeach;
+                          ?>
+                        </select>
+                      </div>
+                      <br>
+                      <div class="form-group mt-3">
+                        <label for="">Número de empleados</label>
+                        <input type="number" class="form-control" id="num_emp" placeholder="Escriba aquí empleados">
                       </div>
     
                       <div class="form-group mt-3">
-                        <label for="exampleFormControlInput2">Sede central</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Escriba aquí">
+                        <label for="">Teléfono</label>
+                        <input type="tel" class="form-control" id="telefono" placeholder="Escriba aquí">
                       </div>
     
                       <div class="form-group mt-3">
-                        <label for="exampleFormControlInput3">Ubicación</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput3" placeholder="Escriba aquí">
-                      </div>
-    
-                      <div class="form-group mt-3">
-                        <label for="exampleFormControlInput4">Número de empleados</label>
-                        <input type="number" class="form-control" id="exampleFormControlInput4" placeholder="Escriba aquí">
-                      </div>
-    
-                      <div class="form-group mt-3">
-                        <label for="exampleFormControlInput5">Teléfono</label>
-                        <input type="tel" class="form-control" id="exampleFormControlInput5" placeholder="Escriba aquí">
-                      </div>
-    
-                      <div class="form-group mt-3">
-                        <label for="exampleFormControlInput6">Website</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput6" placeholder="Escriba aquí">
+                        <label for="">Pagina Web</label>
+                        <input type="text" class="form-control" id="paginaweb" placeholder="Escriba aquí">
                       </div>
 
                       <div class="form-group mt-3">
-                        <label for="exampleFormControlInput6">Visión del negocio</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput7" placeholder="Escriba aquí">
+                        <label for="txtnegocio">Descripción del negocio</label>
+                        <textarea type="text" class="form-control" id="txtnegocio" rows="4" cols="50" placeholder="Escriba aquí"></textarea>
                       </div>
 
                       <div class="form-group mt-3">
-                        <label class="mb-1" for="exampleFormControlInput6">Logo - tamaño máximo 5MB en tamaño PDF</label>
-                        <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                        
+                        <label class="mb-1" for="">Logo - tamaño máximo 1MB </label>
+                        <input type="file" class="form-control" id="Logo" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
                       </div>
-    
+                      <div class="form-group mt-3">
+                        <label class="mb-1" for="">Presentacion - tamaño máximo 5MB </label>
+                        <input type="file" class="form-control" id="presentacion" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                      </div>
     
                       
                     </form>
@@ -410,7 +451,7 @@ include_once "php/Conexion.php";
                     <form>
     
                       <div class="form-group mb-3">
-                        <label for="exampleFormControlInput1">Certificaciones</label>
+                        <label for="">Certificaciones</label>
                         
                           
                           <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Escriba aquí"></textarea>
@@ -468,7 +509,7 @@ include_once "php/Conexion.php";
   
   
                 <div class="modal-body">
-                  <label for="exampleFormControlInput4">Exportaciones A</label>
+                  <label for="">Exportaciones A</label>
                   <select class="form-control mb-3">
                     
                     <option>Países</option>
@@ -679,3 +720,6 @@ include_once "php/Conexion.php";
 </script>
 </body>
 </html>
+<?php
+ }
+ ?>
