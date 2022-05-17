@@ -10,7 +10,7 @@ if(!isset($_SESSION['id_usuario'])){
   require_once "php/addProducts.php";
   $database=new Conexion;
   ?>
-
+<?php setcookie("user_id", $_SESSION['id_usuario']);?>
 
 <!doctype html>
 <html lang="es">
@@ -144,7 +144,7 @@ if(!isset($_SESSION['id_usuario'])){
                     <section class="Profile-header text-center">
                         <div>
                             <!-- IMAGEN Y DIMENSIONES DE LA MISMA-->                            
-                            <img src="images/client-dark-01.jpg" alt="profile" class="img-rounded mb-3" width="230" height="120">
+                            <img src="images/Añadaunaimahen(sintexto).png" alt="profile" class="img-rounded mb-3" width="230" height="120">
                         </div>                        
                         <h4 class="">NOMBRE DE LA EMPRESA</h4>                        
                         <a href="#" class="text-dark font-weight-bold text-decoration-none">Información personal</a>                        

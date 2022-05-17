@@ -45,7 +45,7 @@
 
         		break;
         	case '2':
-                $database->query("SELECT `producto` FROM `catalogo_proceseo` WHERE producto LIKE '%$producto%'");
+                $database->query("SELECT `producto` FROM `catalogo_proceso` WHERE producto LIKE '%$producto%'");
                 $res = $database->resultSet();
                 if(!empty($res)){
                     $database->query("INSERT INTO producto(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");

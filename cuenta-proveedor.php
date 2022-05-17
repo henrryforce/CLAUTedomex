@@ -8,7 +8,13 @@ include_once "php/Conexion.php";
   $obj=new Conexion;                               
   $obj-> query("SELECT * FROM usuario WHERE id_usuario=$id_usr");
   $respuesta= $obj -> resultSet();
-  
+  $id_empresa=intval($respuesta[0]['ID_empresa']);
+  $obj-> query("SELECT `Empresa` FROM `empresa` WHERE `ID_empresa` = $id_empresa");
+  $emp= $obj -> resultSet();
+  $obj -> query("SELECT * FROM `catalogo_estados` order by `nombre`");
+  $estados = $obj -> resultSet();
+//  print_r($estados[0]['nombre'])
+
 ?>
 <!doctype html>
 <html lang="es">
@@ -47,7 +53,7 @@ include_once "php/Conexion.php";
 
   
 <div class="toast-container position-absolute p-3 top-50 start-50 translate-middle"   style="z-index: 11">
-  <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+  <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false" >
     <div class="toast-header">
       
       <strong class="me-auto">Actualizar Contraseña</strong>
@@ -244,7 +250,7 @@ include_once "php/Conexion.php";
                         </div>
                         <div class="col-sm">
                             <!-- BOTON ACTIVA MODAL #1-->
-                <a href="#" class="btn btn-success"data-bs-toggle="modal" data-bs-target="#exampleModal"> <span>Visualizar</span></a>
+                <a href="#" class="btn btn-success"data-bs-toggle="modal" data-bs-target="#modalDatosGenerales"> <span>Visualizar</span></a>
 
                 </div>
 
@@ -297,7 +303,7 @@ include_once "php/Conexion.php";
               <!-- Modal1 -->
 
 
-              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal fade" id="modalDatosGenerales" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                 <div class="modal-content">
                 <div class="modal-header">
@@ -312,50 +318,85 @@ include_once "php/Conexion.php";
   
   
                 <div class="modal-body">
-                
+                <div class="form-group">
+                        <label for="nom_empresa" style="background-color: #94181c; color:white">Todos los campos son necesarios</label>
                     <form>
-    
+ </div>
                       <div class="form-group">
-                        <label for="exampleFormControlInput1">Nombre de la empresa</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Escriba aquí">
+                        <label for="nom_empresa">Nombre de la empresa</label>
+                      
+                        <input type="text" class="form-control" id="nom_empresa" placeholder="Escriba aquí" value="<?php echo $emp[0]['Empresa']?>">
+                      </div>
+    
+                      
+    
+                      <div class="form-group mt-3">
+                        <label for="">Calle</label>
+                        <input type="text" class="form-control" id="calle" placeholder="Escriba aquí">
+                      </div>
+                      <div class="form-group mt-3">
+                        <label for="">Numero Exterior</label>
+                        <input type="text" class="form-control" id="num_ext" placeholder="Escriba aquí">
+                      </div>
+                      <div class="form-group mt-3">
+                        <label for="">Numero Interior</label>
+                        <input type="text" class="form-control" id="nim_int" placeholder="Escriba aquí">
+                      </div>
+                      <div class="form-group mt-3">
+                        <label for="">Código Postal</label>
+                        <input type="text" class="form-control" id="cp" placeholder="Escriba aquí">
+                      </div>
+                      <div class="form-group mt-3">
+                        <label for="">Colonia</label>
+                        <input type="text" class="form-control" id="colonia" placeholder="Escriba aquí">
+                      </div>
+                      
+                      <div class="form-group mt-3">
+                        <label for="">Alcaldía o Delegación</label>
+                        <input type="text" class="form-control" id="delegacion" placeholder="Escriba aquí">
+                      </div>
+                      <div class="form-group mt-3">
+                        <label for="">Estado</label>
+                        <select type="text" class="form-control" id="estados" placeholder="Escriba aquí">
+                          <option value="Selecicona un valor">Selecicona un valor</option>
+                          <?php
+                          foreach($estados as $row):
+                            //echo $row['nombre'];
+                            $es=$row['nombre'];
+                            echo "<option value=".$es.">$es</option>";
+                          endforeach;
+                          ?>
+                        </select>
+                      </div>
+                      <br>
+                      <div class="form-group mt-3">
+                        <label for="">Número de empleados</label>
+                        <input type="number" class="form-control" id="num_emp" placeholder="Escriba aquí empleados">
                       </div>
     
                       <div class="form-group mt-3">
-                        <label for="exampleFormControlInput2">Sede central</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Escriba aquí">
+                        <label for="">Teléfono</label>
+                        <input type="tel" class="form-control" id="telefono" placeholder="Escriba aquí">
                       </div>
     
                       <div class="form-group mt-3">
-                        <label for="exampleFormControlInput3">Ubicación</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput3" placeholder="Escriba aquí">
-                      </div>
-    
-                      <div class="form-group mt-3">
-                        <label for="exampleFormControlInput4">Número de empleados</label>
-                        <input type="number" class="form-control" id="exampleFormControlInput4" placeholder="Escriba aquí">
-                      </div>
-    
-                      <div class="form-group mt-3">
-                        <label for="exampleFormControlInput5">Teléfono</label>
-                        <input type="tel" class="form-control" id="exampleFormControlInput5" placeholder="Escriba aquí">
-                      </div>
-    
-                      <div class="form-group mt-3">
-                        <label for="exampleFormControlInput6">Website</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput6" placeholder="Escriba aquí">
+                        <label for="">Pagina Web</label>
+                        <input type="text" class="form-control" id="paginaweb" placeholder="Escriba aquí">
                       </div>
 
                       <div class="form-group mt-3">
-                        <label for="exampleFormControlInput6">Visión del negocio</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput7" placeholder="Escriba aquí">
+                        <label for="txtnegocio">Descripción del negocio</label>
+                        <textarea type="text" class="form-control" id="txtnegocio" rows="4" cols="50" placeholder="Escriba aquí"></textarea>
                       </div>
 
                       <div class="form-group mt-3">
-                        <label class="mb-1" for="exampleFormControlInput6">Logo - tamaño máximo 5MB en tamaño PDF</label>
-                        <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                        
+                        <label class="mb-1" for="">Logo - tamaño máximo 1MB </label>
+                        <input type="file" class="form-control" id="Logo" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
                       </div>
-    
+                      <div class="form-group mt-3">
+                        <label class="mb-1" for="">Presentacion - tamaño máximo 5MB </label>
+                        <input type="file" class="form-control" id="presentacion" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                      </div>
     
                       
                     </form>
@@ -410,7 +451,7 @@ include_once "php/Conexion.php";
                     <form>
     
                       <div class="form-group mb-3">
-                        <label for="exampleFormControlInput1">Certificaciones</label>
+                        <label for="">Certificaciones</label>
                         
                           
                           <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Escriba aquí"></textarea>
@@ -468,7 +509,7 @@ include_once "php/Conexion.php";
   
   
                 <div class="modal-body">
-                  <label for="exampleFormControlInput4">Exportaciones A</label>
+                  <label for="">Exportaciones A</label>
                   <select class="form-control mb-3">
                     
                     <option>Países</option>
@@ -539,116 +580,126 @@ include_once "php/Conexion.php";
    <!-- FOOTER -->
 
 
-   <div class="footer-link-div float-start pt-5">
-    <div class="container">
-       <div class="row row-cols-2 row-cols-md-2  row-cols-lg-4">
-          <div class="col-6">
-             <div class="comon-footer-div pt-4">
-                 <a href="#">
-                    <img src="images/logo-white.png" alt="logo"/>
-                 </a>
+   <footer>
+    
 
-                <h6 class="ft-call"> +1(088) 456888 (24/7) </h6>
-                <p class="text-white"> <i class="fas fa-map-marker-alt"></i> 3rd Avenue, Upper East Side,
-                  San Francisco </p>
-             </div>
-          </div>
-   
-          <div class="col">
-            <div class="comon-footer-div pt-4 justify-content-md-end d-grid">
-                <h5 class="text-white"></h5>
-                <ul class="list-unstyled mt-4">
-                  <li>
-                    <a href="#"> <i class="fab fa-facebook-f"></i> Facebook </a>
-                  </li>
-                  <li>
-                    <a href="#"> <i class="fab fa-google-plus-g"></i> Google+ </a>
-                  </li>
-                  <li>
-                    <a href="#"> <i class="fab fa-instagram"></i> Instagram </a>
-                  </li> </ul></div>  </div></div>             
-       <hr/>
-        <div class="d-lg-flex justify-content-between">
-          <p class="text-white"> Copyright © 2022</p>
-          <div class="link-ft">
-             <a href="#"> Terminos-condiciones </a>
-             <a href="#" class="ms-lg-3"> Aviso de privacidad </a>
-          </div> </div> </div></div>
-        
-</footer>
+    <div class="footer-link-div float-start pt-5">
+        <div class="container">
+           <div class="row row-cols-2 row-cols-md-2  row-cols-lg-4">
+              <div class="col-6">
+                 <div class="comon-footer-div pt-4">
+                     <a href="#">
+                        <img src="images/logo-white.png" alt="logo"/>
+                     </a>
+                    <h6 class="ft-call"> +52 55 55614048</h6>
+                    <p class="text-white">  esupplier@clautedomex.mx</p>
+                 </div></div>
+              <div class="col">
+                <div class="comon-footer-div pt-4 justify-content-md-end d-grid">
+                    <h5 class="text-white"></h5>
+                    <ul class="list-unstyled mt-4">
+                      <li><a href="https://www.facebook.com/clautedomex/"> <i class="fab fa-facebook-f"></i> Facebook </a></li>
+                      <li><a href="https://twitter.com/clautedomex?s=11&t=jkgi23i_1DQyFLRqNnsV_w"> <i class="fab fa-twitter w"></i>Twitter </a></li>
+                      <li><a href="https://instagram.com/clautedomex?igshid=YmMyMTA2M2Y="> <i class="fab fa-instagram"></i> Instagram </a></li> 
+                      <li><a href="https://www.linkedin.com/in/cluster-automotriz-estado-de-m%C3%A9xico-515b1913b"> <i class="fab fa-linkedin"></i>linkedin </a></li>
+                      </ul></div>  </div></div>             
+           <hr/>
+            <div class="d-lg-flex justify-content-between">
+              <p class="text-white"> Copyright © 2022</p>
+              <div class="link-ft">
+                 <a href="#" class="ms-lg-3"> Aviso de privacidad </a>
+              </div> </div> </div></div>
+ </footer>
 
+ <!-- modaible menu -->
 
-
-<!-- modaible menu -->
-
-<div class="offcanvas offcanvas-start mobile-menu-div" tabindex="-1" id="mboile-show-menu" aria-labelledby="offcanvasExampleLabel">
-<div class="offcanvas-header">
-<button type="button" class="close-menu" data-bs-dismiss="offcanvas" aria-label="Close">
-  <span> Close </span> <i class="fas fa-long-arrow-alt-right"></i>
- </button>
-</div>
-<div class="offcanvas-body">
-<div class="head-contact">
-  <a href="index.html" class="logo-side">
-  <img src="images/logo-main.png" alt="logo">
-  </a>
- 
-  <div class="mobile-menu-sec mt-3">
-     <ul class="list-unstyled">
-        <li class="active-m">
-           <a href="index.html"> Home </a>
-        </li>
-        <li>
-           <a href="about.html"> About </a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Services
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="mechanical-works.html">Mechanical Works</a></li>
-            <li><a class="dropdown-item" href="manufacturing.html"> Manufacturing </a></li>
-            <li><a class="dropdown-item" href="storage.html"> Consulting Storage </a></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Industries
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="automotive.html"> Automotive </a></li>
-            <li><a class="dropdown-item" href="manufacturings.html">  Manufacturing  </a></li>
-            <li><a class="dropdown-item" href="technology.html">  Technology </a></li>
-          </ul>
-        </li>
-        <li>
-           <a href="case-study.html">  Case Study  </a>
-        </li>
-        <li>
-           <a href="leadership.html"> leadership  </a>
-        </li>
-        <li>
-          <a href="partners.html">  Partners   </a>
-        </li>
-        <li>
-          <a href="career.html"> Career  </a>
-        </li>
-        <li>
-         <a href="contact.html"> Contact  </a>
-        </li>
-     </ul>
+ <div class="offcanvas offcanvas-start mobile-menu-div" tabindex="-1" id="mboile-show-menu" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <button type="button" class="close-menu" data-bs-dismiss="offcanvas" aria-label="Close">
+      <span> Close </span> <i class="fas fa-long-arrow-alt-right"></i>
+     </button>
   </div>
-  
-  <ul class="side-media list-unstyled">
-     <li> <a href="#"> <i class="fab fa-facebook-f"></i> </a> </li>
-     <li> <a href="#"> <i class="fab fa-twitter"></i> </a> </li>
-     <li> <a href="#"> <i class="fab fa-google-plus-g"></i> </a> </li>
-     <li> <a href="#"> <i class="fab fa-instagram"></i> </a> </li>
-  </ul>
+  <div class="offcanvas-body">
+    <div class="head-contact">
+      <a href="index.html" class="logo-side">
+      <img src="images/logo-main.png" alt="logo">
+      </a>
+     
+      <div class="mobile-menu-sec mt-3">
+         <ul class="list-unstyled">
+            <li class="active-m">
+               <a href="index.html"> Home </a>
+            </li>
+            <li>
+               <a href="about.html"> About </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Services
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="mechanical-works.html">Mechanical Works</a></li>
+                <li><a class="dropdown-item" href="manufacturing.html"> Manufacturing </a></li>
+                <li><a class="dropdown-item" href="storage.html"> Consulting Storage </a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Industries
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="automotive.html"> Automotive </a></li>
+                <li><a class="dropdown-item" href="manufacturings.html">  Manufacturing  </a></li>
+                <li><a class="dropdown-item" href="technology.html">  Technology </a></li>
+              </ul>
+            </li>
+            <li>
+               <a href="case-study.html">  Case Study  </a>
+            </li>
+            <li>
+               <a href="leadership.html"> leadership  </a>
+            </li>
+            <li>
+              <a href="partners.html">  Partners   </a>
+            </li>
+            <li>
+              <a href="career.html"> Career  </a>
+            </li>
+            <li>
+             <a href="contact.html"> Contact  </a>
+            </li>
+         </ul>
+      </div>
+      
+      <ul class="side-media list-unstyled">
+         <li> <a href="#"> <i class="fab fa-facebook-f"></i> </a> </li>
+         <li> <a href="#"> <i class="fab fa-twitter"></i> </a> </li>
+         <li> <a href="#"> <i class="fab fa-google-plus-g"></i> </a> </li>
+         <li> <a href="#"> <i class="fab fa-instagram"></i> </a> </li>
+      </ul>
+    </div>
+  </div>
 </div>
-</div>
-</div>
-<script src="js/app.js"></script>
+
+
+<!-- Back to top button -->
+<!-- Back to top button -->
+<!-- Back to top button -->
+<button
+        type="button"
+        class="btn btn-danger btn-floating btn-lg"
+        id="btn-back-to-top"
+        >
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- END BACK TO TOP BUTTON -->
+
+
+
+
+
+
 <script src="js/bootstrap.bundle.min.js" ></script>
 <script src="js/jquery.min.js" ></script>
 </script>
@@ -657,18 +708,18 @@ include_once "php/Conexion.php";
 <script src="js/custom.js"></script>
 <script src="https://unpkg.com/aos@2.3.0/dist/aos.js"></script>
 <script>
-AOS.init({
-  offset: 100,
-  easing: 'ease',
-  delay: 0,
-  once: true,
-  duration: 800,
-
-});
-
+    AOS.init({
+      offset: 100,
+      easing: 'ease',
+      delay: 0,
+      once: true,
+      duration: 800,
+    
+    });
+    
 </script>
 </body>
 </html>
 <?php
  }
-?>
+ ?>
