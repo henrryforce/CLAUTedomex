@@ -234,7 +234,8 @@ if(!isset($_SESSION['id_usuario'])){
                                 <td><?php echo $row['Email']?></td>
                                 <td><?php echo $row['Tel']?></td>
                                 <td><?php echo $row['Ext']?></td>
-                                <td><?php echo $row['Cel']?></td>                                
+                                <td><?php echo $row['Cel']?></td>
+                                <input type="hidden" id="txt_usr" name="txt_usr" value="<?php echo $id_usr?>">
                                 <!-- OPCIONES--> 
                                 <td>
                                     <a href="PaginaprincipalDeProveedores.php?edit=<?php $id_cont =$row['ID_contacto']; echo $row['ID_contacto'];?>">Edit</a>
