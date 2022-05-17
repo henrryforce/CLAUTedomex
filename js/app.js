@@ -294,9 +294,9 @@ function cambiarPass(e){
  * funcion para administrar el perfil de proveefores
  */
 function AdminPerfilProveedor(){
-
+document.getElementById('btnAdminPerfil').addEventListener('click',()=>{
   window.location.assign('/cuenta-proveedor.php');
-
+});
 }
 /**
  * Funcion para eliminar los nodos de un elemento padre
@@ -379,12 +379,18 @@ function eliminaNodos (padre) {
         })
       document.getElementById('formPassword').reset();
       toast.hide();
-      creaNotificacion(document.getElementById('notificaciones'),"Contraseña actualizada");
+      creaNotificacion(document.getElementById('notificaciones'),"Contrasesena actualizada");
       document.getElementById('notificaciones').className="alert alert-success";
     });
   }
  }
- 
+ function enviarNewP(){
+   form = new FormData(document.getElementById('formPassword'));
+   for(i of form.values()){
+    console.log(i);
+  }
+  document.getElementById('formPassword').reset();
+ }
 /*
  *Funcion para crear un elemento <p> para notificaciones en el DOM 
  */
