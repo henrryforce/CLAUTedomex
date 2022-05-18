@@ -13,4 +13,9 @@ if(isset($_POST['password']) && isset($_POST['password2']) && isset($_POST['camb
         echo json_encode($e->getMessage());
     }
   }
+  if(isset($_FILES) && isset($_POST['actualizarDatos'])){
+      print_r($_FILES);
+  }else{
+      echo json_encode("No hay archivo");
+  }
 ?>

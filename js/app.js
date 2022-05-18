@@ -79,6 +79,7 @@ function load () {
   }
   if(ubi.includes('/cuenta-proveedor.php')){
     document.getElementById('btnPassword').addEventListener('click',changePassPerfilProveedor);
+    document.getElementById('btnDatosGenerales').addEventListener('click',updateDatosproveedor);
   }
 }
 /**
@@ -386,13 +387,32 @@ function eliminaNodos (padre) {
     });
   }
  }
- function enviarNewP(){
-   form = new FormData(document.getElementById('formPassword'));
-   for(i of form.values()){
+ /*
+ * Funcion de Actualizacion de Datos de Proveedor
+  */
+ function updateDatosproveedor(e){
+  e.preventDefault();
+  let form = document.getElementById('formDatosGenProveedor');
+  let noti = document.getElementById('notificaciones');
+  let data = new FormData(form);
+  data.append('actualizarDatos',1);
+  fetch('../php/Gestorcuenta.php', {
+    method: 'POST',
+    body: data
+  })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+     
+    })
+
+
+  for(i of data.values()){
     console.log(i);
   }
-  document.getElementById('formPassword').reset();
  }
+
+
 /*
  *Funcion para crear un elemento <p> para notificaciones en el DOM 
  */
