@@ -14,8 +14,57 @@ if(isset($_POST['password']) && isset($_POST['password2']) && isset($_POST['camb
     }
   }
   if(isset($_FILES) && isset($_POST['actualizarDatos'])){
-      print_r($_FILES);
-  }else{
-      echo json_encode("No hay archivo");
-  }
+    
+    $nameL= $_FILES['Logo']['name'];
+    $namep = $_FILES['presentacion']['name'];
+    $errorL = $_FILES['Logo']['error'];
+    $errorp = $_FILES['presentacion']['error'];
+    $tempL = $_FILES['Logo']['tmp_name'];
+    $tempp = $_FILES['presentacion']['tmp_name'];
+    $pathFiles = [];
+    if($errorL == 4 || $errorp == 4){
+        echo json_encode("Falta un arcchivo");
+    }
+    if($errorL == 0 && $errorp == 0){
+    /**
+     * Condiciones para crear y cargar los archivos
+     */
+    if(!file_exists('archivosUpload/logos')){
+        mkdir('archivosUpload/logos',0777,true);
+        if(file_exists('archivosUpload')){
+            
+                if(move_uploaded_file($tempL,'archivosUpload/logos/'.$nameL)){
+                    array_push($pathFiles,'archivosUpload/logos/'.$nameL);
+                }else{
+                    array_push($pathFiles,'Upload Fail');
+                }
+        }
+    }else{
+        
+        if(move_uploaded_file($tempL,'archivosUpload/logos/'.$nameL)){
+            array_push($pathFiles,'archivosUpload/logos/'.$nameL);
+        }else{
+            array_push($pathFiles,'Upload Fail');
+        }
+    }
+    if(!file_exists('archivosUpload/PDF')){
+        mkdir('archivosUpload/PDF',0777,true);
+        if(file_exists('archivosUpload')){
+                if(move_uploaded_file($tempp,'archivosUpload/PDF/'.$namep)){
+                    array_push($pathFiles,'archivosUpload/PDF/'.$namep);
+                }else{
+                    array_push($pathFiles,'Upload Fail');
+                }
+        }
+    }else{
+        
+        if(move_uploaded_file($tempp,'archivosUpload/PDF/'.$namep)){
+            array_push($pathFiles,'archivosUpload/PDF/'.$namep);
+        }else{
+            array_push($pathFiles,'Upload Fail');
+        }
+    }
+}
+    echo json_encode($pathFiles);
+    }
 ?>

@@ -323,7 +323,7 @@ include_once "php/Conexion.php";
                     
                   </div>
                   <form id="formDatosGenProveedor" action="#" enctype="multipart/form-data">
-                        <div id="notificaciones"></div>
+                        <div id="notificacionesMD"></div>
                       <div class="form-group">
                         <label for="nom_empresa">Nombre de la empresa</label>
                       
@@ -347,7 +347,7 @@ include_once "php/Conexion.php";
 
                       <div class="form-group mt-3">
                         <label for="">Código Postal</label>
-                        <input type="text" class="form-control" id="cp" name="cp" placeholder="Escriba aquí">
+                        <input type="number" class="form-control" id="cp" name="cp" placeholder="Escriba aquí">
                       </div>
 
                       <div class="form-group mt-3">
@@ -401,7 +401,7 @@ include_once "php/Conexion.php";
                       </div>
 
                       <div class="form-group mt-3">
-                        <label class="mb-1" for="">Presentacion - tamaño máximo 5MB </label>
+                        <label class="mb-1" for="">Presentacion - tamaño máximo 1MB </label>
                         <input type="file" class="form-control" id="presentacion" name="presentacion" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
                       </div>
                 <!-- FIN ELEMENTOS CONTENIDOS EN EL MODAL -->

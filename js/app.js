@@ -73,6 +73,7 @@ function load () {
   }
   if(ubi.includes('/PaginaprincipalDeProveedores.php')){
     document.getElementById('btnAdminPerfil').addEventListener('click',AdminPerfilProveedor);
+    document.getElementById('comodity').addEventListener('change',getval);
   }
   if(ubi.includes('/contact.html')){
     document.getElementById('btnContacto').addEventListener('click',contactoform);
@@ -297,9 +298,9 @@ function cambiarPass(e){
  * funcion para administrar el perfil de proveefores
  */
 function AdminPerfilProveedor(){
-document.getElementById('btnAdminPerfil').addEventListener('click',()=>{
+
   window.location.assign('/cuenta-proveedor.php');
-});
+
 }
 /**
  * Funcion para eliminar los nodos de un elemento padre
@@ -393,9 +394,26 @@ function eliminaNodos (padre) {
  function updateDatosproveedor(e){
   e.preventDefault();
   let form = document.getElementById('formDatosGenProveedor');
-  let noti = document.getElementById('notificaciones');
+  let noti = document.getElementById('notificacionesMD');
   let data = new FormData(form);
+  const jpg = "image/jpeg";
+  const png =  "image/png";
+  const pdf = "application/pdf";
   data.append('actualizarDatos',1);
+  if(data.get('Logo').type != jpg && data.get('Logo').size != png){
+    creaNotificacion(noti,"Solo se admiten archivos JPG o PNG");
+  }else{
+    if(data.get('Logo').size > 1048576){
+      creaNotificacion(noti,"Logo muy pesado");
+    }
+  }
+  if(data.get('presentacion').type != pdf){
+    creaNotificacion(noti,"Solo se admiten archivos PDF");
+  }else{
+    if(data.get('presentacion').size > 1048576){
+      creaNotificacion(noti,"Presentacion muy pesada");
+    }
+  }  
   fetch('../php/Gestorcuenta.php', {
     method: 'POST',
     body: data
@@ -407,12 +425,21 @@ function eliminaNodos (padre) {
     })
 
 
-  for(i of data.values()){
+/*  for(i of data.values()){
     console.log(i);
-  }
+  }*/
  }
 
-
+ /**
+  * Funcion commodity get value
+  */
+function getval(e){
+  console.log(e.target.value); //sacas el valor con el evento change sobre el combo
+  let data = new FormData(); //creas el form data
+  data.append('tipo',e.target.value); // agregas un elemento
+  console.table(data.get('tipo'));// puedes acceder a el con .get 
+  /**aqui ya va el fetch y en el body le pones el data y ya se envia solito xd  */
+}
 /*
  *Funcion para crear un elemento <p> para notificaciones en el DOM 
  */
