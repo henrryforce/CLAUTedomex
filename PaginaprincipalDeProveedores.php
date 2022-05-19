@@ -524,72 +524,61 @@ if(!isset($_SESSION['id_usuario'])){
 <!-- modaible menu -->
 
 <div class="offcanvas offcanvas-start mobile-menu-div" tabindex="-1" id="mboile-show-menu" aria-labelledby="offcanvasExampleLabel">
-<div class="offcanvas-header">
-<button type="button" class="close-menu" data-bs-dismiss="offcanvas" aria-label="Close">
-<span> Close </span> <i class="fas fa-long-arrow-alt-right"></i>
-</button>
-</div>
-<div class="offcanvas-body">
-<div class="head-contact">
-<a href="index.html" class="logo-side">
-<img src="images/logo-main.png" alt="logo">
-</a>
+  <div class="offcanvas-header">
+    <button type="button" class="close-menu" data-bs-dismiss="offcanvas" aria-label="Close">
+      <span> Cerrar </span> <i class="fas fa-long-arrow-alt-right"></i>
+     </button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="head-contact">
+      <a href="index.html" class="logo-side">
+      <img src="images/logo-main.png" alt="logo">
+      </a>
+     
+      <div class="mobile-menu-sec mt-3">
+         <ul class="list-unstyled">
 
-<div class="mobile-menu-sec mt-3">
-   <ul class="list-unstyled">
-      <li class="active-m">
-         <a href="index.html"> Home </a>
-      </li>
-      <li>
-         <a href="about.html"> About </a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Services
-        </a>
-        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <li><a class="dropdown-item" href="mechanical-works.html">Mechanical Works</a></li>
-          <li><a class="dropdown-item" href="manufacturing.html"> Manufacturing </a></li>
-          <li><a class="dropdown-item" href="storage.html"> Consulting Storage </a></li>
-        </ul>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Industries
-        </a>
-        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <li><a class="dropdown-item" href="automotive.html"> Automotive </a></li>
-          <li><a class="dropdown-item" href="manufacturings.html">  Manufacturing  </a></li>
-          <li><a class="dropdown-item" href="technology.html">  Technology </a></li>
-        </ul>
-      </li>
-      <li>
-         <a href="case-study.html">  Case Study  </a>
-      </li>
-      <li>
-         <a href="leadership.html"> leadership  </a>
-      </li>
-      <li>
-        <a href="partners.html">  Partners   </a>
-      </li>
-      <li>
-        <a href="career.html"> Career  </a>
-      </li>
-      <li>
-       <a href="contact.html"> Contact  </a>
-      </li>
-   </ul>
+            <li>
+               <a href="index.html"> Inicio </a>
+            </li>
+
+            <li>
+               <a href="#"> Tractoras </a>
+            </li>
+
+            <li>
+               <a href="#"> Registro </a>
+            </li>
+
+            <li>
+               <a href="#"> Login </a>
+            </li>
+
+            <li>
+               <a href="#"> Costo </a>
+            </li>
+            
+            <li>
+              <a href="#"> Cerrar sesión </a>
+           </li>
+            
+         </ul>
+      </div>
+
+      <!-- REDES SOCIALES - RESPONSIVE -->
+      
+      <ul class="side-media list-unstyled">
+         <li> <a href="https://www.facebook.com/clautedomex/"> <i class="fab fa-facebook-f"></i> </a> 
+         <li> <a href="https://twitter.com/clautedomex?s=11&t=jkgi23i_1DQyFLRqNnsV_w"> <i class="fab fa-twitter w"></i> </a>
+         <li> <a href="https://instagram.com/clautedomex?igshid=YmMyMTA2M2Y="> <i class="fab fa-instagram"></i> </a>
+         <li> <a href="https://www.linkedin.com/in/cluster-automotriz-estado-de-m%C3%A9xico-515b1913b"> <i class="fab fa-linkedin"></i> </a>
+      </ul>
+    </div>
+  </div>
 </div>
 
-<ul class="side-media list-unstyled">
-   <li> <a href="#"> <i class="fab fa-facebook-f"></i> </a> </li>
-   <li> <a href="#"> <i class="fab fa-twitter"></i> </a> </li>
-   <li> <a href="#"> <i class="fab fa-google-plus-g"></i> </a> </li>
-   <li> <a href="#"> <i class="fab fa-instagram"></i> </a> </li>
-</ul>
-</div>
-</div>
-</div>
+<!-- FIN RESPONSIVE -->
+<!-- FIN RESPONSIVE -->
 
 <script src="js/app.js"></script>
 <script src="js/bootstrap.bundle.min.js" ></script>
