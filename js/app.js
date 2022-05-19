@@ -447,12 +447,17 @@ function getval(e){
   }).then(res => res.json())
   .then(data => {
     //console.log(data);
+    let combo = document.getElementById('cmbProducto');
+      combo.innerHTML='';
+      console.log(Array(data[0]));
+      let a=(data[0].hasOwnProperty('keys'));
+      
     data.forEach(element => {
      // console.log(element['idproducto']);
      // console.log(element['producto']);
-      let combo = document.getElementById('cmbProducto');
+     
       var opt = document.createElement('option');
-      opt.value=element['idproducto']
+      opt.value=element['id'];
       opt.innerHTML = element['producto'];
       combo.appendChild(opt);
     });
