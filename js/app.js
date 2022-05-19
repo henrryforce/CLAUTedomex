@@ -436,20 +436,35 @@ function eliminaNodos (padre) {
   * Funcion commodity get value
   */
 function getval(e){
-  console.log(e.target.value); //sacas el valor con el evento change sobre el combo
+  //console.log(e.target.value); //sacas el valor con el evento change sobre el combo id combo cmbProducto
   let data = new FormData(); //creas el form data
   data.append('tipo',e.target.value); // agregas un elemento
-  console.table(typeof(data.get('tipo')));// puedes acceder a el con .get 
+  //console.table(typeof(data.get('tipo')));// puedes acceder a el con .get 
   /**aqui ya va el fetch y en el body le pones el data y ya se envia solito xd  */
-  fetch('../PaginaprincipalDeProveedores.php',{
+  fetch('../php/pruebas.php',{
     method: 'POST',
     body: data
+  }).then(res => res.json())
+  .then(data => {
+    //console.log(data);
+    data.forEach(element => {
+     // console.log(element['idproducto']);
+     // console.log(element['producto']);
+      let combo = document.getElementById('cmbProducto');
+      var opt = document.createElement('option');
+      opt.value=element['idproducto']
+      opt.innerHTML = element['producto'];
+      combo.appendChild(opt);
+    });
+    
+    /*for (let dato=0; dato <= data.length;dato++){
+      console.log(data[dato]['producto'])
+      var opt = document.createElement('option');
+      opt.innerHTML = data[dato]['producto'];
+      combo.appendChild(opt);
+  }*/
+   
   })
-  .then(res => res.json())
-    .then(data => {
-      console.log(data);
-     
-    })
 }
 /*
  *Funcion para crear un elemento <p> para notificaciones en el DOM 

@@ -4,7 +4,7 @@
       private $host = "localhost";
       private $user = "root";
       private $pass = "";
-      private $dbname ="cluster2";
+      private $dbname ="cluster";
 
       private $dbh;
       private $error;

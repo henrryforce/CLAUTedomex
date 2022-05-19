@@ -434,6 +434,18 @@ if(!isset($_SESSION['id_usuario'])){
                       <label for="exampleFormControlSelect1">Producto</label>
                       <select class="form-control" name="catalogos" id="catalogos" onchange="javascript:seleccionado();">
                         <option value="0">- Seleccione un producto -</option>                                                                     
+                      <select class="form-control" name="cmbProducto" id="cmbProducto">
+                        
+                        
+                      
+                        <?php /*
+                        $database->query("SELECT producto FROM catalogo_productos");
+                        $res = $database->resultSet();
+                        foreach($res as $ro):
+                          echo '<option value="'.$ro["id"].'">'.$ro["producto"].'</option>';
+                                endforeach; 
+                        ?>
+                        <?php endif; */?>
                       </select>
 
                     </div>                    
