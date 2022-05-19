@@ -28,6 +28,14 @@ if(isset($_POST['tipo']) && $_POST['tipo'] =='2'){
     $res = $obj->resultSet();
     echo json_encode($res);
     }
-    
-
+    if(isset($_POST['tipo']) && $_POST['tipo'] =='3'){
+        $obj->query("SELECT id, producto FROM catalogo_raw_material");
+        $res = $obj->resultSet();
+        echo json_encode($res);
+        }
+        if(isset($_POST['tipo']) && $_POST['tipo'] =='4'){
+            $obj->query("SELECT id, producto FROM catalogo_indirectos");
+            $res = $obj->resultSet();
+            echo json_encode($res);
+            }
 ?>
