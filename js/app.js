@@ -437,8 +437,12 @@ function getval(e){
   console.log(e.target.value); //sacas el valor con el evento change sobre el combo
   let data = new FormData(); //creas el form data
   data.append('tipo',e.target.value); // agregas un elemento
-  console.table(data.get('tipo'));// puedes acceder a el con .get 
+  console.table(typeof(data.get('tipo')));// puedes acceder a el con .get 
   /**aqui ya va el fetch y en el body le pones el data y ya se envia solito xd  */
+  fetch('../PaginaprincipalDeProveedores.php',{
+    method: 'POST',
+    body: data
+  })
 }
 /*
  *Funcion para crear un elemento <p> para notificaciones en el DOM 

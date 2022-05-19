@@ -5,6 +5,9 @@
     $update2 = false;
     $producto='';
 
+
+
+
     if(isset($_POST['btnaddp'])){
     	if(!empty($_POST['comodity'])){
     		$selected = $_POST['comodity'];

@@ -432,7 +432,18 @@ if(!isset($_SESSION['id_usuario'])){
                     </div>
                     <div class="form-group mt-3">
                       <label for="exampleFormControlSelect1">Producto</label>
-                      <input type="text" class="form-control" id="txt_prod" name="txt_prod" placeholder="Ejemplo: Termostato Mini Cooper">
+                      <select class="form-control">
+                        <?php// $tipo_c = $_FILES['tipo']; echo "<script> console.log('Console1: " . $tipo_c . "' );</script>"?>
+                        <?php if(isset($_FILES['tipo'])=='1'):?>
+                        <?php 
+                        $database->query("SELECT producto FROM catalogo_productos");
+                        $res = $database->resultSet();
+                        foreach($res as $ro):
+                          echo '<option value="'.$ro["id"].'">'.$ro["producto"].'</option>';
+                                endforeach; 
+                        ?>
+                        <?php endif; ?>
+                      </select>
                     </div>                    
                     <div class="form-group mt-3">
                       <label for="exampleFormControlTextarea1">Observaciones</label>
