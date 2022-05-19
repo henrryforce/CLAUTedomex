@@ -327,7 +327,7 @@ include_once "php/Conexion.php";
                       <div class="form-group">
                         <label for="nom_empresa">Nombre de la empresa</label>
                       
-                        <input type="text" class="form-control" id="nom_empresa" name="nom_empresa" placeholder="Escriba aquí" value="<?php echo $emp[0]['Empresa']?>">
+                        <input type="text" class="form-control" id="nom_empresa" name="nom_empresa" placeholder="Escriba aquí" value="<?php echo $emp[0]['Empresa']?>" disabled>
                       </div>
 
                       <div class="form-group mt-3">
@@ -379,10 +379,19 @@ include_once "php/Conexion.php";
                         <label for="">Número de empleados</label>
                         <input type="number" class="form-control" id="num_emp" name="num_emp" placeholder="Escriba aquí empleados">
                       </div>
+
+                      <div class="form-group mt-3">
+                        <label for="">Ventas Anuales</label>
+                        <input type="number" class="form-control" id="ventas" name="ventas" placeholder="Escriba aquí empleados">
+                      </div>
     
                       <div class="form-group mt-3">
                         <label for="">Teléfono</label>
                         <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Escriba aquí">
+                      </div>
+                      <div class="form-group mt-3">
+                        <label for="">Ext</label>
+                        <input type="tel" class="form-control" id="ext" name="ext" placeholder="Escriba aquí">
                       </div>
     
                       <div class="form-group mt-3">

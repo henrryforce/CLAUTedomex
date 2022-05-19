@@ -396,6 +396,7 @@ function eliminaNodos (padre) {
   let form = document.getElementById('formDatosGenProveedor');
   let noti = document.getElementById('notificacionesMD');
   let data = new FormData(form);
+  
   const jpg = "image/jpeg";
   const png =  "image/png";
   const pdf = "application/pdf";
@@ -413,14 +414,15 @@ function eliminaNodos (padre) {
     if(data.get('presentacion').size > 1048576){
       creaNotificacion(noti,"Presentacion muy pesada");
     }
-  }  
+  }
+  
   fetch('../php/Gestorcuenta.php', {
     method: 'POST',
     body: data
   })
     .then(res => res.json())
     .then(data => {
-      console.log(data);
+      console.table(data);
      
     })
 
