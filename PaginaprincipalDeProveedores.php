@@ -422,7 +422,7 @@ if(!isset($_SESSION['id_usuario'])){
                   <form>
                     <div class="form-group">
                       <label for="exampleFormControlSelect1">Comodity </label>
-                      <select class="form-control" name="comodity" id="comodity">
+                      <select class="form-control" name="comodity" id="comodity" onchange="javascript:llenar_cmb2();">
                         <option>- Seleccione una opción -</option>
                         <option value="1">Producto</option>
                         <option value="2">Proceso</option>
@@ -432,23 +432,10 @@ if(!isset($_SESSION['id_usuario'])){
                     </div>
                     <div class="form-group mt-3">
                       <label for="exampleFormControlSelect1">Producto</label>
-                      <select class="form-control">
-                        
-                        <?php if(isset($_POST['tipo'])){
-                          if ($_POST['tipo']== '1'){
-                            echo json_encode("si llego xd");
-                          }
-                        }?>
-                      
-                        <?php /*
-                        $database->query("SELECT producto FROM catalogo_productos");
-                        $res = $database->resultSet();
-                        foreach($res as $ro):
-                          echo '<option value="'.$ro["id"].'">'.$ro["producto"].'</option>';
-                                endforeach; 
-                        ?>
-                        <?php endif; */?>
+                      <select class="form-control" name="catalogos" id="catalogos" onchange="javascript:seleccionado();">
+                        <option value="0">- Seleccione un producto -</option>                                                                     
                       </select>
+
                     </div>                    
                     <div class="form-group mt-3">
                       <label for="exampleFormControlTextarea1">Observaciones</label>
@@ -469,20 +456,8 @@ if(!isset($_SESSION['id_usuario'])){
               </div>        
           </div>
           </form>                        
-    <!-- FINAL DEL CONTENEDOR -->
-    <!-- FINAL DEL CONTENEDOR -->
-    <!-- FINAL DEL CONTENEDOR -->
-    <!-- FINAL DEL CONTENEDOR -->
-    <!-- FINAL DEL CONTENEDOR -->
-    <!-- YA NO COLOQUE ELEMENTOS :) -->
-   
-    
+    <!-- FINAL DEL CONTENEDOR -->    
 </section>
-
-
-  <!-- FOOTER -->
- <!-- FOOTER -->
- <!-- FOOTER -->
  <!-- FOOTER -->
 
 
@@ -584,10 +559,39 @@ if(!isset($_SESSION['id_usuario'])){
 
 <!-- FIN RESPONSIVE -->
 <!-- FIN RESPONSIVE -->
+<script>
+  // Solicita la Información al archivo php después de seleccionar una opción del select 1 o principal.
+  function llenar_cmb2() {
+    var valor= document.getElementById("comodity").value;
 
+    if (valor !== ""){
+      $.ajax({
+        url: "php/llenarCombo.php",
+        type: "POST",
+        data: "valor="+valor,
+        success: function(resp){
+          //Recibir los datos de resultado y parsearlos a JSON entendible para JavaScript
+          var datos=JSON.parse(resp);
+          console.log(resp); // Opcional mostrar a consola
+          if (datos.error==0){
+            $("#catalogos").html(datos.datos);
+          }
+        }
+      })
+    }
+  }
+
+  //Muestra el elemento seleccionado del select 2
+  function seleccionado() {
+    var cmb = document.getElementById("catalogos");
+    var seleccionado = cmb.options[cmb.selectedIndex].text;
+    alert(seleccionado);
+  }
+</script>
 <script src="js/app.js"></script>
 <script src="js/bootstrap.bundle.min.js" ></script>
 <script src="js/jquery.min.js" ></script>
+<script src="jquery-2.1.3.js"></script>
 </script>
 <!-- Owl Carousel -->
 <script src="js/owl.carousel.min.js"></script>
