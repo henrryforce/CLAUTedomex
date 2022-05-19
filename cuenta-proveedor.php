@@ -13,7 +13,7 @@ include_once "php/Conexion.php";
   $emp= $obj -> resultSet();
   $obj -> query("SELECT * FROM `catalogo_estados` order by `nombre`");
   $estados = $obj -> resultSet();
-//  print_r($estados[0]['nombre'])
+//print_r($estados[0]['id'])
 
 ?>
 <!doctype html>
@@ -320,50 +320,56 @@ include_once "php/Conexion.php";
                 <div class="modal-body">
                 <div class="form-group">
                         <label for="nom_empresa" style="background-color: #94181c; color:white">Todos los campos son necesarios</label>
-                    <form>
- </div>
+                    
+                  </div>
+                  <form id="formDatosGenProveedor" action="#" enctype="multipart/form-data">
+                        <div id="notificacionesMD"></div>
                       <div class="form-group">
                         <label for="nom_empresa">Nombre de la empresa</label>
                       
-                        <input type="text" class="form-control" id="nom_empresa" placeholder="Escriba aquí" value="<?php echo $emp[0]['Empresa']?>">
+                        <input type="text" class="form-control" id="nom_empresa" name="nom_empresa" placeholder="Escriba aquí" value="<?php echo $emp[0]['Empresa']?>">
                       </div>
-    
-                      
-    
+
                       <div class="form-group mt-3">
                         <label for="">Calle</label>
-                        <input type="text" class="form-control" id="calle" placeholder="Escriba aquí">
+                        <input type="text" class="form-control" id="calle" name="calle" placeholder="Escriba aquí">
                       </div>
+
                       <div class="form-group mt-3">
                         <label for="">Numero Exterior</label>
-                        <input type="text" class="form-control" id="num_ext" placeholder="Escriba aquí">
+                        <input type="text" class="form-control" id="num_ext" name="num_ext" placeholder="Escriba aquí">
                       </div>
+
                       <div class="form-group mt-3">
                         <label for="">Numero Interior</label>
-                        <input type="text" class="form-control" id="nim_int" placeholder="Escriba aquí">
+                        <input type="text" class="form-control" id="nim_int" name="nim_int" placeholder="Escriba aquí">
                       </div>
+
                       <div class="form-group mt-3">
                         <label for="">Código Postal</label>
-                        <input type="text" class="form-control" id="cp" placeholder="Escriba aquí">
+                        <input type="number" class="form-control" id="cp" name="cp" placeholder="Escriba aquí">
                       </div>
+
                       <div class="form-group mt-3">
                         <label for="">Colonia</label>
-                        <input type="text" class="form-control" id="colonia" placeholder="Escriba aquí">
+                        <input type="text" class="form-control" id="colonia" name="colonia" placeholder="Escriba aquí">
                       </div>
                       
                       <div class="form-group mt-3">
                         <label for="">Alcaldía o Delegación</label>
-                        <input type="text" class="form-control" id="delegacion" placeholder="Escriba aquí">
+                        <input type="text" class="form-control" id="delegacion" name="delegacion" placeholder="Escriba aquí">
                       </div>
+
                       <div class="form-group mt-3">
                         <label for="">Estado</label>
-                        <select type="text" class="form-control" id="estados" placeholder="Escriba aquí">
+                        <select type="text" class="form-control" id="estados" name="estados" placeholder="Escriba aquí">
                           <option value="Selecicona un valor">Selecicona un valor</option>
                           <?php
                           foreach($estados as $row):
                             //echo $row['nombre'];
                             $es=$row['nombre'];
-                            echo "<option value=".$es.">$es</option>";
+                            $id_es = $row['id'];
+                            echo "<option value=".$id_es.">$es</option>";
                           endforeach;
                           ?>
                         </select>
@@ -371,57 +377,48 @@ include_once "php/Conexion.php";
                       <br>
                       <div class="form-group mt-3">
                         <label for="">Número de empleados</label>
-                        <input type="number" class="form-control" id="num_emp" placeholder="Escriba aquí empleados">
+                        <input type="number" class="form-control" id="num_emp" name="num_emp" placeholder="Escriba aquí empleados">
                       </div>
     
                       <div class="form-group mt-3">
                         <label for="">Teléfono</label>
-                        <input type="tel" class="form-control" id="telefono" placeholder="Escriba aquí">
+                        <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Escriba aquí">
                       </div>
     
                       <div class="form-group mt-3">
                         <label for="">Pagina Web</label>
-                        <input type="text" class="form-control" id="paginaweb" placeholder="Escriba aquí">
+                        <input type="text" class="form-control" id="paginaweb" name="paginaweb" placeholder="Escriba aquí">
                       </div>
 
                       <div class="form-group mt-3">
                         <label for="txtnegocio">Descripción del negocio</label>
-                        <textarea type="text" class="form-control" id="txtnegocio" rows="4" cols="50" placeholder="Escriba aquí"></textarea>
+                        <textarea type="text" class="form-control" id="txtnegocio" name="txtnegocio" rows="4" cols="50" placeholder="Escriba aquí"></textarea>
                       </div>
 
                       <div class="form-group mt-3">
                         <label class="mb-1" for="">Logo - tamaño máximo 1MB </label>
-                        <input type="file" class="form-control" id="Logo" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                        <input type="file" class="form-control" id="Logo" name="Logo" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
                       </div>
+
                       <div class="form-group mt-3">
-                        <label class="mb-1" for="">Presentacion - tamaño máximo 5MB </label>
-                        <input type="file" class="form-control" id="presentacion" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                        <label class="mb-1" for="">Presentacion - tamaño máximo 1MB </label>
+                        <input type="file" class="form-control" id="presentacion" name="presentacion" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
                       </div>
-    
-                      
-                    </form>
-                  
-                
-                
-                  </div>
-                       
-                
-  
-                <!-- FIN ELEMENTOS CONTENIDOS EN EL MODAL -->
-                <!-- FIN ELEMENTOS CONTENIDOS EN EL MODAL -->
                 <!-- FIN ELEMENTOS CONTENIDOS EN EL MODAL -->
 
                 <div class="modal-footer mt-3">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                  <a class="btn btn-primary" href="#">Contactar</a>
+                  <button type="submit" id="btnDatosGenerales"class="btn btn-primary" >Guardar</button>
+                  
                   </div>
+                
+                </form>
                   </div>
                   </div>
                   </div>
                    <!-- END MODAL 1 -->
                    <!-- END MODAL 1-->
                    <!-- END MODAL  1-->
-
 
 
 
@@ -687,8 +684,8 @@ include_once "php/Conexion.php";
 
 
 
-
-
+<!-- script de funcionalidad NO ELIMINAR >:v  -->
+<script src="js/app.js" ></script>
 <script src="js/bootstrap.bundle.min.js" ></script>
 <script src="js/jquery.min.js" ></script>
 </script>

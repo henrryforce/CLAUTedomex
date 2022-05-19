@@ -73,12 +73,14 @@ function load () {
   }
   if(ubi.includes('/PaginaprincipalDeProveedores.php')){
     document.getElementById('btnAdminPerfil').addEventListener('click',AdminPerfilProveedor);
+    document.getElementById('comodity').addEventListener('change',getval);
   }
   if(ubi.includes('/contact.html')){
     document.getElementById('btnContacto').addEventListener('click',contactoform);
   }
   if(ubi.includes('/cuenta-proveedor.php')){
     document.getElementById('btnPassword').addEventListener('click',changePassPerfilProveedor);
+    document.getElementById('btnDatosGenerales').addEventListener('click',updateDatosproveedor);
   }
 }
 /**
@@ -98,7 +100,6 @@ function enviaLogin (e) {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(typeof(data));
         if (data === 'Bad email') {
           creaNotificacion(noti, 'El correo no esta registrado')
         }
@@ -116,8 +117,11 @@ function enviaLogin (e) {
         if (data === 'Incorrecta') {
           creaNotificacion(noti, 'Contraseña incorrecta')
         }
-        if (data === '2') {
+        if (data.toString() === '2') {
           window.location.assign('/PaginaprincipalDeProveedores.php')
+        }
+        if(data.toString() === '1'){
+          window.location.assign('/PaginaprincipalDeTractoras.php')
         }
       })
   }
@@ -379,12 +383,63 @@ function eliminaNodos (padre) {
         })
       document.getElementById('formPassword').reset();
       toast.hide();
-      creaNotificacion(document.getElementById('notificaciones'),"Contraseña actualizada");
+      creaNotificacion(document.getElementById('notificaciones'),"Contrasesena actualizada");
       document.getElementById('notificaciones').className="alert alert-success";
     });
   }
  }
- 
+ /*
+ * Funcion de Actualizacion de Datos de Proveedor
+  */
+ function updateDatosproveedor(e){
+  e.preventDefault();
+  let form = document.getElementById('formDatosGenProveedor');
+  let noti = document.getElementById('notificacionesMD');
+  let data = new FormData(form);
+  const jpg = "image/jpeg";
+  const png =  "image/png";
+  const pdf = "application/pdf";
+  data.append('actualizarDatos',1);
+  if(data.get('Logo').type != jpg && data.get('Logo').size != png){
+    creaNotificacion(noti,"Solo se admiten archivos JPG o PNG");
+  }else{
+    if(data.get('Logo').size > 1048576){
+      creaNotificacion(noti,"Logo muy pesado");
+    }
+  }
+  if(data.get('presentacion').type != pdf){
+    creaNotificacion(noti,"Solo se admiten archivos PDF");
+  }else{
+    if(data.get('presentacion').size > 1048576){
+      creaNotificacion(noti,"Presentacion muy pesada");
+    }
+  }  
+  fetch('../php/Gestorcuenta.php', {
+    method: 'POST',
+    body: data
+  })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+     
+    })
+
+
+/*  for(i of data.values()){
+    console.log(i);
+  }*/
+ }
+
+ /**
+  * Funcion commodity get value
+  */
+function getval(e){
+  console.log(e.target.value); //sacas el valor con el evento change sobre el combo
+  let data = new FormData(); //creas el form data
+  data.append('tipo',e.target.value); // agregas un elemento
+  console.table(data.get('tipo'));// puedes acceder a el con .get 
+  /**aqui ya va el fetch y en el body le pones el data y ya se envia solito xd  */
+}
 /*
  *Funcion para crear un elemento <p> para notificaciones en el DOM 
  */
