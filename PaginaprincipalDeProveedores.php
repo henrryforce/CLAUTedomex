@@ -433,16 +433,21 @@ if(!isset($_SESSION['id_usuario'])){
                     <div class="form-group mt-3">
                       <label for="exampleFormControlSelect1">Producto</label>
                       <select class="form-control">
-                        <?php// $tipo_c = $_FILES['tipo']; echo "<script> console.log('Console1: " . $tipo_c . "' );</script>"?>
-                        <?php if(isset($_FILES['tipo'])=='1'):?>
-                        <?php 
+                        
+                        <?php if(isset($_POST['tipo'])){
+                          if ($_POST['tipo']== '1'){
+                            echo json_encode("si llego xd");
+                          }
+                        }?>
+                      
+                        <?php /*
                         $database->query("SELECT producto FROM catalogo_productos");
                         $res = $database->resultSet();
                         foreach($res as $ro):
                           echo '<option value="'.$ro["id"].'">'.$ro["producto"].'</option>';
                                 endforeach; 
                         ?>
-                        <?php endif; ?>
+                        <?php endif; */?>
                       </select>
                     </div>                    
                     <div class="form-group mt-3">

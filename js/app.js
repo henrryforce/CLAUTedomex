@@ -445,6 +445,11 @@ function getval(e){
     method: 'POST',
     body: data
   })
+  .then(res => res.json())
+    .then(data => {
+      console.log(data);
+     
+    })
 }
 /*
  *Funcion para crear un elemento <p> para notificaciones en el DOM 
