@@ -432,13 +432,9 @@ if(!isset($_SESSION['id_usuario'])){
                     </div>
                     <div class="form-group mt-3">
                       <label for="exampleFormControlSelect1">Producto</label>
-                      <select class="form-control">
+                      <select class="form-control" name="cmbProducto" id="cmbProducto">
                         
-                        <?php if(isset($_POST['tipo'])){
-                          if ($_POST['tipo']== '1'){
-                            echo json_encode("si llego xd");
-                          }
-                        }?>
+                        
                       
                         <?php /*
                         $database->query("SELECT producto FROM catalogo_productos");
