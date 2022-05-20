@@ -1,5 +1,13 @@
 @charset "utf-8";
 
+.borrar-pais,.borrar-pais:hover{
+	float: right;
+    cursor: pointer;
+    color: red;
+    font-weight: bold;
+	margin-left: 10px;
+	text-decoration: none;
+}
 
 /* Estilos extra */
 /* Estilos extra */

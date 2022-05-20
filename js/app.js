@@ -94,7 +94,13 @@ function load () {
     document
       .getElementById('btnDatosGenerales')
       .addEventListener('click', updateDatosproveedor);
-    document.getElementById('btnCerts').addEventListener('click',sendCerts);
+    document.getElementById('btnCerts').addEventListener('click', sendCerts)
+    document
+      .getElementById('btnagregarpaises')
+      .addEventListener('click', AgregaPaisCombo);
+      document.getElementById('btnSavePais').addEventListener('click',agregarPais);
+      document.getElementById('listaPaises').addEventListener('click',borraPais);
+      
   }
 }
 /**
@@ -391,7 +397,7 @@ function changePassPerfilProveedor (e) {
     data.get('password') === data.get('password2')
   ) {
     var toast = new bootstrap.Toast(document.getElementById('liveToast'))
-    document.getElementById('toasContaider').style.zIndex = "11";
+    document.getElementById('toasContaider').style.zIndex = '11'
     toast.show()
     document.getElementById('btnToastCambiar').addEventListener('click', () => {
       data = new FormData(document.getElementById('formPassword'))
@@ -410,9 +416,9 @@ function changePassPerfilProveedor (e) {
       creaNotificacion(
         document.getElementById('notificaciones'),
         'Contrasesena actualizada'
-      );
+      )
       document.getElementById('notificaciones').className =
-        'alert alert-success';
+        'alert alert-success'
     })
   }
 }
@@ -425,9 +431,9 @@ function updateDatosproveedor (e) {
   let noti = document.getElementById('notificacionesMD')
   let data = new FormData(form)
 
-  const jpg = 'image/jpeg';
-  const png = 'image/png';
-  const pdf = 'application/pdf';
+  const jpg = 'image/jpeg'
+  const png = 'image/png'
+  const pdf = 'application/pdf'
   data.append('actualizarDatos', 1)
   if (data.get('Logo').type != jpg && data.get('Logo').size != png) {
     creaNotificacion(noti, 'Solo se admiten archivos JPG o PNG')
@@ -452,7 +458,6 @@ function updateDatosproveedor (e) {
     .then(data => {
       console.table(data)
     })
-
 }
 
 /**
@@ -470,49 +475,156 @@ function getval (e) {
   })
     .then(res => res.json())
     .then(data => {
-      let combo = document.getElementById('cmbProducto');
-      combo.innerHTML = '';
+      let combo = document.getElementById('cmbProducto')
+      combo.innerHTML = ''
       data.forEach(element => {
-        var opt = document.createElement('option');
-        opt.value = element['id'];
-        opt.innerHTML = element['producto'];
-        combo.appendChild(opt);
+        var opt = document.createElement('option')
+        opt.value = element['id']
+        opt.innerHTML = element['producto']
+        combo.appendChild(opt)
       })
     })
 }
-function sendCerts(e){
-  e.preventDefault();
-  const pdf = 'application/pdf';
-  let form = document.getElementById('certyforms');
-  let noti = document.getElementById('notificacionesMC');
+function sendCerts (e) {
+  e.preventDefault()
+  const pdf = 'application/pdf'
+  let form = document.getElementById('certyforms')
+  let noti = document.getElementById('notificacionesMC')
   let data = new FormData(form)
   if (data.get('certdoc').size > 1048576) {
-    creaNotificacion(noti, 'Documento muy pesado, solo se permiten archivos de menos de 1mb');
+    creaNotificacion(
+      noti,
+      'Documento muy pesado, solo se permiten archivos de menos de 1mb'
+    )
   }
-  if(data.get('txtcerts')==''){
-    creaNotificacion(noti,'No puedes dejar el ningun campo en blanco');
+  if (data.get('txtcerts') == '') {
+    creaNotificacion(noti, 'No puedes dejar el ningun campo en blanco')
   }
-  if(data.get('certdoc').size == 0 && data.get('certdoc').name == ''){
-    creaNotificacion(noti,'Debes adjuntar un archivo');
+  if (data.get('certdoc').size == 0 && data.get('certdoc').name == '') {
+    creaNotificacion(noti, 'Debes adjuntar un archivo')
   }
-  if(data.get('certdoc').type != pdf){
-    creaNotificacion(noti,"Solo puedes adjuntar archivos del tipo PDF");
+  if (data.get('certdoc').type != pdf) {
+    creaNotificacion(noti, 'Solo puedes adjuntar archivos del tipo PDF')
   }
-  if(data.get('certdoc').size <= 1048576 && data.get('txtcerts')!='' && data.get('certdoc').name != ''){
-    data.append('cert',1);
+  if (
+    data.get('certdoc').size <= 1048576 &&
+    data.get('txtcerts') != '' &&
+    data.get('certdoc').name != ''
+  ) {
+    data.append('cert', 1)
     fetch('../php/gestorcuenta.php', {
       method: 'POST',
       body: data
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
-        if(data == 409){
-          creaNotificacion(noti,"Ocurrio un error inesperado en la carga del archivo");
-          modificaNotificacion(noti,"alert alert-warning");
+        console.log(data)
+        if (data == 409) {
+          creaNotificacion(
+            noti,
+            'Ocurrio un error inesperado en la carga del archivo'
+          )
+          modificaNotificacion(noti, 'alert alert-warning')
         }
       })
   }
+}
+/**Funcion para agregar paises al combo */
+function AgregaPaisCombo (e) {
+  e.preventDefault()
+  fetch('../php/paises.json')
+    .then(response => response.json())
+    .then(jsondata => {
+      pais = []
+      for (key in jsondata) {
+        pais.push(jsondata[key])
+      }
+      let comboP = document.getElementById('pais')
+      pais = pais.sort()
+      for (i in pais) {
+        var opt = document.createElement('option')
+        opt.value = pais[i]
+        opt.innerHTML = pais[i]
+        comboP.appendChild(opt)
+      }
+    })
+    setPasisesLS();
+}
+/**Funcion agrega etiquetas modal */
+function agregarPais(e){
+  e.preventDefault();
+  const divP = document.getElementById('listaPaises');
+  let form = document.getElementById('formexport')
+  let noti = document.getElementById('notificacionesMP')
+  let data = new FormData(form)
+  if(data.get('pais') != '0'){
+    let borrarPais = document.createElement('a');
+    borrarPais.classList='borrar-pais';
+    borrarPais.innerText='X';
+    let spanPais = document.createElement('li');
+    spanPais.innerText=data.get('pais');
+    spanPais.classList='badge bg-success';
+    spanPais.appendChild(borrarPais);
+    divP.appendChild(spanPais);
+    agregarPaisLS(data.get('pais'));
+  }else{
+    creaNotificacion(noti,"Debes seleccionar un pais");
+  }
+}
+/**
+ * funcion Agregar a Local storage los paises
+ */
+function agregarPaisLS(pais){
+  let paises;
+  paises = ObtenerPaisLS();
+  paises.push(pais);
+  localStorage.setItem('PaisesExp',JSON.stringify(paises));
+
+}
+/**obtener Paises LS */
+function ObtenerPaisLS(){
+  let paises;
+  if(localStorage.getItem('PaisesExp')===null){
+    paises=[];
+  }else{
+    paises=JSON.parse(localStorage.getItem('PaisesExp'));
+  }
+  
+  return paises;
+}
+/**Funcion Borra pais */
+function borraPais(e){
+  e.preventDefault();
+  if(e.target.className === 'borrar-pais'){
+    e.target.parentElement.remove();
+    borraPaisLS(e.target.parentElement.innerText.replace('X',''));
+}
+function borraPaisLS(pais){
+  let paises;
+  paises = ObtenerPaisLS();
+  paises.forEach(function(paisLS,i){
+  if(pais == paisLS){
+    paises.splice(i,1);
+  }
+  });
+  localStorage.setItem('PaisesExp',JSON.stringify(paises));
+}
+}
+/**Funcion para setear paises en ls */
+function setPasisesLS(){
+  const divP = document.getElementById('listaPaises');
+  let paises;
+  paises = ObtenerPaisLS();
+  paises.forEach(function(pais){
+    const btnborrarP = document.createElement('a');
+    btnborrarP.classList='borrar-pais';
+    btnborrarP.innerText= 'X';
+    const li = document.createElement('li');
+    li.classList='badge bg-success';
+    li.innerText=pais;
+    li.appendChild(btnborrarP);
+    divP.appendChild(li);
+  })
 }
 /*
  *Funcion para crear un elemento <p> para notificaciones en el DOM
@@ -525,6 +637,6 @@ function creaNotificacion (padre, texto) {
 
   eliminaNodos(padre)
 }
-function modificaNotificacion(padre,clas){
-  padre.className =clas;
+function modificaNotificacion (padre, clas) {
+  padre.className = clas
 }

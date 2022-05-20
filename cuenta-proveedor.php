@@ -230,7 +230,7 @@ if (!isset($_SESSION['id_usuario'])) {
                       </div>
                       <div class="col-sm">
                         <!-- BOTON ACTIVA MODAL #3-->
-                        <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal3">
+                        <a href="#" class="btn btn-success" data-bs-toggle="modal" id="btnagregarpaises" data-bs-target="#exampleModal3">
                           <span>Visualizar</span></a>
 
                       </div>
@@ -410,31 +410,23 @@ foreach ($estados as $row):
                       </div>
                       <!-- ELEMENTOS CONTENIDOS EN EL MODAL -->
                       <div class="modal-body">
+                        <div id="notificacionesMP"></div>
+                        <form action="#" id="formexport">
                         <label for="">Exportaciones A</label>
-                        <select class="form-control mb-3">
+                        <select class="form-control mb-3" id="pais" name="pais">
 
-                          <option>Países</option>
-                          <option>Opción 1</option>
-                          <option>Opción 2</option>
-                          <option>Opción 3</option>
-                          <option>Opción 4</option>
+                          <option value="0">Países</option>
                         </select>
-                        <a class="btn btn-primary mb-3" href="#">Guardar</a>
+                        <button class="btn btn-primary mb-3" type="submit" id="btnSavePais">Guardar</button>
 
                         <div class="card">
                           <!-- TITULO DE LA CARD -->
                           <h5 class="card-header">Exportación A</h5>
 
                           <!-- CUERPO DE LA CARD -->
-                          <div class="card-body">
+                          <div id="listaPaises" class="card-body">
                             <!-- TAGS - CONTENIDO DE LA CARD -->
 
-                            <span class="badge bg-primary">TAG x</span>
-                            <span class="badge bg-primary">TAG x</span>
-                            <span class="badge bg-primary">TAG x</span>
-                            <span class="badge bg-primary">TAG x</span>
-                            <span class="badge bg-primary">TAG x</span>
-                            <span class="badge bg-primary">TAG x</span>
                           </div>
                         </div>
                       </div>
@@ -443,6 +435,7 @@ foreach ($estados as $row):
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                         <a class="btn btn-primary" href="#">Guardar</a>
                       </div>
+                      </form>
                     </div>
                   </div>
                 </div>
