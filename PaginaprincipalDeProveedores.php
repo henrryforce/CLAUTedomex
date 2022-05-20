@@ -418,11 +418,12 @@ if(!isset($_SESSION['id_usuario'])){
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <!-- ELEMENTOS CONTENIDOS EN EL MODAL2 -->
-                <div class="modal-body">                
+                <div class="modal-body"> 
+                                 
                   <form>
                     <div class="form-group">
                       <label for="exampleFormControlSelect1">Comodity </label>
-                      <select class="form-control" name="comodity" id="comodity" onchange="javascript:llenar_cmb2();">
+                      <select class="form-control" name="comodity" id="comodity" >
                         <option>- Seleccione una opción -</option>
                         <option value="1">Producto</option>
                         <option value="2">Proceso</option>
@@ -431,9 +432,7 @@ if(!isset($_SESSION['id_usuario'])){
                       </select>
                     </div>
                     <div class="form-group mt-3">
-                      <label for="exampleFormControlSelect1">Producto</label>
-                      <select class="form-control" name="catalogos" id="catalogos" onchange="javascript:seleccionado();">
-                        <option value="0">- Seleccione un producto -</option>                                                                     
+                      <label for="exampleFormControlSelect1">Producto</label>                                                                     
                       <select class="form-control" name="cmbProducto" id="cmbProducto">
                         
                         
