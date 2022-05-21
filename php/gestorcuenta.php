@@ -118,3 +118,26 @@ if(isset($_FILES['certdoc'])&& $_POST['cert'] == '1'){
     }
     echo json_encode(201);
 }
+if(isset($_POST['paises'])){
+    $paises = $_POST['paises'];
+    $paises= str_replace('"','',str_replace(']','',str_replace('[','',$paises)));
+    $id =$_SESSION['id_usuario'];
+    $obj = new Conexion;
+    $obj -> query("SELECT `idexportaciones` FROM `exportrequeridas` WHERE `idcomprador` = $id");
+    $res = $obj -> resultSet();
+    if($res !=[]){
+        $obj -> query("UPDATE `exportrequeridas` SET`paisesExporta`='$paises' WHERE `idcomprador`=$id");
+    }else{
+        $obj -> query("INSERT INTO `exportrequeridas`( `idcomprador`, `paisesExporta`) VALUES ($id,'$paises')");
+    }
+    
+    try {
+        //code...
+        $res =$obj -> resultSet();
+    } catch (Exception $e) {
+        //throw $th;
+        echo json_encode($e);
+    }
+    echo json_encode(201);
+
+}

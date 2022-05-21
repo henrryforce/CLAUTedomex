@@ -417,7 +417,7 @@ foreach ($estados as $row):
 
                           <option value="0">Países</option>
                         </select>
-                        <button class="btn btn-primary mb-3" type="submit" id="btnSavePais">Guardar</button>
+                        <button class="btn btn-primary mb-3" type="submit" id="btnSavePais">Agregar</button>
 
                         <div class="card">
                           <!-- TITULO DE LA CARD -->
@@ -433,7 +433,7 @@ foreach ($estados as $row):
                       <!-- FIN ELEMENTOS CONTENIDOS EN EL MODAL -->
                       <div class="modal-footer mt-3">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <a class="btn btn-primary" href="#">Guardar</a>
+                        <button type="submit" class="btn btn-primary" id="btnEnviar" href="#">Guardar</button>
                       </div>
                       </form>
                     </div>

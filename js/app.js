@@ -100,6 +100,16 @@ function load () {
       .addEventListener('click', AgregaPaisCombo);
       document.getElementById('btnSavePais').addEventListener('click',agregarPais);
       document.getElementById('listaPaises').addEventListener('click',borraPais);
+      document.getElementById('btnEnviar').addEventListener('click',enviarPaises);
+      fetch('../php/pruebas.php?expo=501', {
+        method: 'GET',
+      })
+        .then(res =>res.json())
+        .then(data => {
+          let paises = data[0]['pais'].split(',');
+          console.log(paises);
+          localStorage.setItem('PaisesExp',JSON.stringify(paises));
+        });
       
   }
 }
@@ -558,6 +568,10 @@ function agregarPais(e){
   let noti = document.getElementById('notificacionesMP')
   let data = new FormData(form)
   if(data.get('pais') != '0'){
+    paisesLS = ObtenerPaisLS();
+    if(paisesLS.includes(data.get('pais'))){
+      creaNotificacion(noti,"No puedes agregar el mismo pais 2 veces")
+    }else{
     let borrarPais = document.createElement('a');
     borrarPais.classList='borrar-pais';
     borrarPais.innerText='X';
@@ -567,6 +581,7 @@ function agregarPais(e){
     spanPais.appendChild(borrarPais);
     divP.appendChild(spanPais);
     agregarPaisLS(data.get('pais'));
+    }
   }else{
     creaNotificacion(noti,"Debes seleccionar un pais");
   }
@@ -613,6 +628,7 @@ function borraPaisLS(pais){
 /**Funcion para setear paises en ls */
 function setPasisesLS(){
   const divP = document.getElementById('listaPaises');
+  divP.innerHTML='';
   let paises;
   paises = ObtenerPaisLS();
   paises.forEach(function(pais){
@@ -626,17 +642,35 @@ function setPasisesLS(){
     divP.appendChild(li);
   })
 }
+/**Funcion BD paises */
+function enviarPaises(e){
+  e.preventDefault();
+  let paises = ObtenerPaisLS();
+  data = new FormData();
+  data.append('paises',JSON.stringify(paises));
+  fetch('../php/gestorcuenta.php', {
+    method: 'POST',
+    body: data
+  })
+    .then(res => res.json())
+    .then(data => {
+      if(data == 201){
+        creaNotificacion(document.getElementById('notificacionesMP'),"Se guardaron con exito las Exportaciones");
+        modificaNotificacion(document.getElementById('notificacionesMP'),'alert alert-success');
+      }
+    })
+}
 /*
  *Funcion para crear un elemento <p> para notificaciones en el DOM
  */
 function creaNotificacion (padre, texto) {
-  padre.className = 'alert alert-danger'
-  var noti = document.createElement('p')
-  noti.innerText = texto
-  padre.appendChild(noti)
+  padre.className = 'alert alert-danger';
+  var noti = document.createElement('p');
+  noti.innerText = texto;
+  padre.appendChild(noti);
 
-  eliminaNodos(padre)
+  eliminaNodos(padre);
 }
 function modificaNotificacion (padre, clas) {
-  padre.className = clas
+  padre.className = clas;
 }
