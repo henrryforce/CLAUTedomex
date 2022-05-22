@@ -14,10 +14,10 @@ switch ($valor) {
       $mensaje = "Mostrando Opciones";
       $database->query("SELECT producto FROM catalogo_productos");
       $prods = $database->resultSet();
-      $datos = array();
-      foreach($prods as $row):  
+      foreach($prods as $row):
         $datos="<option value=''>- Seleccione -</option>";
-        $datos= $datos['Productos'][]=$row;
+        $datos= $datos.'<option value="'.$row["producto"].'">'.'</option>';
+        
       endforeach;  
       break;
 

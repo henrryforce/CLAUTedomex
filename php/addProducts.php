@@ -5,9 +5,6 @@
     $update2 = false;
     $producto='';
 
-
-
-
     if(isset($_POST['btnaddp'])){
     	if(!empty($_POST['comodity'])){
     		$selected = $_POST['comodity'];
@@ -16,7 +13,7 @@
     		echo 'Por favor seleciones un comodity.';
     	}
         $tipo = isset($_POST['comodity']) ? $_POST['comodity']:'';
-        $producto = isset($_POST['txt_prod']) ? $_POST['txt_prod']:'';    	
+        $producto = isset($_POST['cmbProducto']) ? $_POST['cmbProducto']:'';    	
         $id_user = isset($_POST['txt_usr']) ? $_POST['txt_usr'] : '';
         echo "ID_usuario: ".$id_user." | ";
         echo "nombre del producto; ".$producto;
@@ -31,7 +28,6 @@
                     $database->bind(2, $id_user);
                     $database->bind(3, $selected);
                     $database->execute();
-
                     break;
 
                 }else{
@@ -39,14 +35,13 @@
                     $database->bind(1, $producto);
                     $database->execute();
                 }
-
                 $database->query("INSERT INTO producto(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");
                 $database->bind(1, $producto);
                 $database->bind(2, $id_user);
                 $database->bind(3, $selected);
                 $database->execute();
-
         		break;
+
         	case '2':
                 $database->query("SELECT `producto` FROM `catalogo_proceso` WHERE producto LIKE '%$producto%'");
                 $res = $database->resultSet();
@@ -58,7 +53,7 @@
                     $database->execute();
                     break;
                 }else{
-                    $database->query("INSERT INTO catalogo_productos(producto) VALUES(?)");
+                    $database->query("INSERT INTO catalogo_proceso(producto) VALUES(?)");
                     $database->bind(1, $producto);
                     $database->execute();
                 }

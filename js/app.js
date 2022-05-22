@@ -474,11 +474,11 @@ function updateDatosproveedor (e) {
  * Funcion commodity get value
  */
 function getval (e) {
-  //console.log(e.target.value); //sacas el valor con el evento change sobre el combo id combo cmbProducto
+  //console.log(e.target.value); //Obtener el valor con el evento change sobre el combo id combo cmbProducto
   let data = new FormData() //creas el form data
   data.append('tipo', e.target.value) // agregas un elemento
   //console.table(typeof(data.get('tipo')));// puedes acceder a el con .get
-  /**aqui ya va el fetch y en el body le pones el data y ya se envia solito xd  */
+  
   fetch('../php/catalogos.php', {
     method: 'POST',
     body: data
@@ -495,6 +495,7 @@ function getval (e) {
       })
     })
 }
+
 function sendCerts (e) {
   e.preventDefault()
   const pdf = 'application/pdf'

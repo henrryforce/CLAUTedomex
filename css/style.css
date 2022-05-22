@@ -1701,8 +1701,22 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 .member-div .modal-title{
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 600;
-	font-size: 25px;
+	font-size: 25px;	
 }
+
+/* oculto los elementos */
+input.i-text, textarea {
+	display: none;
+  }
+  
+  /* lo muestros si está seleccionado value=imagen */
+  input.i-radio[value="addProducto"]:checked ~ input.i-text {
+	margin-top: 20px;
+	display: block;
+	margin-bottom: 20px;
+  }
+  
+
 .job-details h5{
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 600;
@@ -1961,6 +1975,8 @@ button.close-menu {
 .clients{
 	margin: 20px 0;
 }
+
+  
 /* mobile menu css */
 @media (max-width:1180px){
 	.inside-part-footer h2{

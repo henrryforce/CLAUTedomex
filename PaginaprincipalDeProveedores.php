@@ -431,23 +431,17 @@ if(!isset($_SESSION['id_usuario'])){
                         <option value="4">Servicios indirectos</option>                        
                       </select>
                     </div>
-                    <div class="form-group mt-3">
+                    <!-- Creacion del combo con los productos de c/u de los catalogos -->
+                    <div class="form-group mt-3"> 
                       <label for="exampleFormControlSelect1">Producto</label>                                                                     
                       <select class="form-control" name="cmbProducto" id="cmbProducto">
-                        
-                        
-                      
-                        <?php /*
-                        $database->query("SELECT producto FROM catalogo_productos");
-                        $res = $database->resultSet();
-                        foreach($res as $ro):
-                          echo '<option value="'.$ro["id"].'">'.$ro["producto"].'</option>';
-                                endforeach; 
-                        ?>
-                        <?php endif; */?>
                       </select>
-
-                    </div>                    
+                    </div>
+                    <div class="form-group mt-3">
+                      <label for="exampleModalLabel">¿No encuentras tu producto?</label><br><br>                                                                  
+                      <input type="radio" name="gender" class="i-radio form-check-input" value="addProducto"> Agregar producto
+                      <input type="text" name="addProducto" class="i-text form-control" placeholder="Ejemplo: Electrical Contacts">
+                    </div>
                     <div class="form-group mt-3">
                       <label for="exampleFormControlTextarea1">Observaciones</label>
                       <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
@@ -499,8 +493,11 @@ if(!isset($_SESSION['id_usuario'])){
                 </li>
                 <li>
                   <a href="#"> <i class="fab fa-instagram"></i> Instagram </a>
-                </li> </ul></div>  </div></div>             
-     <hr/>
+                </li> </ul>
+              </div>
+            </div>
+          </div>             
+      <hr/>
       <div class="d-lg-flex justify-content-between">
         <p class="text-white"> Copyright © 2022</p>
         <div class="link-ft">
@@ -528,36 +525,28 @@ if(!isset($_SESSION['id_usuario'])){
      
       <div class="mobile-menu-sec mt-3">
          <ul class="list-unstyled">
-
             <li>
                <a href="index.html"> Inicio </a>
             </li>
-
             <li>
                <a href="#"> Tractoras </a>
             </li>
-
             <li>
                <a href="#"> Registro </a>
             </li>
-
             <li>
                <a href="#"> Login </a>
             </li>
-
             <li>
                <a href="#"> Costo </a>
-            </li>
-            
+            </li>          
             <li>
               <a href="#"> Cerrar sesión </a>
-           </li>
-            
+           </li>            
          </ul>
       </div>
+      <!---------------------------------- REDES SOCIALES - RESPONSIVE ---------------------------------->
 
-      <!-- REDES SOCIALES - RESPONSIVE -->
-      
       <ul class="side-media list-unstyled">
          <li> <a href="https://www.facebook.com/clautedomex/"> <i class="fab fa-facebook-f"></i> </a> 
          <li> <a href="https://twitter.com/clautedomex?s=11&t=jkgi23i_1DQyFLRqNnsV_w"> <i class="fab fa-twitter w"></i> </a>
@@ -569,40 +558,9 @@ if(!isset($_SESSION['id_usuario'])){
 </div>
 
 <!-- FIN RESPONSIVE -->
-<!-- FIN RESPONSIVE -->
-<script>
-  // Solicita la Información al archivo php después de seleccionar una opción del select 1 o principal.
-  function llenar_cmb2() {
-    var valor= document.getElementById("comodity").value;
-
-    if (valor !== ""){
-      $.ajax({
-        url: "php/llenarCombo.php",
-        type: "POST",
-        data: "valor="+valor,
-        success: function(resp){
-          //Recibir los datos de resultado y parsearlos a JSON entendible para JavaScript
-          var datos=JSON.parse(resp);
-          console.log(resp); // Opcional mostrar a consola
-          if (datos.error==0){
-            $("#catalogos").html(datos.datos);
-          }
-        }
-      })
-    }
-  }
-
-  //Muestra el elemento seleccionado del select 2
-  function seleccionado() {
-    var cmb = document.getElementById("catalogos");
-    var seleccionado = cmb.options[cmb.selectedIndex].text;
-    alert(seleccionado);
-  }
-</script>
 <script src="js/app.js"></script>
 <script src="js/bootstrap.bundle.min.js" ></script>
 <script src="js/jquery.min.js" ></script>
-<script src="jquery-2.1.3.js"></script>
 </script>
 <!-- Owl Carousel -->
 <script src="js/owl.carousel.min.js"></script>
@@ -610,14 +568,12 @@ if(!isset($_SESSION['id_usuario'])){
 <script src="https://unpkg.com/aos@2.3.0/dist/aos.js"></script>
 <script>
 AOS.init({
-offset: 100,
-easing: 'ease',
-delay: 0,
-once: true,
-duration: 800,
-
+  offset: 100,
+  easing: 'ease',
+  delay: 0,
+  once: true,
+  duration: 800,
 });
-
 </script>
 </body>
 </html>
