@@ -489,7 +489,7 @@ function getval (e) {
       combo.innerHTML = ''
       data.forEach(element => {
         var opt = document.createElement('option')
-        opt.value = element['id']
+        //opt.value = element['id']
         opt.innerHTML = element['producto']
         combo.appendChild(opt)
       })
