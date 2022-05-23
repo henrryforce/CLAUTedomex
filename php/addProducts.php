@@ -3,8 +3,7 @@
     $database = new Conexion;
     $id_prod ='';
     $update2 = false;
-    $producto='';
-
+    $producto='';    
     if(isset($_POST['btnaddp'])){
     	if(!empty($_POST['comodity'])){
     		$selected = $_POST['comodity'];
@@ -13,102 +12,98 @@
     		echo 'Por favor seleciones un comodity.';
     	}
         $tipo = isset($_POST['comodity']) ? $_POST['comodity']:'';
-        $producto = isset($_POST['cmbProducto']) ? $_POST['cmbProducto']:'';    	
+        $producto = isset($_POST['cmbProducto']) ? $_POST['cmbProducto']:'';
+        $producto_n = isset($_POST['txt_producto']) ? $_POST['txt_producto'] : '';
         $id_user2 = isset($_POST['txt_usr']) ? $_POST['txt_usr'] : '';
         echo "ID_usuario: ".$id_user2." | ";
         echo "nombre del producto: ".$producto;
         switch ($selected){
         	case '1':
-        		$database->query("SELECT `producto` FROM `catalogo_productos` WHERE producto LIKE '%$producto%'");
-                $res = $database->resultSet();
-                if(!empty($res)){                    
-                    echo " Tipo de producto: ".$producto." | ";
-                    echo "ID_usuario: ".$id_user2;
+                if(isset($_POST['addProducto'])){
+                    $database->query("INSERT INTO producto(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");                    
+                    $database->bind(1, $producto_n);
+                    $database->bind(2, $id_user2);
+                    $database->bind(3, $selected);
+                    $database->execute();
+
+                    $database->query("INSERT INTO catalogo_productos(producto) VALUES(?)");
+                    $database->bind(1, $producto_n);
+                    $database->execute();
+                    
+                    break;
+                }else{
                     $database->query("INSERT INTO producto(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");
                     $database->bind(1, $producto);
                     $database->bind(2, $id_user2);
                     $database->bind(3, $selected);
                     $database->execute();
                     break;
-
-                }else{
-                    $database->query("INSERT INTO catalogo_productos(producto) VALUES(?)");
-                    $database->bind(1, $producto);
-                    $database->execute();
                 }
-                $database->query("INSERT INTO producto(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");
-                $database->bind(1, $producto);
-                $database->bind(2, $id_user);
-                $database->bind(3, $selected);
-                $database->execute();
-        		break;
 
         	case '2':
-                $database->query("SELECT `producto` FROM `catalogo_proceso` WHERE producto LIKE '%$producto%'");
-                $res = $database->resultSet();
-                if(!empty($res)){
-                    echo "tipo de producto: ".$producto." | ";
-                    $database->query("INSERT INTO producto(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");
-                    $database->bind(1, $producto);
+                if(isset($_POST['addProducto'])){
+                    $database->query("INSERT INTO producto(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");                    
+                    $database->bind(1, $producto_n);
                     $database->bind(2, $id_user2);
                     $database->bind(3, $selected);
                     $database->execute();
-                    break;
-                }else{
+
                     $database->query("INSERT INTO catalogo_proceso(producto) VALUES(?)");
-                    $database->bind(1, $producto);
+                    $database->bind(1, $producto_n);
                     $database->execute();
+                    break;
+                }else{
+                    $database->query("INSERT INTO producto(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");
+                    $database->bind(1, $producto);
+                    $database->bind(2, $id_user2);
+                    $database->bind(3, $selected);
+                    $database->execute();
+                    break;
                 }
-                $database->query("INSERT INTO producto(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");
-                $database->bind(1, $producto);
-                $database->bind(2, $id_user2);
-                $database->bind(3, $selected);
-                $database->execute();
-                break;
+
             case '3':
-                $database->query("SELECT `producto` FROM `catalogo_raw_material` WHERE producto LIKE '%$producto%'");
-                $res = $database->resultSet();
-                if(!empty($res)){
-                    echo "tipo de producto: ".$producto." | ";
-                    $database->query("INSERT INTO producto(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");
-                    $database->bind(1, $producto);
+                if(isset($_POST['addProducto'])){
+                    $database->query("INSERT INTO producto(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");                    
+                    $database->bind(1, $producto_n);
                     $database->bind(2, $id_user2);
                     $database->bind(3, $selected);
                     $database->execute();
-                    break;
-                }else{
+
                     $database->query("INSERT INTO catalogo_raw_material(producto) VALUES(?)");
-                    $database->bind(1, $producto);
+                    $database->bind(1, $producto_n);
                     $database->execute();
-                }
-                $database->query("INSERT INTO producto(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");
-                $database->bind(1, $producto);
-                $database->bind(2, $id_user2);
-                $database->bind(3, $selected);
-                $database->execute();                
-                break;
-            case '4':            
-                $database->query("SELECT `producto` FROM `catalogo_indirectos` WHERE producto LIKE '%$producto%'");
-                $res = $database->resultSet();
-                if(!empty($res)){
-                    echo "tipo de producto: ".$producto." | ";
+                    break;
+                }else{
                     $database->query("INSERT INTO producto(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");
                     $database->bind(1, $producto);
                     $database->bind(2, $id_user2);
                     $database->bind(3, $selected);
                     $database->execute();
                     break;
-                }else{
-                    $database->query("INSERT INTO catalogo_indirectos(producto) VALUES(?)");
-                    $database->bind(1, $producto);
-                    $database->execute();
                 }
-                $database->query("INSERT INTO producto(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");
-                $database->bind(1, $producto);
-                $database->bind(2, $id_user2);
-                $database->bind(3, $selected);
-                $database->execute();
-                break;
+
+            case '4':            
+                if(isset($_POST['addProducto'])){
+                    $database->query("INSERT INTO producto(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");                    
+                    $database->bind(1, $producto_n);
+                    $database->bind(2, $id_user2);
+                    $database->bind(3, $selected);
+                    $database->execute();
+
+                    $database->query("INSERT INTO catalogo_indirectos(producto) VALUES(?)");
+                    $database->bind(1, $producto_n);
+                    $database->execute();
+
+                    break;
+                }else{
+                    $database->query("INSERT INTO producto(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");
+                    $database->bind(1, $producto);
+                    $database->bind(2, $id_user2);
+                    $database->bind(3, $selected);
+                    $database->execute();
+                    break;
+                }
+
         	default:
         		echo "Error en la consulta";
         		break;

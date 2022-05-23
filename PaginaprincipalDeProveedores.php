@@ -318,7 +318,6 @@ if(!isset($_SESSION['id_usuario'])){
           <div class="container mb-4 mt-4">
               <hr width="100%"/>              
           </div>          
-
           <!------------------------------------------- TABLA 2 ------------------------------------------->     
           <div class="container">
             <form action="php/addProducts.php" id="addContacts" name="adc" method="POST">
@@ -340,17 +339,17 @@ if(!isset($_SESSION['id_usuario'])){
                       <table class="table table-striped table-hover text-center">
                           <thead>
                               <tr>                                  
-                                  <th>ID</th>
-                                  <th>Producto</th>
-                                  <th>Opciones</th>                                  
+                                <th>ID</th>                                
+                                <th>Producto</th>
+                                <th>Opciones</th>
                               </tr>
                           </thead>                          
                           <tbody>
-                            <?php $database->query("SELECT ID_producto, Producto from Producto WHERE id_usuario=$id_usr");
+                            <?php $database->query("SELECT ID_producto, Producto, ID_catalogo from Producto WHERE id_usuario=$id_usr");
                             $res = $database->resultSet();?>
                             <?php foreach($res as $row) :?>
                               <tr>                                
-                                <td><?php echo $row['ID_producto']?></td>
+                                <td><?php echo $row['ID_producto']?></td>            
                                 <td><?php echo $row['Producto']?></td>                                
                                   <!-- OPCIONES--> 
                                   <td>                                    
@@ -371,8 +370,7 @@ if(!isset($_SESSION['id_usuario'])){
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <!-- ELEMENTOS CONTENIDOS EN EL MODAL2 -->
-                <div class="modal-body"> 
-                                 
+                <div class="modal-body">
                   <form>
                     <div class="form-group">
                       <label for="exampleFormControlSelect1">Comodity </label>
@@ -392,8 +390,8 @@ if(!isset($_SESSION['id_usuario'])){
                     </div>
                     <div class="form-group mt-3">
                       <label for="exampleModalLabel">¿No encuentras tu producto?</label><br><br>                                                                  
-                      <input type="radio" name="gender" class="i-radio form-check-input" value="addProducto"> Agregar producto
-                      <input type="text" name="addProducto" class="i-text form-control" placeholder="Ejemplo: Electrical Contacts">
+                      <input type="checkbox" name="addProducto" class="i-radio form-check-input" value="addProducto"> Agregar producto
+                      <input type="text" name="txt_producto" id="txt_producto" class="i-text form-control" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" placeholder="Ejemplo: Electrical Contacts">
                     </div>
                     <div class="form-group mt-3">
                       <input type="hidden" id="txt_usr" name="txt_usr" value="<?php echo $id_usr?>">
@@ -431,8 +429,7 @@ if(!isset($_SESSION['id_usuario'])){
               <p class="text-white"> <i class="fas fa-map-marker-alt"></i> 3rd Avenue, Upper East Side,
                 San Francisco </p>
            </div>
-        </div>
- 
+        </div> 
         <div class="col">
           <div class="comon-footer-div pt-4 justify-content-md-end d-grid">
               <h5 class="text-white"></h5>
