@@ -24,10 +24,10 @@ DROP TABLE IF EXISTS `archivos`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `archivos` (
   `ID_archivo` int NOT NULL AUTO_INCREMENT,
-  `Logo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Presentacion` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `Logo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Presentacion` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`ID_archivo`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -51,7 +51,7 @@ CREATE TABLE `catalogo_estados` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(25) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -209,7 +209,7 @@ CREATE TABLE `contacto` (
   `ID_usuario` int NOT NULL,
   PRIMARY KEY (`ID_contacto`),
   KEY `ID_usuario` (`ID_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -231,8 +231,8 @@ DROP TABLE IF EXISTS `detalle_empresa`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `detalle_empresa` (
   `ID_dtl_empresa` int NOT NULL AUTO_INCREMENT,
-  `Descripcion` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Pagina_web` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `Descripcion` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Pagina_web` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `Tel` varchar(15) DEFAULT NULL,
   `Ext` int DEFAULT NULL,
   `Ventas_anuales` int DEFAULT NULL,
@@ -244,7 +244,7 @@ CREATE TABLE `detalle_empresa` (
   KEY `ID_direccion` (`ID_direccion`),
   CONSTRAINT `detalle_empresa_ibfk_4` FOREIGN KEY (`ID_archivo`) REFERENCES `archivos` (`ID_archivo`),
   CONSTRAINT `detalle_empresa_ibfk_5` FOREIGN KEY (`ID_direccion`) REFERENCES `direccion` (`ID_direccion`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -270,7 +270,7 @@ CREATE TABLE `detalle_producto` (
   `Volumen_anual` varchar(50) DEFAULT NULL,
   `Comentarios` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`ID_dtl_producto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -291,15 +291,15 @@ DROP TABLE IF EXISTS `direccion`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `direccion` (
   `ID_direccion` int NOT NULL AUTO_INCREMENT,
-  `Calle` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Colonia` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `Calle` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Colonia` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `N_Int` int DEFAULT NULL,
   `N_Ext` int DEFAULT NULL,
   `CP` int DEFAULT NULL,
-  `Alcaldia` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `Alcaldia` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `ID_estado` int DEFAULT NULL,
   PRIMARY KEY (`ID_direccion`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -325,7 +325,7 @@ CREATE TABLE `empresa` (
   `ID_dtl_empresa` int NOT NULL,
   PRIMARY KEY (`ID_empresa`),
   KEY `ID_dtl_empresa` (`ID_dtl_empresa`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -379,7 +379,7 @@ CREATE TABLE `producto` (
   `ID_catalogo` int NOT NULL,
   PRIMARY KEY (`ID_producto`),
   KEY `ID_dtl_producto` (`ID_dtl_producto`,`ID_usuario`,`ID_catalogo`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -406,7 +406,7 @@ CREATE TABLE `requerimiento_producto` (
   `Comentarios` varchar(200) DEFAULT NULL,
   `ID_usuario` int DEFAULT NULL,
   PRIMARY KEY (`ID_req_producto`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -458,7 +458,7 @@ CREATE TABLE `tipo_usuario` (
   `ID_tipo_usr` int NOT NULL,
   `Tipo` varchar(25) NOT NULL,
   PRIMARY KEY (`ID_tipo_usr`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -481,9 +481,9 @@ DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE `usuario` (
   `ID_usuario` int NOT NULL AUTO_INCREMENT,
   `usuario` varchar(50) NOT NULL,
-  `contrasenia` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `Estatus_mail` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0',
-  `Estatus_pago` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0',
+  `contrasenia` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Estatus_mail` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '0',
+  `Estatus_pago` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '0',
   `Fecha_pago` date NOT NULL,
   `Codigo_verificacion` varchar(25) NOT NULL,
   `ID_empresa` int NOT NULL,
@@ -492,7 +492,7 @@ CREATE TABLE `usuario` (
   KEY `ID_empresa` (`ID_empresa`,`ID_tipo_usr`),
   KEY `ID_tipo_usr` (`ID_tipo_usr`),
   CONSTRAINT `usuario_ibfk_2` FOREIGN KEY (`ID_tipo_usr`) REFERENCES `tipo_usuario` (`ID_tipo_usr`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
