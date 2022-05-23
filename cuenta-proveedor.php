@@ -13,6 +13,9 @@ if (!isset($_SESSION['id_usuario'])) {
     $emp = $obj->resultSet();
     $obj->query("SELECT * FROM `catalogo_estados` order by `nombre`");
     $estados = $obj->resultSet();
+    $obj -> query("call GetIDs($id_usr);");
+    $arrIDs = $obj -> resultSet();
+    print_r($arrIDs);
 //print_r($estados[0]['id'])
 
     ?>
@@ -247,6 +250,18 @@ if (!isset($_SESSION['id_usuario'])) {
                         <h5 class="modal-title" id="exampleModalLabel">DATOS GENERALES</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
+                      <?php
+                      $id_detallesE = intval($arrIDs[0]['id_detalles']);
+                       $obj ->query("SELECT * FROM `detalle_empresa` WHERE `ID_dtl_empresa` = $id_detallesE"); 
+                       $datos = $obj ->resultSet();
+                       $id_dir = intval($arrIDs[0]['id_direccion']);
+                       $obj ->query("SELECT * FROM `direccion` WHERE `ID_direccion` = $id_dir");
+                       $dir = $obj->resultSet();
+                       $id_ar = intval($arrIDs[0]['id_archivo']);
+                       $obj ->query("SELECT `Logo`, `Presentacion` FROM `archivos` WHERE `ID_archivo` = $id_ar");
+                       $arch = $obj -> resultSet();
+                       ?>
+                       
                       <!-- ELEMENTOS CONTENIDOS EN EL MODAL -->
                       <div class="modal-body">
                         <div class="form-group">
@@ -254,7 +269,7 @@ if (!isset($_SESSION['id_usuario'])) {
                             necesarios</label>
                         </div>
                         <form id="formDatosGenProveedor" action="#" enctype="multipart/form-data">
-                          <div id="notificacionesMD"></div>
+                          <div id="notificacionesMD"><?php print_r($arch) ?></div>
                           <div class="form-group">
                             <label for="nom_empresa">Nombre de la empresa</label>
 
@@ -263,32 +278,32 @@ if (!isset($_SESSION['id_usuario'])) {
                           </div>
                           <div class="form-group mt-3">
                             <label for="">Calle</label>
-                            <input type="text" class="form-control" id="calle" name="calle" placeholder="Escriba aquí">
+                            <input type="text" class="form-control" id="calle" name="calle" placeholder="Escriba aquí" value="<?php echo ($dir[0]['Calle']==''|| $dir[0]['Calle'] == NULL) ? '' : $dir[0]['Calle'] ; ?>">
                           </div>
                           <div class="form-group mt-3">
                             <label for="">Numero Exterior</label>
                             <input type="text" class="form-control" id="num_ext" name="num_ext"
-                              placeholder="Escriba aquí">
+                              placeholder="Escriba aquí" value="<?php echo ($dir[0]['N_Ext']==''|| $dir[0]['N_Ext'] == NULL) ? '' : $dir[0]['N_Ext'] ; ?>">
                           </div>
                           <div class="form-group mt-3">
                             <label for="">Numero Interior</label>
                             <input type="text" class="form-control" id="nim_int" name="nim_int"
-                              placeholder="Escriba aquí">
+                              placeholder="Escriba aquí" value="<?php echo ($dir[0]['N_Int']==''|| $dir[0]['N_Int'] == NULL) ? '' : $dir[0]['N_Int'] ; ?>">
                           </div>
                           <div class="form-group mt-3">
                             <label for="">Código Postal</label>
-                            <input type="number" class="form-control" id="cp" name="cp" placeholder="Escriba aquí">
+                            <input type="number" class="form-control" id="cp" name="cp" placeholder="Escriba aquí" value="<?php echo ($dir[0]['CP']==''|| $dir[0]['CP'] == NULL) ? '' : $dir[0]['CP'] ; ?>">
                           </div>
                           <div class="form-group mt-3">
                             <label for="">Colonia</label>
                             <input type="text" class="form-control" id="colonia" name="colonia"
-                              placeholder="Escriba aquí">
+                              placeholder="Escriba aquí" value="<?php echo ($dir[0]['Colonia']==''|| $dir[0]['Colonia'] == NULL) ? '' : $dir[0]['Colonia'] ; ?>">
                           </div>
 
                           <div class="form-group mt-3">
                             <label for="">Alcaldía o Delegación</label>
                             <input type="text" class="form-control" id="delegacion" name="delegacion"
-                              placeholder="Escriba aquí">
+                              placeholder="Escriba aquí" value="<?php echo ($dir[0]['Alcaldia']==''|| $dir[0]['Alcaldia'] == NULL) ? '' : $dir[0]['Alcaldia'] ; ?>">
                           </div>
                           <div class="form-group mt-3">
                             <label for="">Estado</label>
@@ -296,45 +311,56 @@ if (!isset($_SESSION['id_usuario'])) {
                               placeholder="Escriba aquí">
                               <option value="Selecicona un valor">Selecicona un valor</option>
                               <?php
-foreach ($estados as $row):
-        //echo $row['nombre'];
-        $es = $row['nombre'];
-        $id_es = $row['id'];
-        echo "<option value=" . $id_es . ">$es</option>";
-    endforeach;
-    ?>
+                              $id_s='';
+                                foreach ($estados as $row):
+                                        //echo $row['nombre']; ID_estado
+                                        $es = $row['nombre'];
+                                        $id_es = $row['id'];
+                                        ($dir[0]['ID_estado']!=$id_es) ?  : $id_s = ' selected="selected"' ;
+                                        echo "<option value=" . $id_es ." ".  $id_s . ">$es</option>";
+                                        $id_s='';
+                                    endforeach;
+                                    ?>
                             </select>
                           </div>
                           <br>
                           <div class="form-group mt-3">
                             <label for="">Número de empleados</label>
                             <input type="number" class="form-control" id="num_emp" name="num_emp"
-                              placeholder="Escriba aquí empleados">
+                              placeholder="Escriba aquí empleados" value="<?php echo ($datos[0]['Num_empleados']==''|| $datos[0]['Num_empleados'] == NULL) ? '' : $datos[0]['Num_empleados'] ; ?>">
                           </div>
                           <div class="form-group mt-3">
                             <label for="">Ventas Anuales</label>
                             <input type="number" class="form-control" id="ventas" name="ventas"
-                              placeholder="Escriba aquí empleados">
+                              placeholder="Escriba aquí empleados" value="<?php echo ($datos[0]['Ventas_anuales']==''|| $datos[0]['Ventas_anuales'] == NULL) ? '' : $datos[0]['Ventas_anuales'] ; ?>">
                           </div>
                           <div class="form-group mt-3">
                             <label for="">Teléfono</label>
                             <input type="tel" class="form-control" id="telefono" name="telefono"
-                              placeholder="Escriba aquí">
+                              placeholder="Escriba aquí" value="<?php echo ($datos[0]['Tel']==''|| $datos[0]['Tel'] == NULL) ? '' : $datos[0]['Tel'] ; ?>">
                           </div>
                           <div class="form-group mt-3">
                             <label for="">Ext</label>
-                            <input type="tel" class="form-control" id="ext" name="ext" placeholder="Escriba aquí">
+                            <input type="tel" class="form-control" id="ext" name="ext" placeholder="Escriba aquí" value="<?php echo ($datos[0]['Ext']==''|| $datos[0]['Ext'] == NULL) ? '' : $datos[0]['Ext'] ; ?>">
                           </div>
                           <div class="form-group mt-3">
                             <label for="">Pagina Web</label>
                             <input type="text" class="form-control" id="paginaweb" name="paginaweb"
-                              placeholder="Escriba aquí">
+                              placeholder="Escriba aquí" value="<?php echo ($datos[0]['Pagina_web']==''|| $datos[0]['Pagina_web'] == NULL) ? '' : $datos[0]['Pagina_web'] ; ?>">
                           </div>
                           <div class="form-group mt-3">
                             <label for="txtnegocio">Descripción del negocio</label>
                             <textarea type="text" class="form-control" id="txtnegocio" name="txtnegocio" rows="4"
-                              cols="50" placeholder="Escriba aquí"></textarea>
-                          </div>
+                              cols="50" placeholder="Escriba aquí"><?php echo ($datos[0]['Descripcion']==''|| $datos[0]['Descripcion'] == NULL) ? '' : $datos[0]['Descripcion'] ; ?></textarea>
+                          </div> 
+                          
+                          <?php 
+                         
+                            
+                            echo "<div class="."alert-warning"." role="."alert"."><p>Ya cuentas con archivos cargados si subes uno nuevo los anteriores se borraran.</p></div>";
+                          
+                          
+                          ?>
                           <div class="form-group mt-3">
                             <label class="mb-1" for="">Logo - tamaño máximo 1MB </label>
                             <input type="file" class="form-control" id="Logo" name="Logo"

@@ -9,6 +9,10 @@ if(!isset($_SESSION['id_usuario'])){
   require_once "php/addContactos.php";
   require_once "php/addProducts.php";
   $database=new Conexion;
+  $obj = new Conexion();
+  $obj -> query("SELECT  `Logo` FROM `archivos` WHERE `ID_archivo` = 12");
+  $res= $obj -> resultSet();
+  
   ?>
 
 
@@ -127,7 +131,7 @@ if(!isset($_SESSION['id_usuario'])){
                     <section class="Profile-header text-center">
                         <div>
                             <!-- IMAGEN Y DIMENSIONES DE LA MISMA-->                            
-                            <img src="images/Añadaunaimahen(sintexto).png" alt="profile" class="img-rounded mb-3" width="230" height="120">
+                            <img src="<?php echo ($res[0]['Logo'] == ' ' ||  $res[0]['Logo'] == NULL ) ? 'php/archivosUpload/logos/default.png': './php/'.$res[0]['Logo']; ?>" alt="profile" class="img-rounded mb-3" width="230" height="120">
                         </div>                        
                         <h4 class="">NOMBRE DE LA EMPRESA</h4>                        
                         <a href="#" class="text-dark font-weight-bold text-decoration-none">Información personal</a>                        
