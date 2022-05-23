@@ -112,8 +112,8 @@
 
     }
     
-    if(isset($_GET['delete'])){
-        $id = $_GET['delete'];
+    if(isset($_GET['deleteP'])){
+        $id = $_GET['deleteP'];
         $_SESSION['message'] = "¡Se ha eliminado con éxito el contacto!";
         $_SESSION['msg_type'] = "danger";
 
