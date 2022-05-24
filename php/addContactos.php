@@ -2,7 +2,7 @@
     
     require_once "Conexion.php";    
     $database = new Conexion;
-    
+    //Creacion de las variables para la tabla Editar contacto
     $update = false;
     $id_cont='';
     $name = '';
@@ -12,11 +12,12 @@
     $exte='';
     $cel= '';
     
+    //Validacion para Insertar datos en la tabla Contacto 
     if(isset($_POST['btnadd'])){
 
-        $nombre = isset($_POST['txt_nombre']) ? $_POST['txt_nombre'] : '';
-        $puesto = isset($_POST['txt_puesto']) ? $_POST['txt_puesto'] : '';
-        $email = isset($_POST['txt_mail']) ? $_POST['txt_mail'] : '';
+        $nombre = isset($_POST['txt_nombre']) ? $_POST['txt_nombre'] : '';//Creacion de las variables en donde
+        $puesto = isset($_POST['txt_puesto']) ? $_POST['txt_puesto'] : '';//se van a obtener los datos ingrsados de los 
+        $email = isset($_POST['txt_mail']) ? $_POST['txt_mail'] : '';     //input del formulario PaginaPrincipaldeProveedores
         $tel = isset($_POST['txt_tel']) ? $_POST['txt_tel'] : '';
         $ext = isset($_POST['txt_ext']) ? $_POST['txt_ext'] : '';
         $cel = isset($_POST['txt_cel']) ? $_POST['txt_cel'] : '';    
@@ -25,6 +26,7 @@
         echo ($id_user);
         $_SESSION['message'] = "¡Se ha agregado con éxito el contacto!";
         $_SESSION['msg_type'] = "success";
+
         $database->query("INSERT INTO contacto(nombre, puesto, email, tel, ext, cel, ID_usuario) VALUES (?,?,?,?,?,?,?) ");
         $database->bind(1, $nombre);
         $database->bind(2, $puesto);
@@ -37,7 +39,7 @@
 
         header("location: ../PaginaprincipalDeProveedores.php");
     }
-
+    //Validacion para poder eliminar un contacto
     if(isset($_GET['delete'])){
         $id = $_GET['delete'];
         $_SESSION['message'] = "¡Se ha eliminado con éxito el contacto!";
@@ -48,7 +50,7 @@
 
         header("location: /PaginaprincipalDeProveedores.php");
     }
-
+    //Validacion para poder enviar los datos que se quieran modificar a la tabla Editar contacto
     if(isset($_GET['edit'])){
         $id = $_GET['edit'];
         $database->query("SELECT * FROM contacto WHERE ID_contacto = $id");
@@ -65,11 +67,11 @@
             $cel= $row['Cel'];
         endforeach;        
     }
-
+    //Validacion para modificar los datos de la tabla Contacto
     if(isset($_POST['update'])){
-        $id_cont = $_POST['ed_id'] ? $_POST['ed_id']:'';
-        $name = $_POST['ed_name'] ? $_POST['ed_name']: '';            
-        $job = $_POST['ed_job'] ? $_POST['ed_job']: '';
+        $id_cont = $_POST['ed_id'] ? $_POST['ed_id']:'';    //Se obtienen las variables que contienen la nueva informacion 
+        $name = $_POST['ed_name'] ? $_POST['ed_name']: '';  //que se desea actualizar en la tabla
+        $job = $_POST['ed_job'] ? $_POST['ed_job']: '';     //contacto.
         $mail = $_POST['ed_mail'] ? $_POST['ed_mail']: '';
         $tele= $_POST['ed_tel'] ? $_POST['ed_tel']: '';
         $exte= $_POST['ed_ext'] ? $_POST['ed_ext']: '';
