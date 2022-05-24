@@ -1,6 +1,6 @@
 <?php
-/*session_start();
-if(!isset($_SESSION['id_usuario'])){
+session_start();
+/*if(!isset($_SESSION['id_usuario'])){
   header("location: /Login.html");
  }else{
   $id_usr=$_SESSION['id_usuario'];
@@ -16,7 +16,7 @@ if(!isset($_SESSION['id_usuario'])){
   foreach ($rows as $row):
   endforeach;
   ?>
-<?php setcookie("user_id", $row['ID_usuario']);?>
+
 
 <!doctype html>
 <html lang="es">
@@ -150,8 +150,8 @@ if(!isset($_SESSION['id_usuario'])){
                 <!--------------------------------- COLOCAR CONTENIDO AQUÍ --------------------------------->           
                 <!--------------------------------- UP BAR BUTTONS --------------------------------->
                 <div class="profile-userbuttons text-center mb-4">
-                    <button type="button" class="btn btn-success">Administrar Perfil</button>
-                    <button type="button" class="btn btn-success">Lista de proveedores</button>
+                    <button type="button" class="btn btn-primary">Administrar Perfil</button>
+                    <button type="button" class="btn btn-primary">Lista de proveedores</button>
                 </div>
                 <!-- ROW(->) COL(v)-->                                    
                 <!-- LOGO Y NOMBRE DE LA MARCA-->
@@ -192,9 +192,9 @@ if(!isset($_SESSION['id_usuario'])){
                               <!-- BOTONES DE LA TABLA--> 
                                 <div class="col-xs-6 mb-3">                                  
                                   <?php if($update == true):?>
-                                    <button type="submit" class="btn btn-success" name="update" style="display: show">Actualizar</button>
+                                    <button type="submit" class="btn btn-primary" name="update" style="display: show">Actualizar</button>
                                   <?php else:?>                                                                
-                                    <button type="submit" class="btn btn-success" name="update" style="display:none;">Guardar</button>
+                                    <button type="submit" class="btn btn-primary" name="update" style="display:none;">Guardar</button>
                                   <?php endif; ?>                                    
                                 </div>                                                          
                           </div>
@@ -268,8 +268,11 @@ if(!isset($_SESSION['id_usuario'])){
                                   <td><?php echo $row['Cel']?></td>                                  
                                   <!-- OPCIONES--> 
                                   <td>
-                                      <a href="PaginaprincipalDeTractoras.php?edit=<?php $id_cont =$row['ID_contacto']; echo $row['ID_contacto'];?>">Edit</a>
-                                      <a href="php/addContactos.php?delete=<?php echo $row['ID_contacto'];?>">Delete</a>
+                                    <ul class="list-group list-group-horizontal">
+                                      <a href="PaginaprincipalDeTractoras.php?edit=<?php $id_cont =$row['ID_contacto']; echo $row['ID_contacto'];?>"class=" list-group-item"><i class="bi bi-pencil-square">Edit</a></i>
+                                      <a href="php/addContactos.php?delete=<?php echo $row['ID_contacto'];?>"class=" list-group-item"><i class="bi bi-archive-fill">Delete</a></i>
+                                    </ul>
+                                      
                                   </td>
                               </tr>
                               <?php endforeach; ?>
@@ -368,7 +371,7 @@ if(!isset($_SESSION['id_usuario'])){
                                 <?php endif ?>
                               </div>                              
                                 <div class="col-xs-6 mb-3">                                  
-                                  <?php if($update == true):?>
+                                  <?php if($update3 == true):?>
                                     <button type="submit" class="btn btn-primary" name="update2" style="display: show">Actualizar</button>
                                   <?php else:?>                                                                
                                     <button type="submit" class="btn btn-primary" name="update2" style="display:none;">Guardar</button>
@@ -443,8 +446,11 @@ if(!isset($_SESSION['id_usuario'])){
                                 <td class="align-top"><?php echo $row['Comentarios']?></td>                            
                                   <!-- OPCIONES--> 
                                   <td>
-                                      <a href="PaginaprincipalDeTractoras.php?editq=<?php echo $row['ID_req_producto'];?>">Edit</a>
-                                      <a href="php/addRequ.php?deleteq=<?php echo $row['ID_req_producto'];?>">Delete</a>
+                                    <ul class="list-group list-group-horizontal">
+                                      <a href="PaginaprincipalDeTractoras.php?editq=<?php echo $row['ID_req_producto'];?>"class=" list-group-item"><i class="bi bi-pencil-square">Edit</a></i>
+                                      <a href="php/addRequ.php?deleteq=<?php echo $row['ID_req_producto'];?>"class=" list-group-item"><i class="bi bi-archive-fill">Delete</a></i>
+                                    </ul>
+                                      
                                   </td>
                               </tr>
                               <?php endforeach; ?>
@@ -483,7 +489,7 @@ if(!isset($_SESSION['id_usuario'])){
                     <div class="form-group mt-3">
                       <label for="exampleModalLabel">¿No encuentras tu producto?</label><br><br>                                                                  
                       <input type="checkbox" name="addRequerimiento" class="i-radio form-check-input" value="addRequerimiento"> Agregar producto
-                      <input type="text" name="txt_producto" id="txt_producto" class="i-text form-control" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" placeholder="Ejemplo: Electrical Contacts">
+                      <input type="text" name="txt_productoR" id="txt_productoR" class="i-text form-control" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" placeholder="Ejemplo: Electrical Contacts">
                     </div>
                     <div class="form-group mt-3">
                       <label for="exampleFormControlSelect1">Tipo de Materiales</label>

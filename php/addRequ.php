@@ -16,8 +16,9 @@
     	}else{
     		echo 'Por favor seleciones un comodity.';
     	}
-		
+
 		$productoR = isset($_POST['cmbProducto']) ? $_POST['cmbProducto'] : '';
+        $productoR_n = isset($_POST['txt_productoR']) ? $_POST['txt_productoR'] : '';
 		$t_material = isset($_POST['txt_typeM']) ? $_POST['txt_typeM'] : '';
 		$volumen  = isset($_POST['txt_vol']) ? $_POST['txt_vol'] : '';
 		$coments = isset($_POST['txt_aComents']) ? $_POST['txt_aComents'] : '';
@@ -29,116 +30,205 @@
         switch ($sel_com){
         	case '1':
                 if(isset($_POST['addRequerimiento'])){
-                    $database->query("INSERT INTO producto(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");                    
-                    $database->bind(1, $producto_n);
-                    $database->bind(2, $id_user2);
-                    $database->bind(3, $sel_com);
-                    $database->execute();
-
-                    $database->query("INSERT INTO catalogo_productos(producto) VALUES(?)");
-                    $database->bind(1, $producto_n);
-                    $database->execute();
-                    
-                    break;
-                }else{
-                    $database->query("INSERT INTO producto(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");
-                    $database->bind(1, $producto);
-                    $database->bind(2, $id_user2);
-                    $database->bind(3, $sel_com);
-                    $database->execute();
-                    
                     $database->query("INSERT INTO requerimiento_producto (Tipo_material, Volumen_anual, Comentarios, ID_usuario) VALUES (?,?,?,?)");
                     $database->bind(1, $t_material);
                     $database->bind(2, $volumen);
                     $database->bind(3, $coments);
                     $database->bind(4, $id_user3);
+                    
+                    $database->query("SELECT * FROM requerimiento_producto WHERE ID_usuario= $id_user3");                    
+                    $rows= $database->resultSet();
+                    foreach($rows as $row):
+                        $id = $row['ID_req_producto'];
+                    endforeach;
+                    echo "ultimo id: ".$id;
+
+                    $database->query("INSERT INTO producto(producto, ID_req_producto, ID_usuario, ID_catalogo) VALUES(?,?,?,?)");
+                    $database->bind(1, $productoR);
+                    $database->bind(2, $id);
+                    $database->bind(3, $id_user3);
+                    $database->bind(4, $sel_com);
+                    $database->execute(); 
+
+                    $database->query("INSERT INTO catalogo_productos(producto) VALUES(?)");
+                    $database->bind(1, $productoR_n);
+                    $database->execute();
+                    
+                    break;
+                }else{
+                    $database->query("INSERT INTO requerimiento_producto (Tipo_material, Volumen_anual, Comentarios, ID_usuario) VALUES (?,?,?,?)");
+                    $database->bind(1, $t_material);
+                    $database->bind(2, $volumen);
+                    $database->bind(3, $coments);
+                    $database->bind(4, $id_user3);
+                    $database->execute();
+
+                    $database->query("SELECT * FROM requerimiento_producto WHERE ID_usuario= $id_user3");                    
+                    $rows= $database->resultSet();
+                    foreach($rows as $row):
+                        $id = $row['ID_req_producto'];
+                    endforeach;
+                    echo "ultimo id: ".$id;
+
+                    $database->query("INSERT INTO producto(producto, ID_req_producto, ID_usuario, ID_catalogo) VALUES(?,?,?,?)");
+                    $database->bind(1, $productoR);
+                    $database->bind(2, $id);
+                    $database->bind(3, $id_user3);
+                    $database->bind(4, $sel_com);
+                    $database->execute();                                                            
                     break;
                 }
 
         	case '2':
                 if(isset($_POST['addRequerimiento'])){
-                    $database->query("INSERT INTO producto(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");                    
-                    $database->bind(1, $producto_n);
-                    $database->bind(2, $id_user2);
-                    $database->bind(3, $sel_com);
-                    $database->execute();
-
-                    $database->query("INSERT INTO catalogo_proceso(producto) VALUES(?)");
-                    $database->bind(1, $producto_n);
-                    $database->execute();
-                    break;
-                }else{
-                    $database->query("INSERT INTO producto(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");
-                    $database->bind(1, $producto);
-                    $database->bind(2, $id_user2);
-                    $database->bind(3, $sel_com);
-                    $database->execute();
 
                     $database->query("INSERT INTO requerimiento_producto (Tipo_material, Volumen_anual, Comentarios, ID_usuario) VALUES (?,?,?,?)");
                     $database->bind(1, $t_material);
                     $database->bind(2, $volumen);
                     $database->bind(3, $coments);
                     $database->bind(4, $id_user3);
+
+                    $database->query("SELECT * FROM requerimiento_producto WHERE ID_usuario= $id_user3");                    
+                    $rows= $database->resultSet();
+                    foreach($rows as $row):
+                        $id = $row['ID_req_producto'];
+                    endforeach;
+                    echo "ultimo id: ".$id;
+
+                    $database->query("INSERT INTO producto(producto, ID_req_producto, ID_usuario, ID_catalogo) VALUES(?,?,?,?)");
+                    $database->bind(1, $productoR);
+                    $database->bind(2, $id);
+                    $database->bind(3, $id_user3);
+                    $database->bind(4, $sel_com);
+                    $database->execute();                     
+
+                    $database->query("INSERT INTO catalogo_proceso(producto) VALUES(?)");
+                    $database->bind(1, $productoR_n);
+                    $database->execute();
+                    break;
+                }else{
+                    $database->query("INSERT INTO requerimiento_producto (Tipo_material, Volumen_anual, Comentarios, ID_usuario) VALUES (?,?,?,?)");
+                    $database->bind(1, $t_material);
+                    $database->bind(2, $volumen);
+                    $database->bind(3, $coments);
+                    $database->bind(4, $id_user3);
+
+                    $database->query("SELECT * FROM requerimiento_producto WHERE ID_usuario= $id_user3");                    
+                    $id= $database->resultSet();                    
+                    echo "ultimo id: ".$id;
+
+                    $database->query("INSERT INTO producto(producto, ID_req_producto, ID_usuario, ID_catalogo) VALUES(?,?,?,?)");
+                    $database->bind(1, $productoR);
+                    $database->bind(2, $id);
+                    $database->bind(3, $id_user3);
+                    $database->bind(4, $sel_com);
+                    $database->execute(); 
+
+                    
                     break;
                 }
 
             case '3':
                 if(isset($_POST['addRequerimiento'])){
-                    $database->query("INSERT INTO producto(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");                    
-                    $database->bind(1, $producto_n);
-                    $database->bind(2, $id_user2);
-                    $database->bind(3, $sel_com);
-                    $database->execute();
-
-                    $database->query("INSERT INTO catalogo_raw_material(producto) VALUES(?)");
-                    $database->bind(1, $producto_n);
-                    $database->execute();
-                    break;
-                }else{
-                    $database->query("INSERT INTO producto(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");
-                    $database->bind(1, $producto);
-                    $database->bind(2, $id_user2);
-                    $database->bind(3, $sel_com);
-                    $database->execute();
 
                     $database->query("INSERT INTO requerimiento_producto (Tipo_material, Volumen_anual, Comentarios, ID_usuario) VALUES (?,?,?,?)");
                     $database->bind(1, $t_material);
                     $database->bind(2, $volumen);
                     $database->bind(3, $coments);
                     $database->bind(4, $id_user3);
+
+                    $database->query("SELECT * FROM requerimiento_producto WHERE ID_usuario= $id_user3");                    
+                    $rows= $database->resultSet();
+                    foreach($rows as $row):
+                        $id = $row['ID_req_producto'];
+                    endforeach;
+                    echo "ultimo id: ".$id;
+
+                    $database->query("INSERT INTO producto(producto, ID_req_producto, ID_usuario, ID_catalogo) VALUES(?,?,?,?)");
+                    $database->bind(1, $productoR);
+                    $database->bind(2, $id);
+                    $database->bind(3, $id_user3);
+                    $database->bind(4, $sel_com);
+                    $database->execute(); 
+                    
+                    $database->query("INSERT INTO catalogo_raw_material(producto) VALUES(?)");
+                    $database->bind(1, $productoR_n);
+                    $database->execute();
+                    break;
+                }else{
+
+                    $database->query("INSERT INTO requerimiento_producto (Tipo_material, Volumen_anual, Comentarios, ID_usuario) VALUES (?,?,?,?)");
+                    $database->bind(1, $t_material);
+                    $database->bind(2, $volumen);
+                    $database->bind(3, $coments);
+                    $database->bind(4, $id_user3);
+
+                    $database->query("SELECT * FROM requerimiento_producto WHERE ID_usuario= $id_user3");                    
+                    $rows= $database->resultSet();
+                    foreach($rows as $row):
+                        $id = $row['ID_req_producto'];
+                    endforeach;
+                    echo "ultimo id: ".$id;
+
+                    $database->query("INSERT INTO producto(producto, ID_req_producto, ID_usuario, ID_catalogo) VALUES(?,?,?,?)");
+                    $database->bind(1, $productoR);
+                    $database->bind(2, $id);
+                    $database->bind(3, $id_user3);
+                    $database->bind(4, $sel_com);
+                    $database->execute();                     
                     break;
                 }
 
             case '4':            
                 if(isset($_POST['addRequerimiento'])){
-                    $database->query("INSERT INTO producto(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");                    
-                    $database->bind(1, $producto_n);
-                    $database->bind(2, $id_user2);
-                    $database->bind(3, $sel_com);
-                    $database->execute();
+
+                    $database->query("INSERT INTO requerimiento_producto (Tipo_material, Volumen_anual, Comentarios, ID_usuario) VALUES (?,?,?,?)");
+                    $database->bind(1, $t_material);
+                    $database->bind(2, $volumen);
+                    $database->bind(3, $coments);
+                    $database->bind(4, $id_user3);
+
+                    $database->query("SELECT * FROM requerimiento_producto WHERE ID_usuario= $id_user3");                    
+                    $rows= $database->resultSet();
+                    foreach($rows as $row):
+                        $id = $row['ID_req_producto'];
+                    endforeach;
+                    echo "ultimo id: ".$id;
+
+                    $database->query("INSERT INTO producto(producto, ID_req_producto, ID_usuario, ID_catalogo) VALUES(?,?,?,?)");
+                    $database->bind(1, $productoR);
+                    $database->bind(2, $id);
+                    $database->bind(3, $id_user3);
+                    $database->bind(4, $sel_com);
+                    $database->execute(); 
 
                     $database->query("INSERT INTO catalogo_indirectos(producto) VALUES(?)");
-                    $database->bind(1, $producto_n);
-                    $database->execute();
-
-                    $database->query("INSERT INTO requerimiento_producto (Tipo_material, Volumen_anual, Comentarios, ID_usuario) VALUES (?,?,?,?)");
-                    $database->bind(1, $t_material);
-                    $database->bind(2, $volumen);
-                    $database->bind(3, $coments);
-                    $database->bind(4, $id_user3);
+                    $database->bind(1, $productoR_n);
+                    $database->execute();                    
                     break;
+                    
                 }else{
-                    $database->query("INSERT INTO producto(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");
-                    $database->bind(1, $producto);
-                    $database->bind(2, $id_user2);
-                    $database->bind(3, $sel_com);
-                    $database->execute();
 
                     $database->query("INSERT INTO requerimiento_producto (Tipo_material, Volumen_anual, Comentarios, ID_usuario) VALUES (?,?,?,?)");
                     $database->bind(1, $t_material);
                     $database->bind(2, $volumen);
                     $database->bind(3, $coments);
                     $database->bind(4, $id_user3);
+                    $database->execute();
+
+                    $database->query("SELECT * FROM requerimiento_producto WHERE ID_usuario= $id_user3");                    
+                    $rows= $database->resultSet();
+                    foreach($rows as $row):
+                        $id = $row['ID_req_producto'];
+                    endforeach;
+                    echo "ultimo id: ".$id;
+
+                    $database->query("INSERT INTO producto(producto, ID_req_producto, ID_usuario, ID_catalogo) VALUES(?,?,?,?)");
+                    $database->bind(1, $productoR);
+                    $database->bind(2, $id);
+                    $database->bind(3, $id_user3);
+                    $database->bind(4, $sel_com);
+                    $database->execute();                                        
                     break;
                 }
 
