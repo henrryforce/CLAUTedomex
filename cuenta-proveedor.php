@@ -15,7 +15,8 @@ if (!isset($_SESSION['id_usuario'])) {
     $estados = $obj->resultSet();
     $obj -> query("call GetIDs($id_usr);");
     $arrIDs = $obj -> resultSet();
-    print_r($arrIDs);
+    $obj -> query("SELECT `path`, `listaCerts` FROM `certificacionescomprador` WHERE `idcomprador`=$id_usr");
+    $certs = $obj->resultSet();
 //print_r($estados[0]['id'])
 
     ?>
@@ -260,6 +261,7 @@ if (!isset($_SESSION['id_usuario'])) {
                        $id_ar = intval($arrIDs[0]['id_archivo']);
                        $obj ->query("SELECT `Logo`, `Presentacion` FROM `archivos` WHERE `ID_archivo` = $id_ar");
                        $arch = $obj -> resultSet();
+                       
                        ?>
                        
                       <!-- ELEMENTOS CONTENIDOS EN EL MODAL -->
@@ -269,7 +271,7 @@ if (!isset($_SESSION['id_usuario'])) {
                             necesarios</label>
                         </div>
                         <form id="formDatosGenProveedor" action="#" enctype="multipart/form-data">
-                          <div id="notificacionesMD"><?php print_r($arch) ?></div>
+                          <div id="notificacionesMD"></div>
                           <div class="form-group">
                             <label for="nom_empresa">Nombre de la empresa</label>
 
@@ -353,14 +355,18 @@ if (!isset($_SESSION['id_usuario'])) {
                             <textarea type="text" class="form-control" id="txtnegocio" name="txtnegocio" rows="4"
                               cols="50" placeholder="Escriba aquí"><?php echo ($datos[0]['Descripcion']==''|| $datos[0]['Descripcion'] == NULL) ? '' : $datos[0]['Descripcion'] ; ?></textarea>
                           </div> 
-                          
+                          <br>
                           <?php 
                          
+                            if($arch[0]['Logo'] == NULL){
+                              echo "<div class=\"alert alert-danger\""." role="."alert"."><p>Adjunta los siguientes archivos</p></div>";
+                          }else{
                             
-                            echo "<div class="."alert-warning"." role="."alert"."><p>Ya cuentas con archivos cargados si subes uno nuevo los anteriores se borraran.</p></div>";
-                          
+                            echo "<div class=\"alert alert-warning\""." role="."alert"."><p>Ya cuentas con archivos cargados si subes uno nuevo los anteriores se borraran.</p></div>";
+                          }
                           
                           ?>
+                          <div id="notificacionesFiles"></div>
                           <div class="form-group mt-3">
                             <label class="mb-1" for="">Logo - tamaño máximo 1MB </label>
                             <input type="file" class="form-control" id="Logo" name="Logo"
@@ -403,8 +409,13 @@ if (!isset($_SESSION['id_usuario'])) {
                           <div class="form-group mb-3">
                             <label for="">Certificaciones</label>
                             <textarea class="form-control" id="txtcerts" rows="3"
-                              placeholder="Ingresa tus certificaciones separadas por comas"name="txtcerts"></textarea>
+                              placeholder="Ingresa tus certificaciones separadas por comas"name="txtcerts"><?php  echo ($certs[0]['listaCerts']==''|| $certs[0]['listaCerts'] == NULL) ? '' : $certs[0]['listaCerts'] ; ?></textarea>
                           </div>
+                          <?php if($certs[0]['path'] == ' '|| $certs[0]['path'] == NULL ){
+                             echo "<div class=\"alert alert-danger\""." role="."alert"."><p>Adjunta Los archivos siguientes</p></div>";
+                          }else{
+                            echo"<div class=\"alert alert-warning\""." role="."alert"."><p>Ya cuentas con archivos cargados si subes uno nuevo los anteriores se borraran.</p></div>";
+                          } ?>
                           <div class="form-group mt-3">
                             <label class="mb-1" for="">Certificaciones - tamaño máximo 1MB </label>
                             <input type="file" class="form-control" id="certdoc" name="certdoc"

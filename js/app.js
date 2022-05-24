@@ -441,25 +441,29 @@ function changePassPerfilProveedor (e) {
 function updateDatosproveedor (e) {
   e.preventDefault()
   let form = document.getElementById('formDatosGenProveedor')
-  let noti = document.getElementById('notificacionesMD')
+  let noti = document.getElementById('notificacionesMD');
+  let notiF = document.getElementById('notificacionesFiles')
   let data = new FormData(form)
 
   const jpg = 'image/jpeg'
   const png = 'image/png'
   const pdf = 'application/pdf'
-  data.append('actualizarDatos', 1)
-  if (data.get('Logo').type != jpg && data.get('Logo').size != png) {
-    creaNotificacion(noti, 'Solo se admiten archivos JPG o PNG')
+  data.append('actualizarDatos', 1);
+  if(data.get('Logo').size == 0){
+    creaNotificacion(notiF, 'No cargaste ningun archivo');
+  }
+  if (data.get('Logo').type != jpg && data.get('Logo').type != png && data.get('Logo').size >0) {
+    creaNotificacion(notiF, 'Solo se admiten archivos JPG o PNG')
   } else {
     if (data.get('Logo').size > 1048576) {
-      creaNotificacion(noti, 'Logo muy pesado')
+      creaNotificacion(notiF, 'Logo muy pesado')
     }
   }
   if (data.get('presentacion').type != pdf) {
-    creaNotificacion(noti, 'Solo se admiten archivos PDF')
+    creaNotificacion(notiF, 'Solo se admiten archivos PDF')
   } else {
     if (data.get('presentacion').size > 1048576) {
-      creaNotificacion(noti, 'Presentacion muy pesada')
+      creaNotificacion(notiF, 'Presentacion muy pesada')
     }
   }
 
@@ -469,7 +473,10 @@ function updateDatosproveedor (e) {
   })
     .then(res => res.json())
     .then(data => {
-      console.table(data)
+      if(data == 201){
+        creaNotificacion(document.getElementById('notificacionesMD'),'Se han enviado los cambios con exito ');
+          modificaNotificacion(document.getElementById('notificacionesMD'),'alert alert-success');
+      }
     })
 }
 
@@ -533,6 +540,10 @@ function sendCerts (e) {
       .then(res => res.json())
       .then(data => {
         console.log(data)
+        if(data == 201){
+          creaNotificacion(document.getElementById('notificacionesMC'),'Se ha agregado con exito');
+          modificaNotificacion(document.getElementById('notificacionesMC'),'alert alert-success');
+        }
         if (data == 409) {
           creaNotificacion(
             noti,
