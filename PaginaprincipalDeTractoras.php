@@ -379,7 +379,8 @@ if(!isset($_SESSION['id_usuario'])){
                       <!-- BOTONES DE LA TABLA--> 
                       <table class="table table-hover table-hover text-center">
                           <thead>
-                              <tr>                                                                                                                           <th>Tipos de materiales</th>
+                              <tr>
+                                <th>Tipos de materiales</th>
                                 <th>Volumen anual</th>                                  
                                 <th>Otros comentarios</th>                                
                               </tr>
@@ -417,8 +418,9 @@ if(!isset($_SESSION['id_usuario'])){
                       <!-- BOTONES DE LA TABLA--> 
                       <table class="table table-striped table-hover text-center">
                           <thead>
-                              <tr class="align-bottom">                                  
-                                  <th>Folio</th>                                  
+                              <tr class="align-bottom">                                                                    
+                                  <th>Folio</th>
+                                  <th>Producto</th>
                                   <th>Tipos de materiales</th>
                                   <th>Volumen anual</th>                                  
                                   <th>Otros comentarios</th>
@@ -426,15 +428,19 @@ if(!isset($_SESSION['id_usuario'])){
                               </tr>
                           </thead>                          
                           <tbody>
-                            <?php $database->query("SELECT * from requerimiento_producto WHERE id_usuario=$id_usr");
+                            <?php 
+                            $database->query("SELECT requerimiento_producto.ID_req_producto, producto.Producto , requerimiento_producto.Tipo_material, requerimiento_producto.Volumen_anual, requerimiento_producto.Comentarios
+                                              FROM producto
+                                              INNER JOIN requerimiento_producto ON producto.ID_producto = requerimiento_producto.ID_req_producto
+                                              WHERE requerimiento_producto.ID_usuario=$id_usr;");
                             $res = $database->resultSet();?>
                             <?php foreach($res as $row) :?>
-                              <tr>                                
+                              <tr>
                                 <td class="align-top"><?php echo $row['ID_req_producto']?></td>
+                                <td class="align-top"><?php echo $row['Producto']?></td>
                                 <td class="align-top"><?php echo $row['Tipo_material']?></td>
                                 <td class="align-top"><?php echo $row['Volumen_anual']?></td>
-                                <td class="align-top"><?php echo $row['Comentarios']?></td>
-                                
+                                <td class="align-top"><?php echo $row['Comentarios']?></td>                            
                                   <!-- OPCIONES--> 
                                   <td>
                                       <a href="PaginaprincipalDeTractoras.php?editq=<?php echo $row['ID_req_producto'];?>">Edit</a>
@@ -468,9 +474,16 @@ if(!isset($_SESSION['id_usuario'])){
                         <option value="4">Servicios indirectos</option>                        
                       </select>
                     </div>
-                    <div class="form-group">
-                      <label for="exampleFormControlSelect1">Producto </label>
-                      <input type="text" class="form-control" id="txt_prod" name="txt_prod" placeholder="Ejemplo:Técnico instalador mecánico">
+                    <!-- Creacion del combo con los productos de c/u de los catalogos -->
+                    <div class="form-group mt-3"> 
+                      <label for="exampleFormControlSelect1">Producto</label>                                                                     
+                      <select class="form-control" name="cmbProducto" id="cmbProducto">
+                      </select>
+                    </div>
+                    <div class="form-group mt-3">
+                      <label for="exampleModalLabel">¿No encuentras tu producto?</label><br><br>                                                                  
+                      <input type="checkbox" name="addRequerimiento" class="i-radio form-check-input" value="addRequerimiento"> Agregar producto
+                      <input type="text" name="txt_producto" id="txt_producto" class="i-text form-control" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" placeholder="Ejemplo: Electrical Contacts">
                     </div>
                     <div class="form-group mt-3">
                       <label for="exampleFormControlSelect1">Tipo de Materiales</label>
@@ -483,6 +496,7 @@ if(!isset($_SESSION['id_usuario'])){
                     <div class="form-group mt-3">
                       <label for="exampleFormControlTextarea1">Otros comentarios</label>
                       <textarea class="form-control" id="txt_aComents" name="txt_aComents" rows="5"></textarea>
+                      <input type="hidden" id="txt_usuR" name="txt_usuR" value="<?php echo $id_usr?>">
                     </div>
                   </form>                                                          
                 </div>

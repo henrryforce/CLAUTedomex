@@ -82,6 +82,9 @@ function load () {
       .addEventListener('click', AdminPerfilProveedor)
     document.getElementById('comodity').addEventListener('change', getval)
   }
+  if (ubi.includes('/PaginaprincipalDeTractoras.php')) {          
+    document.getElementById('comodity').addEventListener('change', getval)
+  }
   if (ubi.includes('/contact.html')) {
     document
       .getElementById('btnContacto')

@@ -1715,6 +1715,11 @@ input.i-text, textarea {
 	display: block;
 	margin-bottom: 20px;
   }
+  input.i-radio[value="addRequerimiento"]:checked ~ input.i-text {
+	margin-top: 20px;
+	display: block;
+	margin-bottom: 20px;
+  }
   
 
 .job-details h5{
