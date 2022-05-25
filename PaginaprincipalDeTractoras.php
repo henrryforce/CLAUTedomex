@@ -10,11 +10,14 @@ if(!isset($_SESSION['id_usuario'])){
   require_once "php/addProducts.php";
   require_once "php/addRequ.php";
   $database=new Conexion;
+  $obj=new Conexion;
   //$id_usr=9;                              
   $database-> query("SELECT * FROM contacto WHERE id_usuario=$id_usr");
   $rows = $database->resultSet();
   foreach ($rows as $row):
   endforeach;
+  $obj -> query("SELECT  `Logo` FROM `archivos` WHERE `ID_archivo` = $id_usr");
+  $res= $obj -> resultSet();
   ?>
 
 
@@ -150,7 +153,7 @@ if(!isset($_SESSION['id_usuario'])){
                 <!--------------------------------- COLOCAR CONTENIDO AQUÍ --------------------------------->           
                 <!--------------------------------- UP BAR BUTTONS --------------------------------->
                 <div class="profile-userbuttons text-center mb-4">
-                    <button type="button" class="btn btn-primary">Administrar Perfil</button>
+                    <button type="button" class="btn btn-primary" id="btnAdministrarcuenta">Administrar Perfil</button>
                     <button type="button" class="btn btn-primary">Lista de proveedores</button>
                 </div>
                 <!-- ROW(->) COL(v)-->                                    
@@ -159,7 +162,7 @@ if(!isset($_SESSION['id_usuario'])){
                     <section class="Profile-header text-center">
                         <div>
                             <!-- IMAGEN Y DIMENSIONES DE LA MISMA-->                            
-                            <img src="images/client-dark-01.jpg" alt="profile" class="img-rounded mb-3" width="230" height="120">
+                            <img src="<?php echo ($res[0]['Logo'] == ' ' ||  $res[0]['Logo'] == NULL ) ? 'php/archivosUpload/logos/default.png': './php/'.$res[0]['Logo']; ?>" alt="profile" class="img-rounded mb-3" width="230" height="120">
                         </div>                        
                         <h4 class="">NOMBRE DE LA EMPRESA</h4>                        
                         <a href="#" class="text-dark font-weight-bold text-decoration-none">Información personal</a>                        

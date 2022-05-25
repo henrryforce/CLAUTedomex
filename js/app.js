@@ -79,11 +79,17 @@ function load () {
   if (ubi.includes('/PaginaprincipalDeProveedores.php')) {
     document
       .getElementById('btnAdminPerfil')
-      .addEventListener('click', AdminPerfilProveedor)
+      .addEventListener('click', AdminPerfilProveedor);
     document.getElementById('comodity').addEventListener('change', getval)
+    document.getElementById('logout').addEventListener('click', logout)
   }
-  if (ubi.includes('/PaginaprincipalDeTractoras.php')) {          
+  if (ubi.includes('/PaginaprincipalDeTractoras.php')) {
     document.getElementById('comodity').addEventListener('change', getval)
+    document
+      .getElementById('btnAdministrarcuenta')
+      .addEventListener('click', _ => {
+        window.location.assign('/cuenta-tractora.php')
+      })
   }
   if (ubi.includes('/contact.html')) {
     document
@@ -100,20 +106,34 @@ function load () {
     document.getElementById('btnCerts').addEventListener('click', sendCerts)
     document
       .getElementById('btnagregarpaises')
-      .addEventListener('click', AgregaPaisCombo);
-      document.getElementById('btnSavePais').addEventListener('click',agregarPais);
-      document.getElementById('listaPaises').addEventListener('click',borraPais);
-      document.getElementById('btnEnviar').addEventListener('click',enviarPaises);
-      fetch('../php/pruebas.php?expo=501', {
-        method: 'GET',
+      .addEventListener('click', AgregaPaisCombo)
+    document
+      .getElementById('btnSavePais')
+      .addEventListener('click', agregarPais)
+    document.getElementById('listaPaises').addEventListener('click', borraPais)
+    document.getElementById('btnEnviar').addEventListener('click', enviarPaises)
+    document.getElementById('logout').addEventListener('click', logout)
+    fetch('../php/gestorcuenta.php?expo=501', {
+      method: 'GET'
+    })
+      .then(res => res.json())
+      .then(data => {
+        let paises = data[0]['pais'].split(',')
+        localStorage.setItem('PaisesExp', JSON.stringify(paises))
       })
-        .then(res =>res.json())
-        .then(data => {
-          let paises = data[0]['pais'].split(',');
-          console.log(paises);
-          localStorage.setItem('PaisesExp',JSON.stringify(paises));
-        });
-      
+  }
+  if (ubi.includes('/cuenta-tractora.php')) {
+    document
+      .getElementById('btnDatosGenerales')
+      .addEventListener('click', updateDatosproveedor);
+    document
+      .getElementById('btnagregarpaises')
+      .addEventListener('click', AgregaPaisCombo)
+    document
+      .getElementById('btnPassword')
+      .addEventListener('click', changePassPerfilProveedor)
+    document.getElementById('logout').addEventListener('click', logout)
+    document.getElementById('btnCerts').addEventListener('click', sendCerts)
   }
 }
 /**
@@ -441,18 +461,23 @@ function changePassPerfilProveedor (e) {
 function updateDatosproveedor (e) {
   e.preventDefault()
   let form = document.getElementById('formDatosGenProveedor')
-  let noti = document.getElementById('notificacionesMD');
+  let noti = document.getElementById('notificacionesMD')
   let notiF = document.getElementById('notificacionesFiles')
   let data = new FormData(form)
 
   const jpg = 'image/jpeg'
   const png = 'image/png'
   const pdf = 'application/pdf'
-  data.append('actualizarDatos', 1);
-  if(data.get('Logo').size == 0){
-    creaNotificacion(notiF, 'No cargaste ningun archivo');
+  data.append('actualizarDatos', 1)
+
+  if (data.get('Logo').size == 0) {
+    creaNotificacion(notiF, 'No cargaste ningun archivo')
   }
-  if (data.get('Logo').type != jpg && data.get('Logo').type != png && data.get('Logo').size >0) {
+  if (
+    data.get('Logo').type != jpg &&
+    data.get('Logo').type != png &&
+    data.get('Logo').size > 0
+  ) {
     creaNotificacion(notiF, 'Solo se admiten archivos JPG o PNG')
   } else {
     if (data.get('Logo').size > 1048576) {
@@ -466,18 +491,41 @@ function updateDatosproveedor (e) {
       creaNotificacion(notiF, 'Presentacion muy pesada')
     }
   }
-
-  fetch('../php/Gestorcuenta.php', {
-    method: 'POST',
-    body: data
-  })
-    .then(res => res.json())
-    .then(data => {
-      if(data == 201){
-        creaNotificacion(document.getElementById('notificacionesMD'),'Se han enviado los cambios con exito ');
-          modificaNotificacion(document.getElementById('notificacionesMD'),'alert alert-success');
-      }
+  if (
+    data.get('calle') != '' &&
+    data.get('num_ext') != '' &&
+    data.get('nim_int') != '' &&
+    data.get('cp') != '' &&
+    data.get('colonia') != '' &&
+    data.get('delegacion') != '' &&
+    data.get('estados') != '' &&
+    data.get('num_emp') != '' &&
+    data.get('ventas') != '' &&
+    data.get('telefono') != '' &&
+    data.get('ext') != '' &&
+    data.get('paginaweb') != '' &&
+    data.get('txtnegocio') != ''
+  ) {
+    fetch('../php/Gestorcuenta.php', {
+      method: 'POST',
+      body: data
     })
+      .then(res => res.json())
+      .then(data => {
+        if (data == 201) {
+          creaNotificacion(
+            document.getElementById('notificacionesMD'),
+            'Se han enviado los cambios con exito '
+          )
+          modificaNotificacion(
+            document.getElementById('notificacionesMD'),
+            'alert alert-success'
+          )
+        }
+      })
+  } else {
+    creaNotificacion(noti, 'Debes agregar todos los datos')
+  }
 }
 
 /**
@@ -488,7 +536,7 @@ function getval (e) {
   let data = new FormData() //creas el form data
   data.append('tipo', e.target.value) // agregas un elemento
   //console.table(typeof(data.get('tipo')));// puedes acceder a el con .get
-  
+
   fetch('../php/catalogos.php', {
     method: 'POST',
     body: data
@@ -540,9 +588,15 @@ function sendCerts (e) {
       .then(res => res.json())
       .then(data => {
         console.log(data)
-        if(data == 201){
-          creaNotificacion(document.getElementById('notificacionesMC'),'Se ha agregado con exito');
-          modificaNotificacion(document.getElementById('notificacionesMC'),'alert alert-success');
+        if (data == 201) {
+          creaNotificacion(
+            document.getElementById('notificacionesMC'),
+            'Se ha agregado con exito'
+          )
+          modificaNotificacion(
+            document.getElementById('notificacionesMC'),
+            'alert alert-success'
+          )
         }
         if (data == 409) {
           creaNotificacion(
@@ -573,119 +627,133 @@ function AgregaPaisCombo (e) {
         comboP.appendChild(opt)
       }
     })
-    setPasisesLS();
+  setPasisesLS()
 }
 /**Funcion agrega etiquetas modal */
-function agregarPais(e){
-  e.preventDefault();
-  const divP = document.getElementById('listaPaises');
+function agregarPais (e) {
+  e.preventDefault()
+  const divP = document.getElementById('listaPaises')
   let form = document.getElementById('formexport')
   let noti = document.getElementById('notificacionesMP')
   let data = new FormData(form)
-  if(data.get('pais') != '0'){
-    paisesLS = ObtenerPaisLS();
-    if(paisesLS.includes(data.get('pais'))){
-      creaNotificacion(noti,"No puedes agregar el mismo pais 2 veces")
-    }else{
-    let borrarPais = document.createElement('a');
-    borrarPais.classList='borrar-pais';
-    borrarPais.innerText='X';
-    let spanPais = document.createElement('li');
-    spanPais.innerText=data.get('pais');
-    spanPais.classList='badge bg-success';
-    spanPais.appendChild(borrarPais);
-    divP.appendChild(spanPais);
-    agregarPaisLS(data.get('pais'));
+  if (data.get('pais') != '0') {
+    paisesLS = ObtenerPaisLS()
+    if (paisesLS.includes(data.get('pais'))) {
+      creaNotificacion(noti, 'No puedes agregar el mismo pais 2 veces')
+    } else {
+      let borrarPais = document.createElement('a')
+      borrarPais.classList = 'borrar-pais'
+      borrarPais.innerText = 'X'
+      let spanPais = document.createElement('li')
+      spanPais.innerText = data.get('pais')
+      spanPais.classList = 'badge bg-success'
+      spanPais.appendChild(borrarPais)
+      divP.appendChild(spanPais)
+      agregarPaisLS(data.get('pais'))
     }
-  }else{
-    creaNotificacion(noti,"Debes seleccionar un pais");
+  } else {
+    creaNotificacion(noti, 'Debes seleccionar un pais')
   }
 }
 /**
  * funcion Agregar a Local storage los paises
  */
-function agregarPaisLS(pais){
-  let paises;
-  paises = ObtenerPaisLS();
-  paises.push(pais);
-  localStorage.setItem('PaisesExp',JSON.stringify(paises));
-
+function agregarPaisLS (pais) {
+  let paises
+  paises = ObtenerPaisLS()
+  paises.push(pais)
+  localStorage.setItem('PaisesExp', JSON.stringify(paises))
 }
 /**obtener Paises LS */
-function ObtenerPaisLS(){
-  let paises;
-  if(localStorage.getItem('PaisesExp')===null){
-    paises=[];
-  }else{
-    paises=JSON.parse(localStorage.getItem('PaisesExp'));
+function ObtenerPaisLS () {
+  let paises
+  if (localStorage.getItem('PaisesExp') === null) {
+    paises = []
+  } else {
+    paises = JSON.parse(localStorage.getItem('PaisesExp'))
   }
-  
-  return paises;
+
+  return paises
 }
 /**Funcion Borra pais */
-function borraPais(e){
-  e.preventDefault();
-  if(e.target.className === 'borrar-pais'){
-    e.target.parentElement.remove();
-    borraPaisLS(e.target.parentElement.innerText.replace('X',''));
-}
-function borraPaisLS(pais){
-  let paises;
-  paises = ObtenerPaisLS();
-  paises.forEach(function(paisLS,i){
-  if(pais == paisLS){
-    paises.splice(i,1);
+function borraPais (e) {
+  e.preventDefault()
+  if (e.target.className === 'borrar-pais') {
+    e.target.parentElement.remove()
+    borraPaisLS(e.target.parentElement.innerText.replace('X', ''))
   }
-  });
-  localStorage.setItem('PaisesExp',JSON.stringify(paises));
-}
+  function borraPaisLS (pais) {
+    let paises
+    paises = ObtenerPaisLS()
+    paises.forEach(function (paisLS, i) {
+      if (pais == paisLS) {
+        paises.splice(i, 1)
+      }
+    })
+    localStorage.setItem('PaisesExp', JSON.stringify(paises))
+  }
 }
 /**Funcion para setear paises en ls */
-function setPasisesLS(){
-  const divP = document.getElementById('listaPaises');
-  divP.innerHTML='';
-  let paises;
-  paises = ObtenerPaisLS();
-  paises.forEach(function(pais){
-    const btnborrarP = document.createElement('a');
-    btnborrarP.classList='borrar-pais';
-    btnborrarP.innerText= 'X';
-    const li = document.createElement('li');
-    li.classList='badge bg-success';
-    li.innerText=pais;
-    li.appendChild(btnborrarP);
-    divP.appendChild(li);
+function setPasisesLS () {
+  const divP = document.getElementById('listaPaises')
+  divP.innerHTML = ''
+  let paises
+  paises = ObtenerPaisLS()
+  paises.forEach(function (pais) {
+    const btnborrarP = document.createElement('a')
+    btnborrarP.classList = 'borrar-pais'
+    btnborrarP.innerText = 'X'
+    const li = document.createElement('li')
+    li.classList = 'badge bg-success'
+    li.innerText = pais
+    li.appendChild(btnborrarP)
+    divP.appendChild(li)
   })
 }
 /**Funcion BD paises */
-function enviarPaises(e){
-  e.preventDefault();
-  let paises = ObtenerPaisLS();
-  data = new FormData();
-  data.append('paises',JSON.stringify(paises));
+function enviarPaises (e) {
+  e.preventDefault()
+  let paises = ObtenerPaisLS()
+  data = new FormData()
+  data.append('paises', JSON.stringify(paises))
   fetch('../php/gestorcuenta.php', {
     method: 'POST',
     body: data
   })
     .then(res => res.json())
     .then(data => {
-      if(data == 201){
-        creaNotificacion(document.getElementById('notificacionesMP'),"Se guardaron con exito las Exportaciones");
-        modificaNotificacion(document.getElementById('notificacionesMP'),'alert alert-success');
+      if (data == 201) {
+        creaNotificacion(
+          document.getElementById('notificacionesMP'),
+          'Se guardaron con exito las Exportaciones'
+        )
+        modificaNotificacion(
+          document.getElementById('notificacionesMP'),
+          'alert alert-success'
+        )
       }
     })
+}
+/**Logout */
+function logout () {
+  data = new FormData()
+  data.append('logout', 1)
+  fetch('../php/gestorcuenta.php', {
+    method: 'POST',
+    body: data
+  }).then(location.reload())
 }
 /*
  *Funcion para crear un elemento <p> para notificaciones en el DOM
  */
 function creaNotificacion (padre, texto) {
-  padre.className = 'alert alert-danger';
-  var noti = document.createElement('p');
-  noti.innerText = texto;
-  padre.appendChild(noti);
+  padre.className = 'alert alert-danger'
+  var noti = document.createElement('p')
+  noti.innerText = texto
+  padre.appendChild(noti)
 
-  eliminaNodos(padre);
+  eliminaNodos(padre)
 }
 function modificaNotificacion (padre, clas) {
-  padre.className = clas;
+  padre.className = clas
 }

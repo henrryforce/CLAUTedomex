@@ -95,7 +95,7 @@ if(!isset($_SESSION['id_usuario'])){
             <li class="nav-item"> <a class="nav-link" href="#">Registro</a> </li>
             <li class="nav-item"> <a class="nav-link" href="#">Login</a> </li>
             <li class="nav-item"> <a class="nav-link" href="#">Costo</a> </li>
-            <li class="nav-item accordion-item"> <a class="nav-link" href="#">Cerrar sesión</a> </li>
+            <li class="nav-item accordion-item"> <a class="nav-link" id="logout" href="#">Cerrar sesión</a> </li>
              </li></ul>
              </div> </div> </nav> </nav> </div></div>  
 

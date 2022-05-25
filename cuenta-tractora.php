@@ -21,7 +21,7 @@ if (!isset($_SESSION['id_usuario'])) {
 
     ?>
 <!doctype html>
-<html lang="es">
+<html lang="en">
 
 <head>
   <!-- Required meta tags -->
@@ -57,7 +57,9 @@ if (!isset($_SESSION['id_usuario'])) {
   <link rel="stylesheet" href="css/owl.theme.default.min.css" />
 
 </head>
+
 <body>
+
 
   <div class="main-menu-div float-start w-100">
     <div class="top-menu-sction float-start w-100 d-none d-md-none d-lg-block">
@@ -87,7 +89,11 @@ if (!isset($_SESSION['id_usuario'])) {
           </div>
         </div>
       </div>
+
     </div>
+
+
+
     <div class="navication float-start w-100">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
@@ -100,6 +106,7 @@ if (!isset($_SESSION['id_usuario'])) {
           </a>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
               <li class="nav-item">
                 <a class="nav-link" href="#"> Inicio</a>
               </li>
@@ -125,6 +132,8 @@ if (!isset($_SESSION['id_usuario'])) {
               <li class="nav-item">
                 <a class="nav-link" href="#">Contacto</a>
               </li>
+
+
               <li class="nav-item d-none">
                 <p class="phon-text text-white"><i class="fas fa-phone-alt"></i> 555 234-8765 </p>
               </li>
@@ -135,42 +144,49 @@ if (!isset($_SESSION['id_usuario'])) {
       </nav>
     </div>
   </div>
+
   <div class="banner-home subpage-banner float-start">
     <div class="banner-content-sec">
       <div class="container">
-
         <div class="col-lg-8 mx-auto">
           <div class="comon-bedcum">
-
-
             </ul>
           </div>
         </div>
       </div>
     </div>
+
     <div class="video-sec">
       <div class="video-bg"></div>
+
       <img src="images/pexels-photo-5580135.jpeg" alt="pb" />
+
+
     </div>
   </div>
+
   <section class="main-body pt-5 float-start industry-pages">
-    <!-- COLOCAR CONTENIDO AQUÍ-->
+
+    <!-- CONTENEDOR DE ELEMENTOS-->
+
     <div class="container mb-4 text-center">
       <!-- ENCABEZADOS-->
-      <h4>CUENTA - PROVEEDOR</h4>
-      <div>
-      <a class="text-decoration-none" href="/PaginaprincipalDeProveedores.php">Regresar al Menu Principal</a>
-      </div>
+      <h4>CUENTA - TRACTORA</h4>
+      <a class="text-decoration-none" href="#">Administra tu perfil</a>
+      <br>
+      <a class="text-decoration-none" href="/PaginaprincipalDeTractoras.php">Regresar al Menu Principal</a>
     </div>
+
     <!-- LABELS -->
     <div class="container text-center mb-2">
+
       <div class="card col-lg-12 mb-3">
         <div class="card-header">
           Datos personales
         </div>
         <!-- LABELS -->
         <div class="card-body mb-1">
-          <form action="#" id="formPassword">
+        <form action="#" id="formPassword">
             <div id="notificaciones"></div>
             <!-- LABEL 1 -->
             <div class="col-lg-6 mx-auto mt-2">
@@ -193,6 +209,7 @@ if (!isset($_SESSION['id_usuario'])) {
         </div>
       </div>
     </div>
+
     <!-- OPCIONES CON MODALES -->
     <div class="container mb-3">
       <div class="card col-lg-12 mb-3">
@@ -203,6 +220,7 @@ if (!isset($_SESSION['id_usuario'])) {
         <div class="card-body mb-1">
           <!-- DATOS GENERALES -->
           <div class="container text-center">
+
             <div class="row g-3 mt-2 mb-2">
               <div class="col-sm">
                 <p>Datos generales:</p>
@@ -223,7 +241,6 @@ if (!isset($_SESSION['id_usuario'])) {
                     <!-- BOTON ACTIVA MODAL #2-->
                     <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalCerts">
                       <span>Visualizar</span></a>
-
                   </div>
                   <!-- COMERCIO EXTERIOR -->
                   <div class="container text-center">
@@ -234,11 +251,9 @@ if (!isset($_SESSION['id_usuario'])) {
                       </div>
                       <div class="col-sm">
                         <!-- BOTON ACTIVA MODAL #3-->
-                        <a href="#" class="btn btn-success" data-bs-toggle="modal" id="btnagregarpaises" data-bs-target="#exampleModal3">
+                        <a href="#" class="btn btn-success" id="btnagregarpaises" data-bs-toggle="modal" data-bs-target="#exampleModal3">
                           <span>Visualizar</span></a>
-
                       </div>
-
                     </div>
                   </div>
                 </div>
@@ -390,7 +405,12 @@ if (!isset($_SESSION['id_usuario'])) {
                   </div>
                 </div>
                 <!-- END MODAL  1-->
+                <!-- END MODAL  1-->
 
+
+
+
+                <!-- Modal2 -->
                 <div class="modal fade" id="modalCerts" tabindex="-1" aria-labelledby="exampleModalLabel"
                   aria-hidden="true">
                   <div class="modal-dialog">
@@ -431,9 +451,14 @@ if (!isset($_SESSION['id_usuario'])) {
                     </div>
                   </div>
                 </div>
-                <!-- Modal2 -->
                 <!-- END MODAL 2-->
 
+
+
+                <!-- Modal 3-->
+                <!-- Modal 3-->
+                <!-- Modal 3-->
+                <!-- Modal 3-->
                 <!-- Modal 3-->
 
 
@@ -449,23 +474,23 @@ if (!isset($_SESSION['id_usuario'])) {
                       <div class="modal-body">
                         <div id="notificacionesMP"></div>
                         <form action="#" id="formexport">
-                        <label for="">Exportaciones A</label>
-                        <select class="form-control mb-3" id="pais" name="pais">
+                          <label for="">Exportaciones A</label>
+                          <select class="form-control mb-3" id="pais" name="pais">
 
-                          <option value="0">Países</option>
-                        </select>
-                        <button class="btn btn-primary mb-3" type="submit" id="btnSavePais">Agregar</button>
+                            <option value="0">Países</option>
+                          </select>
+                          <button class="btn btn-primary mb-3" type="submit" id="btnSavePais">Agregar</button>
 
-                        <div class="card">
-                          <!-- TITULO DE LA CARD -->
-                          <h5 class="card-header">Exportación A</h5>
+                          <div class="card">
+                            <!-- TITULO DE LA CARD -->
+                            <h5 class="card-header">Exportación A</h5>
 
-                          <!-- CUERPO DE LA CARD -->
-                          <div id="listaPaises" class="card-body">
-                            <!-- TAGS - CONTENIDO DE LA CARD -->
+                            <!-- CUERPO DE LA CARD -->
+                            <div id="listaPaises" class="card-body">
+                              <!-- TAGS - CONTENIDO DE LA CARD -->
 
+                            </div>
                           </div>
-                        </div>
                       </div>
                       <!-- FIN ELEMENTOS CONTENIDOS EN EL MODAL -->
                       <div class="modal-footer mt-3">
@@ -476,15 +501,32 @@ if (!isset($_SESSION['id_usuario'])) {
                     </div>
                   </div>
                 </div>
+                <!-- END MODAL 3 -->
                 <!-- END MODAL 3-->
-                <!-- FINAL DEL CONTENEDOR -->
+                <!-- END MODAL 3-->
 
+
+
+
+                <!-- FINAL DEL CONTENEDOR -->
+                <!-- FINAL DEL CONTENEDOR -->
+                <!-- FINAL DEL CONTENEDOR -->
+                <!-- FINAL DEL CONTENEDOR -->
+                <!-- FINAL DEL CONTENEDOR -->
+                <!-- YA NO COLOQUE ELEMENTOS :) -->
 
 
   </section>
+
+
+  <!-- FOOTER -->
+  <!-- FOOTER -->
+  <!-- FOOTER -->
   <!-- FOOTER -->
 
+
   <footer>
+
 
     <div class="footer-link-div float-start pt-5">
       <div class="container">
@@ -556,7 +598,7 @@ if (!isset($_SESSION['id_usuario'])) {
             </li>
 
             <li>
-              <a href="#"> Login </a>
+              <a href="#" > Login </a>
             </li>
 
             <li>
@@ -596,8 +638,9 @@ if (!isset($_SESSION['id_usuario'])) {
   </button>
 
   <!-- END BACK TO TOP BUTTON -->
+
 <!-- Toast code-->
-  <div class="toast-container position-absolute p-3 top-50 start-50 translate-middle" style="z-index: -10" id="toasContaider">
+<div class="toast-container position-absolute p-3 top-50 start-50 translate-middle" style="z-index: -10" id="toasContaider">
     <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
       <div class="toast-header">
 
@@ -619,7 +662,7 @@ if (!isset($_SESSION['id_usuario'])) {
   </div>
 
 
-  <!-- script de funcionalidad NO ELIMINAR >:v  -->
+
   <script src="js/app.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/jquery.min.js"></script>

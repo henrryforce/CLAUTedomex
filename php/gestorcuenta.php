@@ -171,4 +171,15 @@ if (isset($_POST['paises'])) {
     }
     echo json_encode(201);
 
+  
+}
+if(isset($_GET['expo'])&& $_GET['expo'] ==501){
+    $obj = new Conexion;
+    $id = $_SESSION['id_usuario'];
+$obj->query("SELECT `paisesExporta` as pais FROM `exportrequeridas` WHERE `idcomprador` =$id");
+$res = $obj->resultSet();
+echo json_encode($res);
+}
+if(isset($_POST['logout'])){
+    session_destroy();
 }
