@@ -490,7 +490,7 @@ if(!isset($_SESSION['id_usuario'])){
                <a href="#"> Costo </a>
             </li>          
             <li>
-              <a href="#"> Cerrar sesión </a>
+              <a href="#" class="" id="logout2"> Cerrar sesión </a>
            </li>            
          </ul>
       </div>

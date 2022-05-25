@@ -80,8 +80,9 @@ function load () {
     document
       .getElementById('btnAdminPerfil')
       .addEventListener('click', AdminPerfilProveedor);
-    document.getElementById('comodity').addEventListener('change', getval)
-    document.getElementById('logout').addEventListener('click', logout)
+    document.getElementById('comodity').addEventListener('change', getval);
+    document.getElementById('logout').addEventListener('click', logout);
+    document.getElementById('logout2').addEventListener('click', logout);
   }
   if (ubi.includes('/PaginaprincipalDeTractoras.php')) {
     document.getElementById('comodity').addEventListener('change', getval)
@@ -106,12 +107,12 @@ function load () {
     document.getElementById('btnCerts').addEventListener('click', sendCerts)
     document
       .getElementById('btnagregarpaises')
-      .addEventListener('click', AgregaPaisCombo)
+      .addEventListener('click', AgregaPaisCombo);
     document
       .getElementById('btnSavePais')
-      .addEventListener('click', agregarPais)
-    document.getElementById('listaPaises').addEventListener('click', borraPais)
-    document.getElementById('btnEnviar').addEventListener('click', enviarPaises)
+      .addEventListener('click', agregarPais);
+    document.getElementById('listaPaises').addEventListener('click', borraPais);
+    document.getElementById('btnEnviar').addEventListener('click', enviarPaises);
     document.getElementById('logout').addEventListener('click', logout)
     fetch('../php/gestorcuenta.php?expo=501', {
       method: 'GET'
@@ -128,12 +129,24 @@ function load () {
       .addEventListener('click', updateDatosproveedor);
     document
       .getElementById('btnagregarpaises')
-      .addEventListener('click', AgregaPaisCombo)
+      .addEventListener('click', AgregaPaisCombo);
     document
       .getElementById('btnPassword')
       .addEventListener('click', changePassPerfilProveedor)
-    document.getElementById('logout').addEventListener('click', logout)
-    document.getElementById('btnCerts').addEventListener('click', sendCerts)
+    document.getElementById('logout').addEventListener('click', logout);
+    document.getElementById('btnCerts').addEventListener('click', sendCerts);
+    document
+      .getElementById('btnSavePais')
+      .addEventListener('click', agregarPais);
+      document.getElementById('btnEnviar').addEventListener('click', enviarPaises);
+    fetch('../php/gestorcuenta.php?expo=501', {
+      method: 'GET'
+    })
+      .then(res => res.json())
+      .then(data => {
+        let paises = data[0]['pais'].split(',')
+        localStorage.setItem('PaisesExp', JSON.stringify(paises))
+      })
   }
 }
 /**
@@ -484,7 +497,7 @@ function updateDatosproveedor (e) {
       creaNotificacion(notiF, 'Logo muy pesado')
     }
   }
-  if (data.get('presentacion').type != pdf) {
+  if (data.get('presentacion').type != pdf && data.get('presentacion').size) {
     creaNotificacion(notiF, 'Solo se admiten archivos PDF')
   } else {
     if (data.get('presentacion').size > 1048576) {
