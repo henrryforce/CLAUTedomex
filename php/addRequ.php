@@ -28,14 +28,14 @@
         $_SESSION['msg_type'] = "success";
         //Switch case en donde realiza los insert en las tablas Productos y Requerimiento_producto, con base en el catalogo seleccionado
         switch ($sel_com){
-        	case '1': //Se insertan los datos en las tablas Productos y Requerimiento_producto con el Comodity Productos
-                
+        	case '1': //Se insertan los datos en las tablas Productos y Requerimiento_producto con el Comodity Productos                
                 if(isset($_POST['addRequerimiento'])){ //Validacion en caso de que el usuario requiera registrar un nuevo producto
                     $database->query("INSERT INTO requerimiento_producto (Tipo_material, Volumen_anual, Comentarios, ID_usuario) VALUES (?,?,?,?)");
                     $database->bind(1, $t_material);
                     $database->bind(2, $volumen);
                     $database->bind(3, $coments);
                     $database->bind(4, $id_user3);
+                    $database->execute();
                     
                     $database->query("SELECT * FROM requerimiento_producto WHERE ID_usuario= $id_user3");                    
                     $rows= $database->resultSet();
@@ -57,12 +57,13 @@
                     
                     break;
                 }else{//Se insertan los datos en las tablas Productos y Requerimiento_producto con el Comodity Productos con el producto registrado en el catalogo                
-                    $database->query("INSERT INTO requerimiento_producto (Tipo_material, Volumen_anual, Comentarios, ID_usuario) VALUES (?,?,?,?)");
+                    $database->query("INSERT INTO requerimiento_producto(Tipo_material, Volumen_anual, Comentarios, ID_usuario) VALUES (?,?,?,?)");
                     $database->bind(1, $t_material);
                     $database->bind(2, $volumen);
                     $database->bind(3, $coments);
                     $database->bind(4, $id_user3);
                     $database->execute();
+                    
 
                     $database->query("SELECT * FROM requerimiento_producto WHERE ID_usuario= $id_user3"); //Se obtiene el ultimo                    
                     $rows= $database->resultSet();                                                        //ID del la tabla requerimiento_producto
@@ -135,7 +136,7 @@
             case '3':
                 if(isset($_POST['addRequerimiento'])){
 
-                    $database->query("INSERT INTO requerimiento_producto (Tipo_material, Volumen_anual, Comentarios, ID_usuario) VALUES (?,?,?,?)");
+                    $database->query("INSERT INTO requerimiento_producto(Tipo_material, Volumen_anual, Comentarios, ID_usuario) VALUES (?,?,?,?)");
                     $database->bind(1, $t_material);
                     $database->bind(2, $volumen);
                     $database->bind(3, $coments);

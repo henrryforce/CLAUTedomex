@@ -1,3 +1,14 @@
+<?php
+  session_start();
+  if(!isset($_SESSION['id_usuario'])){
+    header("location: /Login.html");
+   }else{
+    $id_usr=$_SESSION['id_usuario'];
+  }
+
+  include_once "php/Conexion.php";
+  $database=new Conexion;
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -113,186 +124,42 @@
                 <!-- COLOCAR CONTENIDO AQUÍ-->
         <!--CONTENEDOR DE LABELS-->
 
-        <div class="container mb-5">
-            <div class="card">
-                <!--TITULO DE LA CARTA-->
-                <h5 class="card-header text-center">Lista de tractoras</h5>
-                <!--CUERPO DE LA CARD (CONTENIDO)-->
-                <div class="card-body">
-                    <form>
-                        <!--LABEL SELECTOR DE OPCIONES-->
-                        <div class="form-group mb-4">
-                          <label for="exampleFormControlSelect1">Tipo de servicio</label>
-                          <select class="form-control" id="exampleFormControlSelect1">
-                            <option>Seleccione una opción</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                          </select>
-                        </div>
-                        <!--CATALOGO DE SERVICIO SELECCIONADO-->
-                        <fieldset disabled>
-                          <div class="form-group">
-                            <label for="disabledTextInput">Catálogo de servicio seleccionado</label>
-                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input">
-                          </div>                        
-                    </form>                  
-                </div>
-              </div>
+  <div class="container mb-5">
+      <div class="card">
+          <!--TITULO DE LA CARTA-->
+          <h5 class="card-header text-center">Lista de tractoras</h5>                
         </div>
-
+  </div>
+  <?php
+    $tipo_usr = 2;
+    $database->query("SELECT usuario.ID_tipo_usr, empresa.Empresa, archivos.Logo
+                      FROM empresa
+                      INNER JOIN usuario on empresa.ID_empresa=usuario.ID_usuario
+                      INNER JOIN archivos ON empresa.ID_dtl_empresa=archivos.ID_archivo 
+                      WHERE ID_tipo_usr=$tipo_usr");          
+    $res = $database->resultSet();?>
         <!--CONTENEDOR DE TARJETAS-->
-        <div class="container mt-1">            
-            <div class="row h-100">
-                <!--CARD 1-->
-                <div class="col-sm-6 col-xl-3 mb-3">
-                  <div class="card card-span shadow py-4 h-100 border-top border-4 border-primary">
-                    <div class="card-body">
-                      <div class="text-center"><img src="images/client-dark-16.jpg" width="220px" alt="...">
-                        <h5 class="my-3">TRACTORA</h5>                        
-                      </div>
-                    </div>
-                    <div class="border-top bg-white text-center pt-3 pb-0">
-                        <a class="btn btn-primary" href="#"data-bs-toggle="modal" data-bs-target="#exampleModal">Saber más</a>                      
-                      <div class="d-flex justify-content-center">                        
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!--CARD 2-->
-                <div class="col-sm-6 col-xl-3 mb-3">
-                  <div class="card card-span shadow py-4 h-100 border-top border-4 border-primary">
-                    <div class="card-body">
-                      <div class="text-center"><img src="images/client-dark-17.jpg" width="220px" alt="...">
-                        <h5 class="my-3">TRACTORA</h5>                          
-                      </div>
-                    </div>
-                    <div class="border-top bg-white text-center pt-3 pb-0">
-                        <a class="btn btn-primary" href="#">Saber más</a>                        
-                        <div class="d-flex justify-content-center">                          
-                        </div>
-                      </div>
-                    </div>
-                </div>
-                  <!--CARD 3-->
-                  <div class="col-sm-6 col-xl-3 mb-3">
-                    <div class="card card-span shadow py-4 h-100 border-top border-4 border-primary">
-                      <div class="card-body">
-                        <div class="text-center"><img src="images/client-dark-18.jpg" width="220px" alt="...">
-                          <h5 class="my-3">TRACTORA</h5>                          
-                        </div>
-                      </div>
-                      <div class="border-top bg-white text-center pt-3 pb-0">
-                          <a class="btn btn-primary" href="#">Saber más</a>                        
-                        <div class="d-flex justify-content-center">                          
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                    <!--CARD 4-->
-                  <div class="col-sm-6 col-xl-3 mb-3">
-                    <div class="card card-span shadow py-4 h-100 border-top border-4 border-primary">
-                      <div class="card-body">
-                        <div class="text-center"><img src="images/client-dark-19.jpg" width="220px" alt="...">
-                          <h5 class="my-3">TRACTORA</h5>                          
-                        </div>
-                      </div>
-                      <div class="border-top bg-white text-center pt-3 pb-0">
-                          <a class="btn btn-primary" href="#">Saber más</a>                        
-                        <div class="d-flex justify-content-center">                          
-                        </div>
-                      </div>
-                    </div>
-                  </div>            
-    </div>  
-    
-    
     <div class="container mt-1">
-            
-        <div class="row h-100">
-
-
-            <!--CARD 5-->
-            <div class="col-sm-6 col-xl-3 mb-3">
-              <div class="card card-span shadow py-4 h-100 border-top border-4 border-primary">
-                <div class="card-body">
-                  <div class="text-center"><img src="images/client-dark-16.jpg" width="220px" alt="...">
-                    <h5 class="my-3">TRACTORA</h5>
-                    
-                  </div>
+      <div class="row h-100">
+          <!--CARD 1-->
+          <?php foreach($res as $row): ?>
+          <div class="col-sm-6 col-xl-3 mb-3">
+            <div class="card card-span shadow py-4 h-100 border-top border-4 border-primary">
+              <div class="card-body">
+                <div class="text-center"><img src="<?php echo ("php/".$row['Logo'])?>" width="220px" alt="...">
+                  <h5 class="my-3"><?php echo $row['Empresa'] ?></h5>                        
+                </div>
                 </div>
                 <div class="border-top bg-white text-center pt-3 pb-0">
-                    <a class="btn btn-primary" href="#">Saber más</a>
-                  
-                  <div class="d-flex justify-content-center">
-                    
-                  </div>
+                  <a class="btn btn-primary" href="#"data-bs-toggle="modal" data-bs-target="#exampleModal">Saber más</a>                      
+                <div class="d-flex justify-content-center">                        
                 </div>
               </div>
             </div>
-
-
-
-            <!--CARD 6-->
-            <div class="col-sm-6 col-xl-3 mb-3">
-                <div class="card card-span shadow py-4 h-100 border-top border-4 border-primary">
-                  <div class="card-body">
-                    <div class="text-center"><img src="images/client-dark-17.jpg" width="220px" alt="...">
-                      <h5 class="my-3">TRACTORA</h5>
-                      
-                    </div>
-                  </div>
-                  <div class="border-top bg-white text-center pt-3 pb-0">
-                      <a class="btn btn-primary" href="#">Saber más</a>
-                    
-                    <div class="d-flex justify-content-center">
-                      
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-              <!--CARD 7-->
-              <div class="col-sm-6 col-xl-3 mb-3">
-                <div class="card card-span shadow py-4 h-100 border-top border-4 border-primary">
-                  <div class="card-body">
-                    <div class="text-center"><img src="images/client-dark-18.jpg" width="220px" alt="...">
-                      <h5 class="my-3">TRACTORA</h5>
-                      
-                    </div>
-                  </div>
-                  <div class="border-top bg-white text-center pt-3 pb-0">
-                      <a class="btn btn-primary" href="#">Saber más</a>
-                    
-                    <div class="d-flex justify-content-center">
-                      
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-                <!--CARD 8-->
-              <div class="col-sm-6 col-xl-3 mb-3">
-                <div class="card card-span shadow py-4 h-100 border-top border-4 border-primary">
-                  <div class="card-body">
-                    <div class="text-center"><img src="images/client-dark-19.jpg" width="220px" alt="...">
-                      <h5 class="my-3">TRACTORA</h5>
-                      
-                    </div>
-                  </div>
-                  <div class="border-top bg-white text-center pt-3 pb-0">
-                      <a class="btn btn-primary" href="#">Saber más</a>
-                    
-                    <div class="d-flex justify-content-center">
-                      
-                    </div>
-                  </div>
-                </div>
-              </div>
-
+          </div>
+          <?php endforeach; ?>
+      </div>
+    </div>
 
               <!-- Modal -->
               <!-- Modal -->

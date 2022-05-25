@@ -10,7 +10,7 @@ if(!isset($_SESSION['id_usuario'])){
   require_once "php/addProducts.php";
   $database=new Conexion;
   $obj = new Conexion();
-  $obj -> query("SELECT  `Logo` FROM `archivos` WHERE `ID_archivo` = 12");
+  $obj -> query("SELECT  `Logo` FROM `archivos` WHERE `ID_archivo` = $id_usr");
   $res= $obj -> resultSet();
   
   ?>

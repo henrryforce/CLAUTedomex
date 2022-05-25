@@ -1,16 +1,16 @@
 <?php
 session_start();
-/*if(!isset($_SESSION['id_usuario'])){
+if(!isset($_SESSION['id_usuario'])){
   header("location: /Login.html");
  }else{
   $id_usr=$_SESSION['id_usuario'];
-}*/
+}
   include_once "php/Conexion.php";
   require_once "php/addContactos.php";
   require_once "php/addProducts.php";
   require_once "php/addRequ.php";
   $database=new Conexion;
-  $id_usr=9;                              
+  //$id_usr=9;                              
   $database-> query("SELECT * FROM contacto WHERE id_usuario=$id_usr");
   $rows = $database->resultSet();
   foreach ($rows as $row):
@@ -435,7 +435,7 @@ session_start();
                             $database->query("SELECT requerimiento_producto.ID_req_producto, producto.Producto , requerimiento_producto.Tipo_material, requerimiento_producto.Volumen_anual, requerimiento_producto.Comentarios
                                               FROM producto
                                               INNER JOIN requerimiento_producto ON producto.ID_producto = requerimiento_producto.ID_req_producto
-                                              WHERE requerimiento_producto.ID_usuario=$id_usr;");
+                                              WHERE requerimiento_producto.ID_usuario=$id_usr");
                             $res = $database->resultSet();?>
                             <?php foreach($res as $row) :?>
                               <tr>
@@ -449,8 +449,7 @@ session_start();
                                     <ul class="list-group list-group-horizontal">
                                       <a href="PaginaprincipalDeTractoras.php?editq=<?php echo $row['ID_req_producto'];?>"class=" list-group-item"><i class="bi bi-pencil-square">Edit</a></i>
                                       <a href="php/addRequ.php?deleteq=<?php echo $row['ID_req_producto'];?>"class=" list-group-item"><i class="bi bi-archive-fill">Delete</a></i>
-                                    </ul>
-                                      
+                                    </ul>                                      
                                   </td>
                               </tr>
                               <?php endforeach; ?>
