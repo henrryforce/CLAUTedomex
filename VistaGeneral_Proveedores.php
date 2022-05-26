@@ -121,11 +121,11 @@
   <div class="container mb-5">
       <div class="card">
           <!--TITULO DE LA CARTA-->
-          <h5 class="card-header text-center">Lista de tractoras</h5>                
+          <h5 class="card-header text-center">Lista de proveedores</h5>                
         </div>
   </div>
   <?php
-    $tipo_usr = 1;
+    $tipo_usr = 2;
     $database->query("SELECT usuario.ID_tipo_usr, usuario.ID_usuario, empresa.Empresa, archivos.Logo
                       FROM empresa
                       INNER JOIN usuario on empresa.ID_empresa=usuario.ID_usuario
@@ -140,21 +140,21 @@
           <div class="col-sm-6 col-xl-3 mb-3">
             <div class="card card-span shadow py-4 h-100 border-top border-4 border-primary">
               <div class="card-body">
-              <?php
-                $id = $row['ID_usuario'];
-                $db->query("SELECT COUNT(ID_usuario)N_requerimientos FROM requerimiento_producto WHERE ID_usuario = $id");
-                $count = $db->resultSet();               
-              ?>
+                <?php
+                  $id = $row['ID_usuario'];
+                  $db->query("SELECT COUNT(ID_usuario) Num_productos FROM producto WHERE ID_usuario = $id");
+                  $count = $db->resultSet();               
+                ?>
                 <div class="text-center"><img src="<?php echo ("php/".$row['Logo'])?>" width="220px" alt="...">
                   <h5 class="my-3"><?php echo $row['Empresa'] ?></h5>                        
                 </div>
                 </div>
                 <div class="border-top bg-white text-center pt-3 pb-0">
-                  <h5>Numero de requerimientos</h5>
+                  <h5>Numero de productos</h5>                  
                   <?php foreach($count as $i): ?>
-                    <p><?php echo $i['N_requerimientos']?>
-                      <?php endforeach; ?></p>             
-                  <div class="d-flex justify-content-center">                        
+                    <p><?php echo $i['Num_productos']?>
+                  <?php endforeach; ?></p>          
+                <div class="d-flex justify-content-center">                        
                 </div>
               </div>
             </div>
@@ -163,22 +163,14 @@
       </div>
     </div>
 
-              <!-- Modal -->
-              <!-- Modal -->
-              <!-- Modal -->
-              <!-- Modal -->
-              <!-- Modal -->
-
-
+              <!----------------------------------------------- Modal ------------------------------------------------->
               <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                 <div class="modal-content">
                 <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">CONTACTO</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-  
-  
+                </div>    
                 <!-- ELEMENTOS CONTENIDOS EN EL MODAL -->
                 <!-- ELEMENTOS CONTENIDOS EN EL MODAL -->
                 <!-- ELEMENTOS CONTENIDOS EN EL MODAL -->

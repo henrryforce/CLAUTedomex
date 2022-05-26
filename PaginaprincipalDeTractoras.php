@@ -164,7 +164,17 @@ if(!isset($_SESSION['id_usuario'])){
                             <!-- IMAGEN Y DIMENSIONES DE LA MISMA-->                            
                             <img src="<?php echo ($res[0]['Logo'] == ' ' ||  $res[0]['Logo'] == NULL ) ? 'php/archivosUpload/logos/default.png': './php/'.$res[0]['Logo']; ?>" alt="profile" class="img-rounded mb-3" width="230" height="120">
                         </div>                        
-                        <h4 class="">NOMBRE DE LA EMPRESA</h4>                        
+                        <?php 
+                          $obj->query("SELECT usuario.ID_empresa, empresa.Empresa
+                                            FROM usuario
+                                            INNER JOIN empresa ON  usuario.ID_empresa=empresa.ID_empresa
+                                            WHERE ID_usuario = $id_usr");
+                          $emp = $obj->resultSet();
+                          foreach($emp as $row){
+                            $nombre_empresa = $row['Empresa'];
+                          }
+                        ?>
+                        <h4 class=""><?php echo $nombre_empresa?></h4>                        
                         <a href="#" class="text-dark font-weight-bold text-decoration-none">Información personal</a>                        
                 </div>
                 <!-- LINEA SEPARADORA-->
@@ -449,9 +459,14 @@ if(!isset($_SESSION['id_usuario'])){
                                 <td class="align-top"><?php echo $row['Comentarios']?></td>                            
                                   <!-- OPCIONES--> 
                                   <td>
+                                    <?php if(isset($row['ID_req_producto'])){
+                                      $id_requerimiento='';
+                                    }else{
+                                      $id_requerimiento = $row['ID_req_producto'];
+                                    }?>
                                     <ul class="list-group list-group-horizontal">
-                                      <a href="PaginaprincipalDeTractoras.php?editq=<?php echo $row['ID_req_producto'];?>"class=" list-group-item"><i class="bi bi-pencil-square">Edit</a></i>
-                                      <a href="php/addRequ.php?deleteq=<?php echo $row['ID_req_producto'];?>"class=" list-group-item"><i class="bi bi-archive-fill">Delete</a></i>
+                                      <a href="PaginaprincipalDeTractoras.php?editq=<?php echo $id_requerimiento;?>"class=" list-group-item"><i class="bi bi-pencil-square">Edit</a></i>
+                                      <a href="php/addRequ.php?deleteq=<?php echo $id_requerimiento;?>"class=" list-group-item"><i class="bi bi-archive-fill">Delete</a></i>
                                     </ul>                                      
                                   </td>
                               </tr>
@@ -511,7 +526,7 @@ if(!isset($_SESSION['id_usuario'])){
                 <!-- FIN ELEMENTOS CONTENIDOS EN EL MODAL2 -->
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <input href="PaginaprincipalDeTractoras.php?edit=<?php echo $row['ID_req_producto'];?>" type="submit" name= "btnaddr" class="btn btn-primary" value="Guardar">
+                <input href="PaginaprincipalDeTractoras.php?edit=<?php echo $id_requerimiento;?>" type="submit" name= "btnaddr" class="btn btn-primary" value="Guardar">
                 </div>
                 </div>
                 </div>

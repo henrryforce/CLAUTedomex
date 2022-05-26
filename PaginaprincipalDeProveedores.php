@@ -132,8 +132,18 @@ if(!isset($_SESSION['id_usuario'])){
                         <div>
                             <!-- IMAGEN Y DIMENSIONES DE LA MISMA-->                            
                             <img src="<?php echo ($res[0]['Logo'] == ' ' ||  $res[0]['Logo'] == NULL ) ? 'php/archivosUpload/logos/default.png': './php/'.$res[0]['Logo']; ?>" alt="profile" class="img-rounded mb-3" width="230" height="120">
-                        </div>                        
-                        <h4 class="">NOMBRE DE LA EMPRESA</h4>                        
+                        </div>
+                        <?php 
+                          $obj->query("SELECT usuario.ID_empresa, empresa.Empresa
+                                            FROM usuario
+                                            INNER JOIN empresa ON  usuario.ID_empresa=empresa.ID_empresa
+                                            WHERE ID_usuario = $id_usr");
+                          $rows = $obj->resultSet();
+                          foreach($rows as $row){
+                            $nombre_empresa = $row['Empresa'];
+                          }
+                        ?>
+                        <h4 class=""><?php echo $nombre_empresa?></h4>                        
                         <a href="#" class="text-dark font-weight-bold text-decoration-none">Información personal</a>                        
                 </div>
                 <!-- LINEA SEPARADORA-->
@@ -240,11 +250,17 @@ if(!isset($_SESSION['id_usuario'])){
                                 <td><?php echo $row['Ext']?></td>
                                 <td><?php echo $row['Cel']?></td>
                                 <input type="hidden" id="txt_usr" name="txt_usr" value="<?php echo $id_usr?>">
+
+                                <?php if(isset($row['ID_contacto'])){
+                                  $id_c='';
+                                }else{
+                                  $id_c = $row['ID_contacto'];
+                                }?>
                                 <!-- OPCIONES--> 
                                 <td>
                                   <ul class="list-group list-group-horizontal">
-                                    <a href="PaginaprincipalDeProveedores.php?edit=<?php $id_cont =$row['ID_contacto']; echo $row['ID_contacto'];?>" class=" list-group-item"><i class="bi bi-pencil-square">Edit</a></i>
-                                    <a href="php/addContactos.php?delete=<?php echo $row['ID_contacto'];?>" class=" list-group-item"><i class="bi bi-archive-fill">Delete</a></i>
+                                    <a href="PaginaprincipalDeProveedores.php?edit=<?php $id_c;?>" class=" list-group-item"><i class="bi bi-pencil-square">Edit</a></i>
+                                    <a href="php/addContactos.php?delete=<?php echo $id_c;?>" class=" list-group-item"><i class="bi bi-archive-fill">Delete</a></i>
                                   </ul>                                    
                                 </td>
                               </tr>
@@ -302,7 +318,7 @@ if(!isset($_SESSION['id_usuario'])){
               <!-- FIN ELEMENTOS CONTENIDOS EN EL MODAL -->
               <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>-
-              <input href="PaginaprincipalDeProveedores.php?edit=<?php echo $row['ID_contacto'];?>" type="submit" name= "btnadd" class="btn btn-primary" value="Guardar">
+              <input href="PaginaprincipalDeProveedores.php?edit=<?php echo $id_c;?>" type="submit" name= "btnadd" class="btn btn-primary" value="Guardar">
               </div>
               </div>
               </div>
@@ -350,10 +366,15 @@ if(!isset($_SESSION['id_usuario'])){
                             <?php foreach($res as $row) :?>
                               <tr>                                
                                 <td><?php echo $row['ID_producto']?></td>            
-                                <td><?php echo $row['Producto']?></td>                                
+                                <td><?php echo $row['Producto']?></td>
+                                <?php if(isset($row['ID_producto'])){
+                                      $id_p='';
+                                    }else{
+                                      $id_p = $row['ID_producto'];
+                                    }?>
                                   <!-- OPCIONES--> 
                                   <td>                                    
-                                    <a href="php/addProducts.php?deleteP=<?php echo $row['ID_producto'];?>" class="list-group-item"><i class="bi bi-archive-fill">        Delete</a></i>
+                                    <a href="php/addProducts.php?deleteP=<?php echo $id_p;?>" class="list-group-item"><i class="bi bi-archive-fill">        Delete</a></i>
                                   </td>
                               </tr>
                               <?php endforeach; ?>
@@ -401,7 +422,7 @@ if(!isset($_SESSION['id_usuario'])){
                 <!-- FIN ELEMENTOS CONTENIDOS EN EL MODAL2 -->
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <input href="PaginaprincipalDeProveedores.php?edit=<?php echo $row['ID_producto'];?>" type="submit" name= "btnaddp" class="btn btn-primary" value="Guardar">
+                <input href="PaginaprincipalDeProveedores.php?edit=<?php echo $id_p;?>" type="submit" name= "btnaddp" class="btn btn-primary" value="Guardar">
                 </div>
                 </div>
                 </div>
