@@ -119,8 +119,11 @@ function load () {
     })
       .then(res => res.json())
       .then(data => {
+      
+        if(data[0]['pais'] != null){
         let paises = data[0]['pais'].split(',')
         localStorage.setItem('PaisesExp', JSON.stringify(paises))
+      }
       })
   }
   if (ubi.includes('/cuenta-tractora.php')) {
