@@ -20,7 +20,8 @@
         $email = isset($_POST['txt_mail']) ? $_POST['txt_mail'] : '';     //input del formulario PaginaPrincipaldeProveedores
         $tel = isset($_POST['txt_tel']) ? $_POST['txt_tel'] : '';
         $ext = isset($_POST['txt_ext']) ? $_POST['txt_ext'] : '';
-        $cel = isset($_POST['txt_cel']) ? $_POST['txt_cel'] : '';    
+        $cel = isset($_POST['txt_cel']) ? $_POST['txt_cel'] : '';
+        $direccion = isset($_POST['txt_val']) ? $_POST['txt_val'] : '';
         $id_user = isset($_POST['txt_usr']) ? $_POST['txt_usr'] : '';
         
         echo ($id_user);
@@ -36,8 +37,11 @@
         $database->bind(6, $cel);
         $database->bind(7, $id_user);
         $database->execute();
-
-        header("location: ../PaginaprincipalDeProveedores.php");
+        if($direccion=='1'){
+            header("location: ../PaginaprincipalDeProveedores.php");
+        }else{
+            header("location: ../PaginaprincipalDeTractoras.php");
+        }
     }
     //Validacion para poder eliminar un contacto
     if(isset($_GET['delete'])){

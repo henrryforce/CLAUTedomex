@@ -12,9 +12,9 @@ if(!isset($_SESSION['id_usuario'])){
   $obj = new Conexion();
   $obj -> query("SELECT  `Logo` FROM `archivos` WHERE `ID_archivo` = $id_usr");
   $res= $obj -> resultSet();
-  
+  $database-> query("SELECT * FROM contacto WHERE id_usuario=$id_usr");
+  $rows = $database->resultSet();
   ?>
-
 
 <!doctype html>
 <html lang="es">
@@ -250,17 +250,11 @@ if(!isset($_SESSION['id_usuario'])){
                                 <td><?php echo $row['Ext']?></td>
                                 <td><?php echo $row['Cel']?></td>
                                 <input type="hidden" id="txt_usr" name="txt_usr" value="<?php echo $id_usr?>">
-
-                                <?php if(isset($row['ID_contacto'])){
-                                  $id_c='';
-                                }else{
-                                  $id_c = $row['ID_contacto'];
-                                }?>
                                 <!-- OPCIONES--> 
                                 <td>
                                   <ul class="list-group list-group-horizontal">
-                                    <a href="PaginaprincipalDeProveedores.php?edit=<?php $id_c;?>" class=" list-group-item"><i class="bi bi-pencil-square">Edit</a></i>
-                                    <a href="php/addContactos.php?delete=<?php echo $id_c;?>" class=" list-group-item"><i class="bi bi-archive-fill">Delete</a></i>
+                                    <a href="PaginaprincipalDeProveedores.php?edit=<?php echo $row['ID_contacto']?>" class=" list-group-item"><i class="bi bi-pencil-square">Edit</a></i>
+                                    <a href="php/addContactos.php?delete=<?php echo $row['ID_contacto'];?>" class=" list-group-item"><i class="bi bi-archive-fill">Delete</a></i>
                                   </ul>                                    
                                 </td>
                               </tr>
@@ -312,13 +306,14 @@ if(!isset($_SESSION['id_usuario'])){
                     <label for="exampleFormControlInput6">Celular</label>
                     <input type="tel" class="form-control" id="txt_cel" name = "txt_cel" placeholder="Ejemplo: 55-55-55-55">
                     <input type="hidden" id="txt_usr" name="txt_usr" value="<?php echo $id_usr?>">
+                    <input type="hidden" id="txt_val" name="txt_val" value="1">
                   </div>                  
                 </form>                                                  
               </div>
               <!-- FIN ELEMENTOS CONTENIDOS EN EL MODAL -->
               <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>-
-              <input href="PaginaprincipalDeProveedores.php?edit=<?php echo $id_c;?>" type="submit" name= "btnadd" class="btn btn-primary" value="Guardar">
+              <input href="PaginaprincipalDeProveedores.php?edit=<?php echo $row['ID_contacto'];?>" type="submit" name= "btnadd" class="btn btn-primary" value="Guardar">
               </div>
               </div>
               </div>
