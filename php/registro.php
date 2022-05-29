@@ -12,7 +12,7 @@ if(isset($_POST['nom_empresa']) && isset($_POST['usertype'])&&isset($_POST['emai
         $obj -> query("SELECT * FROM `usuario` WHERE `usuario` = '$email'");
         $respuesta = $obj -> resultSet();
         if(count($respuesta)>0){
-            echo json_encode("El correo ya existe");
+            echo json_encode(401);
         }else{
             if($_POST['usertype'] === 'Tractora'){
                 $usertype=1;
@@ -22,14 +22,17 @@ if(isset($_POST['nom_empresa']) && isset($_POST['usertype'])&&isset($_POST['emai
             $codigo = rand(999999,111111);
             $hash = password_hash($pass,PASSWORD_BCRYPT);
             $obj -> query("call addUsersF('$email','$hash',$usertype,'$nom_empresa',$codigo);");
-            $respuesta = $obj -> resultSet();
-            if($respuesta != []){
+            try{
+                $respuesta = $obj -> resultSet();
                 $obj = new enviarCorreo($email,'Codigo de verificación');
                 $obj -> sendCode($codigo);
-                echo json_encode("Registrado Correctamente");
-            }else{
-                echo json_encode($respuesta);
+                echo json_encode(201);
+                
+            }catch(Exception $e){
+                echo json_encode($e);
             }
+            
+            
         } 
 }
 

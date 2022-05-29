@@ -258,6 +258,7 @@ if (!isset($_SESSION['id_usuario'])) {
                        $id_dir = intval($arrIDs[0]['id_direccion']);
                        $obj ->query("SELECT * FROM `direccion` WHERE `ID_direccion` = $id_dir");
                        $dir = $obj->resultSet();
+                       
                        $id_ar = intval($arrIDs[0]['id_archivo']);
                        $obj ->query("SELECT `Logo`, `Presentacion` FROM `archivos` WHERE `ID_archivo` = $id_ar");
                        $arch = $obj -> resultSet();
@@ -358,10 +359,9 @@ if (!isset($_SESSION['id_usuario'])) {
                           <br>
                           <?php 
                          
-                            if($arch[0]['Logo'] == NULL){
+                            if($arch[0]['Logo'] == NULL && $arch[0]['Presentacion'] == NULL){
                               echo "<div class=\"alert alert-danger\""." role="."alert"."><p>Adjunta los siguientes archivos</p></div>";
-                          }else{
-                            
+                          }if($arch[0]['Logo'] != NULL && $arch[0]['Presentacion'] != NULL){                           
                             echo "<div class=\"alert alert-warning\""." role="."alert"."><p>Ya cuentas con archivos cargados si subes uno nuevo los anteriores se borraran.</p></div>";
                           }
                           
@@ -372,11 +372,20 @@ if (!isset($_SESSION['id_usuario'])) {
                             <input type="file" class="form-control" id="Logo" name="Logo"
                               aria-describedby="inputGroupFileAddon04" aria-label="Upload">
                           </div>
+                          <?php if($arch[0]['Logo'] != NULL){
+                            $logo = $arch[0]['Logo'];
+                            echo "<a href=\"../php/$logo\"target=\"_blank\">Logo Cargado</a>";
+                          } ?>
+                          
                           <div class="form-group mt-3">
                             <label class="mb-1" for="">Presentacion - tamaño máximo 1MB </label>
                             <input type="file" class="form-control" id="presentacion" name="presentacion"
                               aria-describedby="inputGroupFileAddon04" aria-label="Upload">
                           </div>
+                          <?php if($arch[0]['Presentacion'] != NULL){
+                            $file = $arch[0]['Presentacion'];
+                            echo "<a href=\"../php/$file\"target=\"_blank\">Archivo Cargado</a>";
+                          } ?>
                           <!-- FIN ELEMENTOS CONTENIDOS EN EL MODAL -->
                           <div class="modal-footer mt-3">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

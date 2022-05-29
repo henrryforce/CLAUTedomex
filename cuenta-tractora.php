@@ -387,11 +387,19 @@ if (!isset($_SESSION['id_usuario'])) {
                             <input type="file" class="form-control" id="Logo" name="Logo"
                               aria-describedby="inputGroupFileAddon04" aria-label="Upload">
                           </div>
+                          <?php if($arch[0]['Logo'] != NULL){
+                            $logo = $arch[0]['Logo'];
+                            echo "<a href=\"../php/$logo\"target=\"_blank\">Logo Cargado</a>";
+                          } ?>
                           <div class="form-group mt-3">
                             <label class="mb-1" for="">Presentacion - tamaño máximo 1MB </label>
                             <input type="file" class="form-control" id="presentacion" name="presentacion"
                               aria-describedby="inputGroupFileAddon04" aria-label="Upload">
                           </div>
+                          <?php if($arch[0]['Presentacion'] != NULL){
+                            $file = $arch[0]['Presentacion'];
+                            echo "<a href=\"../php/$file\"target=\"_blank\">Archivo Cargado</a>";
+                          } ?>
                           <!-- FIN ELEMENTOS CONTENIDOS EN EL MODAL -->
                           <div class="modal-footer mt-3">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

@@ -158,7 +158,7 @@ if(!isset($_SESSION['id_usuario'])){
                     <section class="Profile-header text-center">
                         <div>
                             <!-- IMAGEN Y DIMENSIONES DE LA MISMA-->                            
-                            <img src="<?php echo ($res[0]['Logo'] == ' ' ||  $res[0]['Logo'] == NULL ) ? 'php/archivosUpload/logos/default.png': './php/'.$res[0]['Logo']; ?>" alt="profile" class="img-rounded mb-3" width="230" height="120">
+                            <img src="<?php echo (isset($res[0]['Logo'])) ?  './php/'.$res[0]['Logo'] : './php/archivosUpload/logos/default.png'; ?>" alt="profile" class="img-rounded mb-3" width="230" height="120">
                         </div>                        
                         <?php 
                           $obj->query("SELECT usuario.ID_empresa, empresa.Empresa
