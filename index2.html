@@ -122,13 +122,8 @@
              
              <li class="nav-item">
                <a class="nav-link" href="contact.html">Contact</a>
-             </li>
-             
-
-             
-             
-           </ul>
-          
+             </li>                                       
+           </ul>          
          </div>
        </div>
      </nav>
@@ -162,14 +157,124 @@
                          <textarea class="form-control" placeholder="Message"></textarea>
                        </div>
                        <div class="form-group">
-                          <button class="btn btn-submit"> Submit Now </button>
+                        <button type="button" class="btn btn-submit" data-bs-toggle="modal" data-bs-target="#modalInfoProvedor">Prueba Modal</button>
                        </div>
                   </div>
               </div>
           </div>
         </div>
      </div>
-     
+    
+                <!------------------------------ Modal ------------------------------>
+<div class="modal fade" id="modalInfoProvedor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen-sm-down modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="infoModalProveedor">Informacion</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <form class="row g-3">   
+            <div class="row">
+              <div class="col-sm-6 form-control-plaintext">Nombre de la empresa</div>            
+            </div>                   
+            <div class="col-auto" style="margin-right: 15px;">   
+              <div class="input-group">
+                <div class="input-group-text">Tel:</div>
+                <input type="text" class="form-control" value="55-555-555-55" style="width: 135px;" readonly>
+              </div>                                                     
+            </div>
+            <div class="col-auto" style="margin-right: 15px;">   
+              <div class="input-group">
+                <div class="input-group-text">Ext:</div>
+                <input type="text" class="form-control"  value="0259" readonly style="width: 100px;">
+              </div>               
+            </div>
+            <div class="col-auto">
+              <div class="input-group">
+                <div class="input-group-text">Sitio Web: </div>
+                <input type="text" class="form-control" style="width: 240px;" value="www.wefe.com.mx" readonly>
+              </div>                            
+            </div>
+            <div class="col-12">
+              <label for="inputAddress">Dirección:</label>
+              <input type="text" class="form-control" id="inputAddress" value="Sur 25 Mz. 7 Leyes de Reforma" readonly>
+            </div>
+            <div class="col-md-6">
+              <label for="inputCity" class="form-label">Ciudad</label>
+              <input type="text" class="form-control" id="inputCity" value="CDMX" readonly>
+            </div>
+            <div class="col-md-4">
+              <label for="inputState" class="form-label">Estado</label>
+              <input type="text" class="form-control" id="inputCity" value="CDMX" readonly>
+            </div>
+            <div class="col-md-2">
+              <label for="inputZip" class="form-label">Codigo Postal</label>
+              <input type="text" class="form-control" id="inputZip" value="09310" readonly>
+            </div>
+            <div class="col-md-3">
+              <label for="inputVentas" class="form-label">Ventas Anuales</label>
+              <input type="text" class="form-control" id="inputVentas" value="$450,000" readonly>
+            </div>
+            <div class="col-md-4">
+              <label for="inputNumE" class="form-label">Numero de empleados  </label>
+              <input type="text" class="form-control" id="inputNumE" value="500" readonly>              
+            </div>
+            <div class="col-12">
+              <label for="txtA_desc">Descripcion de la empresa:</label>
+              <textarea  class="form-control" name="" id="" cols="12" rows="3" readonly></textarea>
+            </div>
+            <div class="col-12">
+              <label for="" class="form-label">Exportaciones</label>
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Pais</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td colspan="2">La chingada</td>                    
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td colspan="2">La Berga</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-12">
+              <label for="" class="form-label">Productos</label>
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Producto</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td colspan="2">Taquitos al pastor</td>                    
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">                
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Certificaciones</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Contactar</button>
+      </div>
+    </div>
+  </div>
+</div><!------------------------------ Fin Modal ------------------------------>
+
     <div class="video-sec">
       <div class="video-bg"></div>
       
@@ -177,633 +282,6 @@
 
     </div>
  </div>
-
- <section class="main-body pt-5 float-start">
-      <div class="about-home">
-         <div class="container">
-            <div class="row row-cols-1 row-cols-2">
-               <div class="col">
-                  <figure class="d-grid justify-content-center">
-                     <img src="images/ab-pic.png" alt="ab-pic"/>
-                  </figure>
-
-               </div>
-               <div class="col">
-                  <h6>About Us</h6>
-                  <h2> Phasellus accumsan urna ut tempor condimentum </h2>
-                  <p> There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some 
-                    form, by injected humour, or randomised words </p>
-                  <ul class="list-unstyled mt-4">
-                    <li class="d-flex">
-                       <figure class="icon">
-                          <img src="images/3233497.png"/>
-                       </figure>
-                       <div class="content-cm ps-3">
-                          <h5> Our Mission </h5>
-                          <p> There are many variations of passages of Lorem Ipsum available, but the majority. </p>
-                       </div>
-                       
-                    </li>
-                    <li class="d-flex">
-                      <figure class="icon">
-                         <img src="images/1436588.png"/>
-                      </figure>
-                      <div class="content-cm ps-3">
-                         <h5> Our Vision </h5>
-                         <p> There are many variations of passages of Lorem Ipsum available, but the majority. </p>
-                      </div>
-                      
-                   </li>
-                   <li class="d-flex">
-                    <figure class="icon">
-                       <img src="images/419952.png"/>
-                    </figure>
-                    <div class="content-cm ps-3">
-                       <h5> Our Activement </h5>
-                       <p> There are many variations of passages of Lorem Ipsum available, but the majority. </p>
-                    </div>
-                    
-                   </li>
-                  </ul>  
-               </div>
-            </div>
-         </div>
-      </div>
-
-
-      <div class="how-it-work py-5 mt-5">
-        <div class="container">
-            <div class="heading-one">
-              <h6 class="text-center text-white" data-aos="fade-down"> How it work </h6>
-              <h1 >Process</h1>
-              <h2 class="text-center text-white" data-aos="fade-down"> Let us take the stress out of your move. </h2>
-            </div>
-            
-            <div class="row row-cols-1 row-cols-lg-4 g-lg-5 mt-0 justify-content-between">
-                <div class="col">
-                    <div class="comon-div1m" data-aos="fade-down">
-                         <figure>
-                            <img src="images/3856320.png" alt="pic"/>
-                         </figure>
-                         <h5> <span> 1 </span>  Replenishment
-                          & Picking
-                        </h5>
-                        <p class="mt-2"> Popularised in with release of Letraset containing passages and more recently </p>
-                    </div>
-                </div>
-                <div class="col">
-                  <div class="comon-div1m" data-aos="fade-up">
-                       <figure>
-                          <img src="images/3639333.png" alt="pic"/>
-                       </figure>
-                       <h5> <span> 2 </span>  Warehousing
-                        Operation 
-                      </h5>
-                      <p class="mt-2"> Popularised in with release of Letraset containing passages and more recently </p>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="comon-div1m" data-aos="fade-down">
-                       <figure>
-                          <img src="images/1988988.png" alt="pic"/>
-                       </figure>
-                       <h5> <span> 3 </span>  Packaging
-                        & Distribution 
-                      </h5>
-                      <p class="mt-2"> Popularised in with release of Letraset containing passages and more recently </p>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="comon-div1m" data-aos="fade-up">
-                       <figure>
-                          <img src="images/411763.png" alt="pic"/>
-                       </figure>
-                       <h5> <span> 4 </span>  Transportation
-                        Process 
-                      </h5>
-                      <p class="mt-2"> Popularised in with release of Letraset containing passages and more recently </p>
-                  </div>
-                </div>
-            </div>
-        </div>
-      </div>
-
-
-      <div class="why-choose-us-div py-5">
-        <div class="container">
-           <div class="row row-cols-1 row-cols-lg-2 g-lg-5 align-items-center">
-               <div class="col">
-                  <h6 class="sub-text" data-aos="fade-down">Why Choose Us</h6>
-                  <h2 class="min-head" data-aos="fade-up"> We Have over 25 <br/>
-                 Years Of experience</h2>
-                 <p data-aos="fade-down">
-                   We are professional logistics & cargo agency
-But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to sunt in culpa qui officia deserunt.
-                 </p>
-                 <a href="#" class="btn read-btn" data-aos="fade-down"> Read More <i class="fas fa-long-arrow-alt-right"></i> </a>
-               </div>
-               <div class="col">
-                  <div class="row row-cols-1 row-cols-lg-2 g-lg-5" >
-                     <div class="col">
-                        <div class="comon-div-clients bg-white shadow p-5 text-center" data-aos="fade-down">
-                          <figure> <img src="images/2630871.png" alt="icn"/> </figure>
-                           <h2>500+</h2>
-                           <h6>Workers in Industry</h6>
-                        </div>
-                     </div>
-                     <div class="col">
-                       <div class="comon-div-clients bg-white shadow p-5 text-center" data-aos="fade-up">
-                         <figure> <img src="images/4490381.png" alt="icn"/> </figure>
-                          <h2>1000+</h2>
-                          <h6>Professional Engineers</h6>
-                       </div>
-                     </div>
-                     <div class="col">
-                       <div class="comon-div-clients bg-white shadow p-5 text-center" data-aos="fade-down">
-                         <figure> <img src="images/1705317.png" alt="icn"/> </figure>
-                          <h2>7500+</h2>
-                          <h6>Completed Projects</h6>
-                       </div>
-                     </div>
-                     <div class="col">
-                       <div class="comon-div-clients bg-white shadow p-5 text-center" data-aos="fade-up">
-                         <figure> <img src="images/4363836.png" alt="icn"/> </figure>
-                          <h2>100+</h2>
-                          <h6>Worldwide Branches</h6>
-                       </div>
-                     </div>
-                  </div>
-               </div>
-           </div>
-        </div>
-      </div>
-
-
-      <div class="main-services py-5">
-        <div class="container">
-          <div class="heading-one">
-             <h6 class="text-center" data-aos="fade-down"> What We Do </h6>
-             <h1> Services </h1>
-             <h2 class="text-center" data-aos="fade-up">We Provided Best Served</h2>
-          </div>
-          <div class="row row-cols-1 row-cols-3 mt-0 g-lg-5">
-             <div class="col">
-                <div class="comon-services p-5" data-aos="fade-down">
-                  <span class="d-block">
-                   <figure> <img src="images/1133743.png" alt="icon"/> </figure>
-                   <h5> Mineral Industrial </h5>
-                   <p>The demand for energy combined with the limited supply of 
-                     natural resources is forcing the oil and gas industry to reconsider how they do business.</p>
-                   <a href="#"> Learn More <i class="fas fa-caret-right"></i> </a>
-                  </span>
-                  
-                </div>
-             </div>
-             <div class="col">
-               <div class="comon-services p-5" data-aos="fade-up">
-                 <span class="d-block">
-                 <figure> <img src="images/1227874.png" alt="icon"/> </figure>
-                  <h5> Power and Petrol </h5>
-                  <p>The demand for energy combined with the limited supply of 
-                    natural resources is forcing the oil and gas industry to reconsider how they do business.</p>
-                  <a href="#"> Learn More <i class="fas fa-caret-right"></i> </a>
-                 </span>
-               </div>
-             </div>
-             <div class="col">
-               <div class="comon-services p-5" data-aos="fade-down">
-                 <span class="d-block">
-                 <figure> <img src="images/2299204.png" alt="icon"/> </figure>
-                  <h5> Manufacturing </h5>
-                  <p>The demand for energy combined with the limited supply of 
-                    natural resources is forcing the oil and gas industry to reconsider how they do business.</p>
-                  <a href="#"> Learn More <i class="fas fa-caret-right"></i> </a>
-                 </span>
-               </div>
-             </div>
-             <div class="col">
-               <div class="comon-services p-5" data-aos="fade-up">
-                 <span class="d-block">
-                   <figure> <img src="images/3327420.png" alt="icon"/> </figure>
-                   <h5> Oil & Gas </h5>
-                   <p>The demand for energy combined with the limited supply of 
-                     natural resources is forcing the oil and gas industry to reconsider how they do business.</p>
-                   <a href="#"> Learn More <i class="fas fa-caret-right"></i> </a>
-                 </span>
-               </div>
-             </div>
-             <div class="col">
-               <div class="comon-services p-5" data-aos="fade-down">
-                 <span class="d-block">
-                 <figure> <img src="images/3671262.png" alt="icon"/> </figure>
-                  <h5> Industrial </h5>
-                  <p>The demand for energy combined with the limited supply of 
-                    natural resources is forcing the oil and gas industry to reconsider how they do business.</p>
-                  <a href="#"> Learn More <i class="fas fa-caret-right"></i> </a>
-                 </span>
-               </div>
-             </div>
-             <div class="col">
-               <div class="comon-services p-5" data-aos="fade-up">
-                 <span class="d-block">
-                 <figure> <img src="images/598827.png" alt="icon"/> </figure>
-                  <h5> Automotive </h5>
-                  <p>The demand for energy combined with the limited supply of 
-                    natural resources is forcing the oil and gas industry to reconsider how they do business.</p>
-                  <a href="#"> Learn More <i class="fas fa-caret-right"></i> </a>
-                 </span>
-               </div>
-             </div>
-             
-          </div>
-           
-        </div>
-      </div>
-
-
-      <div class="our-spality py-5 position-relative">
-        <div class="container">
-           <div class="heading-one">
-                 <h6 class="text-center" data-aos="fade-down">Projects</h6>
-                 <h1>Projects</h1>
-                  <h2 class="text-center" data-aos="fade-up">Featured Projects </h2>
-           </div>
-           <div class="row row-cols-1 row-cols-lg-4 mt-0 g-lg-4">
-              <div class="col">
-                 <a href="#" class="comon-projects position-relative" data-aos="fade-down">
-                    <figure>
-                      <img src="images/project-20.jpg" alt="project"/>
-                    </figure>
-                    <div class="content-projects" data-aos="fade-up">
-                       <h5> Morbi ut ex auctor </h5>
-                       <hr/>
-                       <p> The demand for energy combined with the limited supply of natural resources is forcing </p>
-                       <h6 class="read-btn2"> read more <i class="fas fa-long-arrow-alt-right"></i></h6>
-                    </div>
-                 </a>
-              </div>
-              <div class="col" >
-               <a href="#" class="comon-projects position-relative" data-aos="fade-up">
-                  <figure>
-                    <img src="images/AdobeStock_132802484-scaled-1646x823.jpeg" alt="project"/>
-                  </figure>
-                  <div class="content-projects">
-                     <h5> Morbi ut ex auctor </h5>
-                     <hr/>
-                     <p> The demand for energy combined with the limited supply of natural resources is forcing </p>
-                     <h6 class="read-btn2"> read more <i class="fas fa-long-arrow-alt-right"></i></h6>
-                  </div>
-               </a>
-              </div>
-              <div class="col">
-               <a href="#" class="comon-projects position-relative" data-aos="fade-down">
-                  <figure>
-                    <img src="images/shh.jpeg" alt="project"/>
-                  </figure>
-                  <div class="content-projects">
-                     <h5> Morbi ut ex auctor </h5>
-                     <hr/>
-                     <p> The demand for energy combined with the limited supply of natural resources is forcing </p>
-                     <h6 class="read-btn2"> read more <i class="fas fa-long-arrow-alt-right"></i></h6>
-                  </div>
-               </a>
-              </div>
-              <div class="col">
-               <a href="#" class="comon-projects position-relative" data-aos="fade-up">
-                  <figure>
-                    <img src="images/project-20.jpg" alt="project"/>
-                  </figure>
-                  <div class="content-projects">
-                     <h5> Morbi ut ex auctor </h5>
-                     <hr/>
-                     <p> The demand for energy combined with the limited supply of natural resources is forcing </p>
-                     <h6 class="read-btn2"> read more <i class="fas fa-long-arrow-alt-right"></i></h6>
-                  </div>
-               </a>
-              </div>
-           </div>  
-           
-           <a href="#" class="btn all-projects-btn" data-aos="fade-down"> All Projects <i class="fas fa-long-arrow-alt-right"></i> </a>
-          
-        </div>
-      </div>
-
-
-      <div class="contact-div-home">
-        <div class="container">
-          <h5 class="text-center" data-aos="fade-down">Our Experts Here to help </h5>
-           <h2 class="text-white text-center" data-aos="fade-up">Get A Free Counsultancy For Your <br/>
-             logistic engineering Solution Now!</h2>
-           <a href="#" class="btn started-btn" data-aos="fade-down"> Get Started <i class="far fa-paper-plane"></i> </a>
-        </div>
-      </div>
-
-      <div class="faq-home py-5">
-        <div class="container">
-            <div class="row g-lg-5">
-               <div class="col-lg-6">
-                  <h6 data-aos="fade-down"> Ask Anythings with us</h6>
-                  <h2 data-aos="fade-up"> frequently asked questions </h2>
-                  <div class="acordion-sec mt-4" data-aos="fade-down">
-                      
-                    <div class="accordion" id="accordionExample">
-                      <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingOne">
-                          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            Morbi ut ex auctor, viverra dolor sit amet,
-                          </button>
-                        </h2>
-                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                          <div class="accordion-body">
-                            <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                          </div>
-                        </div>
-                      </div>
-                      <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingTwo">
-                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            Morbi ut ex auctor, viverra dolor sit amet,
-                          </button>
-                        </h2>
-                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                          <div class="accordion-body">
-                            <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                          </div>
-                        </div>
-                      </div>
-                      <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingThree">
-                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            Accordion Item #3
-                          </button>
-                        </h2>
-                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                          <div class="accordion-body">
-                            <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-               </div>
-               <div class="col-lg-5">
-                  <div class="ask-any-qus" data-aos="fade-up">
-                     <h5> Have Any Question? </h5>
-                     <div class="form-group">
-                        <label> Full Name </label>
-                        <input type="text" class="form-control"/>
-                     </div>
-                     <div class="form-group">
-                      <label> You Email </label>
-                      <input type="text" class="form-control"/>
-                     </div>
-                     <div class="form-group">
-                      <label> How Can help You? </label>
-                       <textarea class="form-control"></textarea>
-                     </div>
-                     <div class="form-group">
-                        <input type="submit" class="btn ask-btn" value="Ask It Now"/>
-                     </div>
-                  </div>
-               </div>
-            </div>
-        </div>
-      </div>
-
-
-
-
-
-      <div class="blog-sec-home py-5">
-        <div class="container">
-           <div class="heading-one">
-             <h6 class="text-center" data-aos="fade-down"> Recent News </h6>
-             <h1> Blog</h1>
-             <h2 class="text-center" data-aos="fade-up"> Read Our Latest News </h2>
-           </div>
-             <div class="slider-blogs mt-5 d-block" data-aos="fade-down">
-                <div class="latest-blog owl-carousel owl-theme">
-
-                  
-                     <div class="comon-blog-home">
-                         <div class="blog-img-item">
-                            <img src="images/thsnblog01-740x470.jpg" alt="pic"/>
-                         </div>
-                         <div class="content-blog-item">
-                            <span> <i class="fas fa-calendar-alt"></i> May 10, 2021</span> <span class="ms-3"> <i class="fas fa-comment"></i> 3 Comment</span>
-                            <a href="#" class="blog-item-titel d-block"> Importers Achieves Saving Through Logistic First Sale Rule. </a>
-                            <p> There are full service copany is to provide solution fv repairing manage the 
-                              entire service center for car service....</p>
-                           <a href="#" class="red-btn-post"> Read more <i class="fas fa-caret-right"></i> </a>
-                         </div>
-                     </div>
-
-                     <div class="comon-blog-home">
-                       <div class="blog-img-item">
-                          <img src="images/thsnblog01-740x470.jpg" alt="pic"/>
-                       </div>
-                       <div class="content-blog-item">
-                          <span> <i class="fas fa-calendar-alt"></i> May 10, 2021</span> <span class="ms-3"> <i class="fas fa-comment"></i> 3 Comment</span>
-                          <a href="#" class="blog-item-titel d-block"> Importers Achieves Saving Through Logistic First Sale Rule. </a>
-                          <p> There are full service copany is to provide solution fv repairing manage the 
-                            entire service center for car service....</p>
-                         <a href="#" class="red-btn-post"> Read more <i class="fas fa-caret-right"></i> </a>
-                       </div>
-                     </div>
-
-                   <div class="comon-blog-home">
-                     <div class="blog-img-item">
-                        <img src="images/cmt-post-002-1-1044x626.jpg" alt="pic"/>
-                     </div>
-                     <div class="content-blog-item">
-                        <span> <i class="fas fa-calendar-alt"></i> May 10, 2021</span> <span class="ms-3"> <i class="fas fa-comment"></i> 3 Comment</span>
-                        <a href="#" class="blog-item-titel d-block"> Importers Achieves Saving Through Logistic First Sale Rule. </a>
-                        <p> There are full service copany is to provide solution fv repairing manage the 
-                          entire service center for car service....</p>
-                       <a href="#" class="red-btn-post"> Read more <i class="fas fa-caret-right"></i> </a>
-                     </div>
-                   </div>
-
-                   <div class="comon-blog-home">
-                     <div class="blog-img-item">
-                        <img src="images/thsnblog01-740x470.jpg" alt="pic"/>
-                     </div>
-                     <div class="content-blog-item">
-                        <span> <i class="fas fa-calendar-alt"></i> May 10, 2021</span> <span class="ms-3"> <i class="fas fa-comment"></i> 3 Comment</span>
-                        <a href="#" class="blog-item-titel d-block"> Importers Achieves Saving Through Logistic First Sale Rule. </a>
-                        <p> There are full service copany is to provide solution fv repairing manage the 
-                          entire service center for car service....</p>
-                       <a href="#" class="red-btn-post"> Read more <i class="fas fa-caret-right"></i> </a>
-                     </div>
-                   </div>
-                  
-                </div>
-             </div>
-           </div>
-            
-        </div>
-     </div>
-    
-
-    <div class="texttimonial-sec-div py-5">
-       <div class="container">
-         <div class="heading-one">
-           <h6 class="text-center" data-aos="fade-down"> Clients statements </h6>
-           <h1> Testimonal </h1>
-           <h2 class="text-center" data-aos="fade-up">  Saticfied people’s say <br/>
-             about our services </h2>
-         </div>
-         <div class="testimonial-slider" data-aos="fade-down">
-            <div class="testimonial-slide owl-carousel owl-theme">
-               
-                  <div class="client-says-item">
-                    <h6 class="rating"> 
-                     <span> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i>
-                       <i class="fas fa-star"></i> </span> <i class="fas fa-star"></i>
-                    </h6> 
-                    <p> There are many variations of passages of Lorem Ipsum available, but the majority
-                       have suffered alteration in some form, by injected humour,</p>
-                   <div class="d-flex">
-                      <figure>
-                         <img src="images/testimonial-01.png" alt="user"/>
-                      </figure>
-                      <h5 class="ms-3">John Martin
-                        <span class="d-block"> Ceo & Founder </span>
-                      </h5>
-                   </div>
-                  </div>
-
-                  <div class="client-says-item">
-                   <h6 class="rating"> 
-                    <span> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i> </span> <i class="fas fa-star"></i>
-                   </h6> 
-                   <p> There are many variations of passages of Lorem Ipsum available, but the majority
-                      have suffered alteration in some form, by injected humour,</p>
-                  <div class="d-flex">
-                     <figure>
-                        <img src="images/testimonial-02.png" alt="user"/>
-                     </figure>
-                     <h5 class="ms-3">Celine Martin
-                       <span class="d-block"> Ceo & Founder </span>
-                     </h5>
-                  </div>
-                 </div>
-
-                 <div class="client-says-item">
-                   <h6 class="rating"> 
-                    <span> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i> </span> <i class="fas fa-star"></i>
-                   </h6> 
-                   <p> There are many variations of passages of Lorem Ipsum available, but the majority
-                      have suffered alteration in some form, by injected humour,</p>
-                  <div class="d-flex">
-                     <figure>
-                        <img src="images/testimonial-01.png" alt="user"/>
-                     </figure>
-                     <h5 class="ms-3">John Martin
-                       <span class="d-block"> Ceo & Founder </span>
-                     </h5>
-                  </div>
-                 </div>
-
-
-                 <div class="client-says-item">
-                   <h6 class="rating"> 
-                    <span> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i> </span> <i class="fas fa-star"></i>
-                   </h6> 
-                   <p> There are many variations of passages of Lorem Ipsum available, but the majority
-                      have suffered alteration in some form, by injected humour,</p>
-                  <div class="d-flex">
-                     <figure>
-                        <img src="images/testimonial-01.png" alt="user"/>
-                     </figure>
-                     <h5 class="ms-3">John Martin
-                       <span class="d-block"> Ceo & Founder </span>
-                     </h5>
-                  </div>
-                 </div>
-               
-            </div>
-         </div>
-       </div>
-    </div>
-
-     <div class="clients-div-home py-5 position-relative">
-         <div class="container">
-           
-            <div class="heading-one">
-             <h6 class="text-center" data-aos="fade-down"> Clients </h6>
-             <h1> Clients </h1>
-             <h2 class="text-center" data-aos="fade-up">  Trusted by Industry Leaders </h2>
-           </div>
-           <div class="row row-cols-1 row-cols-lg-4 justify-content-center g-lg-5 mt-0">
-              <div class="col">
-                 <div class="clients bg-white shadow text-center px-5 py-3" data-aos="fade-down">
-                    <figure class="mb-0">
-                       <img src="images/client-dark-01.png" alt="clents"/>
-                    </figure>
-
-                 </div>
-              </div>
-              <div class="col">
-               <div class="clients bg-white shadow text-center px-5 py-3" data-aos="fade-up">
-                  <figure class="mb-0">
-                     <img src="images/client-dark-02.png" alt="clents"/>
-                  </figure>
-
-               </div>
-              </div>
-              <div class="col">
-               <div class="clients bg-white shadow text-center px-5 py-3" data-aos="fade-down">
-                  <figure class="mb-0">
-                     <img src="images/client-dark-06.png" alt="clents"/>
-                  </figure>
-
-               </div>
-              </div>
-              <div class="col">
-               <div class="clients bg-white shadow text-center px-5 py-3" data-aos="fade-up">
-                  <figure class="mb-0">
-                     <img src="images/client-dark-04.png" alt="clents"/>
-                  </figure>
-
-               </div>
-              </div>
-              <div class="col">
-               <div class="clients bg-white shadow text-center px-5 py-3" data-aos="fade-down">
-                  <figure class="mb-0">
-                     <img src="images/client-dark-05.png" alt="clents"/>
-                  </figure>
-
-               </div>
-              </div>
-              <div class="col">
-               <div class="clients bg-white shadow text-center px-5 py-3" data-aos="fade-up">
-                  <figure class="mb-0">
-                     <img src="images/client-dark-06.png" alt="clents"/>
-                  </figure>
-
-               </div>
-              </div>
-              <div class="col">
-               <div class="clients bg-white shadow text-center px-5 py-3" data-aos="fade-down">
-                  <figure class="mb-0">
-                     <img src="images/client-dark-04.png" alt="clents"/>
-                  </figure>
-
-               </div>
-              </div>
-           </div>
-         </div>
-         
-     </div>
-
-
- </section>
-
 
  <footer>
   <div class="subsribe-section">
@@ -819,10 +297,7 @@ But in certain circumstances and owing to the claims of duty or the obligations 
                       <input type="text" class="form-control" placeholder="Enter your email"/>
                       <button type="submit" class="btn subscribe"> <i class="fas fa-paper-plane"></i> </button>
                   </div>
-               </div>
-
-               
-               
+               </div>                              
            </div>
         </div>
      </div>

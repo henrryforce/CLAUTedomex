@@ -7,15 +7,11 @@ if(!isset($_SESSION['id_usuario'])){
 }
   include_once "php/Conexion.php";
   require_once "php/addContactos.php";
+  require_once "php/addContactosT.php";
   require_once "php/addProducts.php";
   require_once "php/addRequ.php";
   $database=new Conexion;
   $obj=new Conexion;
-  //$id_usr=9;                              
-  $database-> query("SELECT * FROM contacto WHERE id_usuario=$id_usr");
-  $rows = $database->resultSet();
-  foreach ($rows as $row):
-  endforeach;
   $obj -> query("SELECT  `Logo` FROM `archivos` WHERE `ID_archivo` = $id_usr");
   $res= $obj -> resultSet();
   ?>
@@ -187,7 +183,7 @@ if(!isset($_SESSION['id_usuario'])){
             
             <!--------------------------------- TABLA EDITAR --------------------------------->    
             <section id = "tabEditar" class="container mt-2 mb-2 p-2 ">
-              <form action="php/addContactos.php" method="POST">                
+              <form action="php/addContactosT.php" method="POST">                
                 <div class="table-responsive">
                   <div class="table-wrapper">
                       <div class="table-title">                        
@@ -226,13 +222,13 @@ if(!isset($_SESSION['id_usuario'])){
                           </thead>                          
                           <tbody>                                                            
                               <tr>
-                                  <input type="hidden" id="ed_id" name="ed_id" value="<?php echo $id_cont; ?>">
-                                  <td><input type="text" id="ed_name" name="ed_name" value="<?php echo $name; ?>" placeholder="Nombre"></td>
-                                  <td><input type="text" id="ed_job" name="ed_job" value="<?php echo $job; ?>" placeholder="Puesto"></td>
-                                  <td><input type="text" id="ed_mail" name="ed_mail" value="<?php echo$mail; ?>" placeholder="Email"></td>
-                                  <td><input type="text" id="ed_tel" name="ed_tel" value="<?php echo $tele; ?>" placeholder="Telefono"></td>
-                                  <td><input type="text" id="ed_ext" name="ed_ext" value="<?php echo $exte; ?>" placeholder="Extensión"></td>
-                                  <td><input type="text" id="ed_cel" name="ed_cel" value="<?php echo $cel; ?>" placeholder="Celular"></td>                                  
+                                  <input type="hidden" id="ed_id" name="ed_id" value="<?php echo $id_cont_t; ?>">
+                                  <td><input type="text" id="ed_name" name="ed_name" value="<?php echo $name_t; ?>" placeholder="Nombre"></td>
+                                  <td><input type="text" id="ed_job" name="ed_job" value="<?php echo $job_t; ?>" placeholder="Puesto"></td>
+                                  <td><input type="text" id="ed_mail" name="ed_mail" value="<?php echo$mail_t; ?>" placeholder="Email"></td>
+                                  <td><input type="text" id="ed_tel" name="ed_tel" value="<?php echo $tele_t; ?>" placeholder="Telefono"></td>
+                                  <td><input type="text" id="ed_ext" name="ed_ext" value="<?php echo $exte_t; ?>" placeholder="Extensión"></td>
+                                  <td><input type="text" id="ed_cel" name="ed_cel" value="<?php echo $cel_t; ?>" placeholder="Celular"></td>                                  
                               </tr>
                           </tbody>
                       </table>
@@ -242,7 +238,7 @@ if(!isset($_SESSION['id_usuario'])){
             </section>
             <!--------------------------------- TABLA 1 --------------------------------->             
             <div class="container">
-              <form action="php/addContactos.php" id="addContacts" name="adc" method="POST">
+              <form action="php/addContactosT.php" id="addContactsT" name="adct" method="POST">
                 <div class="table-responsive">
                   <div class="table-wrapper">
                       <div class="table-title">
@@ -270,7 +266,10 @@ if(!isset($_SESSION['id_usuario'])){
                                   <th>Opciones</th>
                               </tr>
                           </thead>                          
-                          <tbody>                                   
+                          <tbody>       
+                            <?php
+                              $database-> query("SELECT * FROM contacto WHERE id_usuario=$id_usr");
+                              $rows = $database->resultSet();?>
                               <?php foreach($rows as $row) :?>
                               <tr>                                  
                                   <td><?php echo $row['Nombre']?></td>
@@ -278,12 +277,13 @@ if(!isset($_SESSION['id_usuario'])){
                                   <td><?php echo $row['Email']?></td>
                                   <td><?php echo $row['Tel']?></td>
                                   <td><?php echo $row['Ext']?></td>
-                                  <td><?php echo $row['Cel']?></td>                                  
-                                  <!-- OPCIONES--> 
+                                  <td><?php echo $row['Cel']?></td>           
+                                  <input type="hidden" id="txt_usr" name="txt_usr" value="<?php echo $id_usr?>">                       
+                                  <!-- OPCIONES-->                                   
                                   <td>
                                     <ul class="list-group list-group-horizontal">
-                                      <a href="PaginaprincipalDeTractoras.php?edit=<?php $id_cont =$row['ID_contacto']; echo $row['ID_contacto'];?>"class=" list-group-item"><i class="bi bi-pencil-square">Edit</a></i>
-                                      <a href="php/addContactos.php?delete=<?php echo $row['ID_contacto'];?>"class=" list-group-item"><i class="bi bi-archive-fill">Delete</a></i>
+                                      <a href="PaginaprincipalDeTractoras.php?editt=<?php echo $row['ID_contacto'];?>"class=" list-group-item"><i class="bi bi-pencil-square">Edit</a></i>
+                                      <a href="php/addContactosT.php?deletet=<?php echo $row['ID_contacto'];?>"class=" list-group-item"><i class="bi bi-archive-fill">Delete</a></i>
                                     </ul>
                                       
                                   </td>
@@ -296,7 +296,7 @@ if(!isset($_SESSION['id_usuario'])){
               </form>
               <!------------------------------------------ MODAL  ------------------------------------------>          
 
-              <form action="php/addRequ.php" id="addContacts" name="adc" method="post">
+              <form action="php/addContactosT.php" id="addContactsT" name="adct" method="POST">
               <div class="modal fade" id="tablaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog">
               <div class="modal-content">
@@ -312,42 +312,43 @@ if(!isset($_SESSION['id_usuario'])){
 
 
               <div class="modal-body">              
-                <form action="php/addProducts.php" id="addContacts" name="apd" method="POST">
+              <form action="php/addContactosT.php" id="addContactsT" name="adct" method="POST">
                   <div class="form-group">
                     <label for="exampleFormControlInput1">Nombre</label>
-                    <input type="text" class="form-control" id="txt_nombre" name="txt_nombre" placeholder="Ejemplo: Alejandro Lopez Lopez">
+                    <input type="text" class="form-control" id="tr_nombre" name="tr_nombre" placeholder="Ejemplo: Alejandro Lopez Lopez">
                   </div>
 
                   <div class="form-group mt-3">
                     <label for="exampleFormControlInput2">Puesto</label>
-                    <input type="text" class="form-control" id="txt_puesto" name="txt_puesto"  placeholder="Ejemplo: IT Support">
+                    <input type="text" class="form-control" id="tr_puesto" name="tr_puesto"  placeholder="Ejemplo: IT Support">
                   </div>
 
                   <div class="form-group mt-3">
                     <label for="exampleFormControlInput3">Email</label>
-                    <input type="email" class="form-control" id="txt_mail" name="txt_mail" placeholder="Ejemplo: ale2201@example.com">
+                    <input type="email" class="form-control" id="tr_mail" name="tr_mail" placeholder="Ejemplo: ale2201@example.com">
                   </div>
 
                   <div class="form-group mt-3">
                     <label for="exampleFormControlInput4">Teléfono</label>
-                    <input type="tel" class="form-control" id="txt_tel" name="txt_tel" placeholder="Ejemplo: 55-55-55-55">
+                    <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required class="form-control" id="tr_tel" name="tr_tel" placeholder="Ejemplo: 55-55-55-55">
                   </div>
 
                   <div class="form-group mt-3">
                     <label for="exampleFormControlInput5">Extensión</label>
-                    <input type="number" class="form-control" id="txt_ext" name="txt_ext" placeholder="Ejemplo: 2201">
+                    <input type="number" class="form-control" id="tr_ext" name="tr_ext" placeholder="Ejemplo: 2201">
                   </div>
 
                   <div class="form-group mt-3">
                     <label for="exampleFormControlInput6">Celular</label>
-                    <input type="tel" class="form-control" id="txt_cel" name = "txt_cel" placeholder="Ejemplo: 55-55-55-55">
+                    <input type="tel" class="form-control" id="tr_cel" name = "tr_cel" placeholder="Ejemplo: 55-55-55-55">
+                    <input type="hidden" id="tr_usr" name="tr_usr" value="<?php echo $id_usr?>">                    
                   </div>                  
                 </form>                                                  
               </div>
               <!-- FIN ELEMENTOS CONTENIDOS EN EL MODAL -->
               <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>-
-              <input href="PaginaprincipalDeProveedores.php?edit=<?php echo $row['ID_contacto'];?>" type="submit" name= "btnadd" class="btn btn-primary" value="Guardar">
+              <input href="PaginaprincipalDeTractoras.php?edit=<?php echo $row['ID_contacto'];?>" type="submit" name= "btnaddC" class="btn btn-primary" value="Guardar">
               </div>
               </div>
               </div>
@@ -459,14 +460,14 @@ if(!isset($_SESSION['id_usuario'])){
                                 <td class="align-top"><?php echo $row['Comentarios']?></td>                            
                                   <!-- OPCIONES--> 
                                   <td>
-                                    <?php if(isset($row['ID_req_producto'])){
+                                    <?php /*if(isset($row['ID_req_producto'])){
                                       $id_requerimiento='';
                                     }else{
                                       $id_requerimiento = $row['ID_req_producto'];
-                                    }?>
+                                    }*/?>
                                     <ul class="list-group list-group-horizontal">
-                                      <a href="PaginaprincipalDeTractoras.php?editq=<?php echo $id_requerimiento;?>"class=" list-group-item"><i class="bi bi-pencil-square">Edit</a></i>
-                                      <a href="php/addRequ.php?deleteq=<?php echo $id_requerimiento;?>"class=" list-group-item"><i class="bi bi-archive-fill">Delete</a></i>
+                                      <a href="PaginaprincipalDeTractoras.php?editq=<?php echo $row['ID_req_producto'];?>"class=" list-group-item"><i class="bi bi-pencil-square">Edit</a></i>
+                                      <a href="php/addRequ.php?deleteq=<?php echo $row['ID_req_producto'];?>"class=" list-group-item"><i class="bi bi-archive-fill">Delete</a></i>
                                     </ul>                                      
                                   </td>
                               </tr>
@@ -519,7 +520,7 @@ if(!isset($_SESSION['id_usuario'])){
                     <div class="form-group mt-3">
                       <label for="exampleFormControlTextarea1">Otros comentarios</label>
                       <textarea class="form-control" id="txt_aComents" name="txt_aComents" rows="5"></textarea>
-                      <input type="hidden" id="txt_usuR" name="txt_usuR" value="<?php echo $id_usr?>">
+                      <input type="hidden" id="txt_usuR" name="txt_usuR" value="<?php echo $id_usr?>">                      
                     </div>
                   </form>                                                          
                 </div>

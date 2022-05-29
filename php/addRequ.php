@@ -26,6 +26,7 @@
 
 		$_SESSION['message'] = "¡Se han agregado con éxito los requerimientos!";
         $_SESSION['msg_type'] = "success";
+
         //Switch case en donde realiza los insert en las tablas Productos y Requerimiento_producto, con base en el catalogo seleccionado
         switch ($sel_com){
         	case '1': //Se insertan los datos en las tablas Productos y Requerimiento_producto con el Comodity Productos                
@@ -89,6 +90,7 @@
                     $database->bind(2, $volumen);
                     $database->bind(3, $coments);
                     $database->bind(4, $id_user3);
+                    $database->execute();
 
                     $database->query("SELECT * FROM requerimiento_producto WHERE ID_usuario= $id_user3"); //Se obtiene el ultimo                    
                     $rows= $database->resultSet();                                                        //ID del la tabla requerimiento_producto
@@ -114,6 +116,7 @@
                     $database->bind(2, $volumen);
                     $database->bind(3, $coments);
                     $database->bind(4, $id_user3);
+                    $database->execute();
 
                     $database->query("SELECT * FROM requerimiento_producto WHERE ID_usuario= $id_user3"); //Se obtiene el ultimo                    
                     $rows= $database->resultSet();                                                        //ID del la tabla requerimiento_producto
@@ -141,6 +144,7 @@
                     $database->bind(2, $volumen);
                     $database->bind(3, $coments);
                     $database->bind(4, $id_user3);
+                    $database->execute();
 
                     $database->query("SELECT * FROM requerimiento_producto WHERE ID_usuario= $id_user3"); //Se obtiene el ultimo                    
                     $rows= $database->resultSet();                                                        //ID del la tabla requerimiento_producto
@@ -167,6 +171,7 @@
                     $database->bind(2, $volumen);
                     $database->bind(3, $coments);
                     $database->bind(4, $id_user3);
+                    $database->execute();
 
                     $database->query("SELECT * FROM requerimiento_producto WHERE ID_usuario= $id_user3"); //Se obtiene el ultimo                    
                     $rows= $database->resultSet();                                                        //ID del la tabla requerimiento_producto
@@ -192,6 +197,7 @@
                     $database->bind(2, $volumen);
                     $database->bind(3, $coments);
                     $database->bind(4, $id_user3);
+                    $database->execute();
 
                     $database->query("SELECT * FROM requerimiento_producto WHERE ID_usuario= $id_user3"); //Se obtiene el ultimo                    
                     $rows= $database->resultSet();                                                        //ID del la tabla requerimiento_producto
