@@ -239,7 +239,7 @@ if(!isset($_SESSION['id_usuario'])){
                               </tr>
                           </thead>                          
                           <tbody>      
-                            <?php $database-> query("SELECT * FROM contacto WHERE id_usuario=$id_usr");?>
+                            <?php $database-> query("SELECT * FROM contacto WHERE ID_usuario=$id_usr");?>
                             <?php $rows = $database->resultSet();?>
                               <?php foreach($rows as $row) :?>
                               <tr>                                                                    
@@ -255,11 +255,12 @@ if(!isset($_SESSION['id_usuario'])){
                                   $id_c='';
                                 }else{
                                   $id_c = $row['ID_contacto'];
-                                }?>
+                                }
+                                $id_c = $row['ID_contacto'];?>
                                 <!-- OPCIONES--> 
                                 <td>
                                   <ul class="list-group list-group-horizontal">
-                                    <a href="PaginaprincipalDeProveedores.php?edit=<?php $id_c;?>" class=" list-group-item"><i class="bi bi-pencil-square">Edit</a></i>
+                                    <a href="PaginaprincipalDeProveedores.php?edit=<?php echo $id_c;?>" class=" list-group-item"><i class="bi bi-pencil-square">Edit</a></i>
                                     <a href="php/addContactos.php?delete=<?php echo $id_c;?>" class=" list-group-item"><i class="bi bi-archive-fill">Delete</a></i>
                                   </ul>                                    
                                 </td>

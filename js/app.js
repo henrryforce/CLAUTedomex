@@ -138,6 +138,7 @@ function load () {
       .addEventListener('click', changePassPerfilProveedor)
     document.getElementById('logout').addEventListener('click', logout);
     document.getElementById('btnCerts').addEventListener('click', sendCerts);
+    document.getElementById('listaPaises').addEventListener('click', borraPais);
     document
       .getElementById('btnSavePais')
       .addEventListener('click', agregarPais);
@@ -415,8 +416,15 @@ function contactoform (e) {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data)
+        if(data == 'send'){
+          form.reset();
+      creaNotificacion(noti,"!Formulario enviado con exito¡");
+      modificaNotificacion(noti,'alert alert-success');
+        }else{
+          creaNotificacion(noti,"!Error al enviar el Formulario¡");
+        }
       })
+      
   }
 }
 function changePassPerfilProveedor (e) {
