@@ -162,22 +162,25 @@ function load() {
       });
   }
   if(ubi.includes("/Busquedaproveedores(UsuarioTractora).php")){
-  document.addEventListener("click",function(e){
-    if(e.target.className =='btn btn-primary cardbtn'){
-      let id = e.target.parentElement.firstElementChild.value;
-      let data = new FormData();
-      data.append("id",id);
-      data.append("getData",1);
+  document.addEventListener("click",function(e){//un evento en el dom completo sobre click ya que no sabemos cuantas cards se pueden generar
+    if(e.target.className =='btn btn-primary cardbtn'){//verificamos que el objeto clickeado tenga cla clase que nos interesa
+      let id = e.target.parentElement.firstElementChild.value; //obtenemos el papa del elemento clickeado luego su primer hijo que es el input con el id
+      let data = new FormData();//se crea un form data para los datos
+      data.append("id",id);//agregamos el ID
+      data.append("getData",1);//variable de control y hacemos fetch
       fetch("../php/pruebas.php", {
         method: "POST",
         body:data
       })
         .then((res) => res.json())
         .then((data) => {
+          console.log(data);
+          let noti = document.getElementById('notificaciones');
+          document.getElementById('nomProv').innerText=data[0]['Empresa'];
+          /*
           let label = document.getElementById('docPresentacion');
-          label.setAttribute("href", "../php/"+data[0]['Presentacion']);
-        
-        
+          label.setAttribute("href", "../php/"+data[0]['Presentacion']);        
+        */
         });
     }
   })
