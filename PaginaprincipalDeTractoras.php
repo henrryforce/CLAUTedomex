@@ -330,7 +330,7 @@ if(!isset($_SESSION['id_usuario'])){
 
                   <div class="form-group mt-3">
                     <label for="exampleFormControlInput4">Teléfono</label>
-                    <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required class="form-control" id="tr_tel" name="tr_tel" placeholder="Ejemplo: 55-55-55-55">
+                    <input type="tel" pattern="[0-9]{10}" required class="form-control" id="tr_tel" name="tr_tel" placeholder="Ejemplo: 55-5555-5555">
                   </div>
 
                   <div class="form-group mt-3">
@@ -348,7 +348,7 @@ if(!isset($_SESSION['id_usuario'])){
               <!-- FIN ELEMENTOS CONTENIDOS EN EL MODAL -->
               <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>-
-              <input href="PaginaprincipalDeTractoras.php?edit=<?php echo $row['ID_contacto'];?>" type="submit" name= "btnaddC" class="btn btn-primary" value="Guardar">
+              <input href="" type="submit" name= "btnaddC" class="btn btn-primary" value="Guardar">
               </div>
               </div>
               </div>
