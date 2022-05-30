@@ -150,7 +150,7 @@ if(!isset($_SESSION['id_usuario'])){
                 <!--------------------------------- UP BAR BUTTONS --------------------------------->
                 <div class="profile-userbuttons text-center mb-4">
                     <button type="button" class="btn btn-primary" id="btnAdministrarcuenta">Administrar Perfil</button>
-                    <button type="button" class="btn btn-primary">Lista de proveedores</button>
+                    <a type="button" class="btn btn-primary" href="/Busquedaproveedores.php">Lista de proveedores</a>
                 </div>
                 <!-- ROW(->) COL(v)-->                                    
                 <!-- LOGO Y NOMBRE DE LA MARCA-->

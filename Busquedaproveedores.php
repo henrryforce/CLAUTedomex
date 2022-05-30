@@ -113,7 +113,7 @@
     <div class="container mb-5">
       <div class="card">
       <!--TITULO DE LA CARTA-->
-        <h5 class="card-header text-center">Lista de tractoras</h5>
+        <h5 class="card-header text-center">Lista de proveedores</h5>
         <!--CUERPO DE LA CARD (CONTENIDO)-->
           <div class="card-body">            
             <form>
@@ -141,7 +141,7 @@
   </section>
   <section class="main-body pt-5 float-start industry-pages">
   <div class="container mt-1">
-      <a href="#" target="_blank" rel="noopener noreferrer" id="lbltest">Etiqueta de prueba</a>
+      
       <div class="row h-100">
       <?php
         foreach ($idsProvedores as $proveedor) {
@@ -288,36 +288,36 @@
             <div class="col-auto" style="margin-right: 15px;">   
               <div class="input-group">
                 <div class="input-group-text">Tel:</div>
-                <input type="text" class="form-control" value="55-555-555-55" style="width: 135px;" readonly>
+                <input type="text" class="form-control" id="mtel" value="55-555-555-55" style="width: 135px;" readonly>
               </div>                                                     
             </div>
             <div class="col-auto" style="margin-right: 15px;">   
               <div class="input-group">
                 <div class="input-group-text">Ext:</div>
-                <input type="text" class="form-control"  value="0259" readonly style="width: 100px;">
+                <input type="text" class="form-control" id="mExt"  value="0259" readonly style="width: 100px;">
               </div>               
             </div>
             <div class="col-auto">
               <div class="input-group">
                 <div class="input-group-text">Sitio Web: </div>
-                <input type="text" class="form-control" style="width: 240px;" value="www.wefe.com.mx" readonly>
+                <input type="text" class="form-control" style="width: 240px;" id="mwebsite" value="www.wefe.com.mx" readonly>
               </div>                            
             </div>
             <div class="col-12">
               <label for="inputAddress">Dirección:</label>
-              <input type="text" class="form-control" id="inputAddress" value="Sur 25 Mz. 7 Leyes de Reforma" readonly>
-            </div>
-            <div class="col-md-6">
-              <label for="inputCity" class="form-label">Ciudad</label>
-              <input type="text" class="form-control" id="inputCity" value="CDMX" readonly>
+              <input type="text" class="form-control" id="mAddress" value="Sur 25 Mz. 7 Leyes de Reforma" readonly>
             </div>
             <div class="col-md-4">
-              <label for="inputState" class="form-label">Estado</label>
+              <label for="inputCity" class="form-label">Alcaldia</label>
               <input type="text" class="form-control" id="inputCity" value="CDMX" readonly>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-5">
+              <label for="inputState" class="form-label">Estado</label>
+              <input type="text" class="form-control" id="inputEstado" value="CDMX" readonly>
+            </div>
+            <div class="col-md-3">
               <label for="inputZip" class="form-label">Codigo Postal</label>
-              <input type="text" class="form-control" id="inputZip" value="09310" readonly>
+              <input type="text" class="form-control" id="inputCP" value="09310" readonly>
             </div>
             <div class="col-md-3">
               <label for="inputVentas" class="form-label">Ventas Anuales</label>
@@ -329,31 +329,19 @@
             </div>
             <div class="col-12">
               <label for="txtA_desc">Descripcion de la empresa:</label>
-              <textarea  class="form-control" name="" id="" cols="12" rows="3" readonly></textarea>
+              <textarea  class="form-control"  id="txtempresa" cols="12" rows="3" readonly></textarea>
             </div>
             <div class="col-md-6">
-            <a href="#" target="_blank" rel="noopener noreferrer" id="docPresentacion">Etiqueta de prueba</a>
+            <a href="#" target="_blank" rel="noopener noreferrer" id="docPresentacion">Presentación</a>
             </div>
             <div class="col-12">
               <label for="" class="form-label">Exportaciones</label>
-              <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Pais</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td colspan="2">La chingada</td>                    
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td colspan="2">La Berga</td>
-                  </tr>
-                </tbody>
-              </table>
+              <input type="text" class="form-control" id="exports" value="500" readonly>
+            </div>
+            <div class="col-12">
+              <label for="" class="form-label">Certificaciones</label>
+              <input type="text" class="form-control" id="certs" value="500" readonly>
+              <a href="#" target="_blank" rel="noopener noreferrer" id="docCerts">Ver Comprobantes</a>
             </div>
             <div class="col-12">
               <label for="" class="form-label">Productos</label>
@@ -377,7 +365,7 @@
       </div>
       <div class="modal-footer">                
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Certificaciones</button>
+        
         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Contactar</button>
       </div>
     </div>

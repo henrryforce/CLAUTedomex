@@ -161,7 +161,7 @@ function load() {
         }
       });
   }
-  if(ubi.includes("/Busquedaproveedores(UsuarioTractora).php")){
+  if(ubi.includes("/Busquedaproveedores.php")){
   document.addEventListener("click",function(e){//un evento en el dom completo sobre click ya que no sabemos cuantas cards se pueden generar
     if(e.target.className =='btn btn-primary cardbtn'){//verificamos que el objeto clickeado tenga cla clase que nos interesa
       let id = e.target.parentElement.firstElementChild.value; //obtenemos el papa del elemento clickeado luego su primer hijo que es el input con el id
@@ -177,6 +177,21 @@ function load() {
           console.log(data);
           let noti = document.getElementById('notificaciones');
           document.getElementById('nomProv').innerText=data[0]['Empresa'];
+          document.getElementById('mtel').setAttribute("value",data[0]['Tel']);
+          document.getElementById('mwebsite').setAttribute("value",data[0]['Pagina_web']);
+          document.getElementById('mExt').setAttribute("value",data[0]['Ext']);
+          document.getElementById('mAddress').setAttribute("value",data[0]['Calle']+' '+data[0]['N_Ext']+' '+data[0]['N_Int']+', '+data[0]['Colonia']);
+          document.getElementById('inputCity').setAttribute("value",data[0]['Alcaldia']);
+          document.getElementById('inputEstado').setAttribute("value",data[0]['estado']);
+          document.getElementById('inputCP').setAttribute("value",data[0]['CP']);
+          document.getElementById('inputVentas').setAttribute("value",'$'+data[0]['Ventas_anuales']); 
+          document.getElementById('inputNumE').setAttribute("value",data[0]['Num_empleados']);
+          document.getElementById('txtempresa').value =data[0]['Descripcion'];
+          setLink(data[0]['Presentacion'],document.getElementById('docPresentacion'))
+          document.getElementById('exports').setAttribute("value",noNull(data[0]['paisesExporta']));
+          document.getElementById('certs').setAttribute("value",noNull(data[0]['listaCerts']));
+          setLink(data[0]['path'],document.getElementById('docCerts'))
+          
           /*
           let label = document.getElementById('docPresentacion');
           label.setAttribute("href", "../php/"+data[0]['Presentacion']);        
@@ -830,4 +845,20 @@ function creaNotificacion(padre, texto) {
 }
 function modificaNotificacion(padre, clas) {
   padre.className = clas;
+}
+function noNull(valor){
+  if(valor == null){
+    return 'No definido';
+  }else{
+    return valor;
+  }
+}
+function setLink(valor,etiqueta){
+  if(valor == null){
+    etiqueta.removeAttribute("target");
+    etiqueta.removeAttribute("href")
+  }else{
+    etiqueta.setAttribute("href","../php/"+valor);
+    etiqueta.setAttribute("target","_blank");
+  }
 }
