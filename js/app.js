@@ -161,7 +161,29 @@ function load() {
         }
       });
   }
+  if(ubi.includes("/Busquedaproveedores(UsuarioTractora).php")){
+  document.addEventListener("click",function(e){
+    if(e.target.className =='btn btn-primary cardbtn'){
+      let id = e.target.parentElement.firstElementChild.value;
+      let data = new FormData();
+      data.append("id",id);
+      data.append("getData",1);
+      fetch("../php/pruebas.php", {
+        method: "POST",
+        body:data
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          let label = document.getElementById('docPresentacion');
+          label.setAttribute("href", "../php/"+data[0]['Presentacion']);
+        
+        
+        });
+    }
+  })
+  }
 }
+
 /**
  *
  */
@@ -778,6 +800,7 @@ function enviarPaises(e) {
       }
     });
 }
+
 /**Logout */
 function logout() {
   data = new FormData();
@@ -790,6 +813,7 @@ function logout() {
     location.reload();
   });
 }
+
 /*
  *Funcion para crear un elemento <p> para notificaciones en el DOM
  */
