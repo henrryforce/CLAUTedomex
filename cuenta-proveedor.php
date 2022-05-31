@@ -179,11 +179,11 @@ if (!isset($_SESSION['id_usuario'])) {
             </div>
             <!-- LABEL 2 -->
             <div class="col-lg-6 mx-auto mt-3">
-              <input type="password" class="form-control" name="password" placeholder="Password">
+              <input data-toggle="password" class="form-control" type="password" class="form-control" name="password" placeholder="Password">
             </div>
             <!-- LABEL 3 -->
             <div class="col-lg-6 mx-auto mt-3">
-              <input type="password" class="form-control" name="password2" placeholder="Confirmar Password">
+              <input data-toggle="password" class="form-control" type="password" class="form-control" name="password2" placeholder="Confirmar Password">
             </div>
             <!-- BOTON ACTUALIZAR -->
             <div class="container text-center mt-3">
@@ -630,6 +630,9 @@ if (!isset($_SESSION['id_usuario'])) {
 
   <!-- script de funcionalidad NO ELIMINAR >:v  -->
   <script src="js/app.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+                <script
+                  src="https://unpkg.com/bootstrap-show-password@1.2.1/dist/bootstrap-show-password.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/jquery.min.js"></script>
   </script>

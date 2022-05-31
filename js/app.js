@@ -479,6 +479,8 @@ function contactoform(e) {
     data.get("subject") != "" &&
     data.get("message") != ""
   ) {
+    creaNotificacion(noti,"Enviando el correo");
+    modificaNotificacion(noti,'alert alert-warning');
     fetch("../php/contact.php", {
       method: "POST",
       body: data,
@@ -487,16 +489,17 @@ function contactoform(e) {
       .then((data) => {
         if (data == "send") {
           form.reset();
-          creaNotificacion(noti, "!Formulario enviado con exito¡");
+          creaNotificacion(noti, "¡Formulario enviado con exito!");
           modificaNotificacion(noti, "alert alert-success");
         } else {
-          creaNotificacion(noti, "!Error al enviar el Formulario¡");
+          creaNotificacion(noti, "¡Error al enviar el Formulario!");
         }
       });
   }
 }
 function changePassPerfilProveedor(e) {
   e.preventDefault();
+  const exprecionRegular = /^(?=.{8,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$/;
   let form = document.getElementById("formPassword");
   let noti = document.getElementById("notificaciones");
   let data = new FormData(form);
@@ -515,11 +518,15 @@ function changePassPerfilProveedor(e) {
   if (data.get("password") !== data.get("password2")) {
     creaNotificacion(noti, "Las contraseñas no coinciden");
   }
+  if(!exprecionRegular.test(data.get("password"))){
+    creaNotificacion(notifica, "La contraseña no cumple con los criterios minimos de seguridad debe contener al menos 1 mayúscula, 1 minúscula, 1 dígito, 1 carácter especial y tiene una longitud de al menos 8");
+  }
   if (
     data.get("email") !== "" &&
     data.get("password") !== "" &&
     data.get("password2") !== "" &&
-    data.get("password") === data.get("password2")
+    data.get("password") === data.get("password2") &&
+    exprecionRegular.test(data.get("password"))
   ) {
     var toast = new bootstrap.Toast(document.getElementById("liveToast"));
     document.getElementById("toasContaider").style.zIndex = "11";

@@ -56,7 +56,6 @@ class enviarCorreo{
     }
     function sendCode($code){
         $mail = new PHPMailer(true);
-
         try {
         //Configuración del servidor
         $mail->SMTPDebug = SMTP::DEBUG_OFF;             //Habilitar los mensajes de depuración
