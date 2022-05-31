@@ -162,20 +162,20 @@ function load() {
       });
   }
   if(ubi.includes("/Busquedaproveedores.php")){
+    document.getElementById("logout").addEventListener("click", logout);
   document.addEventListener("click",function(e){//un evento en el dom completo sobre click ya que no sabemos cuantas cards se pueden generar
     if(e.target.className =='btn btn-primary cardbtn'){//verificamos que el objeto clickeado tenga cla clase que nos interesa
       let id = e.target.parentElement.firstElementChild.value; //obtenemos el papa del elemento clickeado luego su primer hijo que es el input con el id
+      let noti = document.getElementById('notificaciones');
       let data = new FormData();//se crea un form data para los datos
       data.append("id",id);//agregamos el ID
       data.append("getData",1);//variable de control y hacemos fetch
-      fetch("../php/pruebas.php", {
+      fetch("../php/listarproveedores.php", {
         method: "POST",
         body:data
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
-          let noti = document.getElementById('notificaciones');
           document.getElementById('nomProv').innerText=data[0]['Empresa'];
           document.getElementById('mtel').setAttribute("value",data[0]['Tel']);
           document.getElementById('mwebsite').setAttribute("value",data[0]['Pagina_web']);
@@ -190,13 +190,33 @@ function load() {
           setLink(data[0]['Presentacion'],document.getElementById('docPresentacion'))
           document.getElementById('exports').setAttribute("value",noNull(data[0]['paisesExporta']));
           document.getElementById('certs').setAttribute("value",noNull(data[0]['listaCerts']));
-          setLink(data[0]['path'],document.getElementById('docCerts'))
-          
-          /*
-          let label = document.getElementById('docPresentacion');
-          label.setAttribute("href", "../php/"+data[0]['Presentacion']);        
-        */
+          setLink(data[0]['path'],document.getElementById('docCerts'));
         });
+        data = new FormData();
+        data.append("id",id);//agregamos el ID
+        data.append("getProductos",1);//variable de control y hacemos fetch
+        fetch("../php/listarproveedores.php", {
+          method: "POST",
+          body:data
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            //console.log(data);
+            let tabla = document.getElementById('tableBodyModal');
+            let cat = ['Producto','Proceso','Materia prima','Servicios indirectos'];            
+            tabla.innerHTML='';
+            data.forEach((registro) =>{
+              let tr = document.createElement('tr');
+              let tdID = document.createElement('td');
+              tdID.innerText = cat[registro['ID_catalogo']-1];
+              let tdProducto = document.createElement('td');
+              tdProducto.innerText = registro['Producto'];
+              tr.appendChild(tdID);
+              tr.appendChild(tdProducto);
+              tabla.appendChild(tr);
+              console.log(registro);
+            });
+          });
     }
   })
   }

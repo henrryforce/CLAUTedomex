@@ -87,7 +87,7 @@
               <li class="nav-item"> <a class="nav-link" href="#">Registro</a> </li>
               <li class="nav-item"> <a class="nav-link" href="#">Login</a> </li>
               <li class="nav-item"> <a class="nav-link" href="#">Costo</a> </li>
-              <li class="nav-item accordion-item"> <a class="nav-link" href="#">Cerrar sesión</a> </li>
+              <li class="nav-item accordion-item"> <a class="nav-link" href="#" id="logout">Cerrar sesión</a> </li>
              </li>
             </ul>
           </div>
@@ -251,7 +251,7 @@
                <a href="#"> Costo </a>
             </li>            
             <li>
-              <a href="#"> Cerrar sesión </a>
+              <a href="#" id="logout"> Cerrar sesión </a>
            </li>            
          </ul>
       </div>
@@ -352,11 +352,12 @@
                     <th scope="col">Producto</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody id="tableBodyModal">
                   <tr>
-                    <th scope="row">1</th>
+                    <td scope="row">1</td>
                     <td colspan="2">Taquitos al pastor</td>                    
                   </tr>
+                  
                 </tbody>
               </table>
             </div>
