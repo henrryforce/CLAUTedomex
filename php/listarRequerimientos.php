@@ -25,7 +25,7 @@ if(isset($_POST['id']) && isset($_POST['getDataT'])){
                         requerimiento_producto.Volumen_anual, requerimiento_producto.Comentarios
                         FROM producto
                         INNER JOIN requerimiento_producto ON producto.ID_producto = requerimiento_producto.ID_req_producto
-                        WHERE requerimiento_producto.ID_usuario=$id");
+                        WHERE requerimiento_producto.ID_usuario=$idConsulta");
         $res = $obj -> resultSet();
         echo json_encode($res);
     }
