@@ -165,7 +165,9 @@ function load() {
     document.getElementById("logout").addEventListener("click", logout);
   document.addEventListener("click",function(e){//un evento en el dom completo sobre click ya que no sabemos cuantas cards se pueden generar
     if(e.target.className =='btn btn-primary cardbtn'){//verificamos que el objeto clickeado tenga cla clase que nos interesa
+      document.getElementById('DatosContacto').classList.add("d-none");
       let id = e.target.parentElement.firstElementChild.value; //obtenemos el papa del elemento clickeado luego su primer hijo que es el input con el id
+      localStorage.setItem('idCard',id);
       let noti = document.getElementById('notificaciones');
       let data = new FormData();//se crea un form data para los datos
       data.append("id",id);//agregamos el ID
@@ -214,11 +216,12 @@ function load() {
               tr.appendChild(tdID);
               tr.appendChild(tdProducto);
               tabla.appendChild(tr);
-              console.log(registro);
+              
             });
           });
     }
   })
+  document.getElementById('btnContactar').addEventListener("click",contactoProveedor);
   }
   if(ubi.includes("/Busquedatractoras.php")){
     document.getElementById("logout").addEventListener("click", logout);
@@ -905,6 +908,19 @@ function enviarPaises(e) {
         );
       }
     });
+}
+/**Contactar Proveedor */
+
+function contactoProveedor(){
+  let noti = document.getElementById('notificaciones');
+  let datosC = document.getElementById('DatosContacto');
+  let data = new FormData();
+  data.append("idProv",localStorage.getItem("idCard"));
+  console.log(data.get("idProv"));
+  document.getElementById('modalInfoProvedor').scrollTo(0, 0);
+  creaNotificacion(noti,"Datos del proveedor desplegados");
+  modificaNotificacion(noti,'alert alert-success')
+  datosC.classList.remove("d-none")
 }
 
 /**Logout */

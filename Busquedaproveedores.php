@@ -280,27 +280,27 @@
         <div class="container-fluid">
           <form class="row g-3">   
             <div class="row">
-              <div class="col-sm-6 form-control-plaintext" id='nomProv'></div>            
+              <div class="col-sm-6 form-control-plaintext" > <h4 id='nomProv'></h4></div>            
             </div>
-            <div id="notificaciones">
-
-            </div>                   
-            <div class="col-auto" style="margin-right: 15px;">   
+            <div id="notificaciones"> </div>
+            
+             <div id="DatosContacto" class="container row ">                   
+            <div class="col-md-4" style="margin-right: 10px;">   
               <div class="input-group">
                 <div class="input-group-text">Tel:</div>
                 <input type="text" class="form-control" id="mtel" value="55-555-555-55" style="width: 135px;" readonly>
               </div>                                                     
             </div>
-            <div class="col-auto" style="margin-right: 15px;">   
+            <div class="col-md-2" >   
               <div class="input-group">
                 <div class="input-group-text">Ext:</div>
-                <input type="text" class="form-control" id="mExt"  value="0259" readonly style="width: 100px;">
+                <input type="text" class="form-control" id="mExt"  style="width: 35px;" value="0259" readonly style="width: 100px;">
               </div>               
             </div>
-            <div class="col-auto">
+            <div class="col-md-5">
               <div class="input-group">
                 <div class="input-group-text">Sitio Web: </div>
-                <input type="text" class="form-control" style="width: 240px;" id="mwebsite" value="www.wefe.com.mx" readonly>
+                <input type="text" class="form-control" style="width: 90px;" id="mwebsite" value="www.wefe.com.mx" readonly>
               </div>                            
             </div>
             <div class="col-12">
@@ -318,6 +318,7 @@
             <div class="col-md-3">
               <label for="inputZip" class="form-label">Codigo Postal</label>
               <input type="text" class="form-control" id="inputCP" value="09310" readonly>
+            </div>
             </div>
             <div class="col-md-3">
               <label for="inputVentas" class="form-label">Ventas Anuales</label>
@@ -367,7 +368,7 @@
       <div class="modal-footer">                
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
         
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Contactar</button>
+        <button type="button" class="btn btn-primary" id="btnContactar" >Contactar</button>
       </div>
     </div>
   </div>
