@@ -223,16 +223,19 @@ function load() {
   })
   document.getElementById('btnContactar').addEventListener("click",contactoProveedor);
   }
+
   if(ubi.includes("/Busquedatractoras.php")){
     document.getElementById("logout").addEventListener("click", logout);
-    document.addEventListener("click", function(e){
-      if(e.target.className == 'btn btn-primary cardbtn'){
-        let id = e.target.parentElement.firstElementChild.value;
-        let noti = document.getElementById('notificaciones');
-        let data = new FormData();
-        data.append("id",id);
-        data.append("getDataT",1);
-        fetch("../php/listarRequerimientos.php", {
+  document.addEventListener("click",function(e){//un evento en el dom completo sobre click ya que no sabemos cuantas cards se pueden generar
+    if(e.target.className =='btn btn-primary cardbtn'){//verificamos que el objeto clickeado tenga cla clase que nos interesa
+      document.getElementById('DatosContacto').classList.add("d-none");
+      let id = e.target.parentElement.firstElementChild.value; //obtenemos el papa del elemento clickeado luego su primer hijo que es el input con el id
+      localStorage.setItem('idCard',id);
+      let noti = document.getElementById('notificaciones');
+      let data = new FormData();//se crea un form data para los datos
+      data.append("id",id);//agregamos el ID
+      data.append("getDataT",1);//variable de control y hacemos fetch
+      fetch("../php/listarRequerimientos.php", {
         method: "POST",
         body:data
       })
@@ -256,14 +259,14 @@ function load() {
         });
         data = new FormData();
         data.append("id",id);//agregamos el ID
-        data.append("getRequerimientos",1);//variable de control y hacemos fetch
+        data.append("getRequerimiento",1);//variable de control y hacemos fetch
         fetch("../php/listarRequerimientos.php", {
           method: "POST",
           body:data
         })
-        .then((res) => res.json())
+          .then((res) => res.json())
           .then((data) => {
-            //console.log(data);
+            console.log(data);
             let tabla = document.getElementById('tableBodyModal');
             let cat = ['Producto','Proceso','Materia prima','Servicios indirectos'];            
             tabla.innerHTML='';
@@ -285,15 +288,32 @@ function load() {
               tr.appendChild(tdVolumen);
               tr.appendChild(tdComentarios);            
               tabla.appendChild(tr);
-              console.log(registro);
+              console.log(registro);              
             });
           });
-      }      
-    })
+    }
+  })
+  document.getElementById('btnContactar').addEventListener("click",contactoProveedor);
   }
+
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
+ * 
+ * 
  *
  */
 function enviaLogin(e) {
@@ -919,6 +939,18 @@ function contactoProveedor(){
   console.log(data.get("idProv"));
   document.getElementById('modalInfoProvedor').scrollTo(0, 0);
   creaNotificacion(noti,"Datos del proveedor desplegados");
+  modificaNotificacion(noti,'alert alert-success')
+  datosC.classList.remove("d-none")
+}
+
+function contactoTractora(){
+  let noti = document.getElementById('notificaciones');
+  let datosC = document.getElementById('DatosContacto');
+  let data = new FormData();
+  data.append("idTr",localStorage.getItem("idCard"));
+  console.log(data.get("idTr"));
+  document.getElementById('modalInfoTractora').scrollTo(0, 0);
+  creaNotificacion(noti,"Datos de la tractora desplegados");
   modificaNotificacion(noti,'alert alert-success')
   datosC.classList.remove("d-none")
 }

@@ -6,8 +6,8 @@
       include 'php/Conexion.php';
       include 'php/emailsender.php';
       $obj = new Conexion();
-      $obj->query("Select ID_usuario from usuario where ID_tipo_usr=2;");
-      $idsProvedores = $obj->resultSet();
+      $obj->query("Select ID_usuario from usuario where ID_tipo_usr=1;");
+      $idsTractoras = $obj->resultSet();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -113,7 +113,7 @@
     <div class="container mb-5">
       <div class="card">
       <!--TITULO DE LA CARTA-->
-        <h5 class="card-header text-center">Lista de proveedores</h5>
+        <h5 class="card-header text-center">Lista de tractoras</h5>
         <!--CUERPO DE LA CARD (CONTENIDO)-->
           <div class="card-body">            
             <form>
@@ -144,8 +144,8 @@
       
       <div class="row h-100">
       <?php
-        foreach ($idsProvedores as $proveedor) {
-                $id = $proveedor['ID_usuario'];
+        foreach ($idsTractoras as $tractora) {
+                $id = $tractora['ID_usuario'];
                 $obj->query("SELECT empresa.Empresa, archivos.Logo FROM empresa
                       INNER JOIN usuario on empresa.ID_empresa=usuario.ID_usuario
                       INNER JOIN archivos ON empresa.ID_dtl_empresa=archivos.ID_archivo
@@ -162,8 +162,8 @@
                         </div>
                       </div>
                       <div class=\"border-top bg-white text-center pt-3 pb-0\" >
-                      <input id=\"provedorID$id\" name=\"provedorID$id\" type=\"hidden\" value=\"$id\">
-                      <a class=\"btn btn-primary cardbtn\" href=\"#\" id=\"$id\"  data-bs-toggle=\"modal\" data-bs-target=\"#modalInfoProvedor\"  >Saber más</a>
+                      <input id=\"tractoraID$id\" name=\"tractoraID$id\" type=\"hidden\" value=\"$id\">
+                      <a class=\"btn btn-primary cardbtn\" href=\"#\" id=\"$id\"  data-bs-toggle=\"modal\" data-bs-target=\"#modalInfoTractora\"  >Saber más</a>
                       </div>                        
                     </div>
                   </div>";
@@ -269,7 +269,7 @@
 <!-- Back to top button -->
 
 <!------------------------------ Modal ------------------------------>
-<div class="modal fade" id="modalInfoProvedor" tabindex="-1" aria-labelledby="ModalInfo" aria-hidden="true">
+<div class="modal fade" id="modalInfoTractora" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-fullscreen-sm-down modal-lg">
     <div class="modal-content">
       <div class="modal-header">
@@ -280,27 +280,27 @@
         <div class="container-fluid">
           <form class="row g-3">   
             <div class="row">
-              <div class="col-sm-6 form-control-plaintext" id='nomProv'></div>            
+              <div class="col-sm-6 form-control-plaintext" > <h4 id='nomProv'></h4></div>            
             </div>
-            <div id="notificaciones">
-
-            </div>                   
-            <div class="col-auto" style="margin-right: 15px;">   
+            <div id="notificaciones"> </div>
+            
+             <div id="DatosContacto" class="container row ">                   
+            <div class="col-md-4" style="margin-right: 10px;">   
               <div class="input-group">
                 <div class="input-group-text">Tel:</div>
                 <input type="text" class="form-control" id="mtel" value="55-555-555-55" style="width: 135px;" readonly>
               </div>                                                     
             </div>
-            <div class="col-auto" style="margin-right: 15px;">   
+            <div class="col-md-2" >   
               <div class="input-group">
                 <div class="input-group-text">Ext:</div>
-                <input type="text" class="form-control" id="mExt"  value="0259" readonly style="width: 100px;">
+                <input type="text" class="form-control" id="mExt"  style="width: 35px;" value="0259" readonly style="width: 100px;">
               </div>               
             </div>
-            <div class="col-auto">
+            <div class="col-md-5">
               <div class="input-group">
                 <div class="input-group-text">Sitio Web: </div>
-                <input type="text" class="form-control" style="width: 240px;" id="mwebsite" value="www.wefe.com.mx" readonly>
+                <input type="text" class="form-control" style="width: 90px;" id="mwebsite" value="www.wefe.com.mx" readonly>
               </div>                            
             </div>
             <div class="col-12">
@@ -318,6 +318,7 @@
             <div class="col-md-3">
               <label for="inputZip" class="form-label">Codigo Postal</label>
               <input type="text" class="form-control" id="inputCP" value="09310" readonly>
+            </div>
             </div>
             <div class="col-md-3">
               <label for="inputVentas" class="form-label">Ventas Anuales</label>
@@ -350,15 +351,20 @@
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">Producto</th>
-                    <th scope="col">Tipo de material</th>
-                    <th scope="col">Volumen anual</th>
-                    <th scope="col">Otros comentarios</th>
+                    <th>Tipo de material</th>
+                    <th>Volumen anual</th>
+                    <th>Comentarios</th>
                   </tr>
                 </thead>
                 <tbody id="tableBodyModal">
                   <tr>
-                                   
-                  </tr>                  
+                    <td scope="row">1</td>
+                    <td>Taquitos al pastor</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  
                 </tbody>
               </table>
             </div>
@@ -368,7 +374,7 @@
       <div class="modal-footer">                
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
         
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Contactar</button>
+        <button type="button" class="btn btn-primary" id="btnContactar" >Contactar</button>
       </div>
     </div>
   </div>
