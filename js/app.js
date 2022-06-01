@@ -229,18 +229,21 @@ function load() {
   document.addEventListener("click",function(e){//un evento en el dom completo sobre click ya que no sabemos cuantas cards se pueden generar
     if(e.target.className =='btn btn-primary cardbtn'){//verificamos que el objeto clickeado tenga cla clase que nos interesa
       document.getElementById('DatosContacto').classList.add("d-none");
-      let id = e.target.parentElement.firstElementChild.value; //obtenemos el papa del elemento clickeado luego su primer hijo que es el input con el id
+      let id = e.target.parentElement.firstElementChild.value; //obtenemos el papa del elemento clickeado luego su primer hijo que es el input con el id     
+      console.log(id); 
       localStorage.setItem('idCard',id);
       let noti = document.getElementById('notificaciones');
       let data = new FormData();//se crea un form data para los datos
       data.append("id",id);//agregamos el ID
       data.append("getDataT",1);//variable de control y hacemos fetch
+      
       fetch("../php/listarRequerimientos.php", {
         method: "POST",
         body:data
       })
         .then((res) => res.json())
         .then((data) => {
+          console.log(data);
           document.getElementById('nomProv').innerText=data[0]['Empresa'];
           document.getElementById('mtel').setAttribute("value",data[0]['Tel']);
           document.getElementById('mwebsite').setAttribute("value",data[0]['Pagina_web']);
@@ -259,7 +262,7 @@ function load() {
         });
         data = new FormData();
         data.append("id",id);//agregamos el ID
-        data.append("getRequerimiento",1);//variable de control y hacemos fetch
+        data.append("getRequerimiento",1);//variable de control y hacemos fetch        
         fetch("../php/listarRequerimientos.php", {
           method: "POST",
           body:data
