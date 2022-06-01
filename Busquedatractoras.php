@@ -1,8 +1,13 @@
 <?php
-  include_once "php/Conexion.php";
-  include_once "php/listarRequerimientos.php";
-  $database=new Conexion; 
-  $db=new Conexion;
+  session_start();
+  if (!isset($_SESSION['id_usuario'])) {
+      header("location: /Login.html");
+  } else {
+      include 'php/Conexion.php';
+      include 'php/emailsender.php';
+      $obj = new Conexion();
+      $obj->query("Select ID_usuario from usuario where ID_tipo_usr=2;");
+      $idsProvedores = $obj->resultSet();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,7 +87,7 @@
               <li class="nav-item"> <a class="nav-link" href="#">Registro</a> </li>
               <li class="nav-item"> <a class="nav-link" href="#">Login</a> </li>
               <li class="nav-item"> <a class="nav-link" href="#">Costo</a> </li>
-              <li class="nav-item accordion-item"> <a class="nav-link" href="#">Cerrar sesión</a> </li>
+              <li class="nav-item accordion-item"> <a class="nav-link" href="#" id="logout">Cerrar sesión</a> </li>
              </li>
             </ul>
           </div>
@@ -108,7 +113,7 @@
     <div class="container mb-5">
       <div class="card">
       <!--TITULO DE LA CARTA-->
-        <h5 class="card-header text-center">Lista de tractoras</h5>
+        <h5 class="card-header text-center">Lista de proveedores</h5>
         <!--CUERPO DE LA CARD (CONTENIDO)-->
           <div class="card-body">            
             <form>
@@ -133,8 +138,42 @@
           </div>
         </div>
       </div>
-  
   </section>
+  <section class="main-body pt-5 float-start industry-pages">
+  <div class="container mt-1">
+      
+      <div class="row h-100">
+      <?php
+        foreach ($idsProvedores as $proveedor) {
+                $id = $proveedor['ID_usuario'];
+                $obj->query("SELECT empresa.Empresa, archivos.Logo FROM empresa
+                      INNER JOIN usuario on empresa.ID_empresa=usuario.ID_usuario
+                      INNER JOIN archivos ON empresa.ID_dtl_empresa=archivos.ID_archivo
+                      WHERE ID_usuario=$id");
+                $datacard = $obj->resultSet();
+        
+                $htmlDiv = "
+                <div class=\"col-sm-6 col-xl-3 mb-3\" id=\"modal_generada\">
+                    <div class=\"card card-span shadow py-4 h-100 border-top border-4 border-primary\">
+                      <div class=\"card-body\">
+                        <div class=\"text-center\"><img src=\"../php/" . $datacard[0]['Logo'] . "\" width=\"220px\" alt=\"...\">
+                          <h5 class=\"my-3\">" . $datacard[0]['Empresa'] . "</h5>
+        
+                        </div>
+                      </div>
+                      <div class=\"border-top bg-white text-center pt-3 pb-0\" >
+                      <input id=\"provedorID$id\" name=\"provedorID$id\" type=\"hidden\" value=\"$id\">
+                      <a class=\"btn btn-primary cardbtn\" href=\"#\" id=\"$id\"  data-bs-toggle=\"modal\" data-bs-target=\"#modalInfoProvedor\"  >Saber más</a>
+                      </div>                        
+                    </div>
+                  </div>";
+                echo $htmlDiv;
+            }
+            ?>
+      </div>
+  </div>
+  </section>
+
   <footer>
     <div class="subsribe-section">
       <div class="container">
@@ -212,7 +251,7 @@
                <a href="#"> Costo </a>
             </li>            
             <li>
-              <a href="#"> Cerrar sesión </a>
+              <a href="#" id="logout"> Cerrar sesión </a>
            </li>            
          </ul>
       </div>
@@ -229,6 +268,112 @@
 </div> <!-- FIN RESPONSIVE -->
 <!-- Back to top button -->
 
+<!------------------------------ Modal ------------------------------>
+<div class="modal fade" id="modalInfoProvedor" tabindex="-1" aria-labelledby="ModalInfo" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen-sm-down modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="infoModalProveedor">Informacion</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <form class="row g-3">   
+            <div class="row">
+              <div class="col-sm-6 form-control-plaintext" id='nomProv'></div>            
+            </div>
+            <div id="notificaciones">
+
+            </div>                   
+            <div class="col-auto" style="margin-right: 15px;">   
+              <div class="input-group">
+                <div class="input-group-text">Tel:</div>
+                <input type="text" class="form-control" id="mtel" value="55-555-555-55" style="width: 135px;" readonly>
+              </div>                                                     
+            </div>
+            <div class="col-auto" style="margin-right: 15px;">   
+              <div class="input-group">
+                <div class="input-group-text">Ext:</div>
+                <input type="text" class="form-control" id="mExt"  value="0259" readonly style="width: 100px;">
+              </div>               
+            </div>
+            <div class="col-auto">
+              <div class="input-group">
+                <div class="input-group-text">Sitio Web: </div>
+                <input type="text" class="form-control" style="width: 240px;" id="mwebsite" value="www.wefe.com.mx" readonly>
+              </div>                            
+            </div>
+            <div class="col-12">
+              <label for="inputAddress">Dirección:</label>
+              <input type="text" class="form-control" id="mAddress" value="Sur 25 Mz. 7 Leyes de Reforma" readonly>
+            </div>
+            <div class="col-md-4">
+              <label for="inputCity" class="form-label">Alcaldia</label>
+              <input type="text" class="form-control" id="inputCity" value="CDMX" readonly>
+            </div>
+            <div class="col-md-5">
+              <label for="inputState" class="form-label">Estado</label>
+              <input type="text" class="form-control" id="inputEstado" value="CDMX" readonly>
+            </div>
+            <div class="col-md-3">
+              <label for="inputZip" class="form-label">Codigo Postal</label>
+              <input type="text" class="form-control" id="inputCP" value="09310" readonly>
+            </div>
+            <div class="col-md-3">
+              <label for="inputVentas" class="form-label">Ventas Anuales</label>
+              <input type="text" class="form-control" id="inputVentas" value="$450,000" readonly>
+            </div>
+            <div class="col-md-4">
+              <label for="inputNumE" class="form-label">Numero de empleados  </label>
+              <input type="text" class="form-control" id="inputNumE" value="500" readonly>              
+            </div>
+            <div class="col-12">
+              <label for="txtA_desc">Descripcion de la empresa:</label>
+              <textarea  class="form-control"  id="txtempresa" cols="12" rows="3" readonly></textarea>
+            </div>
+            <div class="col-md-6">
+            <a href="#" target="_blank" rel="noopener noreferrer" id="docPresentacion">Presentación</a>
+            </div>
+            <div class="col-12">
+              <label for="" class="form-label">Exportaciones</label>
+              <input type="text" class="form-control" id="exports" value="500" readonly>
+            </div>
+            <div class="col-12">
+              <label for="" class="form-label">Certificaciones</label>
+              <input type="text" class="form-control" id="certs" value="500" readonly>
+              <a href="#" target="_blank" rel="noopener noreferrer" id="docCerts">Ver Comprobantes</a>
+            </div>
+            <div class="col-12">
+              <label for="" class="form-label">Productos</label>
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Tipo de material</th>
+                    <th scope="col">Volumen anual</th>
+                    <th scope="col">Otros comentarios</th>
+                  </tr>
+                </thead>
+                <tbody id="tableBodyModal">
+                  <tr>
+                                   
+                  </tr>                  
+                </tbody>
+              </table>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">                
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Contactar</button>
+      </div>
+    </div>
+  </div>
+</div><!------------------------------ Fin Modal ------------------------------>
+
 <button
         type="button"
         class="btn btn-danger btn-floating btn-lg"
@@ -236,7 +381,7 @@
         >
   <i class="fas fa-arrow-up"></i>
 </button><!-- END BACK TO TOP BUTTON -->
-
+<script src="js/app.js"></script>
 <script src="js/bootstrap.bundle.min.js" ></script>
 <script src="js/jquery.min.js" ></script>
 </script>
@@ -256,3 +401,6 @@
 </script>
 </body>
 </html>
+<?php
+}
+?>

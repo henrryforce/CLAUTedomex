@@ -1,47 +1,31 @@
 <?php
-    require_once "Conexion.php";
-    $database = new Conexion;
 
-    $t_empresa ='';
-    $t_tel = '';
-    $t_ext ='';
-    $t_sitio= '';
-    $t_calle = '';
-    $t_colonia = '';
-    $t_ciudad = '';
-    $t_edo = '';
-    $t_cp ='';
-    $t_ventas = '';
-    $t_nE = '';
-    $t_des = '';
-
-
-    if(isset($_POST['btnVer'])){
-        $database->query("SELECT usuario.ID_usuario, usuario.ID_empresa, empresa.ID_empresa, empresa.Empresa, 
-                        producto.Producto, producto.ID_catalogo, detalle_empresa.Tel, detalle_empresa.Ext, detalle_empresa.Pagina_web, 
-                        detalle_empresa.Ventas_anuales, detalle_empresa.Num_empleados, detalle_empresa.Descripcion, direccion.Calle, 
-                        direccion.Colonia, direccion.CP, direccion.Alcaldia, catalogo_estados.nombre as Estado
-                        FROM usuario
-                        INNER JOIN empresa ON usuario.ID_usuario = empresa.ID_empresa
-                        INNER JOIN producto ON usuario.ID_usuario = producto.ID_producto
-                        INNER JOIN detalle_empresa ON usuario.ID_empresa = detalle_empresa.ID_dtl_empresa
-                        INNER JOIN direccion ON usuario.ID_empresa = direccion.ID_direccion
-                        INNER JOIN catalogo_estados ON usuario.ID_empresa = catalogo_estados.id
-                        WHERE producto.ID_catalogo='2' AND usuario.ID_usuario='2'");
-
-        $rows = $database->resultSet();
-        foreach($rows as $row){
-            $t_tel = $row['Tel'];
-            $t_ext =$row['Ext'];
-            $t_sitio= $row['Pagina_web'];
-            $t_calle = $row['Calle'];
-            $_colonia = $row['Colonia'];
-            $t_ciudad = $row['Alcaldia'];
-            $t_edo = $row['Estado'];
-            $t_cp =$row['CP'];
-            $t_ventas = $row['Ventas_anuales'];
-            $t_nE = $row['Num_empleados'];
-            $t_des = $row['Descipcion'];
-        }
+session_start();
+$id=  $_SESSION['id_usuario'];
+include 'Conexion.php';
+if(isset($_POST['id']) && isset($_POST['getDataT'])){
+    $idConsulta =$_POST['id'];
+    
+    $database->query("  SELECT  empresa.Empresa, archivos.Logo, archivos.Presentacion, detalle_empresa.Descripcion,detalle_empresa.Pagina_web,detalle_empresa.Tel,detalle_empresa.Ext,detalle_empresa.Ventas_anuales,detalle_empresa.Num_empleados,certificacionescomprador.path, certificacionescomprador.listaCerts,exportrequeridas.paisesExporta,direccion.Calle,direccion.N_Ext,direccion.N_Int,direccion.Colonia,direccion.Alcaldia,direccion.CP, catalogo_estados.nombre as estado  FROM empresa 
+                        INNER JOIN usuario on empresa.ID_empresa=usuario.ID_usuario 
+                        INNER JOIN archivos ON empresa.ID_dtl_empresa=archivos.ID_archivo 
+                        Inner Join detalle_empresa on detalle_empresa.ID_dtl_Empresa =empresa.ID_dtl_empresa
+                        inner join direccion on detalle_empresa.ID_direccion = direccion.ID_direccion
+                        inner join certificacionescomprador on certificacionescomprador.idComprador = usuario.ID_usuario
+                        inner join exportrequeridas on exportrequeridas.idComprador = usuario.ID_usuario
+                        inner join catalogo_estados on direccion.ID_estado = catalogo_estados.id
+                        WHERE usuario.ID_usuario=$idConsulta");
+    $res= $obj -> resultSet();
+    echo json_encode($res);
+    }
+    if(isset($_POST['id']) && isset($_POST['getRequerimientos'])){
+        $idConsulta =$_POST['id'];
+        $obj = new Conexion();
+        $obj -> query(" SELECT requerimiento_producto.ID_req_producto, producto.Producto , requerimiento_producto.Tipo_material, requerimiento_producto.Volumen_anual, requerimiento_producto.Comentarios
+                        FROM producto
+                        INNER JOIN requerimiento_producto ON producto.ID_producto = requerimiento_producto.ID_req_producto
+                        WHERE requerimiento_producto.ID_usuario=$id");
+        $res = $obj -> resultSet();
+        echo json_encode($res);
     }
 ?>

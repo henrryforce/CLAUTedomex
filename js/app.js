@@ -220,6 +220,74 @@ function load() {
     }
   })
   }
+  if(ubi.includes("/Busquedatractoras.php")){
+    document.getElementById("logout").addEventListener("click", logout);
+    document.addEventListener("click", function(e){
+      if(e.target.className == 'btn btn-primary cardbtn'){
+        let id = e.target.parentElement.firstElementChild.value;
+        let noti = document.getElementById('notificaciones');
+        let data = new FormData();
+        data.append("id",id);
+        data.append("getDataT",1);
+        fetch("../php/listarRequerimientos.php", {
+        method: "POST",
+        body:data
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          document.getElementById('nomProv').innerText=data[0]['Empresa'];
+          document.getElementById('mtel').setAttribute("value",data[0]['Tel']);
+          document.getElementById('mwebsite').setAttribute("value",data[0]['Pagina_web']);
+          document.getElementById('mExt').setAttribute("value",data[0]['Ext']);
+          document.getElementById('mAddress').setAttribute("value",data[0]['Calle']+' '+data[0]['N_Ext']+' '+data[0]['N_Int']+', '+data[0]['Colonia']);
+          document.getElementById('inputCity').setAttribute("value",data[0]['Alcaldia']);
+          document.getElementById('inputEstado').setAttribute("value",data[0]['estado']);
+          document.getElementById('inputCP').setAttribute("value",data[0]['CP']);
+          document.getElementById('inputVentas').setAttribute("value",'$'+data[0]['Ventas_anuales']); 
+          document.getElementById('inputNumE').setAttribute("value",data[0]['Num_empleados']);
+          document.getElementById('txtempresa').value =data[0]['Descripcion'];
+          setLink(data[0]['Presentacion'],document.getElementById('docPresentacion'))
+          document.getElementById('exports').setAttribute("value",noNull(data[0]['paisesExporta']));
+          document.getElementById('certs').setAttribute("value",noNull(data[0]['listaCerts']));
+          setLink(data[0]['path'],document.getElementById('docCerts'));
+        });
+        data = new FormData();
+        data.append("id",id);//agregamos el ID
+        data.append("getRequerimientos",1);//variable de control y hacemos fetch
+        fetch("../php/listarRequerimientos.php", {
+          method: "POST",
+          body:data
+        })
+        .then((res) => res.json())
+          .then((data) => {
+            //console.log(data);
+            let tabla = document.getElementById('tableBodyModal');
+            let cat = ['Producto','Proceso','Materia prima','Servicios indirectos'];            
+            tabla.innerHTML='';
+            data.forEach((registro) =>{
+              let tr = document.createElement('tr');
+              let tdID = document.createElement('td');
+              tdID.innerText = cat[registro['ID_req_producto']-1];
+              let tdProducto = document.createElement('td');
+              tdProducto.innerText = registro['Producto'];
+              let tdTmateriales = document.createElement('td');
+              tdTmateriales.innerText = registro['Tipo_material'];
+              let tdVolumen = document.createElement('td');
+              tdVolumen.innerText = registro['Volumen_anual'];
+              let tdComentarios = document.createElement('td');
+              tdComentarios.innerText = registro['Comentarios'];
+              tr.appendChild(tdID);
+              tr.appendChild(tdProducto);
+              tr.appendChild(tdTmateriales);
+              tr.appendChild(tdVolumen);
+              tr.appendChild(tdComentarios);            
+              tabla.appendChild(tr);
+              console.log(registro);
+            });
+          });
+      }      
+    })
+  }
 }
 
 /**
@@ -479,8 +547,6 @@ function contactoform(e) {
     data.get("subject") != "" &&
     data.get("message") != ""
   ) {
-    creaNotificacion(noti,"Enviando el correo");
-    modificaNotificacion(noti,'alert alert-warning');
     fetch("../php/contact.php", {
       method: "POST",
       body: data,
@@ -489,17 +555,16 @@ function contactoform(e) {
       .then((data) => {
         if (data == "send") {
           form.reset();
-          creaNotificacion(noti, "¡Formulario enviado con exito!");
+          creaNotificacion(noti, "!Formulario enviado con exito¡");
           modificaNotificacion(noti, "alert alert-success");
         } else {
-          creaNotificacion(noti, "¡Error al enviar el Formulario!");
+          creaNotificacion(noti, "!Error al enviar el Formulario¡");
         }
       });
   }
 }
 function changePassPerfilProveedor(e) {
   e.preventDefault();
-  const exprecionRegular = /^(?=.{8,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$/;
   let form = document.getElementById("formPassword");
   let noti = document.getElementById("notificaciones");
   let data = new FormData(form);
@@ -518,15 +583,11 @@ function changePassPerfilProveedor(e) {
   if (data.get("password") !== data.get("password2")) {
     creaNotificacion(noti, "Las contraseñas no coinciden");
   }
-  if(!exprecionRegular.test(data.get("password"))){
-    creaNotificacion(notifica, "La contraseña no cumple con los criterios minimos de seguridad debe contener al menos 1 mayúscula, 1 minúscula, 1 dígito, 1 carácter especial y tiene una longitud de al menos 8");
-  }
   if (
     data.get("email") !== "" &&
     data.get("password") !== "" &&
     data.get("password2") !== "" &&
-    data.get("password") === data.get("password2") &&
-    exprecionRegular.test(data.get("password"))
+    data.get("password") === data.get("password2")
   ) {
     var toast = new bootstrap.Toast(document.getElementById("liveToast"));
     document.getElementById("toasContaider").style.zIndex = "11";

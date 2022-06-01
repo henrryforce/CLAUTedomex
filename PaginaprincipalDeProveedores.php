@@ -123,7 +123,7 @@ if(!isset($_SESSION['id_usuario'])){
 				<div class="profile-userbuttons text-center mb-4">
 					<button type="button" id="btnAdminPerfil" class="btn btn-success" style="background-color: #0371F1;">Administrar Perfil</button>
 					<button type="button" class="btn btn-success" style="background-color: #0371F1;">Realizar pago</button>
-                    <button type="button" class="btn btn-success" style="background-color: #0371F1;">Lista de tractoras</button>
+                    <button type="button" class="btn btn-primary" href="/Busquedaproveedores.php">Lista de tractoras</button>
 				</div>
                 <!-- ROW(->) COL(v)-->                                    
                 <!-- LOGO Y NOMBRE DE LA MARCA-->
