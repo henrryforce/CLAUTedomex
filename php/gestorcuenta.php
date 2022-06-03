@@ -58,7 +58,7 @@ if (isset($_FILES) && isset($_POST['actualizarDatos'])) {
         $logo = $filesExis[0]['Logo'];
         array_push($pathFiles, $filesExis[0]['Logo']);
     }
-    /**en caso de que cargues un PDF pero eciste uno en la bd se sobreescribe el path */
+    /**en caso de que cargues un PDF pero existe uno en la bd se sobreescribe el path */
     if ($errorp == 4 && file_exists($filesExis[0]['Presentacion'])) {
         $pres = $filesExis[0]['Presentacion'];
     }

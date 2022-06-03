@@ -26,4 +26,16 @@ if(isset($_POST['id']) && isset($_POST['getProductos'])){
     $res = $obj -> resultSet();
     echo json_encode($res);
 }
+if(isset($_POST['id']) && isset($_POST['contactarProv'])){
+  $idConsulta =$_POST['id'];
+  $obj = new Conexion();
+  $obj -> query("select contacto.Email from usuario inner join contacto on contacto.ID_usuario =usuario.ID_usuario where usuario.ID_usuario = $idConsulta");
+  $res =$obj -> resultSet();
+  //echo json_encode($res);
+  //print_r($res);
+  foreach($res as $email){
+    echo $email['Email'];
+  }
+
+}
 ?>
