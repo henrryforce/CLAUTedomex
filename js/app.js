@@ -161,162 +161,241 @@ function load() {
         }
       });
   }
-  if(ubi.includes("/Busquedaproveedores.php")){
+  if (ubi.includes("/Busquedaproveedores.php")) {
     document.getElementById("logout").addEventListener("click", logout);
-  document.addEventListener("click",function(e){//un evento en el dom completo sobre click ya que no sabemos cuantas cards se pueden generar
-    if(e.target.className =='btn btn-primary cardbtn'){//verificamos que el objeto clickeado tenga cla clase que nos interesa
-      document.getElementById('DatosContacto').classList.add("d-none");
-      let id = e.target.parentElement.firstElementChild.value; //obtenemos el papa del elemento clickeado luego su primer hijo que es el input con el id
-      localStorage.setItem('idCard',id);
-      let noti = document.getElementById('notificaciones');
-      let data = new FormData();//se crea un form data para los datos
-      data.append("id",id);//agregamos el ID
-      data.append("getData",1);//variable de control y hacemos fetch
-      fetch("../php/listarproveedores.php", {
-        method: "POST",
-        body:data
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          document.getElementById('nomProv').innerText=data[0]['Empresa'];
-          document.getElementById('mtel').setAttribute("value",data[0]['Tel']);
-          document.getElementById('mwebsite').setAttribute("value",data[0]['Pagina_web']);
-          document.getElementById('mExt').setAttribute("value",data[0]['Ext']);
-          document.getElementById('mAddress').setAttribute("value",data[0]['Calle']+' '+data[0]['N_Ext']+' '+data[0]['N_Int']+', '+data[0]['Colonia']);
-          document.getElementById('inputCity').setAttribute("value",data[0]['Alcaldia']);
-          document.getElementById('inputEstado').setAttribute("value",data[0]['estado']);
-          document.getElementById('inputCP').setAttribute("value",data[0]['CP']);
-          document.getElementById('inputVentas').setAttribute("value",'$'+data[0]['Ventas_anuales']); 
-          document.getElementById('inputNumE').setAttribute("value",data[0]['Num_empleados']);
-          document.getElementById('txtempresa').value =data[0]['Descripcion'];
-          setLink(data[0]['Presentacion'],document.getElementById('docPresentacion'))
-          document.getElementById('exports').setAttribute("value",noNull(data[0]['paisesExporta']));
-          document.getElementById('certs').setAttribute("value",noNull(data[0]['listaCerts']));
-          setLink(data[0]['path'],document.getElementById('docCerts'));
-        });
-        data = new FormData();
-        data.append("id",id);//agregamos el ID
-        data.append("getProductos",1);//variable de control y hacemos fetch
+    document.addEventListener("click", function (e) {
+      //un evento en el dom completo sobre click ya que no sabemos cuantas cards se pueden generar
+      if (e.target.className == "btn btn-primary cardbtn") {
+        //verificamos que el objeto clickeado tenga cla clase que nos interesa
+        document.getElementById("DatosContacto").classList.add("d-none");
+        let id = e.target.parentElement.firstElementChild.value; //obtenemos el papa del elemento clickeado luego su primer hijo que es el input con el id
+        localStorage.setItem("idCard", id);
+        let noti = document.getElementById("notificaciones");
+        let data = new FormData(); //se crea un form data para los datos
+        data.append("id", id); //agregamos el ID
+        data.append("getData", 1); //variable de control y hacemos fetch
         fetch("../php/listarproveedores.php", {
           method: "POST",
-          body:data
+          body: data,
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            document.getElementById("nomProv").innerText = data[0]["Empresa"];
+            document
+              .getElementById("mtel")
+              .setAttribute("value", data[0]["Tel"]);
+            document
+              .getElementById("mwebsite")
+              .setAttribute("value", data[0]["Pagina_web"]);
+            document
+              .getElementById("mExt")
+              .setAttribute("value", data[0]["Ext"]);
+            document
+              .getElementById("mAddress")
+              .setAttribute(
+                "value",
+                data[0]["Calle"] +
+                  " " +
+                  data[0]["N_Ext"] +
+                  " " +
+                  data[0]["N_Int"] +
+                  ", " +
+                  data[0]["Colonia"]
+              );
+            document
+              .getElementById("inputCity")
+              .setAttribute("value", data[0]["Alcaldia"]);
+            document
+              .getElementById("inputEstado")
+              .setAttribute("value", data[0]["estado"]);
+            document
+              .getElementById("inputCP")
+              .setAttribute("value", data[0]["CP"]);
+            document
+              .getElementById("inputVentas")
+              .setAttribute("value", "$" + data[0]["Ventas_anuales"]);
+            document
+              .getElementById("inputNumE")
+              .setAttribute("value", data[0]["Num_empleados"]);
+            document.getElementById("txtempresa").value =
+              data[0]["Descripcion"];
+            setLink(
+              data[0]["Presentacion"],
+              document.getElementById("docPresentacion")
+            );
+            document
+              .getElementById("exports")
+              .setAttribute("value", noNull(data[0]["paisesExporta"]));
+            document
+              .getElementById("certs")
+              .setAttribute("value", noNull(data[0]["listaCerts"]));
+            setLink(data[0]["path"], document.getElementById("docCerts"));
+          });
+        data = new FormData();
+        data.append("id", id); //agregamos el ID
+        data.append("getProductos", 1); //variable de control y hacemos fetch
+        fetch("../php/listarproveedores.php", {
+          method: "POST",
+          body: data,
         })
           .then((res) => res.json())
           .then((data) => {
             //console.log(data);
-            let tabla = document.getElementById('tableBodyModal');
-            let cat = ['Producto','Proceso','Materia prima','Servicios indirectos'];            
-            tabla.innerHTML='';
-            data.forEach((registro) =>{
-              let tr = document.createElement('tr');
-              let tdID = document.createElement('td');
-              tdID.innerText = cat[registro['ID_catalogo']-1];
-              let tdProducto = document.createElement('td');
-              tdProducto.innerText = registro['Producto'];
+            let tabla = document.getElementById("tableBodyModal");
+            let cat = [
+              "Producto",
+              "Proceso",
+              "Materia prima",
+              "Servicios indirectos",
+            ];
+            tabla.innerHTML = "";
+            data.forEach((registro) => {
+              let tr = document.createElement("tr");
+              let tdID = document.createElement("td");
+              tdID.innerText = cat[registro["ID_catalogo"] - 1];
+              let tdProducto = document.createElement("td");
+              tdProducto.innerText = registro["Producto"];
               tr.appendChild(tdID);
               tr.appendChild(tdProducto);
               tabla.appendChild(tr);
-              
             });
           });
-    }
-  })
-  document.getElementById('btnContactar').addEventListener("click",contactoProveedor);
+      }
+    });
+    document
+      .getElementById("btnContactar")
+      .addEventListener("click", contactoProveedor);
   }
 
-  if(ubi.includes("/Busquedatractoras.php")){
+  if (ubi.includes("/Busquedatractoras.php")) {
     document.getElementById("logout").addEventListener("click", logout);
-  document.addEventListener("click",function(e){//un evento en el dom completo sobre click ya que no sabemos cuantas cards se pueden generar
-    if(e.target.className =='btn btn-primary cardbtn'){//verificamos que el objeto clickeado tenga cla clase que nos interesa
-      document.getElementById('DatosContacto').classList.add("d-none");
-      let id = e.target.parentElement.firstElementChild.value; //obtenemos el papa del elemento clickeado luego su primer hijo que es el input con el id     
-      console.log(id); 
-      localStorage.setItem('idCard',id);
-      let noti = document.getElementById('notificaciones');
-      let data = new FormData();//se crea un form data para los datos
-      data.append("id",id);//agregamos el ID
-      data.append("getDataT",1);//variable de control y hacemos fetch
-      
-      fetch("../php/listarRequerimientos.php", {
-        method: "POST",
-        body:data
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          document.getElementById('nomProv').innerText=data[0]['Empresa'];
-          document.getElementById('mtel').setAttribute("value",data[0]['Tel']);
-          document.getElementById('mwebsite').setAttribute("value",data[0]['Pagina_web']);
-          document.getElementById('mExt').setAttribute("value",data[0]['Ext']);
-          document.getElementById('mAddress').setAttribute("value",data[0]['Calle']+' '+data[0]['N_Ext']+' '+data[0]['N_Int']+', '+data[0]['Colonia']);
-          document.getElementById('inputCity').setAttribute("value",data[0]['Alcaldia']);
-          document.getElementById('inputEstado').setAttribute("value",data[0]['estado']);
-          document.getElementById('inputCP').setAttribute("value",data[0]['CP']);
-          document.getElementById('inputVentas').setAttribute("value",'$'+data[0]['Ventas_anuales']); 
-          document.getElementById('inputNumE').setAttribute("value",data[0]['Num_empleados']);
-          document.getElementById('txtempresa').value =data[0]['Descripcion'];
-          setLink(data[0]['Presentacion'],document.getElementById('docPresentacion'))
-          document.getElementById('exports').setAttribute("value",noNull(data[0]['paisesExporta']));
-          document.getElementById('certs').setAttribute("value",noNull(data[0]['listaCerts']));
-          setLink(data[0]['path'],document.getElementById('docCerts'));
-        });
-        data = new FormData();
-        data.append("id",id);//agregamos el ID
-        data.append("getRequerimiento",1);//variable de control y hacemos fetch        
+    document.addEventListener("click", function (e) {
+      //un evento en el dom completo sobre click ya que no sabemos cuantas cards se pueden generar
+      if (e.target.className == "btn btn-primary cardbtn") {
+        //verificamos que el objeto clickeado tenga cla clase que nos interesa
+        document.getElementById("DatosContacto").classList.add("d-none");
+        let id = e.target.parentElement.firstElementChild.value; //obtenemos el papa del elemento clickeado luego su primer hijo que es el input con el id
+        console.log(id);
+        localStorage.setItem("idCard", id);
+        let noti = document.getElementById("notificaciones");
+        let data = new FormData(); //se crea un form data para los datos
+        data.append("id", id); //agregamos el ID
+        data.append("getDataT", 1); //variable de control y hacemos fetch
+
         fetch("../php/listarRequerimientos.php", {
           method: "POST",
-          body:data
+          body: data,
         })
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
-            let tabla = document.getElementById('tableBodyModal');
-            let cat = ['Producto','Proceso','Materia prima','Servicios indirectos'];            
-            tabla.innerHTML='';
-            data.forEach((registro) =>{
-              let tr = document.createElement('tr');
-              let tdID = document.createElement('td');
-              tdID.innerText = cat[registro['ID_req_producto']-1];
-              let tdProducto = document.createElement('td');
-              tdProducto.innerText = registro['Producto'];
-              let tdTmateriales = document.createElement('td');
-              tdTmateriales.innerText = registro['Tipo_material'];
-              let tdVolumen = document.createElement('td');
-              tdVolumen.innerText = registro['Volumen_anual'];
-              let tdComentarios = document.createElement('td');
-              tdComentarios.innerText = registro['Comentarios'];
+            document.getElementById("nomProv").innerText = data[0]["Empresa"];
+            document
+              .getElementById("mtel")
+              .setAttribute("value", data[0]["Tel"]);
+            document
+              .getElementById("mwebsite")
+              .setAttribute("value", data[0]["Pagina_web"]);
+            document
+              .getElementById("mExt")
+              .setAttribute("value", data[0]["Ext"]);
+            document
+              .getElementById("mAddress")
+              .setAttribute(
+                "value",
+                data[0]["Calle"] +
+                  " " +
+                  data[0]["N_Ext"] +
+                  " " +
+                  data[0]["N_Int"] +
+                  ", " +
+                  data[0]["Colonia"]
+              );
+            document
+              .getElementById("inputCity")
+              .setAttribute("value", data[0]["Alcaldia"]);
+            document
+              .getElementById("inputEstado")
+              .setAttribute("value", data[0]["estado"]);
+            document
+              .getElementById("inputCP")
+              .setAttribute("value", data[0]["CP"]);
+            document
+              .getElementById("inputVentas")
+              .setAttribute("value", "$" + data[0]["Ventas_anuales"]);
+            document
+              .getElementById("inputNumE")
+              .setAttribute("value", data[0]["Num_empleados"]);
+            document.getElementById("txtempresa").value =
+              data[0]["Descripcion"];
+            setLink(
+              data[0]["Presentacion"],
+              document.getElementById("docPresentacion")
+            );
+            document
+              .getElementById("exports")
+              .setAttribute("value", noNull(data[0]["paisesExporta"]));
+            document
+              .getElementById("certs")
+              .setAttribute("value", noNull(data[0]["listaCerts"]));
+            setLink(data[0]["path"], document.getElementById("docCerts"));
+          });
+        data = new FormData();
+        data.append("id", id); //agregamos el ID
+        data.append("getRequerimiento", 1); //variable de control y hacemos fetch
+        fetch("../php/listarRequerimientos.php", {
+          method: "POST",
+          body: data,
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            //console.log(data);
+            let tabla = document.getElementById("tableBodyModal");
+            let cat = [
+              "Producto",
+              "Proceso",
+              "Materia prima",
+              "Servicios indirectos",
+            ];
+            tabla.innerHTML = "";
+            data.forEach((registro) => {
+              let tr = document.createElement("tr");
+              let tdID = document.createElement("td");
+              tdID.innerText = cat[registro["ID_req_producto"] - 1];
+              let tdProducto = document.createElement("td");
+              tdProducto.innerText = registro["Producto"];
+              let tdTmateriales = document.createElement("td");
+              tdTmateriales.innerText = registro["Tipo_material"];
+              let tdVolumen = document.createElement("td");
+              tdVolumen.innerText = registro["Volumen_anual"];
+              let tdComentarios = document.createElement("td");
+              tdComentarios.innerText = registro["Comentarios"];
               tr.appendChild(tdID);
               tr.appendChild(tdProducto);
               tr.appendChild(tdTmateriales);
               tr.appendChild(tdVolumen);
-              tr.appendChild(tdComentarios);            
+              tr.appendChild(tdComentarios);
               tabla.appendChild(tr);
-              console.log(registro);              
+              //console.log(registro);
             });
           });
+<<<<<<< HEAD
     }
   })
   document.getElementById('btnContactar').addEventListener("click",contactoTractora);
+=======
+      }
+    });
+    document
+      .getElementById("btnContactar")
+      .addEventListener("click", contactoProveedor);
+>>>>>>> 88ea63b5fcef18457efde682132e65ff3a1ccc02
   }
-
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 /**
- * 
- * 
+ *
+ *
  *
  */
 function enviaLogin(e) {
@@ -363,7 +442,8 @@ function enviaLogin(e) {
  * Funcion para generar el registro
  */
 function enviarRegistro(e) {
-  const exprecionRegular = /^(?=.{8,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$/;
+  const exprecionRegular =
+    /^(?=.{8,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$/;
   e.preventDefault();
   let form = document.getElementById("formRegistro");
   let data = new FormData(form);
@@ -385,10 +465,12 @@ function enviarRegistro(e) {
   if (data.get("usertype") === null) {
     creaNotificacion(notifica, "Debes seleccionar un tipo de usuario");
   }
-  if(!exprecionRegular.test(data.get("password"))){
-    creaNotificacion(notifica, "La contraseña no cumple con los criterios minimos de seguridad debe contener al menos 1 mayúscula, 1 minúscula, 1 dígito, 1 carácter especial y tiene una longitud de al menos 8");
+  if (!exprecionRegular.test(data.get("password"))) {
+    creaNotificacion(
+      notifica,
+      "La contraseña no cumple con los criterios minimos de seguridad debe contener al menos 1 mayúscula, 1 minúscula, 1 dígito, 1 carácter especial y tiene una longitud de al menos 8"
+    );
   }
-  
 
   if (
     data.get("password") === data.get("password_confirm") &&
@@ -684,11 +766,17 @@ function updateDatosproveedor(e) {
     creaNotificacion(notiF, "Logo Cargado con exito");
     modificaNotificacion(notiF, "alert alert-success");
   }
-  if (data.get("presentacion").size > 0 && data.get("Logo").size == 0) {
+  if (
+    data.get("presentacion").size > 0 &&
+    data.get("presentacion").type == pdf &&
+    data.get("Logo").size == 0
+  ) {
     creaNotificacion(notiF, "Presentación Cargado con exito");
     modificaNotificacion(notiF, "alert alert-success");
   }
-
+  if (data.get("ext") != "") {
+    data.set("ext", 0);
+  }
   if (
     data.get("calle") != "" &&
     data.get("num_ext") != "" &&
@@ -700,7 +788,6 @@ function updateDatosproveedor(e) {
     data.get("num_emp") != "" &&
     data.get("ventas") != "" &&
     data.get("telefono") != "" &&
-    data.get("ext") != "" &&
     data.get("paginaweb") != "" &&
     data.get("txtnegocio") != ""
   ) {
@@ -934,28 +1021,37 @@ function enviarPaises(e) {
 }
 /**Contactar Proveedor */
 
-function contactoProveedor(){
-  let noti = document.getElementById('notificaciones');
-  let datosC = document.getElementById('DatosContacto');
+function contactoProveedor() {
+  let noti = document.getElementById("notificaciones");
+  let datosC = document.getElementById("DatosContacto");
   let data = new FormData();
-  data.append("idProv",localStorage.getItem("idCard"));
-  console.log(data.get("idProv"));
-  document.getElementById('modalInfoProvedor').scrollTo(0, 0);
-  creaNotificacion(noti,"Datos del proveedor desplegados");
-  modificaNotificacion(noti,'alert alert-success')
-  datosC.classList.remove("d-none")
+  data.append("id", localStorage.getItem("idCard"));
+  data.append("contactarProv", 1);
+  //console.log(data.get("idProv"));
+  document.getElementById("modalInfoProvedor").scrollTo(0, 0);
+  creaNotificacion(noti, "Datos del proveedor desplegados");
+  modificaNotificacion(noti, "alert alert-success");
+  datosC.classList.remove("d-none");
+  fetch("../php/pruebas.php", {
+    method: "POST",
+    body: data,
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    });
 }
 
-function contactoTractora(){
-  let noti = document.getElementById('notificaciones');
-  let datosC = document.getElementById('DatosContacto');
+function contactoTractora() {
+  let noti = document.getElementById("notificaciones");
+  let datosC = document.getElementById("DatosContacto");
   let data = new FormData();
-  data.append("idTr",localStorage.getItem("idCard"));
+  data.append("idTr", localStorage.getItem("idCard"));
   console.log(data.get("idTr"));
-  document.getElementById('modalInfoTractora').scrollTo(0, 0);
-  creaNotificacion(noti,"Datos de la tractora desplegados");
-  modificaNotificacion(noti,'alert alert-success')
-  datosC.classList.remove("d-none")
+  document.getElementById("modalInfoTractora").scrollTo(0, 0);
+  creaNotificacion(noti, "Datos de la tractora desplegados");
+  modificaNotificacion(noti, "alert alert-success");
+  datosC.classList.remove("d-none");
 }
 
 /**Logout */
@@ -985,19 +1081,19 @@ function creaNotificacion(padre, texto) {
 function modificaNotificacion(padre, clas) {
   padre.className = clas;
 }
-function noNull(valor){
-  if(valor == null){
-    return 'No definido';
-  }else{
+function noNull(valor) {
+  if (valor == null) {
+    return "No definido";
+  } else {
     return valor;
   }
 }
-function setLink(valor,etiqueta){
-  if(valor == null){
+function setLink(valor, etiqueta) {
+  if (valor == null) {
     etiqueta.removeAttribute("target");
-    etiqueta.removeAttribute("href")
-  }else{
-    etiqueta.setAttribute("href","../php/"+valor);
-    etiqueta.setAttribute("target","_blank");
+    etiqueta.removeAttribute("href");
+  } else {
+    etiqueta.setAttribute("href", "../php/" + valor);
+    etiqueta.setAttribute("target", "_blank");
   }
 }

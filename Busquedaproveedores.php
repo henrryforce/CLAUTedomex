@@ -87,7 +87,7 @@
               <li class="nav-item"> <a class="nav-link" href="#">Registro</a> </li>
               <li class="nav-item"> <a class="nav-link" href="#">Login</a> </li>
               <li class="nav-item"> <a class="nav-link" href="#">Costo</a> </li>
-              <li class="nav-item accordion-item"> <a class="nav-link" href="#" id="logout">Cerrar sesión</a> </li>
+              <li class="nav-item accordion-item"> <a class="nav-link" href="#" id="">Cerrar sesión</a> </li>
              </li>
             </ul>
           </div>
@@ -156,10 +156,8 @@
                 <div class=\"col-sm-6 col-xl-3 mb-3\" id=\"modal_generada\">
                     <div class=\"card card-span shadow py-4 h-100 border-top border-4 border-primary\">
                       <div class=\"card-body\">
-                        <div class=\"text-center\"><img src=\"../php/" . $datacard[0]['Logo'] . "\" width=\"220px\" alt=\"...\">
-                          <h5 class=\"my-3\">" . $datacard[0]['Empresa'] . "</h5>
-        
-                        </div>
+                        <div class=\"text-center\"><img src=\"../php/" . $datacard[0]['Logo'] . "\" width=\"220px\" alt=\"...\"></div>
+                        <h5 class=\"my-3 text-center\" >" . $datacard[0]['Empresa'] . "</h5>
                       </div>
                       <div class=\"border-top bg-white text-center pt-3 pb-0\" >
                       <input id=\"provedorID$id\" name=\"provedorID$id\" type=\"hidden\" value=\"$id\">
