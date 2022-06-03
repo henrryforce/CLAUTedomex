@@ -296,7 +296,7 @@ function load() {
           });
     }
   })
-  document.getElementById('btnContactar').addEventListener("click",contactoProveedor);
+  document.getElementById('btnContactar').addEventListener("click",contactoTractora);
   }
 
 }
