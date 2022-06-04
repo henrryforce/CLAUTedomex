@@ -405,17 +405,9 @@ function load() {
               //console.log(registro);
             });
           });
-<<<<<<< HEAD
     }
   })
   document.getElementById('btnContactar').addEventListener("click",contactoTractora);
-=======
-      }
-    });
-    document
-      .getElementById("btnContactar")
-      .addEventListener("click", contactoProveedor);
->>>>>>> 88ea63b5fcef18457efde682132e65ff3a1ccc02
   }
 }
 
