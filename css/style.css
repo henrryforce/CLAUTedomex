@@ -70,8 +70,6 @@ label {
     font-weight: 800;
 }
 
-.
-
 
 .h5, h5 {
     font-size: 1.25rem;
@@ -1709,7 +1707,7 @@ input.i-text, textarea {
 	display: none;
   }
   
-  /* lo muestros si está seleccionado value=imagen */
+  /* lo muestros si está seleccionado */
   input.i-radio[value="addProducto"]:checked ~ input.i-text {
 	margin-top: 20px;
 	display: block;

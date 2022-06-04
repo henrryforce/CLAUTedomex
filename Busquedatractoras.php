@@ -110,7 +110,7 @@
     </div>
   </div>
   <section class="main-body pt-5 float-start industry-pages" method ="POST">
-    <div class="container mb-5">
+    <div class="container mt-1">
       <div class="card">
       <!--TITULO DE LA CARTA-->
         <h5 class="card-header text-center">Lista de tractoras</h5>
@@ -118,7 +118,7 @@
           <div class="card-body">            
             <form>
             <!--LABEL SELECTOR DE OPCIONES-->
-              <div class="form-group mb-4">
+              <div class="col-sm-9">
                 <label for="exampleFormControlSelect1">Tipo de servicio</label>
                   <select class="form-control" id="exampleFormControlSelect1">                    
                     <option value="0">Seleccione una opción</option>                    
@@ -130,21 +130,23 @@
               </div>
               <!--CATALOGO DE SERVICIO SELECCIONADO-->
                 <fieldset disabled>
-                  <div class="form-group">
+                  <div class="col-sm-9">
                     <label for="disabledTextInput">Catálogo de servicio seleccionado</label>
-                    <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input">
+                    <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input"><br>
                   </div>                  
+                </fieldset>
+                <div class="col-md-4 ms-auto">
+                    <a href="#" class="btn btn-primary" >Aplicar</a>
+                </div>
             </form>            
           </div>
-        </div>
-        <a type="button" class="btn btn-primary" href="#">Aplicar</a>
+        </div>        
       </div>      
   </section>
   
-  <section class="main-body pt-5 float-start industry-pages">
-  <div class="container mt-1">
-      
-      <div class="row h-100">
+<section class="main-body pt-5 float-start industry-pages">
+  <div class="container mt-1">      
+    <div class="row h-100">
       <?php
         foreach ($idsTractoras as $tractora) {
                 $id = $tractora['ID_usuario'];
