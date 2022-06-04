@@ -121,11 +121,11 @@
               <div class="form-group mb-4">
                 <label for="exampleFormControlSelect1">Tipo de servicio</label>
                   <select class="form-control" id="exampleFormControlSelect1">                    
-                    <option>Seleccione una opción</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                    <option value="0">Seleccione una opción</option>                    
+                    <option value="1">Producto</option>
+                    <option value="2">Proceso</option>
+                    <option value="3">Materia prima</option>
+                    <option value="4">Servicios indirectos</option>
                   </select>
               </div>
               <!--CATALOGO DE SERVICIO SELECCIONADO-->
@@ -133,12 +133,14 @@
                   <div class="form-group">
                     <label for="disabledTextInput">Catálogo de servicio seleccionado</label>
                     <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input">
-                  </div>                        
-            </form>                  
+                  </div>                  
+            </form>            
           </div>
         </div>
-      </div>
+        <a type="button" class="btn btn-primary" href="#">Aplicar</a>
+      </div>      
   </section>
+  
   <section class="main-body pt-5 float-start industry-pages">
   <div class="container mt-1">
       

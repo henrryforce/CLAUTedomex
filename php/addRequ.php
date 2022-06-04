@@ -46,7 +46,7 @@
                     echo "ultimo id: ".$id;
 
                     $database->query("INSERT INTO producto(producto, ID_req_producto, ID_usuario, ID_catalogo) VALUES(?,?,?,?)");
-                    $database->bind(1, $productoR);
+                    $database->bind(1, $productoR_n);
                     $database->bind(2, $id);
                     $database->bind(3, $id_user3);
                     $database->bind(4, $sel_com);
@@ -100,7 +100,7 @@
                     echo "ultimo id: ".$id;
 
                     $database->query("INSERT INTO producto(producto, ID_req_producto, ID_usuario, ID_catalogo) VALUES(?,?,?,?)");
-                    $database->bind(1, $productoR);
+                    $database->bind(1, $productoR_n);
                     $database->bind(2, $id);
                     $database->bind(3, $id_user3);
                     $database->bind(4, $sel_com);
@@ -154,7 +154,7 @@
                     echo "ultimo id: ".$id;
 
                     $database->query("INSERT INTO producto(producto, ID_req_producto, ID_usuario, ID_catalogo) VALUES(?,?,?,?)");
-                    $database->bind(1, $productoR);
+                    $database->bind(1, $productoR_n);
                     $database->bind(2, $id);
                     $database->bind(3, $id_user3);
                     $database->bind(4, $sel_com);
@@ -207,7 +207,7 @@
                     echo "ultimo id: ".$id;
 
                     $database->query("INSERT INTO producto(producto, ID_req_producto, ID_usuario, ID_catalogo) VALUES(?,?,?,?)");
-                    $database->bind(1, $productoR);
+                    $database->bind(1, $productoR_n);
                     $database->bind(2, $id);
                     $database->bind(3, $id_user3);
                     $database->bind(4, $sel_com);
