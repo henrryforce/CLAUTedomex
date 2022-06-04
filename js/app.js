@@ -261,6 +261,32 @@ function load() {
             });
           });
       }
+      if(e.target.className == "form-control comboComodity"){
+        
+        let data = new FormData();
+        if(e.target.options[e.target.selectedIndex].value != 'none'){
+          data.append("tipoCat",e.target.options[e.target.selectedIndex].value);
+          data.append("getFiltar",1);
+          fetch("../php/listarproveedores.php", {
+            method: "POST",
+            body: data,
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              let idsDelete=[];
+              data.forEach(elemnt =>{
+                idsDelete.push(elemnt['id']);
+              });
+              idsDelete = new Set(idsDelete);
+              idsDelete.forEach(id=>{
+                console.log(id);
+                document.getElementById('cartProveedor'+id).classList.add("d-none");
+              });
+              });
+        }
+        
+      }
     });
     document
       .getElementById("btnContactar")
@@ -667,6 +693,8 @@ function contactoform(e) {
 }
 function changePassPerfilProveedor(e) {
   e.preventDefault();
+  const exprecionRegular =
+    /^(?=.{8,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$/;
   let form = document.getElementById("formPassword");
   let noti = document.getElementById("notificaciones");
   let data = new FormData(form);
@@ -685,11 +713,18 @@ function changePassPerfilProveedor(e) {
   if (data.get("password") !== data.get("password2")) {
     creaNotificacion(noti, "Las contraseñas no coinciden");
   }
+  if (!exprecionRegular.test(data.get("password"))) {
+    creaNotificacion(
+      noti,
+      "La contraseña no cumple con los criterios minimos de seguridad debe contener al menos 1 mayúscula, 1 minúscula, 1 dígito, 1 carácter especial y tiene una longitud de al menos 8"
+    );
+  }
   if (
     data.get("email") !== "" &&
     data.get("password") !== "" &&
     data.get("password2") !== "" &&
-    data.get("password") === data.get("password2")
+    data.get("password") === data.get("password2") &&
+    exprecionRegular.test(data.get("password"))
   ) {
     var toast = new bootstrap.Toast(document.getElementById("liveToast"));
     document.getElementById("toasContaider").style.zIndex = "11";
@@ -839,6 +874,41 @@ function sendCerts(e) {
   let form = document.getElementById("certyforms");
   let noti = document.getElementById("notificacionesMC");
   let data = new FormData(form);
+  let ubi = document.body.baseURI;
+  if(ubi.includes("/cuenta-tractora.php")){
+    if (data.get("txtcerts") == "") {
+      creaNotificacion(noti, "No puedes dejar el ningun campo en blanco");
+    }
+    if(data.get("txtcerts") != ""){
+      data.append("certTractora", 1);
+      
+    fetch("../php/gestorcuenta.php", {
+      method: "POST",
+      body: data,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data == 201) {
+          creaNotificacion(
+            document.getElementById("notificacionesMC"),
+            "Se ha agregado con exito"
+          );
+          modificaNotificacion(
+            document.getElementById("notificacionesMC"),
+            "alert alert-success"
+          );
+        }
+        if (data == 409) {
+          creaNotificacion(
+            noti,
+            "Ocurrio un error inesperado en la carga del archivo"
+          );
+          modificaNotificacion(noti, "alert alert-warning");
+        }
+      });
+    }
+  }else{
   if (data.get("certdoc").size > 1048576) {
     creaNotificacion(
       noti,
@@ -886,6 +956,7 @@ function sendCerts(e) {
         }
       });
   }
+}
 }
 /**Funcion para agregar paises al combo */
 function AgregaPaisCombo(e) {

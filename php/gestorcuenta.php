@@ -119,6 +119,19 @@ if (isset($_FILES) && isset($_POST['actualizarDatos'])) {
     }
 
 }
+if(isset($_POST['certTractora'])  && isset($_POST['txtcerts'])){
+
+$obj = new Conexion;
+try{
+    $obj -> query("UPDATE `certificacionescomprador` SET `listaCerts`='" . $_POST['txtcerts'] . "' WHERE `idcomprador` = " . $_SESSION['id_usuario'] ."" );
+    $obj -> resultSet();
+} catch (Exception $e) {
+    echo json_encode($e);
+}
+echo json_encode(201);
+
+
+}
 if (isset($_FILES['certdoc']) && $_POST['cert'] == '1') {
     $certname = substr(str_shuffle($permitted_chars), 0, 10);
     $pathFileC = '';
