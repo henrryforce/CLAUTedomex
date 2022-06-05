@@ -261,10 +261,12 @@ function load() {
             });
           });
       }
-      if(e.target.className == "form-control comboComodity"){
-        
+
+
+      if(e.target.className == "form-control comboComodity"){  
+       
         let data = new FormData();
-        if(e.target.options[e.target.selectedIndex].value != 'none'){
+        if(e.target.options[e.target.selectedIndex].value != 'none'){          
           data.append("tipoCat",e.target.options[e.target.selectedIndex].value);
           data.append("getFiltar",1);
           fetch("../php/listarproveedores.php", {
@@ -281,11 +283,16 @@ function load() {
               idsDelete = new Set(idsDelete);
               idsDelete.forEach(id=>{
                 console.log(id);
-                document.getElementById('cartProveedor'+id).classList.add("d-none");
+                function limpiarDisplay(){
+                  document.getElementById('cartProveedor'+id).classList.remove("d-none");
+                }
+                document.getElementById('exampleFormControlSelect1').onclick=function(){
+                  limpiarDisplay();
+                }
+                document.getElementById('cartProveedor'+id).classList.add("d-none");                
               });
               });
-        }
-        
+        }        
       }
     });
     document
@@ -406,7 +413,37 @@ function load() {
             });
           });
     }
-  })
+    if(e.target.className == "form-control comboComodity"){
+      let data = new FormData();
+      if(e.target.options[e.target.selectedIndex].value != 'none'){
+        data.append("tipoCat",e.target.options[e.target.selectedIndex].value);
+        data.append("getFiltar",1);
+        fetch("../php/listarRequerimientos.php", {
+          method: "POST",
+          body: data,
+        })
+        .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              let idsDelete=[];
+              data.forEach(elemnt =>{
+                idsDelete.push(elemnt['id']);
+              });
+              idsDelete = new Set(idsDelete);
+              idsDelete.forEach(id=>{
+                console.log(id);
+                function limpiarDisplay(){
+                  document.getElementById('cartProveedor'+id).classList.remove("d-none");
+                }
+                document.getElementById('exampleFormControlSelect1').onclick=function(){
+                  limpiarDisplay();
+                }
+                document.getElementById('cartProveedor'+id).classList.add("d-none");
+              });
+              });
+    }
+  }
+  });
   document.getElementById('btnContactar').addEventListener("click",contactoTractora);
   }
 }

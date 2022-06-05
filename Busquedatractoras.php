@@ -5,7 +5,8 @@
   } else {
       include 'php/Conexion.php';
       include 'php/emailsender.php';
-      $obj = new Conexion();
+      $db = new Conexion();
+      $obj = new Conexion();      
       $obj->query("Select ID_usuario from usuario where ID_tipo_usr=1;");
       $idsTractoras = $obj->resultSet();
 ?>
@@ -118,26 +119,24 @@
           <div class="card-body">            
             <form>
             <!--LABEL SELECTOR DE OPCIONES-->
-              <div class="col-sm-9">
+              <div class="form-group mb-4">
                 <label for="exampleFormControlSelect1">Tipo de servicio</label>
                   <select class="form-control" id="exampleFormControlSelect1">                    
-                    <option value="0">Seleccione una opción</option>                    
+                    <option value="none">Seleccione una opción</option>                    
                     <option value="1">Producto</option>
                     <option value="2">Proceso</option>
                     <option value="3">Materia prima</option>
                     <option value="4">Servicios indirectos</option>
                   </select>
               </div>
+                      
               <!--CATALOGO DE SERVICIO SELECCIONADO-->
                 <fieldset disabled>
-                  <div class="col-sm-9">
+                  <div class="form-group">
                     <label for="disabledTextInput">Catálogo de servicio seleccionado</label>
                     <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input"><br>
                   </div>                  
-                </fieldset>
-                <div class="col-md-4 ms-auto">
-                    <a href="#" class="btn btn-primary" >Aplicar</a>
-                </div>
+                </fieldset>                
             </form>            
           </div>
         </div>        
