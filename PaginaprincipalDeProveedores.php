@@ -120,6 +120,9 @@ if(!isset($_SESSION['id_usuario'])){
                 <!--------------------------------- CONTENEDOR DE ELEMENTOS --------------------------------->
                 <!--------------------------------- COLOCAR CONTENIDO AQUÍ --------------------------------->           
                 <!--------------------------------- UP BAR BUTTONS --------------------------------->
+                <div class="container">
+                <div class="card mt-5">
+                  <div class="card-body">
 				<div class="profile-userbuttons text-center mb-4">
 					<button type="button" id="btnAdminPerfil" class="btn btn-success" style="background-color: #0371F1;">Administrar Perfil</button>
 					<button type="button" class="btn btn-success" style="background-color: #0371F1;" data-bs-toggle="modal" data-bs-target="#modalInfoProvedor">Realizar pago</button>
@@ -146,15 +149,18 @@ if(!isset($_SESSION['id_usuario'])){
                         <h4 class=""><?php echo $nombre_empresa?></h4>                        
                         <a href="#" class="text-dark font-weight-bold text-decoration-none">Información personal</a>                        
                 </div>
-                <!-- LINEA SEPARADORA-->
-                <div class="container mb-4">
-                    <hr width="100%"/>                    
+
                 </div>
-                <div class="Profile-header text-center">
-                  <h5 class="text-dark font-weight-bold text-decoration-none">Editar información</a>                        
                 </div>
+                </div>     
+
+                
             
-            <!--------------------------------- TABLA EDITAR --------------------------------->    
+            <!--------------------------------- TABLA EDITAR --------------------------------->   
+            <div class="container">
+                <div class="card mt-5 mb-5">
+                  <div class="card-body">
+
             <section id = "tabEditar" class="container mt-2 mb-2 p-2 ">
               <form action="php/addContactos.php" method="POST">                
                 <div class="table-responsive">
@@ -324,13 +330,22 @@ if(!isset($_SESSION['id_usuario'])){
                <!-- END MODAL -->                                     
                   </div>
               </div>        
-          </div>              
-          <!-- LINEA DEPARADORA-->
-          <div class="container mb-4 mt-4">
-              <hr width="100%"/>              
-          </div>          
+          </div>
+          
+          </div>
+          </div>
+          </div>
+  
+
+
+                  
           <!------------------------------------------- TABLA 2 ------------------------------------------->     
           <div class="container">
+          <div class="card mt-5 mb-5">
+          <div class="card-body">                
+
+
+
             <form action="php/addProducts.php" id="addContacts" name="adc" method="POST">
               <div class="table-responsive">                  
                   <div class="table-wrapper">
@@ -426,7 +441,12 @@ if(!isset($_SESSION['id_usuario'])){
                   </div>
               </div>        
           </div>
-          </form>                        
+          </form>  
+          
+          </div>
+          </div>
+          </div>
+
     <!-- FINAL DEL CONTENEDOR -->    
 </section>
  <!-- FOOTER -->
