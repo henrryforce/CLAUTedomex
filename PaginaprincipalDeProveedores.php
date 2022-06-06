@@ -122,7 +122,7 @@ if(!isset($_SESSION['id_usuario'])){
                 <!--------------------------------- UP BAR BUTTONS --------------------------------->
 				<div class="profile-userbuttons text-center mb-4">
 					<button type="button" id="btnAdminPerfil" class="btn btn-success" style="background-color: #0371F1;">Administrar Perfil</button>
-					<button type="button" class="btn btn-success" style="background-color: #0371F1;">Realizar pago</button>
+					<button type="button" class="btn btn-success" style="background-color: #0371F1;" data-bs-toggle="modal" data-bs-target="#modalInfoProvedor">Realizar pago</button>
           <a type="button" class="btn btn-primary" href="/Busquedatractoras.php">Lista de Tractoras</a>
 				</div>
                 <!-- ROW(->) COL(v)-->                                    
@@ -472,7 +472,40 @@ if(!isset($_SESSION['id_usuario'])){
       
 </footer>
 
-
+                <!------------------------------ Modal ------------------------------>
+                <div class="modal fade" id="modalInfoProvedor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen-sm-down modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal_pago">Informacion de Pago</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <form class="row g-3">   
+            <div class="row">
+              <div class="col-sm-6 form-control-plaintext">Medios de pago</div>            
+            </div> 
+            <div class="row">
+              <div class="col-sm-6 form-control-plaintext"><p>Cluster Automotriz Regional Estado de México A.C.
+Número de Cuenta: 0112562251
+Clabe interbancaria: 012180001125622513</p></div>            
+            </div>
+            <div class="row">
+              <div class="col-sm-6 form-control-plaintext">Pago con Mercado Pago</div>            
+            </div>
+            
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">                
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        
+        <a type="button" class="btn btn-primary" href="https://mpago.la/1XAnXpA" data-bs-dismiss="modal">Pagar con Mercado Pago</a>
+      </div>
+    </div>
+  </div>
+</div><!------------------------------ Fin Modal ------------------------------>
 
 <!-- modaible menu -->
 

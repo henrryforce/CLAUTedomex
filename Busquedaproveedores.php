@@ -87,7 +87,7 @@
               <li class="nav-item"> <a class="nav-link" href="#">Registro</a> </li>
               <li class="nav-item"> <a class="nav-link" href="#">Login</a> </li>
               <li class="nav-item"> <a class="nav-link" href="#">Costo</a> </li>
-              <li class="nav-item accordion-item"> <a class="nav-link" href="#" id="">Cerrar sesión</a> </li>
+              <li class="nav-item accordion-item"> <a class="nav-link logout" href="#" id="">Cerrar sesión</a> </li>
              </li>
             </ul>
           </div>
@@ -249,7 +249,7 @@
                <a href="#"> Costo </a>
             </li>            
             <li>
-              <a href="#" id="logout"> Cerrar sesión </a>
+              <a  class="logout" > Cerrar sesión </a>
            </li>            
          </ul>
       </div>
