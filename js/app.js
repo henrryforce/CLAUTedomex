@@ -7,7 +7,12 @@ document.addEventListener("DOMContentLoaded", load);
  */
 function load() {
   let ubi = document.body.baseURI;
-
+  document.addEventListener("click",function (e){
+    if(e.target.className.includes('logout')){
+      logout();
+    }
+    
+  });
   if (ubi.includes("/Login.html")) {
     document.getElementById("btnlogin").addEventListener("click", enviaLogin);
   }

@@ -4,6 +4,9 @@ if(!isset($_SESSION['id_usuario'])){
   header("location: /Login.html");
  }else{
   $id_usr=$_SESSION['id_usuario'];
+  if($_SESSION['tipoUser'] != '2'){
+    header("location: /Login.html");
+  }
 }
   include_once "php/Conexion.php";
   require_once "php/addContactos.php";
@@ -23,7 +26,7 @@ if(!isset($_SESSION['id_usuario'])){
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title> BAM24/7 </title>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.0/dist/aos.css" rel="stylesheet">
@@ -120,9 +123,12 @@ if(!isset($_SESSION['id_usuario'])){
                 <!--------------------------------- CONTENEDOR DE ELEMENTOS --------------------------------->
                 <!--------------------------------- COLOCAR CONTENIDO AQUÍ --------------------------------->           
                 <!--------------------------------- UP BAR BUTTONS --------------------------------->
+                <div class="container">
+                <div class="card mt-5">
+                  <div class="card-body">
 				<div class="profile-userbuttons text-center mb-4">
 					<button type="button" id="btnAdminPerfil" class="btn btn-success" style="background-color: #0371F1;">Administrar Perfil</button>
-					<button type="button" class="btn btn-success" style="background-color: #0371F1;">Realizar pago</button>
+					<button type="button" class="btn btn-success" style="background-color: #0371F1;" data-bs-toggle="modal" data-bs-target="#modalInfoProvedor">Realizar pago</button>
           <a type="button" class="btn btn-primary" href="/Busquedatractoras.php">Lista de Tractoras</a>
 				</div>
                 <!-- ROW(->) COL(v)-->                                    
@@ -146,15 +152,18 @@ if(!isset($_SESSION['id_usuario'])){
                         <h4 class=""><?php echo $nombre_empresa?></h4>                        
                         <a href="#" class="text-dark font-weight-bold text-decoration-none">Información personal</a>                        
                 </div>
-                <!-- LINEA SEPARADORA-->
-                <div class="container mb-4">
-                    <hr width="100%"/>                    
+
                 </div>
-                <div class="Profile-header text-center">
-                  <h5 class="text-dark font-weight-bold text-decoration-none">Editar información</a>                        
                 </div>
+                </div>     
+
+                
             
-            <!--------------------------------- TABLA EDITAR --------------------------------->    
+            <!--------------------------------- TABLA EDITAR --------------------------------->   
+            <div class="container">
+                <div class="card mt-5 mb-5">
+                  <div class="card-body">
+
             <section id = "tabEditar" class="container mt-2 mb-2 p-2 ">
               <form action="php/addContactos.php" method="POST">                
                 <div class="table-responsive">
@@ -324,13 +333,22 @@ if(!isset($_SESSION['id_usuario'])){
                <!-- END MODAL -->                                     
                   </div>
               </div>        
-          </div>              
-          <!-- LINEA DEPARADORA-->
-          <div class="container mb-4 mt-4">
-              <hr width="100%"/>              
-          </div>          
+          </div>
+          
+          </div>
+          </div>
+          </div>
+  
+
+
+                  
           <!------------------------------------------- TABLA 2 ------------------------------------------->     
           <div class="container">
+          <div class="card mt-5 mb-5">
+          <div class="card-body">                
+
+
+
             <form action="php/addProducts.php" id="addContacts" name="adc" method="POST">
               <div class="table-responsive">                  
                   <div class="table-wrapper">
@@ -426,7 +444,12 @@ if(!isset($_SESSION['id_usuario'])){
                   </div>
               </div>        
           </div>
-          </form>                        
+          </form>  
+          
+          </div>
+          </div>
+          </div>
+
     <!-- FINAL DEL CONTENEDOR -->    
 </section>
  <!-- FOOTER -->
@@ -472,7 +495,40 @@ if(!isset($_SESSION['id_usuario'])){
       
 </footer>
 
-
+                <!------------------------------ Modal ------------------------------>
+                <div class="modal fade" id="modalInfoProvedor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen-sm-down modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal_pago">Informacion de Pago</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <form class="row g-3">   
+            <div class="row">
+              <div class="col-sm-6 form-control-plaintext">Medios de pago</div>            
+            </div> 
+            <div class="row">
+              <div class="col-sm-6 form-control-plaintext"><p>Cluster Automotriz Regional Estado de México A.C.
+Número de Cuenta: 0112562251
+Clabe interbancaria: 012180001125622513</p></div>            
+            </div>
+            <div class="row">
+              <div class="col-sm-6 form-control-plaintext">Pago con Mercado Pago</div>            
+            </div>
+            
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">                
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        
+        <a type="button" class="btn btn-primary" href="https://mpago.la/1XAnXpA" data-bs-dismiss="modal">Pagar con Mercado Pago</a>
+      </div>
+    </div>
+  </div>
+</div><!------------------------------ Fin Modal ------------------------------>
 
 <!-- modaible menu -->
 

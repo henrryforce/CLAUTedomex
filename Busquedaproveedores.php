@@ -3,6 +3,9 @@
   if (!isset($_SESSION['id_usuario'])) {
       header("location: /Login.html");
   } else {
+    if($_SESSION['tipoUser'] != '1'){
+      header("location: /Login.html");
+    }
       include 'php/Conexion.php';
       include 'php/emailsender.php';
       $obj = new Conexion();
@@ -16,7 +19,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BAM24/7</title>
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.0/dist/aos.css" rel="stylesheet">
@@ -87,7 +90,7 @@
               <li class="nav-item"> <a class="nav-link" href="#">Registro</a> </li>
               <li class="nav-item"> <a class="nav-link" href="#">Login</a> </li>
               <li class="nav-item"> <a class="nav-link" href="#">Costo</a> </li>
-              <li class="nav-item accordion-item"> <a class="nav-link" href="#" id="">Cerrar sesión</a> </li>
+              <li class="nav-item accordion-item"> <a class="nav-link logout" href="#" id="">Cerrar sesión</a> </li>
              </li>
             </ul>
           </div>
@@ -128,12 +131,7 @@
                     <option value="4">Servicios Indirectos</option>
                   </select>
               </div>
-              <!--CATALOGO DE SERVICIO SELECCIONADO-->
-                <fieldset disabled>
-                  <div class="form-group">
-                    <label for="disabledTextInput">Catálogo de servicio seleccionado</label>
-                    <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input">
-                  </div>                        
+                                      
             </form>                  
           </div>
         </div>
@@ -249,7 +247,7 @@
                <a href="#"> Costo </a>
             </li>            
             <li>
-              <a href="#" id="logout"> Cerrar sesión </a>
+              <a  class="logout" > Cerrar sesión </a>
            </li>            
          </ul>
       </div>

@@ -4,6 +4,9 @@ if (!isset($_SESSION['id_usuario'])) {
     header("location: /Login.html");
 } else {
     $id_usr = $_SESSION['id_usuario'];
+    if($_SESSION['tipoUser'] != '2'){
+      header("location: /Login.html");
+    }
     include_once "php/Conexion.php";
     $obj = new Conexion;
     $obj->query("SELECT * FROM usuario WHERE id_usuario=$id_usr");

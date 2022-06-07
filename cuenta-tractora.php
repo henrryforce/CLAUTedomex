@@ -4,6 +4,9 @@ if (!isset($_SESSION['id_usuario'])) {
     header("location: /Login.html");
 } else {
     $id_usr = $_SESSION['id_usuario'];
+    if($_SESSION['tipoUser'] != '1'){
+      header("location: /Login.html");
+    }
     include_once "php/Conexion.php";
     $obj = new Conexion;
     $obj->query("SELECT * FROM usuario WHERE id_usuario=$id_usr");
@@ -568,6 +571,8 @@ if (!isset($_SESSION['id_usuario'])) {
 
   <!-- modaible menu -->
 
+  <!-- modaible menu -->
+
   <div class="offcanvas offcanvas-start mobile-menu-div" tabindex="-1" id="mboile-show-menu"
     aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header">
@@ -597,7 +602,7 @@ if (!isset($_SESSION['id_usuario'])) {
             </li>
 
             <li>
-              <a href="#" > Login </a>
+              <a href="#"> Login </a>
             </li>
 
             <li>

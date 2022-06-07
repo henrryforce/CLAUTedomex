@@ -21,6 +21,7 @@ if(isset($_POST['email']) && isset($_POST['password']) && !isset($_POST['resetPa
             session_start();
             $_SESSION['email'] = $user;
             $_SESSION['id_usuario'] = $respuesta[0]['ID_usuario'];
+            $_SESSION['tipoUser'] = $respuesta[0]['ID_tipo_usr'];
             echo json_encode($respuesta[0]['ID_tipo_usr']);
             
         }else{

@@ -3,6 +3,9 @@
   if (!isset($_SESSION['id_usuario'])) {
       header("location: /Login.html");
   } else {
+    if($_SESSION['tipoUser'] != '2'){
+      header("location: /Login.html");
+    }
       include 'php/Conexion.php';
       include 'php/emailsender.php';
       $db = new Conexion();
@@ -17,7 +20,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BAM24/7</title>
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.0/dist/aos.css" rel="stylesheet">
@@ -130,13 +133,7 @@
                   </select>
               </div>
                       
-              <!--CATALOGO DE SERVICIO SELECCIONADO-->
-                <fieldset disabled>
-                  <div class="form-group">
-                    <label for="disabledTextInput">Catálogo de servicio seleccionado</label>
-                    <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input"><br>
-                  </div>                  
-                </fieldset>                
+                     
             </form>            
           </div>
         </div>        

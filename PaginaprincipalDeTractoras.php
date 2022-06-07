@@ -4,6 +4,9 @@ if(!isset($_SESSION['id_usuario'])){
   header("location: /Login.html");
  }else{
   $id_usr=$_SESSION['id_usuario'];
+  if($_SESSION['tipoUser'] != '1'){
+    header("location: /Login.html");
+  }
 }
   include_once "php/Conexion.php";
   require_once "php/addContactos.php";
@@ -24,7 +27,7 @@ if(!isset($_SESSION['id_usuario'])){
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title> BAM24/7 </title>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.0/dist/aos.css" rel="stylesheet">
@@ -148,6 +151,11 @@ if(!isset($_SESSION['id_usuario'])){
                 <!--------------------------------- CONTENEDOR DE ELEMENTOS --------------------------------->
                 <!--------------------------------- COLOCAR CONTENIDO AQUÍ --------------------------------->           
                 <!--------------------------------- UP BAR BUTTONS --------------------------------->
+                <div class="container">
+                <div class="card mt-5">
+                  <div class="card-body">
+
+
                 <div class="profile-userbuttons text-center mb-4">
                     <button type="button" class="btn btn-primary" id="btnAdministrarcuenta">Administrar Perfil</button>
                     <a type="button" class="btn btn-primary" href="/Busquedaproveedores.php">Lista de proveedores</a>
@@ -173,15 +181,21 @@ if(!isset($_SESSION['id_usuario'])){
                         <h4 class=""><?php echo $nombre_empresa?></h4>                        
                         <a href="#" class="text-dark font-weight-bold text-decoration-none">Información personal</a>                        
                 </div>
-                <!-- LINEA SEPARADORA-->
-                <div class="container mb-4">
-                    <hr width="100%"/>                    
+                
                 </div>
-                <div class="Profile-header text-center">
-                  <h5 class="text-dark font-weight-bold text-decoration-none">Editar información</a>                        
                 </div>
+                </div>
+
+
+                
             
-            <!--------------------------------- TABLA EDITAR --------------------------------->    
+            <!--------------------------------- TABLA EDITAR --------------------------------->   
+            
+            <div class="container">
+              <div class="card mt-5 mb-5">
+                <div class="card-body">
+
+
             <section id = "tabEditar" class="container mt-2 mb-2 p-2 ">
               <form action="php/addContactosT.php" method="POST">                
                 <div class="table-responsive">
@@ -236,6 +250,12 @@ if(!isset($_SESSION['id_usuario'])){
                 </div>             
               </form>
             </section>
+
+            </div>
+            </div>
+            </div>                        
+
+
             <!--------------------------------- TABLA 1 --------------------------------->             
             <div class="container">
               <form action="php/addContactosT.php" id="addContactsT" name="adct" method="POST">
@@ -359,15 +379,22 @@ if(!isset($_SESSION['id_usuario'])){
                <!-- END MODAL -->                                     
                   </div>
               </div>        
-          </div>              
-          <!-- LINEA DEPARADORA-->
-          <div class="container mb-4 mt-4">
-              <hr width="100%"/>              
+          </div> 
+          
           </div>
-          <div class="Profile-header text-center">
-                  <h5 class="text-dark font-weight-bold text-decoration-none">Editar información</a>                        
-                </div>
+          </div>
+          </div>
+
+
+          
           <!--------------------------------- TABLA EDITAR 2 --------------------------------->
+
+          <div class="container">
+          <div class="card mt-5 mb-5">
+          <div class="card-body">                       
+
+
+
             <section id = "tabEditar2" class="container mt-2 mb-2 p-2 ">
               <form action="php/addRequ.php" method="POST">                
                 <div class="table-responsive">
@@ -415,8 +442,20 @@ if(!isset($_SESSION['id_usuario'])){
                 </div>                         
              </form>
             </select>
+
+            </div>
+          </div>
+          </div>                        
+
+
+
           <!------------------------------------------- TABLA 2 ------------------------------------------->     
           <div class="container">
+              <div class="card mt-5 mb-5">
+                <div class="card-body">                      
+
+
+
             <form action="php/addRequ.php" id="addReq" name="adr" method="POST">
               <div class="table-responsive">                  
                   <div class="table align-middle">
@@ -536,7 +575,13 @@ if(!isset($_SESSION['id_usuario'])){
                   </div>
               </div>        
           </div>
-          </form>                           
+          </form>
+          
+          </div>
+          </div>
+          </div>
+
+
     <!-- FINAL DEL CONTENEDOR -->
 </section>
  <!-- FOOTER -->
