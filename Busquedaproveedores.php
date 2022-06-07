@@ -131,12 +131,7 @@
                     <option value="4">Servicios Indirectos</option>
                   </select>
               </div>
-              <!--CATALOGO DE SERVICIO SELECCIONADO-->
-                <fieldset disabled>
-                  <div class="form-group">
-                    <label for="disabledTextInput">Catálogo de servicio seleccionado</label>
-                    <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input">
-                  </div>                        
+                                      
             </form>                  
           </div>
         </div>

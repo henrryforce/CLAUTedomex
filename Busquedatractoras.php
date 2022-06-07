@@ -133,13 +133,7 @@
                   </select>
               </div>
                       
-              <!--CATALOGO DE SERVICIO SELECCIONADO-->
-                <fieldset disabled>
-                  <div class="form-group">
-                    <label for="disabledTextInput">Catálogo de servicio seleccionado</label>
-                    <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input"><br>
-                  </div>                  
-                </fieldset>                
+                     
             </form>            
           </div>
         </div>        
