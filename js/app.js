@@ -416,9 +416,9 @@ function load() {
     if(e.target.className == "form-control comboComodity"){
       let data = new FormData();
       if(e.target.options[e.target.selectedIndex].value != 'none'){
-        data.append("tipoCat",e.target.options[e.target.selectedIndex].value);
-        data.append("getFiltar",1);
-        fetch("../php/listarRequerimientos.php", {
+        data.append("tipoCatT",e.target.options[e.target.selectedIndex].value);
+        data.append("getFiltarT",1);
+        fetch("../php/listarproveedores.php", {
           method: "POST",
           body: data,
         })

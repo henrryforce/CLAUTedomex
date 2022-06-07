@@ -446,9 +446,9 @@ if(!isset($_SESSION['id_usuario'])){
                           </thead>                          
                           <tbody>
                             <?php 
-                            $database->query("SELECT requerimiento_producto.ID_req_producto, producto.Producto , requerimiento_producto.Tipo_material, requerimiento_producto.Volumen_anual, requerimiento_producto.Comentarios
-                                              FROM producto
-                                              INNER JOIN requerimiento_producto ON producto.ID_producto = requerimiento_producto.ID_req_producto
+                            $database->query("SELECT requerimiento_producto.ID_req_producto, producto_tractora.Producto , requerimiento_producto.Tipo_material, requerimiento_producto.Volumen_anual, requerimiento_producto.Comentarios
+                                              FROM producto_tractora
+                                              INNER JOIN requerimiento_producto ON producto_tractora.ID_producto = requerimiento_producto.ID_req_producto
                                               WHERE requerimiento_producto.ID_usuario=$id_usr");
                             $res = $database->resultSet();?>
                             <?php foreach($res as $row) :?>
