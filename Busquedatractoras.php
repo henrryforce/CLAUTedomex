@@ -3,6 +3,9 @@
   if (!isset($_SESSION['id_usuario'])) {
       header("location: /Login.html");
   } else {
+    if($_SESSION['tipoUser'] != '2'){
+      header("location: /Login.html");
+    }
       include 'php/Conexion.php';
       include 'php/emailsender.php';
       $db = new Conexion();

@@ -4,6 +4,9 @@ if(!isset($_SESSION['id_usuario'])){
   header("location: /Login.html");
  }else{
   $id_usr=$_SESSION['id_usuario'];
+  if($_SESSION['tipoUser'] != '1'){
+    header("location: /Login.html");
+  }
 }
   include_once "php/Conexion.php";
   require_once "php/addContactos.php";
