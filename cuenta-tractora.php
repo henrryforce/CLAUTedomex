@@ -571,6 +571,8 @@ if (!isset($_SESSION['id_usuario'])) {
 
   <!-- modaible menu -->
 
+  <!-- modaible menu -->
+
   <div class="offcanvas offcanvas-start mobile-menu-div" tabindex="-1" id="mboile-show-menu"
     aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header">
@@ -600,7 +602,7 @@ if (!isset($_SESSION['id_usuario'])) {
             </li>
 
             <li>
-              <a href="#" > Login </a>
+              <a href="#"> Login </a>
             </li>
 
             <li>
