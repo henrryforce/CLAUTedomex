@@ -41,22 +41,22 @@ if(isset($_POST['id']) && isset($_POST['contactarProv'])){
 if(isset($_POST['tipoCat'])&& isset($_POST['getFiltar'])){
   $obj = new Conexion();
   $obj ->query("select usuario.ID_usuario as id from usuario
-  inner join producto on producto.ID_usuario = usuario.ID_usuario
+  inner join producto_proveedor on producto_proveedor.ID_usuario = usuario.ID_usuario
   inner join empresa on empresa.ID_empresa = usuario.ID_usuario
-  where usuario.ID_usuario not in (select usuario.ID_usuario from producto
-  inner join usuario on usuario.ID_usuario = producto.ID_usuario
+  where usuario.ID_usuario not in (select usuario.ID_usuario from producto_proveedor
+  inner join usuario on usuario.ID_usuario = producto_proveedor.ID_usuario
   inner join empresa on empresa.ID_empresa = usuario.ID_usuario
-  where ID_catalogo =".$_POST['tipoCat'] ." and usuario.ID_tipo_usr =2) and usuario.ID_tipo_usr =2 ");
+  where ID_catalogo = ".$_POST['tipoCat'] ." and usuario.ID_tipo_usr =2) and usuario.ID_tipo_usr =2  ");
   $res = $obj ->resultSet();
   echo json_encode($res);
 }
 if(isset($_POST['tipoCatT'])&& isset($_POST['getFiltarT'])){
   $obj = new Conexion();
   $obj ->query("select usuario.ID_usuario as id from usuario
-  inner join producto on producto.ID_usuario = usuario.ID_usuario
+  inner join producto_proveedor on producto_proveedor.ID_usuario = usuario.ID_usuario
   inner join empresa on empresa.ID_empresa = usuario.ID_usuario
-  where usuario.ID_usuario not in (select usuario.ID_usuario from producto
-  inner join usuario on usuario.ID_usuario = producto.ID_usuario
+  where usuario.ID_usuario not in (select usuario.ID_usuario from producto_proveedor
+  inner join usuario on usuario.ID_usuario = producto_proveedor.ID_usuario
   inner join empresa on empresa.ID_empresa = usuario.ID_usuario
   where ID_catalogo =".$_POST['tipoCatT'] ." and usuario.ID_tipo_usr =1) and usuario.ID_tipo_usr =1 ");
   $res = $obj ->resultSet();

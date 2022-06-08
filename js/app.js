@@ -167,7 +167,7 @@ function load() {
       });
   }
   if (ubi.includes("/Busquedaproveedores.php")) {
-    document.getElementById("logout").addEventListener("click", logout);
+    
     document.addEventListener("click", function (e) {
       //un evento en el dom completo sobre click ya que no sabemos cuantas cards se pueden generar
       if (e.target.className == "btn btn-primary cardbtn") {
@@ -271,6 +271,13 @@ function load() {
       if(e.target.className == "form-control comboComodity"){  
        
         let data = new FormData();
+        /**les quitamos la clase d-none a todas las carts */
+        if(e.target.options[e.target.selectedIndex].value == 'none'){
+          let carts = document.querySelectorAll('.cartconteiner');
+          carts.forEach(cart =>{
+            cart.classList.remove("d-none");
+          });
+        }
         if(e.target.options[e.target.selectedIndex].value != 'none'){          
           data.append("tipoCat",e.target.options[e.target.selectedIndex].value);
           data.append("getFiltar",1);
@@ -420,10 +427,17 @@ function load() {
     }
     if(e.target.className == "form-control comboComodity"){
       let data = new FormData();
+      if(e.target.options[e.target.selectedIndex].value == 'none'){
+        let carts = document.querySelectorAll('.cartconteiner');
+        carts.forEach(cart =>{
+          cart.classList.remove("d-none");
+        });
+      }
       if(e.target.options[e.target.selectedIndex].value != 'none'){
+        
         data.append("tipoCatT",e.target.options[e.target.selectedIndex].value);
         data.append("getFiltarT",1);
-        fetch("../php/listarproveedores.php", {
+        fetch("../php/listarRequerimientos.php", {
           method: "POST",
           body: data,
         })
@@ -875,6 +889,7 @@ function updateDatosproveedor(e) {
             document.getElementById("notificacionesMD"),
             "alert alert-success"
           );
+          document.getElementById("modalDatosGenerales").scrollTo(0, 0);
         }
       });
   } else {

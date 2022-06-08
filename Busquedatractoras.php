@@ -124,7 +124,7 @@
             <!--LABEL SELECTOR DE OPCIONES-->
               <div class="form-group mb-4">
                 <label for="exampleFormControlSelect1">Tipo de servicio</label>
-                  <select class="form-control" id="exampleFormControlSelect1">                    
+                  <select class="form-control comboComodity" id="exampleFormControlSelect1">                    
                     <option value="none">Seleccione una opción</option>                    
                     <option value="1">Producto</option>
                     <option value="2">Proceso</option>
@@ -153,7 +153,7 @@
                 $datacard = $obj->resultSet();
         
                 $htmlDiv = "
-                <div class=\"col-sm-6 col-xl-3 mb-3\" id=\"modal_generada\">
+                <div class=\"col-sm-6 col-xl-3 mb-3 cartconteiner\" id=\"cartProveedor$id\">
                     <div class=\"card card-span shadow py-4 h-100 border-top border-4 border-primary\">
                       <div class=\"card-body\">
                         <div class=\"text-center\"><img src=\"../php/" . $datacard[0]['Logo'] . "\" width=\"220px\" alt=\"...\">
