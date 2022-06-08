@@ -21,24 +21,26 @@ include 'Conexion.php';
     if(isset($_POST['id']) && isset($_POST['getRequerimiento'])){
         $idConsulta =$_POST['id'];
         $obj = new Conexion();
-        $obj -> query(" SELECT requerimiento_producto.ID_req_producto, producto.Producto , requerimiento_producto.Tipo_material, 
+        $obj -> query(" SELECT requerimiento_producto.ID_req_producto, producto_tractora.Producto , requerimiento_producto.Tipo_material, 
                         requerimiento_producto.Volumen_anual, requerimiento_producto.Comentarios
-                        FROM producto
-                        INNER JOIN requerimiento_producto ON producto.ID_producto = requerimiento_producto.ID_req_producto
+                        FROM producto_tractora
+                        INNER JOIN requerimiento_producto ON producto_tractora.ID_producto = requerimiento_producto.ID_req_producto
                         WHERE requerimiento_producto.ID_usuario=$idConsulta");
         $res = $obj -> resultSet();
         echo json_encode($res);
     }
-    if(isset($_POST['tipoCat'])&& isset($_POST['getFiltar'])){
+
+    if(isset($_POST['tipoCatT'])&& isset($_POST['getFiltarT'])){
       $obj = new Conexion();
+      
       $obj ->query("select usuario.ID_usuario as id from usuario
-      inner join producto on producto.ID_usuario = usuario.ID_usuario
+      inner join producto_tractora on producto_tractora.ID_usuario = usuario.ID_usuario
       inner join empresa on empresa.ID_empresa = usuario.ID_usuario
-      where usuario.ID_usuario not in (select usuario.ID_usuario from producto
-      inner join usuario on usuario.ID_usuario = producto.ID_usuario
+      where usuario.ID_usuario not in (select usuario.ID_usuario from producto_tractora
+      inner join usuario on usuario.ID_usuario = producto_tractora.ID_usuario
       inner join empresa on empresa.ID_empresa = usuario.ID_usuario
-      where ID_catalogo =".$_POST['tipoCat'] ." and usuario.ID_tipo_usr =1) and usuario.ID_tipo_usr =1 ");
-      $res = $obj ->resultSet();
-      echo json_encode($res);
+      where ID_catalogo =".$_POST['tipoCatT'] ." and usuario.ID_tipo_usr =1) and usuario.ID_tipo_usr =1 ");
+      $resT = $obj ->resultSet();
+      echo json_encode($resT);
     }
 ?>

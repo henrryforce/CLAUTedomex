@@ -22,7 +22,7 @@
         switch ($selected){
         	case '1'://Se hace la insercion de los datos con los productos de catalogo "Producto"
                 if(isset($_POST['addProducto'])){//Validacion en caso de que el usuario desee registrar un nuevo producto en el catalogo_producto
-                    $database->query("INSERT INTO producto(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");                    
+                    $database->query("INSERT INTO producto_proveedor(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");                    
                     $database->bind(1, $producto_n);
                     $database->bind(2, $id_user2);
                     $database->bind(3, $selected);
@@ -34,7 +34,7 @@
                     
                     break;
                 }else{
-                    $database->query("INSERT INTO producto(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");
+                    $database->query("INSERT INTO producto_proveedor(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");
                     $database->bind(1, $producto);
                     $database->bind(2, $id_user2);
                     $database->bind(3, $selected);
@@ -44,7 +44,7 @@
 
         	case '2'://Se hace la insercion de los datos con los productos de catalogo "Proceso"
                 if(isset($_POST['addProducto'])){//Validacion en caso de que el usuario desee registrar un nuevo producto en el catalogo_proceso
-                    $database->query("INSERT INTO producto(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");                    
+                    $database->query("INSERT INTO producto_proveedor(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");                    
                     $database->bind(1, $producto_n);
                     $database->bind(2, $id_user2);
                     $database->bind(3, $selected);
@@ -55,7 +55,7 @@
                     $database->execute();
                     break;
                 }else{
-                    $database->query("INSERT INTO producto(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");
+                    $database->query("INSERT INTO producto_proveedor(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");
                     $database->bind(1, $producto);
                     $database->bind(2, $id_user2);
                     $database->bind(3, $selected);
@@ -65,7 +65,7 @@
 
             case '3':
                 if(isset($_POST['addProducto'])){//Validacion en caso de que el usuario desee registrar un nuevo producto en el catalogo_material
-                    $database->query("INSERT INTO producto(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");                    
+                    $database->query("INSERT INTO producto_proveedor(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");                    
                     $database->bind(1, $producto_n);
                     $database->bind(2, $id_user2);
                     $database->bind(3, $selected);
@@ -76,7 +76,7 @@
                     $database->execute();
                     break;
                 }else{
-                    $database->query("INSERT INTO producto(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");
+                    $database->query("INSERT INTO producto_proveedor(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");
                     $database->bind(1, $producto);
                     $database->bind(2, $id_user2);
                     $database->bind(3, $selected);
@@ -86,7 +86,7 @@
 
             case '4':            
                 if(isset($_POST['addProducto'])){//Validacion en caso de que el usuario desee registrar un nuevo producto en el catalogo_indirectos
-                    $database->query("INSERT INTO producto(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");                    
+                    $database->query("INSERT INTO producto_proveedor(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");                    
                     $database->bind(1, $producto_n);
                     $database->bind(2, $id_user2);
                     $database->bind(3, $selected);
@@ -98,7 +98,7 @@
 
                     break;
                 }else{
-                    $database->query("INSERT INTO producto(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");
+                    $database->query("INSERT INTO producto_proveedor(producto, ID_usuario, ID_catalogo) VALUES(?,?,?)");
                     $database->bind(1, $producto);
                     $database->bind(2, $id_user2);
                     $database->bind(3, $selected);

@@ -167,7 +167,7 @@ function load() {
       });
   }
   if (ubi.includes("/Busquedaproveedores.php")) {
-    document.getElementById("logout").addEventListener("click", logout);
+    
     document.addEventListener("click", function (e) {
       //un evento en el dom completo sobre click ya que no sabemos cuantas cards se pueden generar
       if (e.target.className == "btn btn-primary cardbtn") {
@@ -269,31 +269,31 @@ function load() {
 
 
       if(e.target.className == "form-control comboComodity"){  
-       
+        
         let data = new FormData();
-        if(e.target.options[e.target.selectedIndex].value != 'none'){          
+        /**les quitamos la clase d-none a todas las carts */
+        if(e.target.options[e.target.selectedIndex].value == 'none'){
+          limpiarcarts();
+        }
+        if(e.target.options[e.target.selectedIndex].value != 'none'){
+                    
           data.append("tipoCat",e.target.options[e.target.selectedIndex].value);
           data.append("getFiltar",1);
+          
           fetch("../php/listarproveedores.php", {
             method: "POST",
             body: data,
           })
             .then((res) => res.json())
             .then((data) => {
-              console.log(data);
+              limpiarcarts();
               let idsDelete=[];
               data.forEach(elemnt =>{
                 idsDelete.push(elemnt['id']);
               });
+              
               idsDelete = new Set(idsDelete);
-              idsDelete.forEach(id=>{
-                console.log(id);
-                function limpiarDisplay(){
-                  document.getElementById('cartProveedor'+id).classList.remove("d-none");
-                }
-                document.getElementById('exampleFormControlSelect1').onclick=function(){
-                  limpiarDisplay();
-                }
+              idsDelete.forEach(id=>{     
                 document.getElementById('cartProveedor'+id).classList.add("d-none");                
               });
               });
@@ -420,29 +420,26 @@ function load() {
     }
     if(e.target.className == "form-control comboComodity"){
       let data = new FormData();
+      if(e.target.options[e.target.selectedIndex].value == 'none'){
+        limpiarcarts();
+      }
       if(e.target.options[e.target.selectedIndex].value != 'none'){
-        data.append("tipoCat",e.target.options[e.target.selectedIndex].value);
-        data.append("getFiltar",1);
+        
+        data.append("tipoCatT",e.target.options[e.target.selectedIndex].value);
+        data.append("getFiltarT",1);
         fetch("../php/listarRequerimientos.php", {
           method: "POST",
           body: data,
         })
         .then((res) => res.json())
             .then((data) => {
-              console.log(data);
+              limpiarcarts();
               let idsDelete=[];
               data.forEach(elemnt =>{
                 idsDelete.push(elemnt['id']);
               });
               idsDelete = new Set(idsDelete);
               idsDelete.forEach(id=>{
-                console.log(id);
-                function limpiarDisplay(){
-                  document.getElementById('cartProveedor'+id).classList.remove("d-none");
-                }
-                document.getElementById('exampleFormControlSelect1').onclick=function(){
-                  limpiarDisplay();
-                }
                 document.getElementById('cartProveedor'+id).classList.add("d-none");
               });
               });
@@ -875,6 +872,7 @@ function updateDatosproveedor(e) {
             document.getElementById("notificacionesMD"),
             "alert alert-success"
           );
+          document.getElementById("modalDatosGenerales").scrollTo(0, 0);
         }
       });
   } else {
@@ -1201,4 +1199,10 @@ function setLink(valor, etiqueta) {
     etiqueta.setAttribute("href", "../php/" + valor);
     etiqueta.setAttribute("target", "_blank");
   }
+}
+function limpiarcarts(){
+  let carts = document.querySelectorAll('.cartconteiner');
+          carts.forEach(cart =>{
+            cart.classList.remove("d-none");
+          });
 }

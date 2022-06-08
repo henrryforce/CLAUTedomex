@@ -376,7 +376,7 @@ if(!isset($_SESSION['id_usuario'])){
                               </tr>
                           </thead>                          
                           <tbody>
-                            <?php $database->query("SELECT ID_producto, Producto, ID_catalogo from Producto WHERE id_usuario=$id_usr");
+                            <?php $database->query("SELECT ID_producto, Producto, ID_catalogo from producto_proveedor WHERE id_usuario=$id_usr");
                             $res = $database->resultSet();?>
                             <?php foreach($res as $row) :?>
                               <tr>                                

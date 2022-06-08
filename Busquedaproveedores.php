@@ -153,7 +153,7 @@
                 $datacard = $obj->resultSet();
         
                 $htmlDiv = "
-                <div class=\"col-sm-6 col-xl-3 mb-3\" id=\"cartProveedor$id\">
+                <div class=\"col-sm-6 col-xl-3 mb-3 cartconteiner\" id=\"cartProveedor$id\">
                     <div class=\"card card-span shadow py-4 h-100 border-top border-4 border-primary\">
                       <div class=\"card-body\">
                         <div class=\"text-center\"><img src=\"../php/" . $datacard[0]['Logo'] . "\" width=\"220px\" alt=\"...\"></div>

@@ -45,7 +45,7 @@
                     endforeach;
                     echo "ultimo id: ".$id;
 
-                    $database->query("INSERT INTO producto(producto, ID_req_producto, ID_usuario, ID_catalogo) VALUES(?,?,?,?)");
+                    $database->query("INSERT INTO producto_tractora(producto, ID_req_producto, ID_usuario, ID_catalogo) VALUES(?,?,?,?)");
                     $database->bind(1, $productoR_n);
                     $database->bind(2, $id);
                     $database->bind(3, $id_user3);
@@ -73,7 +73,7 @@
                     endforeach;
                     echo "ultimo id: ".$id;
 
-                    $database->query("INSERT INTO producto(producto, ID_req_producto, ID_usuario, ID_catalogo) VALUES(?,?,?,?)");
+                    $database->query("INSERT INTO producto_tractora(producto, ID_req_producto, ID_usuario, ID_catalogo) VALUES(?,?,?,?)");
                     $database->bind(1, $productoR);
                     $database->bind(2, $id);
                     $database->bind(3, $id_user3);
@@ -99,7 +99,7 @@
                     endforeach;
                     echo "ultimo id: ".$id;
 
-                    $database->query("INSERT INTO producto(producto, ID_req_producto, ID_usuario, ID_catalogo) VALUES(?,?,?,?)");
+                    $database->query("INSERT INTO producto_tractora(producto, ID_req_producto, ID_usuario, ID_catalogo) VALUES(?,?,?,?)");
                     $database->bind(1, $productoR_n);
                     $database->bind(2, $id);
                     $database->bind(3, $id_user3);
@@ -125,7 +125,7 @@
                     endforeach;
                     echo "ultimo id: ".$id;
 
-                    $database->query("INSERT INTO producto(producto, ID_req_producto, ID_usuario, ID_catalogo) VALUES(?,?,?,?)");
+                    $database->query("INSERT INTO producto_tractora(producto, ID_req_producto, ID_usuario, ID_catalogo) VALUES(?,?,?,?)");
                     $database->bind(1, $productoR);
                     $database->bind(2, $id);
                     $database->bind(3, $id_user3);
@@ -153,7 +153,7 @@
                     endforeach;
                     echo "ultimo id: ".$id;
 
-                    $database->query("INSERT INTO producto(producto, ID_req_producto, ID_usuario, ID_catalogo) VALUES(?,?,?,?)");
+                    $database->query("INSERT INTO producto_tractora(producto, ID_req_producto, ID_usuario, ID_catalogo) VALUES(?,?,?,?)");
                     $database->bind(1, $productoR_n);
                     $database->bind(2, $id);
                     $database->bind(3, $id_user3);
@@ -180,7 +180,7 @@
                     endforeach;
                     echo "ultimo id: ".$id;
 
-                    $database->query("INSERT INTO producto(producto, ID_req_producto, ID_usuario, ID_catalogo) VALUES(?,?,?,?)");
+                    $database->query("INSERT INTO producto_tractora(producto, ID_req_producto, ID_usuario, ID_catalogo) VALUES(?,?,?,?)");
                     $database->bind(1, $productoR);
                     $database->bind(2, $id);
                     $database->bind(3, $id_user3);
@@ -206,7 +206,7 @@
                     endforeach;
                     echo "ultimo id: ".$id;
 
-                    $database->query("INSERT INTO producto(producto, ID_req_producto, ID_usuario, ID_catalogo) VALUES(?,?,?,?)");
+                    $database->query("INSERT INTO producto_tractora(producto, ID_req_producto, ID_usuario, ID_catalogo) VALUES(?,?,?,?)");
                     $database->bind(1, $productoR_n);
                     $database->bind(2, $id);
                     $database->bind(3, $id_user3);
@@ -234,7 +234,7 @@
                     endforeach;
                     echo "ultimo id: ".$id;
 
-                    $database->query("INSERT INTO producto(producto, ID_req_producto, ID_usuario, ID_catalogo) VALUES(?,?,?,?)");
+                    $database->query("INSERT INTO producto_tractora(producto, ID_req_producto, ID_usuario, ID_catalogo) VALUES(?,?,?,?)");
                     $database->bind(1, $productoR);
                     $database->bind(2, $id);
                     $database->bind(3, $id_user3);
