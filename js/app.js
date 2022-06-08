@@ -269,38 +269,31 @@ function load() {
 
 
       if(e.target.className == "form-control comboComodity"){  
-       
+        
         let data = new FormData();
         /**les quitamos la clase d-none a todas las carts */
         if(e.target.options[e.target.selectedIndex].value == 'none'){
-          let carts = document.querySelectorAll('.cartconteiner');
-          carts.forEach(cart =>{
-            cart.classList.remove("d-none");
-          });
+          limpiarcarts();
         }
-        if(e.target.options[e.target.selectedIndex].value != 'none'){          
+        if(e.target.options[e.target.selectedIndex].value != 'none'){
+                    
           data.append("tipoCat",e.target.options[e.target.selectedIndex].value);
           data.append("getFiltar",1);
+          
           fetch("../php/listarproveedores.php", {
             method: "POST",
             body: data,
           })
             .then((res) => res.json())
             .then((data) => {
-              console.log(data);
+              limpiarcarts();
               let idsDelete=[];
               data.forEach(elemnt =>{
                 idsDelete.push(elemnt['id']);
               });
+              
               idsDelete = new Set(idsDelete);
-              idsDelete.forEach(id=>{
-                console.log(id);
-                function limpiarDisplay(){
-                  document.getElementById('cartProveedor'+id).classList.remove("d-none");
-                }
-                document.getElementById('exampleFormControlSelect1').onclick=function(){
-                  limpiarDisplay();
-                }
+              idsDelete.forEach(id=>{     
                 document.getElementById('cartProveedor'+id).classList.add("d-none");                
               });
               });
@@ -428,10 +421,7 @@ function load() {
     if(e.target.className == "form-control comboComodity"){
       let data = new FormData();
       if(e.target.options[e.target.selectedIndex].value == 'none'){
-        let carts = document.querySelectorAll('.cartconteiner');
-        carts.forEach(cart =>{
-          cart.classList.remove("d-none");
-        });
+        limpiarcarts();
       }
       if(e.target.options[e.target.selectedIndex].value != 'none'){
         
@@ -443,20 +433,13 @@ function load() {
         })
         .then((res) => res.json())
             .then((data) => {
-              console.log(data);
+              limpiarcarts();
               let idsDelete=[];
               data.forEach(elemnt =>{
                 idsDelete.push(elemnt['id']);
               });
               idsDelete = new Set(idsDelete);
               idsDelete.forEach(id=>{
-                console.log(id);
-                function limpiarDisplay(){
-                  document.getElementById('cartProveedor'+id).classList.remove("d-none");
-                }
-                document.getElementById('exampleFormControlSelect1').onclick=function(){
-                  limpiarDisplay();
-                }
                 document.getElementById('cartProveedor'+id).classList.add("d-none");
               });
               });
@@ -1216,4 +1199,10 @@ function setLink(valor, etiqueta) {
     etiqueta.setAttribute("href", "../php/" + valor);
     etiqueta.setAttribute("target", "_blank");
   }
+}
+function limpiarcarts(){
+  let carts = document.querySelectorAll('.cartconteiner');
+          carts.forEach(cart =>{
+            cart.classList.remove("d-none");
+          });
 }
