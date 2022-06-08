@@ -93,11 +93,13 @@ if(!isset($_SESSION['id_usuario'])){
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
   
-            <li class="nav-item"> <a class="nav-link" href="index.html"> Inicio</a></li>
-            <li class="nav-item"> <a class="nav-link" href="#">Tractoras</a> </li>
-            <li class="nav-item"> <a class="nav-link" href="#">Registro</a> </li>
-            <li class="nav-item"> <a class="nav-link" href="#">Login</a> </li>
-            <li class="nav-item"> <a class="nav-link" href="#">Costo</a> </li>
+            <li class="nav-item"> <a class="nav-link active" href="index.html"> Inicio</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/VistaGeneral_Tractoras.php">Tractoras</a> </li>
+            <li class="nav-item"> <a class="nav-link" href="/Registrate.html">Registro</a> </li>
+            <li class="nav-item"> <a class="nav-link" href="/Login.html">Login</a> </li>
+            <li class="nav-item"> <a class="nav-link" href="#seccioncostos">Costo</a> </li>
+            
+            
             <li class="nav-item accordion-item"> <a class="nav-link" id="logout" href="#">Cerrar sesión</a> </li>
              </li></ul>
              </div> </div> </nav> </nav> </div></div>  
@@ -464,23 +466,18 @@ if(!isset($_SESSION['id_usuario'])){
                   <img src="images/logo-white.png" alt="logo"/>
                </a>
 
-              <h6 class="ft-call"> +1(088) 456888 (24/7) </h6>
-              <p class="text-white"> <i class="fas fa-map-marker-alt"></i> 3rd Avenue, Upper East Side,
-                San Francisco </p>
+              <h6 class="ft-call"> +52 55 55614048 </h6>
+              <p class="text-white">esupplier@clautedomex.mx</p>
            </div>
         </div> 
         <div class="col">
           <div class="comon-footer-div pt-4 justify-content-md-end d-grid">
               <h5 class="text-white"></h5>
               <ul class="list-unstyled mt-4">
-                <li>
-                  <a href="#"> <i class="fab fa-facebook-f"></i> Facebook </a>
-                </li>
-                <li>
-                  <a href="#"> <i class="fab fa-google-plus-g"></i> Google+ </a>
-                </li>
-                <li>
-                  <a href="#"> <i class="fab fa-instagram"></i> Instagram </a>
+              <li><a href="https://www.facebook.com/clautedomex/"> <i class="fab fa-facebook-f"></i> Facebook </a></li>
+                      <li><a href="https://twitter.com/clautedomex?s=11&t=jkgi23i_1DQyFLRqNnsV_w"> <i class="fab fa-twitter w"></i>Twitter </a></li>
+                      <li><a href="https://instagram.com/clautedomex?igshid=YmMyMTA2M2Y="> <i class="fab fa-instagram"></i> Instagram </a></li> 
+                      <li><a href="https://www.linkedin.com/in/cluster-automotriz-estado-de-m%C3%A9xico-515b1913b"> <i class="fab fa-linkedin"></i>linkedin </a></li>
                 </li> </ul>
               </div>
             </div>
