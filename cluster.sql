@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 03-06-2022 a las 04:11:43
+-- Tiempo de generación: 08-06-2022 a las 04:24:10
 -- Versión del servidor: 8.0.27
 -- Versión de PHP: 7.4.26
 
@@ -83,20 +83,22 @@ CREATE TABLE IF NOT EXISTS `archivos` (
   `Logo` varchar(50) DEFAULT NULL,
   `Presentacion` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`ID_archivo`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `archivos`
 --
 
 INSERT INTO `archivos` (`ID_archivo`, `Logo`, `Presentacion`) VALUES
-(1, 'archivosUpload/logos/ypise0t54d.jpeg', 'archivosUpload/PDF/eu289crw5s.pdf'),
+(1, 'archivosUpload/logos/ypise0t54d.jpeg', 'archivosUpload/PDF/5ymt6dsxn3.pdf'),
 (2, 'archivosUpload/logos/ya7ge492l5.png', ''),
-(3, 'archivosUpload/logos/n5qi31vetc.jpeg', 'archivosUpload/PDF/yu1al4c7te.pdf'),
-(4, 'archivosUpload/logos/34gb2uzfma.png', 'archivosUpload/PDF/tfv20e1zb7.pdf'),
-(5, 'archivosUpload/logos/q26m7ugejs.jpeg', 'archivosUpload/PDF/1uel6q0ckt.pdf'),
-(6, 'archivosUpload/logos/2l6q3s7ozk.jpeg', 'archivosUpload/PDF/0cq5wbdxzo.pdf'),
-(7, 'archivosUpload/logos/ro4uewqva5.jpeg', 'archivosUpload/PDF/4klp0eauij.pdf');
+(3, 'archivosUpload/logos/84cpsa37fb.jpeg', 'archivosUpload/PDF/w3ebdxkuc0.pdf'),
+(4, 'archivosUpload/logos/zc75b0o1h2.png', 'archivosUpload/PDF/j2emvwt4cs.pdf'),
+(5, 'archivosUpload/logos/wx0k72vqh5.jpeg', 'archivosUpload/PDF/sdw728geoy.pdf'),
+(6, 'archivosUpload/logos/jz9m0eticr.png', 'archivosUpload/PDF/e5p9u74cvh.pdf'),
+(7, 'archivosUpload/logos/g2euwbfy3a.jpeg', ''),
+(8, 'archivosUpload/logos/pbg0irow4q.jpeg', 'archivosUpload/PDF/sjxoq6cm2y.pdf'),
+(9, 'archivosUpload/logos/2njzkswh90.png', 'archivosUpload/PDF/84fmwtln3a.pdf');
 
 -- --------------------------------------------------------
 
@@ -161,7 +163,7 @@ CREATE TABLE IF NOT EXISTS `catalogo_indirectos` (
   `producto` varchar(700) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `producto` (`producto`)
-) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=118 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `catalogo_indirectos`
@@ -266,6 +268,7 @@ INSERT INTO `catalogo_indirectos` (`id`, `producto`) VALUES
 (97, '		WASTE MANAGEMENT'),
 (98, '		WATER PURIFICATION'),
 (99, '		WORKING CAPITAL FINANCING'),
+(117, 'CLEANING MOTORS'),
 (111, 'ELECTRICAL TECHNICIAN\r\n'),
 (116, 'fsdfds'),
 (108, 'LOGISTICS TRANSPORTATION'),
@@ -287,7 +290,7 @@ CREATE TABLE IF NOT EXISTS `catalogo_proceso` (
   `producto` varchar(700) NOT NULL,
   PRIMARY KEY (`id_catPros`),
   UNIQUE KEY `producto` (`producto`)
-) ENGINE=InnoDB AUTO_INCREMENT=148 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=153 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `catalogo_proceso`
@@ -334,6 +337,7 @@ INSERT INTO `catalogo_proceso` (`id_catPros`, `producto`) VALUES
 (36, 'DEMETALIZED'),
 (37, 'DESIGN AND 3D PRINTING'),
 (38, 'DIE CASTING'),
+(148, 'ELECTRICAL '),
 (40, 'ELECTRICAL PROJECT PLANNING'),
 (41, 'FINISHING AND POLISHING'),
 (130, 'FIXTURES MANUFACTURING'),
@@ -411,6 +415,7 @@ INSERT INTO `catalogo_proceso` (`id_catPros`, `producto`) VALUES
 (106, 'SULFINITIZACIÓN'),
 (107, 'SURFACE TREATMENT'),
 (108, 'TEMPERED AND ANNEALED'),
+(152, 'TERMOFIT'),
 (109, 'TESTING AND CONTROL DEVICES'),
 (110, 'THERMOFORMING'),
 (129, 'TOOLINGS MANUFACTURING'),
@@ -441,7 +446,7 @@ CREATE TABLE IF NOT EXISTS `catalogo_productos` (
   `producto` varchar(700) NOT NULL,
   PRIMARY KEY (`idproducto`),
   UNIQUE KEY `producto` (`producto`)
-) ENGINE=InnoDB AUTO_INCREMENT=252 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=253 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `catalogo_productos`
@@ -520,6 +525,7 @@ INSERT INTO `catalogo_productos` (`idproducto`, `producto`) VALUES
 (69, 'DOLLIES AND CARGO ROLLERS'),
 (70, 'DOOR SYSTEMS'),
 (71, 'DRIVE SHAFT'),
+(251, 'ELECTRICAL '),
 (225, 'ELECTRICAL /ELECTRIC PARTS'),
 (243, 'ELECTRICAL CONTACTS'),
 (246, 'ELECTROMECHANICAL ASSEMBLIES'),
@@ -707,7 +713,7 @@ CREATE TABLE IF NOT EXISTS `catalogo_raw_material` (
   `producto` varchar(700) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `producto` (`producto`)
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `catalogo_raw_material`
@@ -721,6 +727,7 @@ INSERT INTO `catalogo_raw_material` (`id`, `producto`) VALUES
 (4, 'CABLES'),
 (5, 'CARPETS'),
 (6, 'CERAMICS'),
+(61, 'CINTA CANELA'),
 (7, 'CLEANING CHEMICALS'),
 (8, 'COMPOSITE MATERIALS'),
 (9, 'COMPOSITES '),
@@ -788,20 +795,22 @@ CREATE TABLE IF NOT EXISTS `certificacionescomprador` (
   `idcomprador` int NOT NULL,
   PRIMARY KEY (`idcertificacion`),
   UNIQUE KEY `idcomprador` (`idcomprador`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `certificacionescomprador`
 --
 
 INSERT INTO `certificacionescomprador` (`idcertificacion`, `path`, `listaCerts`, `idcomprador`) VALUES
-(1, 'archivosUpload/Certs/rgvo8cx1hn.pdf', 'iso27001', 1),
+(1, NULL, NULL, 1),
 (2, NULL, NULL, 2),
-(3, 'archivosUpload/Certs/n7kdce9mws.pdf', 'iso 9001', 3),
+(3, NULL, NULL, 3),
 (4, NULL, NULL, 4),
-(5, 'archivosUpload/Certs/i3sfl6womz.pdf', 'iso9000', 5),
-(6, 'archivosUpload/Certs/vf4la2ygwe.pdf', 'nom 3222', 6),
-(7, 'archivosUpload/Certs/hrkjz6c2mi.pdf', 'iso9001,iso27001', 7);
+(5, NULL, NULL, 5),
+(6, NULL, NULL, 6),
+(7, NULL, NULL, 7),
+(8, NULL, NULL, 8),
+(9, NULL, NULL, 9);
 
 -- --------------------------------------------------------
 
@@ -815,27 +824,33 @@ CREATE TABLE IF NOT EXISTS `contacto` (
   `Nombre` varchar(50) DEFAULT NULL,
   `Puesto` varchar(50) DEFAULT NULL,
   `Email` varchar(50) DEFAULT NULL,
-  `Tel` int DEFAULT NULL,
-  `Ext` int DEFAULT NULL,
-  `Cel` int DEFAULT NULL,
-  `ID_usuario` int NOT NULL,
+  `Tel` varchar(50) DEFAULT NULL,
+  `Ext` varchar(50) DEFAULT NULL,
+  `Cel` varchar(50) DEFAULT NULL,
+  `ID_usuario` int DEFAULT NULL,
   PRIMARY KEY (`ID_contacto`),
   KEY `ID_usuario` (`ID_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `contacto`
 --
 
 INSERT INTO `contacto` (`ID_contacto`, `Nombre`, `Puesto`, `Email`, `Tel`, `Ext`, `Cel`, `ID_usuario`) VALUES
-(1, 'Alejandro Morales', 'Ventas', 'comprasluisleon@gmail.com', 2147483647, 40, 4578963, 1),
-(2, 'Hugo Patiño', 'Hugo Patiño', 'comprasluisleon@gmail.com', 558, 45, 2147483647, 2),
-(3, 'Jesus Rodriguez', 'CFO', 'jesus.rodriguez@ford.com', 2147483647, 5, 2147483647, 3),
-(4, 'Gerardo Soto', 'VENTAS', 'gerardo@gmail.com', 2147483647, 0, 2147483647, 4),
-(5, 'Jose Murillo', 'CFO', 'henryforce15a98@gmail.com', 2147483647, 0, 2147483647, 1),
-(6, 'Jose Perez', 'Jose Perez', 'jose@junamex.com', 2147483647, 5, 2147483647, 6),
-(7, 'Alejandro Lopez', 'Ventas', 'alejandro@sony.com', 5578, 0, 2147483647, 7),
-(8, 'Jorge campos', 'Jorge campos', 'lleon@ipn.mx', 2147483647, 55, 55555, 2);
+(1, 'Alejandro Morales', 'Ventas', 'alex@wefe.com', '2147483647', '40', '4578963', 1),
+(2, 'Hugo Patiño', 'Hugo Patiño', 'hugo.patino@teneco.com', '558', '45', '2147483647', 2),
+(3, 'Beto', 'Desarrollador JR', 'beto@mail.com', '55555', '0', '2147483647', 1),
+(4, 'Pedro Paramo', 'Pedro Paramo', 'Pedrito@mail.com', '2147483647', '0', '0', 7),
+(5, 'Elizabeth', 'Elizabeth', 'elizabeth@mail.com', '2147483647', '0', '0', 7),
+(6, 'Karla', 'Karla', 'karla@mail.com', '2147483647', '0', '0', 7),
+(7, 'Fernando', 'Fernando', 'fernando@mail.com', '2147483647', '0', '0', 7),
+(8, 'Pedro Paramo', 'Pedro Paramo', 'Pedrito@mail.com', '1865554002', '', '', 7),
+(9, 'jose manual lopez', 'agente de ventas ', 'luis15ago98@gmail.com', '55555666', '555', '5523145698', 3),
+(10, 'Gerardo Soto', 'gerente de ventas', 'gerardo.racing@gmail.com', '5547896321', '5', '5678901453', 4),
+(11, 'GErardo Soto', 'ventas', 'sarki_hca@hotmail.com', '5569088555', '5', '5569088544', 8),
+(12, 'alejandro lopez', 'alejandro lopez', 'alejanfroz@wefe.com', '5569088555', '5', '5569088555', 5),
+(13, 'jose murillo', 'jose murillo', 'jose.murillo@junamex.com', '5555555555', '0', '5555555555', 6),
+(14, 'david leon', 'david leon', 'lleon@ipn.mx', '5569088555', '0', '5569088555', 9);
 
 -- --------------------------------------------------------
 
@@ -857,7 +872,7 @@ CREATE TABLE IF NOT EXISTS `detalle_empresa` (
   PRIMARY KEY (`ID_dtl_empresa`),
   KEY `ID_archivo` (`ID_archivo`,`ID_direccion`),
   KEY `ID_direccion` (`ID_direccion`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `detalle_empresa`
@@ -866,11 +881,13 @@ CREATE TABLE IF NOT EXISTS `detalle_empresa` (
 INSERT INTO `detalle_empresa` (`ID_dtl_empresa`, `Descripcion`, `Pagina_web`, `Tel`, `Ext`, `Ventas_anuales`, `Num_empleados`, `ID_archivo`, `ID_direccion`) VALUES
 (1, 'La mejor opcion de desarrollo ', 'www.wefe.com', '5519298176', 0, 154022, 150, 1, 1),
 (2, 'Planta industrial de bujias', 'tenneco.com', '5557298800', 0, 140000, 10000, 2, 2),
-(3, 'la ford', 'ford.com', '5555555555', 5, 1564454, 150, 3, 3),
-(4, 'empresa de gestion automovil \r\n', '6547893124', '4569823147', 5, 100000, 100000, 4, 4),
-(5, 'una descripcion', 'despachoavila.com', '5569088456', 55, 1560000, 14000, 5, 5),
-(6, 'empresa lider de jugos', 'junamex.vom', '4303868100', 7, 45000, 45000, 6, 6),
-(7, 'sony', 'sony.com', '4232005789', 12, 150000, 10000, 7, 7);
+(3, 'proveedor ford', 'ford.com', '5569088544', 0, 100000, 40000, 3, 3),
+(4, 'provedor de servicios', 'racing.com', '5569088555', 0, 100000, 145555, 4, 4),
+(5, 'tractora de prueba', 'wefe.com', '0000000000', 0, 1222222, 12000, 5, 5),
+(6, 'empresa tractora', '3698745210', '5569877444', 0, 445563, 14888, 6, 6),
+(7, 'tractora de prueba', 'wwww.pagina.com', '5555555555', 0, 555555, 14555, 7, 7),
+(8, 'racing.com', '5698741235', '5412369874', 0, 170000, 45000, 8, 8),
+(9, 'pagina tractora', 'google.com', '5555555555', 0, 1004444, 459898, 9, 9);
 
 -- --------------------------------------------------------
 
@@ -904,7 +921,7 @@ CREATE TABLE IF NOT EXISTS `direccion` (
   `Alcaldia` varchar(50) DEFAULT NULL,
   `ID_estado` int DEFAULT NULL,
   PRIMARY KEY (`ID_direccion`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `direccion`
@@ -913,11 +930,13 @@ CREATE TABLE IF NOT EXISTS `direccion` (
 INSERT INTO `direccion` (`ID_direccion`, `Calle`, `Colonia`, `N_Int`, `N_Ext`, `CP`, `Alcaldia`, `ID_estado`) VALUES
 (1, 'Av ticoman', 'Santa maria Ticoman', 401, 1133, 7330, 'GAM', 9),
 (2, 'Pte 150', 'Industrial Vallejo', 0, 956, 2300, 'Azcapotzalco', 9),
-(3, 'mariano edcobedo ', 'LA colonia', 12, 11, 7345, 'GAM', 9),
-(4, 'la condesa', 'la condesa', 52, 456, 7648, 'Hidalgo', 9),
-(5, 'av ticoman ', 'barrio la laguna ticoman', 10, 133, 73330, 'GAM', 9),
-(6, 'Centeno', 'Granjas Esmeralda', 1, 119, 9810, 'Iztapalapa', 9),
-(7, 'Miguel angel de Quevedo', 'Romero de Terrenos', 12, 555, 4310, 'Coyoacan', 9);
+(3, 'mariano escobedo', 'Bosques de chapultepec', 12, 555, 7345, 'Cuautemoc', 9),
+(4, 'valle de bravo', 'xochimilco ', 0, 789, 7330, 'xochimilco', 9),
+(5, 'calle 11', 'la rioja', 55, 55, 7330, 'GAM', 9),
+(6, 'aracibo', 'san pedro Zacatenco ', 0, 9, 7336, 'Gam', 9),
+(7, 'av ticoman', 'barrio la laguna ticoman', 1, 706, 7330, 'gam', 9),
+(8, 'la rioja', 'zacatenco ', 5, 22, 7869, 'GAM', 9),
+(9, 'av ticoman', 'barriuo la laguna ticoman ', 1, 11111, 7330, 'gam', 9);
 
 -- --------------------------------------------------------
 
@@ -932,7 +951,7 @@ CREATE TABLE IF NOT EXISTS `empresa` (
   `ID_dtl_empresa` int NOT NULL,
   PRIMARY KEY (`ID_empresa`),
   KEY `ID_dtl_empresa` (`ID_dtl_empresa`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `empresa`
@@ -945,7 +964,9 @@ INSERT INTO `empresa` (`ID_empresa`, `Empresa`, `ID_dtl_empresa`) VALUES
 (4, 'RC Racing', 4),
 (5, 'Despacho Avila', 5),
 (6, 'Junamex', 6),
-(7, 'Sony', 7);
+(7, 'WEFE', 7),
+(8, 'Racing Sports Cars', 8),
+(9, 'IPN', 9);
 
 -- --------------------------------------------------------
 
@@ -960,29 +981,61 @@ CREATE TABLE IF NOT EXISTS `exportrequeridas` (
   `paisesExporta` varchar(300) DEFAULT NULL,
   PRIMARY KEY (`idexportaciones`),
   KEY `idcomprador` (`idcomprador`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `exportrequeridas`
 --
 
 INSERT INTO `exportrequeridas` (`idexportaciones`, `idcomprador`, `paisesExporta`) VALUES
-(1, 1, 'Afghanistan,Anguilla'),
+(1, 1, NULL),
 (2, 2, 'Afghanistan'),
-(3, 3, 'Afghanistan,Algeria'),
-(4, 4, NULL),
-(5, 5, 'Andorra,Antigua and Barbuda'),
-(6, 6, 'Angola,Austria'),
-(7, 7, 'Brazil,Bahamas,Argentina');
+(3, 3, 'Algeria,Antarctica'),
+(4, 4, 'Algeria,Argentina'),
+(5, 5, NULL),
+(6, 6, 'Algeria'),
+(7, 7, 'Algeria,Austria'),
+(8, 8, 'Andorra'),
+(9, 9, 'Algeria');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `producto`
+-- Estructura de tabla para la tabla `producto_proveedor`
 --
 
-DROP TABLE IF EXISTS `producto`;
-CREATE TABLE IF NOT EXISTS `producto` (
+DROP TABLE IF EXISTS `producto_proveedor`;
+CREATE TABLE IF NOT EXISTS `producto_proveedor` (
+  `ID_producto` int NOT NULL AUTO_INCREMENT,
+  `Producto` varchar(50) DEFAULT NULL,
+  `ID_usuario` int DEFAULT NULL,
+  `ID_catalogo` int DEFAULT NULL,
+  PRIMARY KEY (`ID_producto`),
+  KEY `ID_usuario` (`ID_usuario`,`ID_catalogo`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `producto_proveedor`
+--
+
+INSERT INTO `producto_proveedor` (`ID_producto`, `Producto`, `ID_usuario`, `ID_catalogo`) VALUES
+(1, 'BAGS AND DUNNAGE', 8, 1),
+(2, 'ABS COMPONENTS', 1, 1),
+(3, 'ADVANCED DRIVER ASSISTANCE SYSTEMS', 1, 1),
+(4, 'ALUMINUM AND CASTING', 3, 2),
+(5, 'ALUMINUM DIECASTING', 3, 2),
+(6, 'ADHESIVES', 4, 3),
+(7, 'ALLOYS', 4, 3),
+(8, 'AUDIO SYSTEMS', 8, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `producto_tractora`
+--
+
+DROP TABLE IF EXISTS `producto_tractora`;
+CREATE TABLE IF NOT EXISTS `producto_tractora` (
   `ID_producto` int NOT NULL AUTO_INCREMENT,
   `Producto` varchar(50) DEFAULT NULL,
   `ID_req_producto` int DEFAULT NULL,
@@ -990,42 +1043,27 @@ CREATE TABLE IF NOT EXISTS `producto` (
   `ID_catalogo` int DEFAULT NULL,
   PRIMARY KEY (`ID_producto`),
   KEY `ID_dtl_producto` (`ID_req_producto`,`ID_usuario`,`ID_catalogo`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Volcado de datos para la tabla `producto`
+-- Volcado de datos para la tabla `producto_tractora`
 --
 
-INSERT INTO `producto` (`ID_producto`, `Producto`, `ID_req_producto`, `ID_usuario`, `ID_catalogo`) VALUES
-(1, 'AIR BAG', 1, 2, 1),
-(2, 'ANODIZING', 2, 2, 2),
-(3, 'ABS COMPONENTS', NULL, 1, 1),
-(4, 'CARPETS', NULL, 1, 3),
-(5, 'ADHESIVES', NULL, 1, 3),
-(6, 'CAE SIMULATION', NULL, 1, 4),
-(7, 'ANTENNAS', NULL, 1, 1),
-(8, 'ANNEALING', NULL, 1, 2),
-(9, 'ASSEMBLY', NULL, 1, 2),
-(10, 'BRACKETS', NULL, 1, 1),
-(11, 'ALUMINUM AND CASTING', NULL, 3, 2),
-(12, 'CABLES', NULL, 3, 3),
-(13, 'AIR BAG', NULL, 3, 1),
-(14, 'BAGS AND DUNNAGE', NULL, 3, 1),
-(15, 'CERAMICS', NULL, 3, 3),
-(16, 'CATERING', NULL, 3, 4),
-(17, 'ANTENNAS', NULL, 3, 1),
-(18, 'ABS COMPONENTS', NULL, 4, 1),
-(19, 'AIR BAG', NULL, 4, 1),
-(22, 'CAE SIMULATION', NULL, 4, 4),
-(23, 'ANODIZING', NULL, 4, 2),
-(24, 'AIR COMPRESSORS', 3, 6, 1),
-(25, 'AUTOMATION', 4, 6, 2),
-(26, 'ACCOUNTS RECEIVABLE FACTORING WITH RECOURSE', 5, 6, 4),
-(27, 'ALLOYS', 6, 6, 3),
-(28, 'VOLANTE', NULL, 7, 1),
-(29, 'ALUMINUM COILING', NULL, 7, 2),
-(30, 'CATERING', NULL, 7, 4),
-(31, 'ANTI-STATIC BAGS', 7, 2, 1);
+INSERT INTO `producto_tractora` (`ID_producto`, `Producto`, `ID_req_producto`, `ID_usuario`, `ID_catalogo`) VALUES
+(1, 'AIR BAG', 1, 7, 1),
+(2, 'ABS COMPONENTS', 2, 2, 1),
+(3, 'AIR BAG', 3, 2, 1),
+(4, 'AUTOMOTIVE TEST DEVICES', 4, 2, 1),
+(5, 'ALUMINUM AND CASTING', 5, 5, 2),
+(6, 'ANODIZING', 6, 5, 2),
+(7, 'ASSEMBLY', 7, 5, 2),
+(8, 'ADHESIVES', 8, 6, 3),
+(9, 'CABLES', 9, 6, 3),
+(10, 'CINTA CANELA', 10, 6, 3),
+(11, 'AIR COMPRESSORS', 11, 7, 1),
+(12, 'ACCOUNTS RECEIVABLE FACTORING WITH RECOURSE', 12, 9, 4),
+(13, 'CATERING', 13, 9, 4),
+(14, 'MINI PICKER', 14, 9, 4);
 
 -- --------------------------------------------------------
 
@@ -1058,21 +1096,29 @@ CREATE TABLE IF NOT EXISTS `requerimiento_producto` (
   `Volumen_anual` varchar(50) DEFAULT NULL,
   `Comentarios` varchar(200) DEFAULT NULL,
   `ID_usuario` int DEFAULT NULL,
-  PRIMARY KEY (`ID_req_producto`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`ID_req_producto`),
+  KEY `ID_usuario` (`ID_usuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `requerimiento_producto`
 --
 
 INSERT INTO `requerimiento_producto` (`ID_req_producto`, `Tipo_material`, `Volumen_anual`, `Comentarios`, `ID_usuario`) VALUES
-(1, 'naylon', '14500000', 'none', 2),
-(2, 'Aluminio', '150000', 'carga y descarga de material', 2),
-(3, '', '', '', 6),
-(4, '', '', '', 6),
-(5, '', '', '', 6),
-(6, '', '', '', 6),
-(7, '', '', '', 2);
+(1, 'Nailon', '400pz', 'Ninguno', 7),
+(2, '', '', '', 2),
+(3, '', '', '', 2),
+(4, '', '', '', 2),
+(5, '', '', '', 5),
+(6, '', '', '', 5),
+(7, '', '', '', 5),
+(8, '', '', '', 6),
+(9, '', '', '', 6),
+(10, '', '', '', 6),
+(11, '', '', '', 7),
+(12, '', '', '', 9),
+(13, '', '', '', 9),
+(14, '', '', '', 9);
 
 -- --------------------------------------------------------
 
@@ -1116,7 +1162,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   PRIMARY KEY (`ID_usuario`),
   KEY `ID_empresa` (`ID_empresa`,`ID_tipo_usr`),
   KEY `ID_tipo_usr` (`ID_tipo_usr`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`
@@ -1128,8 +1174,10 @@ INSERT INTO `usuario` (`ID_usuario`, `usuario`, `contrasenia`, `Estatus_mail`, `
 (3, 'comprasluisleon@gmail.com', '$2y$10$rPg9PQludTIcg59WGqqcveaJQQBz.jRADW0iX5kVuhf0/d.zOswXa', '1', '0', '0000-00-00', '804998', 3, 2),
 (4, 'comprasluisenriqueleon@gmail.com', '$2y$10$qpqp88MgeO8ELZA6p7makeG1tP.y.rh7vpL1xUGj21l9X780Ge6iW', '1', '0', '0000-00-00', '600173', 4, 2),
 (5, 'henryforce15a98@gmail.com', '$2y$10$PR3RHGFPZPuNST3h2olDdOXDB39eoPfvUkxfcZ94ukk5bdk95J8yO', '1', '0', '0000-00-00', '528355', 5, 1),
-(6, 'xompras@jugos.com', '$2y$10$nnnd8rvwmfnZBMWnABF6cuIqLnV3eXimHlH4N/cAC52JKFROSsEgO', '1', '0', '0000-00-00', '388160', 6, 1),
-(7, 'compras@sony.com', '$2y$10$TfXZZ6N8V2FlyUAGsHlHJO6.HE6Zt6p42oLnyTNETimHS0.CltycC', '1', '0', '0000-00-00', '548413', 7, 2);
+(6, 'xompras@jugos.com', '$2y$10$nyd2svRNxg6puzCigHbAq.4z/5U077eRJB9BqxQBhU1SiitwaPJ0m', '1', '0', '0000-00-00', '610005', 6, 1),
+(7, 'wefe.info@gmail.com', '$2y$10$Vgx85LStKClkLmQNmTD66.YBXKuWYwz8F7YuLEKJumoGKPR4SiUL.', '1', '0', '0000-00-00', '744284', 7, 1),
+(8, 'sarki_hca@hotmail.com', '$2y$10$fATFvN.3ugpaSHVsd0lvZeDutGyr2gt/1srq0bJ8pYz1bfWNy0SmG', '1', '0', '0000-00-00', '336938', 8, 2),
+(9, 'gerardo_s_v@outlook.com', '$2y$10$yuUL5IJj/22ScxLm3Yt75.AOiqDQ3NIGvPEe.p5DFENDs8UCTCYvG', '1', '0', '0000-00-00', '323803', 9, 1);
 
 --
 -- Restricciones para tablas volcadas
