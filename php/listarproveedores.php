@@ -22,7 +22,7 @@ echo json_encode($res);
 if(isset($_POST['id']) && isset($_POST['getProductos'])){
     $idConsulta =$_POST['id'];
     $obj = new Conexion();
-    $obj -> query("select producto.Producto, producto.ID_catalogo from producto where ID_usuario =$idConsulta order by ID_catalogo");
+    $obj -> query("select producto_proveedor.Producto, producto_proveedor.ID_catalogo from producto_proveedor where ID_usuario =$idConsulta order by ID_catalogo");
     $res = $obj -> resultSet();
     echo json_encode($res);
 }

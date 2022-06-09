@@ -638,20 +638,23 @@ function codeResetPass(e) {
     });
   form.reset();
 }
-function cambiarPass(e) {
+function cambiarPass(e) { 
   e.preventDefault();
+  const exprecionRegular =
+  /^(?=.{8,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$/;
   let form = document.getElementById("forNewPass");
   let noti = document.getElementById("notificaciones");
   let data = new FormData(form);
   let email = localStorage.getItem("email");
   data.append("email", email);
   data.append("resetPass", 1);
+  
   if (data.get("password_c") === "" || data.get("password") === "") {
     creaNotificacion(noti, "No puedes dejar  campos en blanco");
   } else if (data.get("password_c") !== data.get("password")) {
     creaNotificacion(noti, "Las contraseñas no coinciden");
-  } else if (data.get("password_c").length < 8) {
-    creaNotificacion(noti, "La contraseña debe ser de almenos 8 cracteres");
+  } else if (!exprecionRegular.test(data.get("password"))) {
+    creaNotificacion(noti, "La contraseña no cumple con los criterios minimos de seguridad debe contener al menos 1 mayúscula, 1 minúscula, 1 dígito, 1 carácter especial y tiene una longitud de al menos 8");
   } else {
     fetch("../php/login.php", {
       method: "POST",
