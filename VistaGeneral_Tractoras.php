@@ -96,7 +96,7 @@
               <li class="nav-item"> <a class="nav-link" href="/Login.html">Login</a> </li>
               <li class="nav-item"> <a class="nav-link" href="#seccioncostos">Costo</a> </li>
             
-            
+              <li class="nav-item accordion-item"> <a class="nav-link" href="#" id="logout">Cerrar sesión</a> </li>
             </ul>
           </div>
         </div>
@@ -329,28 +329,25 @@
       <div class="mobile-menu-sec mt-3">
          <ul class="list-unstyled">
 
-            <li>
-               <a href="index.html"> Inicio </a>
-            </li>
-
-            <li>
-               <a href="#"> Tractoras </a>
-            </li>
-
-            <li>
-               <a href="#"> Registro </a>
-            </li>
-
-            <li>
-               <a href="#"> Login </a>
-            </li>
-
-            <li>
-               <a href="#"> Costo </a>
+         <li>
+                <a href="index.html"> Inicio </a>
             </li>
             
             <li>
-              <a href="#"> Cerrar sesión </a>
+                <a href="/VistaGeneral_Tractoras.php"> Tractoras </a>
+            </li>
+            
+            <li>
+                <a href="/Registrate.html"> Registro </a>
+            </li>
+            
+            <li>
+                <a href="/Login.html"> Login </a>
+            </li>
+
+            
+            <li>
+              <a href="#" id="logout"> Cerrar sesión </a>
            </li>
             
          </ul>

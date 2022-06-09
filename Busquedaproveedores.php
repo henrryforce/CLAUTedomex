@@ -233,24 +233,27 @@
         <a href="index.html" class="logo-side"><img src="images/logo-main.png" alt="logo"></a>             
       <div class="mobile-menu-sec mt-3">
          <ul class="list-unstyled">
-            <li>
-               <a href="index.html"> Inicio </a>
-            </li>
-            <li>
-               <a href="#"> Tractoras </a>
-            </li>
-            <li>
-               <a href="#"> Registro </a>
-            </li>
-            <li>
-               <a href="#"> Login </a>
-            </li>
-            <li>
-               <a href="#"> Costo </a>
-            </li>            
-            <li>
-              <a  class="logout" > Cerrar sesión </a>
-           </li>            
+
+              <li>
+                <a href="index.html"> Inicio </a>
+              </li>
+              
+              <li>
+                  <a href="/VistaGeneral_Tractoras.php"> Tractoras </a>
+              </li>
+              
+              <li>
+                  <a href="/Registrate.html"> Registro </a>
+              </li>
+              
+              <li>
+                  <a href="/Login.html"> Login </a>
+              </li>
+              
+              <li>
+              <a href="#" id="logout"> Cerrar sesión </a>
+           </li>  
+             
          </ul>
       </div>
       <!-- REDES SOCIALES - RESPONSIVE -->
