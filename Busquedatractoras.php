@@ -177,20 +177,19 @@
   </section>
 
   <footer>
-    <div class="subsribe-section" id="seccioncostos">
-      <div class="container">
-        <div class="inside-part-footer float-start">
-          <div class="d-lg-flex align-items-center">
-            <div class="col-lg-7">
-              <h2 data-aos="fade-down"> Costo $5,000 más IVA bimestral </h2>
-             </div>
-             <div class="col-lg-5">               
-                <a href="#" class="btn started-btn" data-aos="fade-down"> Registro</a>
-            </div>
-          </div>
-        </div>
-      </div> 
-    </div>
+
+  <div class="subsribe-section" id="seccioncostos">
+       <div class="container">
+          <div class="inside-part-footer float-start">
+             <div class="d-lg-flex align-items-center">
+                 <div class="col-lg-7">
+                  <h2 data-aos="fade-down"> Costo $5,000 más IVA bimestral </h2>
+                 </div>
+                 <div class="col-lg-5">
+                    <a href="#" class="btn started-btn" data-aos="fade-down"> Registro</a>
+                 </div></div></div> </div> </div>
+
+
     <div class="footer-link-div float-start pt-5">
       <div class="container">
         <div class="row row-cols-2 row-cols-md-2  row-cols-lg-4">

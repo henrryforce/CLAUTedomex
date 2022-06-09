@@ -111,7 +111,7 @@
      </div>     
     <div class="video-sec">      
       <div class="video-bg"></div>            
-      <img src="images/pexels-photo-5580135.jpeg" alt="pb"/>        
+      <img src="images/PROOVEDORES2.jpg" alt="pb"/>        
     </div>
   </div>
   <section class="main-body pt-5 float-start industry-pages" method ="POST">
