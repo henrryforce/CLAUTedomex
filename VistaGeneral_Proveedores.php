@@ -86,7 +86,7 @@
             <li class="nav-item"> <a class="nav-link" href="/VistaGeneral_Tractoras.php">Tractoras</a> </li>
             <li class="nav-item"> <a class="nav-link" href="/Registrate.html">Registro</a> </li>
             <li class="nav-item"> <a class="nav-link" href="/Login.html">Login</a> </li>
-            <li class="nav-item"> <a class="nav-link" href="#seccioncostos">Costo</a> </li>
+            
               
               
               
@@ -112,7 +112,7 @@
      
     <div class="video-sec">
       <div class="video-bg"></div>      
-       <img src="images/pexels-photo-5580135.jpeg" alt="pb"/>        
+       <img src="images/PROOVEDORES1.jpg" alt="pb"/>        
     </div>
  </div>
 
@@ -305,25 +305,22 @@
       <div class="mobile-menu-sec mt-3">
          <ul class="list-unstyled">
 
+              <li>
+                <a href="index.html"> Inicio </a>
+            </li>
+            
             <li>
-               <a href="index.html"> Inicio </a>
+                <a href="/VistaGeneral_Tractoras.php"> Tractoras </a>
+            </li>
+            
+            <li>
+                <a href="/Registrate.html"> Registro </a>
+            </li>
+            
+            <li>
+                <a href="/Login.html"> Login </a>
             </li>
 
-            <li>
-               <a href="#"> Tractoras </a>
-            </li>
-
-            <li>
-               <a href="#"> Registro </a>
-            </li>
-
-            <li>
-               <a href="#"> Login </a>
-            </li>
-
-            <li>
-               <a href="#"> Costo </a>
-            </li>
             
             <li>
               <a href="#"> Cerrar sesión </a>

@@ -93,11 +93,11 @@ if(!isset($_SESSION['id_usuario'])){
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
   
-            <li class="nav-item"> <a class="nav-link active" href="index.html"> Inicio</a></li>
+            <li class="nav-item"> <a class="nav-link" href="index.html"> Inicio</a></li>
             <li class="nav-item"> <a class="nav-link" href="/VistaGeneral_Tractoras.php">Tractoras</a> </li>
             <li class="nav-item"> <a class="nav-link" href="/Registrate.html">Registro</a> </li>
             <li class="nav-item"> <a class="nav-link" href="/Login.html">Login</a> </li>
-            <li class="nav-item"> <a class="nav-link" href="#seccioncostos">Costo</a> </li>
+            
             
             
             <li class="nav-item accordion-item"> <a class="nav-link" id="logout" href="#">Cerrar sesión</a> </li>
@@ -117,7 +117,7 @@ if(!isset($_SESSION['id_usuario'])){
      </div>     
     <div class="video-sec">
       <div class="video-bg"></div>      
-       <img src="images/pexels-photo-5580135.jpeg" alt="pb"/>        
+       <img src="images/PROOVEDORES2.jpg" alt="pb"/>        
     </div>
  </div>
 

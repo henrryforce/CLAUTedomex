@@ -39,81 +39,98 @@
 <body>
 
   
-  <div class="main-menu-div float-start w-100">
+<div class="main-menu-div float-start w-100">
     <div class="top-menu-sction float-start w-100 d-none d-md-none d-lg-block">
-        <div class="container">
-             <div class="row row-cols-1 row-cols-lg-2">
-               <div class="col">
-                 <div class="top-contact-left">
-                   <ul class="list-unstyled d-flex">
-                     <li class="ms-4"> <i class="far fa-envelope"></i> info@bam24.com </li>
-                   </ul></div> </div>
-               <div class="col">
-                 <div class="top-contact-right d-flex justify-content-end">
-                   <ul class="list-unstyled d-flex">
-                     <li class="ms-3"> <a href="terms.html"> Terminos-condiciones </a>  </li>
-                   </ul>
-                   <ul class="list-unstyled ms-4 socal-btn">
-                     <li>
-                      <a href="https://www.facebook.com/clautedomex/"> <i class="fab fa-facebook-f"></i> </a>
-                      <a href="https://twitter.com/clautedomex?s=11&t=jkgi23i_1DQyFLRqNnsV_w"> <i class="fab fa-twitter w"></i> </a>
-                      <a href="https://instagram.com/clautedomex?igshid=YmMyMTA2M2Y="> <i class="fab fa-instagram"></i> </a>
-                      <a href="https://www.linkedin.com/in/cluster-automotriz-estado-de-m%C3%A9xico-515b1913b"> <i class="fab fa-linkedin"></i> </a>
-                     </li>
-                   </ul>
-                 </div>
+      <div class="container">
+        <div class="row row-cols-1 row-cols-lg-2">
+          <div class="col">
+            <div class="top-contact-left">
+              <ul class="list-unstyled d-flex">
+                <li class="ms-4"> <i class="far fa-envelope"></i> info@bam24.com </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col">
+            <div class="top-contact-right d-flex justify-content-end">
+              <ul class="list-unstyled d-flex">
+                <li class="ms-3"> <a href="terms.html"> Terminos-condiciones </a> </li>
+              </ul>
+              <ul class="list-unstyled ms-4 socal-btn">
+                <li>
+                  <a href="https://www.facebook.com/clautedomex/"> <i class="fab fa-facebook-f"></i> </a>
+                  <a href="https://twitter.com/clautedomex?s=11&t=jkgi23i_1DQyFLRqNnsV_w"> <i
+                      class="fab fa-twitter w"></i> </a>
+                  <a href="https://instagram.com/clautedomex?igshid=YmMyMTA2M2Y="> <i class="fab fa-instagram"></i> </a>
+                  <a href="https://www.linkedin.com/in/cluster-automotriz-estado-de-m%C3%A9xico-515b1913b"> <i
+                      class="fab fa-linkedin"></i> </a>
+                </li>
+              </ul>
+            </div>
 
-               </div>
-             </div>
+          </div>
         </div>
-       
+      </div>
+
     </div>
 
-
+    
 
     <div class="navication float-start w-100">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
           <a class="navbar-brand" href="index.html">
-            <img src="images/LOGO NAVBAR 2.png" class="d-none d-lg-block " alt="logo"/>
+            <img src="images/LOGO NAVBAR 2.png" class="d-none d-lg-block " alt="logo" />
           </a>
-          <a class="navbar-toggler" data-bs-toggle="offcanvas" href="#mboile-show-menu" role="button" aria-controls="offcanvasExample">
+          <a class="navbar-toggler" data-bs-toggle="offcanvas" href="#mboile-show-menu" role="button"
+            aria-controls="offcanvasExample">
             <span class="navbar-toggler-icon"></span>
           </a>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item"> <a class="nav-link active" href="index.html"> Inicio</a></li>
-            <li class="nav-item"> <a class="nav-link" href="/VistaGeneral_Tractoras.php">Tractoras</a> </li>
-            <li class="nav-item"> <a class="nav-link" href="/Registrate.html">Registro</a> </li>
-            <li class="nav-item"> <a class="nav-link" href="/Login.html">Login</a> </li>
-            <li class="nav-item"> <a class="nav-link" href="#seccioncostos">Costo</a> </li>
-              
-              
-              <li class="nav-item accordion-item" hidden> <a class="nav-link" href="#" id="logout">Cerrar sesión</a> </li>
-             </li>
+
+              <li class="nav-item">
+
+              <li class="nav-item"> <a class="nav-link" href="index.html"> Inicio</a></li>
+              <li class="nav-item"> <a class="nav-link" href="/VistaGeneral_Tractoras.php">Tractoras</a> </li>
+              <li class="nav-item"> <a class="nav-link" href="/Registrate.html">Registro</a> </li>
+              <li class="nav-item"> <a class="nav-link" href="/Login.html">Login</a> </li>
+              <li class="nav-item"> <a class="nav-link" href="#seccioncostos">Costo</a> </li>
+            
+              <li class="nav-item accordion-item"> <a class="nav-link" href="#" id="logout">Cerrar sesión</a> </li>
             </ul>
           </div>
         </div>
       </nav>
+      </nav>
     </div>
-    
+  </div>
 
- <div class="banner-home subpage-banner float-start">
-     <div class="banner-content-sec">
-        <div class="container">         
-              <div class="col-lg-8 mx-auto">
-                <div class="comon-bedcum">                                      
-                  </ul>
-                </div>                                
-              </div>                        
+  <div class="banner-home subpage-banner float-start">
+    <div class="banner-content-sec">
+      <div class="container">
+
+        <div class="col-lg-8 mx-auto">
+          <div class="comon-bedcum">
+
+
+            </ul>
+          </div>
+
+
         </div>
-     </div>
-     
-    <div class="video-sec">
-      <div class="video-bg"></div>      
-       <img src="images/pexels-photo-5580135.jpeg" alt="pb"/>        
+
+
+      </div>
     </div>
- </div>
+
+    <div class="video-sec">
+      <div class="video-bg"></div>
+
+      <img src="images/PROOVEDORES1.jpg" alt="pb" />
+
+
+    </div>
+  </div>
 
  <section class="main-body pt-5 float-start industry-pages">
     
@@ -312,28 +329,25 @@
       <div class="mobile-menu-sec mt-3">
          <ul class="list-unstyled">
 
-            <li>
-               <a href="index.html"> Inicio </a>
-            </li>
-
-            <li>
-               <a href="#"> Tractoras </a>
-            </li>
-
-            <li>
-               <a href="#"> Registro </a>
-            </li>
-
-            <li>
-               <a href="#"> Login </a>
-            </li>
-
-            <li>
-               <a href="#"> Costo </a>
+         <li>
+                <a href="index.html"> Inicio </a>
             </li>
             
             <li>
-              <a href="#"> Cerrar sesión </a>
+                <a href="/VistaGeneral_Tractoras.php"> Tractoras </a>
+            </li>
+            
+            <li>
+                <a href="/Registrate.html"> Registro </a>
+            </li>
+            
+            <li>
+                <a href="/Login.html"> Login </a>
+            </li>
+
+            
+            <li>
+              <a href="#" id="logout"> Cerrar sesión </a>
            </li>
             
          </ul>
