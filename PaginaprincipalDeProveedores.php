@@ -382,7 +382,7 @@ if(!isset($_SESSION['id_usuario'])){
                               <tr>                                
                                 <td><?php echo $row['ID_producto']?></td>            
                                 <td><?php echo $row['Producto']?></td>
-                                <?php if(isset($row['ID_producto'])){
+                                <?php if(!isset($row['ID_producto'])){
                                       $id_p='';
                                     }else{
                                       $id_p = $row['ID_producto'];
