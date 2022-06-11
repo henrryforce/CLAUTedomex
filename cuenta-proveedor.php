@@ -103,41 +103,21 @@ if (!isset($_SESSION['id_usuario'])) {
           </a>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link" href="#"> Inicio</a>
-              </li>
-              <li class="nav-item"> <a class="nav-link" href="#">Requerimientos</a> </li>
-              <li class="nav-item"> <a class="nav-link" href="#">Proveedores</a> </li>
-              <li class="nav-item"> <a class="nav-link" href="#">Regístrate</a> </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  Ingresar
-                </a>
-                <ul class="dropdown-menu dropdown-menu1" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="#"> <i class="fas fa-angle-right"></i>Login proveedor</a></li>
-                  <li><a class="dropdown-item" href="#"> <i class="fas fa-angle-right"></i> Login comprador </a></li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Aviso de privacidad</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Realizar pago</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Contacto</a>
-              </li>
-              <li class="nav-item d-none">
-                <p class="phon-text text-white"><i class="fas fa-phone-alt"></i> 555 234-8765 </p>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      </nav>
-    </div>
-  </div>
+
+
+
+            <li class="nav-item"> <a class="nav-link" href="index.html"> Inicio</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/VistaGeneral_Tractoras.php">Tractoras</a> </li>
+            <li class="nav-item"> <a class="nav-link" href="/Registrate.html">Registro</a> </li>
+            <li class="nav-item"> <a class="nav-link" href="/Login.html">Login</a> </li>
+            
+            
+            
+            <li class="nav-item accordion-item"> <a class="nav-link" id="logout" href="#">Cerrar sesión</a> </li>
+             </li></ul>
+             </div> </div> </nav> </nav> </div></div>  
+
+
   <div class="banner-home subpage-banner float-start">
     <div class="banner-content-sec">
       <div class="container">
@@ -153,7 +133,7 @@ if (!isset($_SESSION['id_usuario'])) {
     </div>
     <div class="video-sec">
       <div class="video-bg"></div>
-      <img src="images/pexels-photo-5580135.jpeg" alt="pb" />
+      <img src="images/PROOVEDORES2.jpg" alt="pb" />
     </div>
   </div>
   <section class="main-body pt-5 float-start industry-pages">
@@ -287,12 +267,12 @@ if (!isset($_SESSION['id_usuario'])) {
                             <input type="text" class="form-control" id="calle" name="calle" placeholder="Escriba aquí" value="<?php echo ($dir[0]['Calle']==''|| $dir[0]['Calle'] == NULL) ? '' : $dir[0]['Calle'] ; ?>">
                           </div>
                           <div class="form-group mt-3">
-                            <label for="">Numero Exterior</label>
+                            <label for="">Número Exterior</label>
                             <input type="text" class="form-control" id="num_ext" name="num_ext"
                               placeholder="Escriba aquí" value="<?php echo ($dir[0]['N_Ext']==''|| $dir[0]['N_Ext'] == NULL) ? '' : $dir[0]['N_Ext'] ; ?>">
                           </div>
                           <div class="form-group mt-3">
-                            <label for="">Numero Interior</label>
+                            <label for="">Número Interior</label>
                             <input type="text" class="form-control" id="nim_int" name="nim_int"
                               placeholder="Escriba aquí" value="<?php echo ($dir[0]['N_Int']==''|| $dir[0]['N_Int'] == NULL) ? '' : $dir[0]['N_Int'] ; ?>">
                           </div>
@@ -350,7 +330,7 @@ if (!isset($_SESSION['id_usuario'])) {
                             <input type="tel" class="form-control" id="ext" name="ext" placeholder="Escriba aquí" value="<?php echo ($datos[0]['Ext']==''|| $datos[0]['Ext'] == NULL) ? '' : $datos[0]['Ext'] ; ?>">
                           </div>
                           <div class="form-group mt-3">
-                            <label for="">Pagina Web</label>
+                            <label for="">Página Web</label>
                             <input type="text" class="form-control" id="paginaweb" name="paginaweb"
                               placeholder="Escriba aquí" value="<?php echo ($datos[0]['Pagina_web']==''|| $datos[0]['Pagina_web'] == NULL) ? '' : $datos[0]['Pagina_web'] ; ?>">
                           </div>

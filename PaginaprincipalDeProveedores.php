@@ -495,7 +495,7 @@ if(!isset($_SESSION['id_usuario'])){
                 <!------------------------------ Modal ------------------------------>
                 <div class="modal fade" id="modalInfoProvedor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-fullscreen-sm-down modal-lg">
-    <div class="modal-content">
+    <div class="modal-content text-center">
       <div class="modal-header">
         <h5 class="modal-title" id="modal_pago">Informacion de Pago</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -504,15 +504,22 @@ if(!isset($_SESSION['id_usuario'])){
         <div class="container-fluid">
           <form class="row g-3">   
             <div class="row">
-              <div class="col-sm-6 form-control-plaintext">Medios de pago</div>            
+              <div class="col-sm-6 form-control-plaintext text-bold">Medios de pago</div>            
             </div> 
             <div class="row">
-              <div class="col-sm-6 form-control-plaintext"><p>Cluster Automotriz Regional Estado de México A.C.
-Número de Cuenta: 0112562251
-Clabe interbancaria: 012180001125622513</p></div>            
+              <div class="col-sm-6 form-control-plaintext"><p>Cluster Automotriz Regional Estado de México A.C. <br>
+                 <strong> Número de Cuenta:</strong> 0112562251 <br>
+                 <strong> Clabe interbancaria:</strong> 012180001125622513</p></div>            
             </div>
             <div class="row">
-              <div class="col-sm-6 form-control-plaintext">Pago con Mercado Pago</div>            
+              <div class="col-sm-6 form-control-plaintext">Pago con Mercado Pago</div>  
+              
+              <!------------------------------ IMAGEN DE MERCADOPAGO ------------------------------>
+              <div class="container">
+              <img class="card-img-top" src="/images/Mercadopagologo1.png" alt="Card image cap">
+              </div>                    
+
+
             </div>
             
           </form>

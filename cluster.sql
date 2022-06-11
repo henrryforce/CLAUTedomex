@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `archivos` (
   `Logo` varchar(50) DEFAULT NULL,
   `Presentacion` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`ID_archivo`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Volcado de datos para la tabla `archivos`
@@ -111,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `catalogo_estados` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(25) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Volcado de datos para la tabla `catalogo_estados`
@@ -830,7 +830,7 @@ CREATE TABLE IF NOT EXISTS `contacto` (
   `ID_usuario` int DEFAULT NULL,
   PRIMARY KEY (`ID_contacto`),
   KEY `ID_usuario` (`ID_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Volcado de datos para la tabla `contacto`
@@ -872,7 +872,7 @@ CREATE TABLE IF NOT EXISTS `detalle_empresa` (
   PRIMARY KEY (`ID_dtl_empresa`),
   KEY `ID_archivo` (`ID_archivo`,`ID_direccion`),
   KEY `ID_direccion` (`ID_direccion`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Volcado de datos para la tabla `detalle_empresa`
@@ -902,7 +902,7 @@ CREATE TABLE IF NOT EXISTS `detalle_producto` (
   `Volumen_anual` varchar(50) DEFAULT NULL,
   `Comentarios` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`ID_dtl_producto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 -- --------------------------------------------------------
 
@@ -921,7 +921,7 @@ CREATE TABLE IF NOT EXISTS `direccion` (
   `Alcaldia` varchar(50) DEFAULT NULL,
   `ID_estado` int DEFAULT NULL,
   PRIMARY KEY (`ID_direccion`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Volcado de datos para la tabla `direccion`
@@ -951,7 +951,7 @@ CREATE TABLE IF NOT EXISTS `empresa` (
   `ID_dtl_empresa` int NOT NULL,
   PRIMARY KEY (`ID_empresa`),
   KEY `ID_dtl_empresa` (`ID_dtl_empresa`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Volcado de datos para la tabla `empresa`
@@ -1012,7 +1012,7 @@ CREATE TABLE IF NOT EXISTS `producto_proveedor` (
   `ID_catalogo` int DEFAULT NULL,
   PRIMARY KEY (`ID_producto`),
   KEY `ID_usuario` (`ID_usuario`,`ID_catalogo`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Volcado de datos para la tabla `producto_proveedor`
@@ -1043,7 +1043,7 @@ CREATE TABLE IF NOT EXISTS `producto_tractora` (
   `ID_catalogo` int DEFAULT NULL,
   PRIMARY KEY (`ID_producto`),
   KEY `ID_dtl_producto` (`ID_req_producto`,`ID_usuario`,`ID_catalogo`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Volcado de datos para la tabla `producto_tractora`
@@ -1098,7 +1098,7 @@ CREATE TABLE IF NOT EXISTS `requerimiento_producto` (
   `ID_usuario` int DEFAULT NULL,
   PRIMARY KEY (`ID_req_producto`),
   KEY `ID_usuario` (`ID_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Volcado de datos para la tabla `requerimiento_producto`
@@ -1131,7 +1131,7 @@ CREATE TABLE IF NOT EXISTS `tipo_usuario` (
   `ID_tipo_usr` int NOT NULL,
   `Tipo` varchar(25) NOT NULL,
   PRIMARY KEY (`ID_tipo_usr`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Volcado de datos para la tabla `tipo_usuario`
@@ -1162,7 +1162,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   PRIMARY KEY (`ID_usuario`),
   KEY `ID_empresa` (`ID_empresa`,`ID_tipo_usr`),
   KEY `ID_tipo_usr` (`ID_tipo_usr`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Volcado de datos para la tabla `usuario`
