@@ -172,53 +172,45 @@
   </div>
   </section>
 
-  <footer>
-    <div class="subsribe-section" id="seccioncostos">
-      <div class="container">
-        <div class="inside-part-footer float-start">
-          <div class="d-lg-flex align-items-center">
-            <div class="col-lg-7">
-              <h2 data-aos="fade-down"> Costo $5,000 más IVA bimestral </h2>
-             </div>
-             <div class="col-lg-5">               
-                <a href="#" class="btn started-btn" data-aos="fade-down"> Registro</a>
-            </div>
-          </div>
-        </div>
-      </div> 
-    </div>
-    <div class="footer-link-div float-start pt-5">
-      <div class="container">
-        <div class="row row-cols-2 row-cols-md-2  row-cols-lg-4">
-          <div class="col-6">
-            <div class="comon-footer-div pt-4">
-              <a href="#"><img src="images/logo-white.png" alt="logo"/></a>
-                <h6 class="ft-call"> +52 55 55614048</h6>
-                <p class="text-white">  esupplier@clautedomex.mx</p>                
-            </div>
-          </div>
-          <div class="col">
-            <div class="comon-footer-div pt-4 justify-content-md-end d-grid">
-              <h5 class="text-white"></h5>
-              <ul class="list-unstyled mt-4">
-                <li><a href="https://www.facebook.com/clautedomex/"> <i class="fab fa-facebook-f"></i> Facebook </a></li>
-                <li><a href="https://twitter.com/clautedomex?s=11&t=jkgi23i_1DQyFLRqNnsV_w"> <i class="fab fa-twitter w"></i>Twitter </a></li>
-                <li><a href="https://instagram.com/clautedomex?igshid=YmMyMTA2M2Y="> <i class="fab fa-instagram"></i> Instagram </a></li> 
-                <li><a href="https://www.linkedin.com/in/cluster-automotriz-estado-de-m%C3%A9xico-515b1913b"> <i class="fab fa-linkedin"></i>linkedin </a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        </hr>
-        <div class="d-lg-flex justify-content-between">
-          <p class="text-white"> Copyright © 2022</p>
-          <div class="link-ft">
-            <a href="#" class="ms-lg-3"> Aviso de privacidad </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
+  <!-- FOOTER -->
+ <!-- FOOTER -->
+ <!-- FOOTER -->
+ <!-- FOOTER -->
+
+
+ <footer>
+    
+ 
+
+    <div class="footer-link-div float-start pt-5 mt-5">
+        <div class="container">
+           <div class="row row-cols-2 row-cols-md-2  row-cols-lg-4">
+              <div class="col-6">
+                 <div class="comon-footer-div pt-4">
+                     <a href="#">
+                        <img src="images/logo-white.png" alt="logo"/>
+                     </a>
+                    <h6 class="ft-call"> +52 55 55614048</h6>
+                    <p class="text-white">  esupplier@clautedomex.mx</p>
+                 </div></div>
+              <div class="col">
+                <div class="comon-footer-div pt-4 justify-content-md-end d-grid">
+                    <h5 class="text-white"></h5>
+                    <ul class="list-unstyled mt-4">
+
+                      <li><a href="https://www.facebook.com/clautedomex/"> <i class="fab fa-facebook-f"></i> Facebook </a></li>
+                      <li><a href="https://twitter.com/clautedomex?s=11&t=jkgi23i_1DQyFLRqNnsV_w"> <i class="fab fa-twitter w"></i>Twitter </a></li>
+                      <li><a href="https://instagram.com/clautedomex?igshid=YmMyMTA2M2Y="> <i class="fab fa-instagram"></i> Instagram </a></li> 
+                      <li><a href="https://www.linkedin.com/in/cluster-automotriz-estado-de-m%C3%A9xico-515b1913b"> <i class="fab fa-linkedin"></i>linkedin </a></li>
+                      
+                     </ul></div>  </div></div>             
+           <hr/>
+            <div class="d-lg-flex justify-content-between">
+              <p class="text-white"> Copyright © 2022</p>
+              <div class="link-ft">
+                 <a href="#" class="ms-lg-3"> Aviso de privacidad </a>
+              </div> </div> </div></div>
+ </footer>
 
    <!-- modaible menu -->
 
