@@ -326,14 +326,7 @@
               <input type="text" class="form-control" id="inputCP" value="09310" readonly>
             </div>
             </div>
-            <div class="col-md-3">
-              <label for="inputVentas" class="form-label">Ventas Anuales</label>
-              <input type="text" class="form-control" id="inputVentas" value="$450,000" readonly>
-            </div>
-            <div class="col-md-4">
-              <label for="inputNumE" class="form-label">Numero de empleados  </label>
-              <input type="text" class="form-control" id="inputNumE" value="500" readonly>              
-            </div>
+            
             <div class="col-12">
               <label for="txtA_desc">Descripcion de la empresa:</label>
               <textarea  class="form-control"  id="txtempresa" cols="12" rows="3" readonly></textarea>
@@ -380,7 +373,7 @@
       <div class="modal-footer">                
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
         
-        <button type="button" class="btn btn-primary" id="btnContactar" >Contactar</button>
+        
       </div>
     </div>
   </div>
