@@ -119,11 +119,16 @@
   </div>
   <section class="main-body pt-5 float-start industry-pages" method ="POST">
     <div class="container mt-1">
+    <a href="PaginaprincipalDeProveedores.php" class="btn btn-secondary mb-2">Atrás</a>
       <div class="card">
+      
       <!--TITULO DE LA CARTA-->
         <h5 class="card-header text-center">Lista de tractoras</h5>
+        
+        
         <!--CUERPO DE LA CARD (CONTENIDO)-->
-          <div class="card-body">            
+          <div class="card-body"> 
+                       
             <form>
             <!--LABEL SELECTOR DE OPCIONES-->
               <div class="form-group mb-4">

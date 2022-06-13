@@ -116,6 +116,7 @@
   </div>
   <section class="main-body pt-5 float-start industry-pages" method ="POST">
     <div class="container mb-5">
+    <a href="PaginaprincipalDeTractoras.php" class="btn btn-secondary mb-2">Atrás</a>
       <div class="card">
       <!--TITULO DE LA CARTA-->
         <h5 class="card-header text-center">Lista de proveedores</h5>

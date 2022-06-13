@@ -189,7 +189,9 @@ if(!isset($_SESSION['id_usuario'])){
               <form action="php/addContactosT.php" method="POST">                
                 <div class="table-responsive">
                   <div class="table-wrapper">
-                      <div class="table-title">                        
+                      <div class="table-title">
+                      <h4 class="text-center mt-2">Editar información</h4> 
+
                           <div class="row">
                               <div class="col-xs-6">
                                 <?php if(isset($_SESSION['message'])): ?>              
@@ -388,7 +390,8 @@ if(!isset($_SESSION['id_usuario'])){
               <form action="php/addRequ.php" method="POST">                
                 <div class="table-responsive">
                   <div class="table-wrapper">
-                      <div class="table-title">                        
+                      <div class="table-title">
+                                             
                           <div class="row">
                               <div class="col-xs-6">
                                 <?php if(isset($_SESSION['message'])): ?>              
