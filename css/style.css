@@ -12,6 +12,12 @@
 /* Estilos extra */
 /* Estilos extra */
 
+p {
+    font-size: 15px;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
 
 .card-img, .card-img-bottom, .card-img-top {
     width: 15%;
@@ -1942,7 +1948,7 @@ input.i-text, textarea {
     resize: none;
 }
 .leave-sec-part .subimt-comment, .subimt-message, .quick-contact .subimt-comment {
-    background:rgba(255,10,17,1);
+    background: #1156AB;
     color: #fff;
     font-weight: 600;
 }
