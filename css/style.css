@@ -673,11 +673,18 @@ body{
 .main-services{
 	background: #fff;
 }
+
+
+element.style {
+    background-color: #1156AB;
+}
+
+
 .comon-services{
-	height: 350px;
-	overflow: hidden;
-	border: 1px solid #393939;
-	position: relative;
+	height: 380px;
+    overflow: hidden;
+    border: 1px solid #393939;
+    position: relative;
 }
 .comon-services span{
 	position: relative;
