@@ -358,12 +358,7 @@ function load() {
             document
               .getElementById("inputCP")
               .setAttribute("value", data[0]["CP"]);
-            document
-              .getElementById("inputVentas")
-              .setAttribute("value", "$" + data[0]["Ventas_anuales"]);
-            document
-              .getElementById("inputNumE")
-              .setAttribute("value", data[0]["Num_empleados"]);
+            
             document.getElementById("txtempresa").value =
               data[0]["Descripcion"];
             setLink(
