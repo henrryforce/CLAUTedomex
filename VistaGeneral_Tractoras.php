@@ -53,7 +53,7 @@
           <div class="col">
             <div class="top-contact-right d-flex justify-content-end">
               <ul class="list-unstyled d-flex">
-                <li class="ms-3"> <a href="terms.html"> Terminos-condiciones </a> </li>
+                <li class="ms-3"> <a href="PoliticaDeprivacidad.html"> Terminos-condiciones </a> </li>
               </ul>
               <ul class="list-unstyled ms-4 socal-btn">
                 <li>
@@ -96,7 +96,7 @@
               <li class="nav-item"> <a class="nav-link" href="/Login.html">Login</a> </li>
               
             
-              <li class="nav-item accordion-item"> <a class="nav-link" href="#" id="logout">Cerrar sesión</a> </li>
+              
             </ul>
           </div>
         </div>
