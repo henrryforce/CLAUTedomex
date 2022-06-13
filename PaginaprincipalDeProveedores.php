@@ -529,7 +529,9 @@ if(!isset($_SESSION['id_usuario'])){
       <div class="modal-footer">                
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
         
-        <a type="button" class="btn btn-primary" href="https://mpago.la/1XAnXpA" data-bs-dismiss="modal">Pagar con Mercado Pago</a>
+        
+        <a type="button" class="btn btn-primary" href="https://mpago.la/1XAnXpA">Pagar con Mercado Pago</a> 
+                                   
       </div>
     </div>
   </div>
