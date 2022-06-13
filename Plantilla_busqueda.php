@@ -81,7 +81,7 @@
             <li class="nav-item"> <a class="nav-link" href="/VistaGeneral_Tractoras.php">Tractoras</a> </li>
             <li class="nav-item"> <a class="nav-link" href="/Registrate.html">Registro</a> </li>
             <li class="nav-item"> <a class="nav-link" href="/Login.html">Login</a> </li>
-            <li class="nav-item"> <a class="nav-link" href="#seccioncostos">Costo</a> </li>
+            
               
               
               <li class="nav-item accordion-item"> <a class="nav-link" href="#" id="logout">Cerrar sesión</a> </li>

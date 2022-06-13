@@ -59,7 +59,7 @@
         <div class="col">
           <div class="top-contact-right d-flex justify-content-end">
             <ul class="list-unstyled d-flex">
-              <li class="ms-3"> <a href="terms.html"> Terminos-condiciones </a>  </li>
+              <li class="ms-3"> <a href="PoliticaDeprivacidad.html"> Terminos-condiciones </a>  </li>
             </ul>
             <ul class="list-unstyled ms-4 socal-btn">
               <li>
@@ -180,16 +180,7 @@
 
   <footer>
 
-  <div class="subsribe-section" id="seccioncostos">
-       <div class="container">
-          <div class="inside-part-footer float-start">
-             <div class="d-lg-flex align-items-center">
-                 <div class="col-lg-7">
-                  <h2 data-aos="fade-down"> Costo $5,000 más IVA bimestral </h2>
-                 </div>
-                 <div class="col-lg-5">
-                    <a href="#" class="btn started-btn" data-aos="fade-down"> Registro</a>
-                 </div></div></div> </div> </div>
+  
 
 
     <div class="footer-link-div float-start pt-5">

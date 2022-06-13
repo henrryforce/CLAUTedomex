@@ -64,7 +64,7 @@ if(!isset($_SESSION['id_usuario'])){
                <div class="col">
                  <div class="top-contact-right d-flex justify-content-end">
                    <ul class="list-unstyled d-flex">
-                     <li class="ms-3"> <a href="terms.html"> Terminos-condiciones </a>  </li>
+                     <li class="ms-3"> <a href="PoliticaDeprivacidad.html"> Terminos-condiciones </a>  </li>
                    </ul>
                    <ul class="list-unstyled ms-4 socal-btn">
                      <li>
