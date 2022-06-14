@@ -143,6 +143,8 @@ if (!isset($_SESSION['id_usuario'])) {
 
   <section class="main-body pt-5 float-start industry-pages">
 
+  
+
     <!-- CONTENEDOR DE ELEMENTOS-->
 
     <div class="container mb-4 text-center">

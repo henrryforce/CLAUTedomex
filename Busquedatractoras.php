@@ -186,8 +186,6 @@
   <footer>
 
   
-
-
     <div class="footer-link-div float-start pt-5">
       <div class="container">
         <div class="row row-cols-2 row-cols-md-2  row-cols-lg-4">

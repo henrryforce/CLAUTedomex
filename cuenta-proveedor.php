@@ -76,7 +76,7 @@ if (!isset($_SESSION['id_usuario'])) {
           <div class="col">
             <div class="top-contact-right d-flex justify-content-end">
               <ul class="list-unstyled d-flex">
-                <li class="ms-3"> <a href="terms.html"> Terminos-condiciones </a> </li>
+                <li class="ms-3"> <a href="#"> Terminos-condiciones </a> </li>
               </ul>
               <ul class="list-unstyled ms-4 socal-btn">
                 <li>
@@ -105,6 +105,7 @@ if (!isset($_SESSION['id_usuario'])) {
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
 
+            
 
             <li class="nav-item"> <a class="nav-link" href="index.html"> Inicio</a></li>
             <li class="nav-item"> <a class="nav-link" href="/VistaGeneral_Tractoras.php">Tractoras</a> </li>
@@ -113,7 +114,7 @@ if (!isset($_SESSION['id_usuario'])) {
             
             
             
-            <li class="nav-item accordion-item"> <a class="nav-link" id="logout" href="#">Cerrar sesión</a> </li>
+            <li class="nav-item accordion-item logout"> <a class="nav-link" id="" href="#">Cerrar sesión</a> </li>
              </li></ul>
              </div> </div> </nav> </nav> </div></div>  
 

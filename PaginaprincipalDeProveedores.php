@@ -514,6 +514,8 @@ if(!isset($_SESSION['id_usuario'])){
             </div>
             <div class="row">
               <div class="col-sm-6 form-control-plaintext">Pago con Mercado Pago</div>  
+
+              
               
               <!------------------------------ IMAGEN DE MERCADOPAGO ------------------------------>
               <div class="container">
