@@ -710,17 +710,16 @@ function contactoform(e) {
     data.get("subject") != "" &&
     data.get("message") != ""
   ) {
+    form.reset();
+          creaNotificacion(noti, "!Formulario enviado con exito¡");
+          modificaNotificacion(noti, "alert alert-success");
     fetch("../php/contact.php", {
       method: "POST",
       body: data,
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data == "send") {
-          form.reset();
-          creaNotificacion(noti, "!Formulario enviado con exito¡");
-          modificaNotificacion(noti, "alert alert-success");
-        } else {
+        if (data != "send") {          
           creaNotificacion(noti, "!Error al enviar el Formulario¡");
         }
       });
