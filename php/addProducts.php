@@ -119,7 +119,7 @@
         $_SESSION['message'] = "¡Se ha eliminado con éxito el contacto!";
         $_SESSION['msg_type'] = "danger";
 
-        $database->query("DELETE FROM `producto` WHERE `ID_producto` = $id");
+        $database->query("DELETE FROM `producto_proveedor` WHERE `ID_producto` = $id");
         $database->resultSet();
 
         header("location: /PaginaprincipalDeProveedores.php");
