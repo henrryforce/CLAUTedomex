@@ -143,7 +143,7 @@
         <div class="inside-part-footer float-start">
           <div class="d-lg-flex align-items-center">
             <div class="col-lg-7">
-              <h2 data-aos="fade-down"> Costo $5,000 más IVA bimestral </h2>
+              <h2 data-aos="fade-down"> Inversión $5,000 más IVA bimestral </h2>
              </div>
              <div class="col-lg-5">               
                 <a href="#" class="btn started-btn" data-aos="fade-down"> Registro</a>

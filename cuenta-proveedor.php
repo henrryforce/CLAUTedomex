@@ -142,7 +142,7 @@ if (!isset($_SESSION['id_usuario'])) {
       <!-- ENCABEZADOS-->
       <h4>CUENTA - PROVEEDOR</h4>
       <div>
-      <a class="text-decoration-none" href="/PaginaprincipalDeProveedores.php">Regresar al Menu Principal</a>
+      <a class="btn btn-secondary mb-2 mt-2" href="/PaginaprincipalDeProveedores.php">Regresar al Menu Principal</a>
       </div>
     </div>
     <!-- LABELS -->
@@ -510,7 +510,7 @@ if (!isset($_SESSION['id_usuario'])) {
         <div class="d-lg-flex justify-content-between">
           <p class="text-white"> Copyright © 2022</p>
           <div class="link-ft">
-            <a href="#" class="ms-lg-3"> Aviso de privacidad </a>
+            <a href="PoliticaDePrivacidad.html" class="ms-lg-3"> Aviso de privacidad </a>
           </div>
         </div>
       </div>

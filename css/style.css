@@ -12,6 +12,8 @@
 /* Estilos extra */
 /* Estilos extra */
 
+
+
 .btn-secondary {
     color: #fff;
     background-color: #0d6efd;
@@ -394,6 +396,12 @@ body{
 }
 .inquirery-div .form-group{
 	margin-bottom: 15px;
+
+
+	
+
+
+
 }
 .inquirery-div .form-group .form-control{
   background-color: #28272a;

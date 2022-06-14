@@ -609,8 +609,8 @@ if(!isset($_SESSION['id_usuario'])){
       <div class="d-lg-flex justify-content-between">
         <p class="text-white"> Copyright © 2022</p>
         <div class="link-ft">
-           <a href="#"> Terminos-condiciones </a>
-           <a href="#" class="ms-lg-3"> Aviso de privacidad </a>
+           
+           <a href="PoliticaDePrivacidad.html" class="ms-lg-3"> Aviso de privacidad </a>
         </div> </div> </div></div>
       
 </footer>

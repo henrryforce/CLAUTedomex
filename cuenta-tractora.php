@@ -148,9 +148,9 @@ if (!isset($_SESSION['id_usuario'])) {
     <div class="container mb-4 text-center">
       <!-- ENCABEZADOS-->
       <h4>CUENTA - TRACTORA</h4>
-      <a class="text-decoration-none" href="#">Administra tu perfil</a>
+      <a class="btn btn-secondary mb-2 mt-2" href="#">Administra tu perfil</a>
       <br>
-      <a class="text-decoration-none" href="/PaginaprincipalDeTractoras.php">Regresar al Menu Principal</a>
+      <a class="btn btn-secondary mb-2 mt-2" href="/PaginaprincipalDeTractoras.php">Regresar al Menu Principal</a>
     </div>
 
     <!-- LABELS -->
@@ -535,7 +535,7 @@ if (!isset($_SESSION['id_usuario'])) {
         <div class="d-lg-flex justify-content-between">
           <p class="text-white"> Copyright © 2022</p>
           <div class="link-ft">
-            <a href="#" class="ms-lg-3"> Aviso de privacidad </a>
+            <a href="PoliticaDePrivacidad.html" class="ms-lg-3"> Aviso de privacidad </a>
           </div>
         </div>
       </div>
