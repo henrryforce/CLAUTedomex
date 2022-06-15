@@ -442,7 +442,7 @@ if (!isset($_SESSION['id_usuario'])) {
                       <div class="modal-body">
                         <div id="notificacionesMP"></div>
                         <form action="#" id="formexport">
-                        <label for="">Exportaciones A</label>
+                        <label for="">Exportaciones a:</label>
                         <select class="form-control mb-3" id="pais" name="pais">
 
                           <option value="0">Países</option>

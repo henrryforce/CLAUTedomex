@@ -325,7 +325,7 @@ if (!isset($_SESSION['id_usuario'])) {
                               placeholder="Escriba aquí empleados" value="<?php echo ($datos[0]['Num_empleados']==''|| $datos[0]['Num_empleados'] == NULL) ? '' : $datos[0]['Num_empleados'] ; ?>">
                           </div>
                           <div class="form-group mt-3">
-                            <label for="">Ventas Anuales</label>
+                            <label for="">Ventas Anuales (en dólares)</label>
                             <input type="number" class="form-control" id="ventas" name="ventas"
                               placeholder="Escriba aquí empleados" value="<?php echo ($datos[0]['Ventas_anuales']==''|| $datos[0]['Ventas_anuales'] == NULL) ? '' : $datos[0]['Ventas_anuales'] ; ?>">
                           </div>
@@ -451,7 +451,7 @@ if (!isset($_SESSION['id_usuario'])) {
                       <div class="modal-body">
                         <div id="notificacionesMP"></div>
                         <form action="#" id="formexport">
-                          <label for="">Exportaciones A</label>
+                          <label for="">Exportaciones a:</label>
                           <select class="form-control mb-3" id="pais" name="pais">
 
                             <option value="0">Países</option>

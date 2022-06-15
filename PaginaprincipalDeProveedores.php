@@ -265,8 +265,8 @@ if(!isset($_SESSION['id_usuario'])){
                                 <!-- OPCIONES--> 
                                 <td>
                                   <ul class="list-group list-group-horizontal">
-                                    <a href="PaginaprincipalDeProveedores.php?edit=<?php echo $row['ID_contacto']?>" class=" list-group-item"><i class="bi bi-pencil-square">Edit</a></i>
-                                    <a href="php/addContactos.php?delete=<?php echo $row['ID_contacto'];?>" class=" list-group-item"><i class="bi bi-archive-fill">Delete</a></i>
+                                    <a href="PaginaprincipalDeProveedores.php?edit=<?php echo $row['ID_contacto']?>" class=" list-group-item"><i class="bi bi-pencil-square">Editar</a></i>
+                                    <a href="php/addContactos.php?delete=<?php echo $row['ID_contacto'];?>" class=" list-group-item"><i class="bi bi-archive-fill">Borrar</a></i>
                                   </ul>                                    
                                 </td>
                               </tr>
@@ -390,7 +390,7 @@ if(!isset($_SESSION['id_usuario'])){
                                     }?>
                                   <!-- OPCIONES--> 
                                   <td>                                    
-                                    <a href="php/addProducts.php?deleteP=<?php echo $id_p;?>" class="list-group-item"><i class="bi bi-archive-fill">        Delete</a></i>
+                                    <a href="php/addProducts.php?deleteP=<?php echo $id_p;?>" class="list-group-item"><i class="bi bi-archive-fill">        Borrar</a></i>
                                   </td>
                               </tr>
                               <?php endforeach; ?>
@@ -498,7 +498,7 @@ if(!isset($_SESSION['id_usuario'])){
   <div class="modal-dialog modal-fullscreen-sm-down modal-lg">
     <div class="modal-content text-center">
       <div class="modal-header">
-        <h5 class="modal-title" id="modal_pago">Informacion de Pago</h5>
+        <h5 class="modal-title" id="modal_pago">Información de Pago</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">

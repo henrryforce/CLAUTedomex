@@ -295,8 +295,8 @@ if(!isset($_SESSION['id_usuario'])){
                                   <!-- OPCIONES-->                                   
                                   <td>
                                     <ul class="list-group list-group-horizontal">
-                                      <a href="PaginaprincipalDeTractoras.php?editt=<?php echo $row['ID_contacto'];?>"class=" list-group-item"><i class="bi bi-pencil-square">Edit</a></i>
-                                      <a href="php/addContactosT.php?deletet=<?php echo $row['ID_contacto'];?>"class=" list-group-item"><i class="bi bi-archive-fill">Delete</a></i>
+                                      <a href="PaginaprincipalDeTractoras.php?editt=<?php echo $row['ID_contacto'];?>"class=" list-group-item"><i class="bi bi-pencil-square">Editar</a></i>
+                                      <a href="php/addContactosT.php?deletet=<?php echo $row['ID_contacto'];?>"class=" list-group-item"><i class="bi bi-archive-fill">Borrar</a></i>
                                     </ul>
                                       
                                   </td>
@@ -499,8 +499,8 @@ if(!isset($_SESSION['id_usuario'])){
                                       $id_requerimiento = $row['ID_req_producto'];
                                     }*/?>
                                     <ul class="list-group list-group-horizontal">
-                                      <a href="PaginaprincipalDeTractoras.php?editq=<?php echo $row['ID_req_producto'];?>"class=" list-group-item"><i class="bi bi-pencil-square">Edit</a></i>
-                                      <a href="php/addRequ.php?deleteq=<?php echo $row['ID_req_producto'];?>"class=" list-group-item"><i class="bi bi-archive-fill">Delete</a></i>
+                                      <a href="PaginaprincipalDeTractoras.php?editq=<?php echo $row['ID_req_producto'];?>"class=" list-group-item"><i class="bi bi-pencil-square">Editar</a></i>
+                                      <a href="php/addRequ.php?deleteq=<?php echo $row['ID_req_producto'];?>"class=" list-group-item"><i class="bi bi-archive-fill">Borrar</a></i>
                                     </ul>                                      
                                   </td>
                               </tr>

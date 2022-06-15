@@ -322,15 +322,15 @@
               <input type="text" class="form-control" id="inputVentas" value="$450,000" readonly>
             </div>
             <div class="col-md-4">
-              <label for="inputNumE" class="form-label">Numero de empleados  </label>
+              <label for="inputNumE" class="form-label">Número de empleados  </label>
               <input type="text" class="form-control" id="inputNumE" value="500" readonly>              
             </div>
             <div class="col-12">
-              <label for="txtA_desc">Descripcion de la empresa:</label>
+              <label for="txtA_desc">Descripción de la empresa:</label>
               <textarea  class="form-control"  id="txtempresa" cols="12" rows="3" readonly></textarea>
             </div>
             <div class="col-md-6">
-            <a href="#" target="_blank" rel="noopener noreferrer" id="docPresentacion">Presentación</a>
+            <a href="#" target="_blank" rel="noopener noreferrer" id="docPresentacion">Ver Presentación</a>
             </div>
             <div class="col-12">
               <label for="" class="form-label">Exportaciones</label>
