@@ -104,7 +104,7 @@
             
               
               
-              <li class="nav-item accordion-item"> <a class="nav-link" href="#" id="logout">Cerrar sesión</a> </li>
+              <li class="nav-item accordion-item"> <a class="nav-link logout" >Cerrar sesión</a> </li>
 
              </li>
             </ul>
@@ -260,7 +260,7 @@
               </li>
 
             <li>
-              <a href="#" id="logout"> Cerrar sesión </a>
+              <a class="logout"> Cerrar sesión </a>
            </li>            
          
           </ul>
