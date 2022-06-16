@@ -13,7 +13,7 @@ function load() {
     }
     
   });
-  if (ubi.includes("/Login.html")) {
+  if (ubi.includes("/Login.php")) {
     document.getElementById("btnlogin").addEventListener("click", enviaLogin);
   }
   if (ubi.includes("/reestablecercontrasena1.html")) {
@@ -21,7 +21,7 @@ function load() {
       .getElementById("btnResetPass")
       .addEventListener("click", resetPassword);
   }
-  if (ubi.includes("/Registrate.html")) {
+  if (ubi.includes("/registrate.php")) {
     document
       .getElementById("btnaceptar")
       .addEventListener("click", enviarRegistro);
@@ -67,7 +67,7 @@ function load() {
   }
   if (ubi.includes("/confirmarregistro2.html")) {
     setTimeout(() => {
-      window.location.assign("/Login.html");
+      window.location.assign("/Login.php");
     }, 1000);
   }
   if (ubi.includes("/reestablecercontrasena2.html")) {
@@ -82,7 +82,7 @@ function load() {
   }
   if (ubi.includes("/reestablecercontrasena4.html")) {
     setTimeout(() => {
-      window.location.assign("/Login.html");
+      window.location.assign("/Login.php");
     }, 1000);
   }
   if (ubi.includes("/PaginaprincipalDeProveedores.php")) {

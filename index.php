@@ -1,3 +1,15 @@
+<?php 
+session_start();
+if(!isset($_SESSION['id_usuario'])){
+    //header("location: /index.php");
+    $html_cuenta = '<li class="nav-item"> <a class="nav-link" href="/Login.php">Login</a> </li>';
+   }else{  
+    if($_SESSION['tipoUser'] == '1'){
+      $html_cuenta = '<li class="nav-item"> <a class="nav-link" href="/PaginaprincipalDeTractoras.php">Cuenta</a> </li>';
+    }elseif($_SESSION['tipoUser'] == '2'){
+      $html_cuenta = '<li class="nav-item"> <a class="nav-link" href="/PaginaprincipalDeProveedores.php">Cuenta</a> </li>';
+    }
+  }?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -66,7 +78,7 @@
     <div class="navication float-start w-100">
      <nav class="navbar navbar-expand-lg navbar-light">
        <div class="container">
-         <a class="navbar-brand" href="index.html">
+         <a class="navbar-brand" href="index.php">
             <!-- IMAGEN DEL LOGO -->
             <!-- IMAGEN DEL LOGO -->
             <!-- IMAGEN DEL LOGO -->
@@ -83,10 +95,10 @@
 
 
             
-            <li class="nav-item"> <a class="nav-link active" href="index.html"> Inicio</a></li>
+            <li class="nav-item"> <a class="nav-link active" href="index.php"> Inicio</a></li>
             <li class="nav-item"> <a class="nav-link" href="/VistaGeneral_Tractoras.php">Tractoras</a> </li>
-			   <li class="nav-item"> <a class="nav-link" href="/Registrate.html">Registro</a> </li>
-			   <li class="nav-item"> <a class="nav-link" href="/Login.html">Login</a> </li>
+			   <li class="nav-item"> <a class="nav-link" href="/registrate.php">Registro</a> </li>
+			   <?php echo $html_cuenta ?>
 			   
              
            </ul>
@@ -111,7 +123,7 @@
                 <h1 data-aos="fade-down">Innovación digital en pro del Sector Automotriz </h1>
                 <p class="mt-3" data-aos="fade-up">Todo lo que necesitas para sumarte al sector automotriz. </p>
 			    <img src="images/bam.png" alt=""/> <br><br>
-				  <div style="padding-left: 40px;">	  <a href="/Registrate.html" class="btn read-more" data-aos="fade-down"> <span> Regístrate <i class="fas fa-angle-right"></i> </span> </a>  
+				  <div style="padding-left: 40px;">	  <a href="/registrate.php" class="btn read-more" data-aos="fade-down"> <span> Regístrate <i class="fas fa-angle-right"></i> </span> </a>  
                 <a href="contact.html" class="btn contact-btn ms-3" data-aos="fade-down"> <span> <i class="far fa-paper-plane"></i> Contacto </span> </a></div>
               </div>
         </div></div>
@@ -571,7 +583,7 @@ Programa de Localización de proveedores 24/7 te ubica en el mapa de oportunidad
 </h5>
             <h2 class="text-white text-center" data-aos="fade-up">GENERA NUEVAS OPORTUNIDADES DE NEGOCIO</h2>
          <p align="center" style="color: white"> Ingresa, regístrate y encuentra oportunidades de negocios entre empresas certificadas.</p>
-            <a href="Registrate.html" class="btn started-btn" data-aos="fade-down"> Comienza ahora <i class="far fa-paper-plane"></i> </a><br>
+            <a href="registrate.php" class="btn started-btn" data-aos="fade-down"> Comienza ahora <i class="far fa-paper-plane"></i> </a><br>
 			 <h3 align="center" style="color: white">Socio ClautEdoMex  Valor membresía</h3>
          </div></div> </div>    
  </section>
@@ -594,7 +606,7 @@ Programa de Localización de proveedores 24/7 te ubica en el mapa de oportunidad
                   <h2 data-aos="fade-down"> Inversión $5,000 más IVA bimestral </h2>
                  </div>
                  <div class="col-lg-5">
-                    <a href="Registrate.html" class="btn started-btn" data-aos="fade-down"> Registro</a>
+                    <a href="registrate.php" class="btn started-btn" data-aos="fade-down"> Registro</a>
                  </div></div></div> </div> </div>
 
     <div class="footer-link-div float-start pt-5">
@@ -637,7 +649,7 @@ Programa de Localización de proveedores 24/7 te ubica en el mapa de oportunidad
    </div>
    <div class="offcanvas-body">
      <div class="head-contact">
-       <a href="index.html" class="logo-side">
+       <a href="index.php" class="logo-side">
        <img src="images/logo-main.png" alt="logo">
        </a>
       
@@ -645,7 +657,7 @@ Programa de Localización de proveedores 24/7 te ubica en el mapa de oportunidad
           <ul class="list-unstyled">
  
              <li>
-                <a href="index.html"> Inicio </a>
+                <a href="index.php"> Inicio </a>
              </li>
  
              <li>
@@ -653,11 +665,11 @@ Programa de Localización de proveedores 24/7 te ubica en el mapa de oportunidad
              </li>
  
              <li>
-                <a href="/Registrate.html"> Registro </a>
+                <a href="/registrate.php"> Registro </a>
              </li>
  
              <li>
-                <a href="/Login.html"> Login </a>
+                <a href="/Login.php"> Login </a>
              </li>
  
                      

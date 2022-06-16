@@ -97,7 +97,7 @@ $(document).ready(function() {
 
 
 
-if(ubi.includes("/index.html")){
+if(ubi.includes("/index.php")){
   //BACK TO TOP BUTTON//
 let mybutton = document.getElementById("btn-back-to-top");
 

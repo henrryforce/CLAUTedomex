@@ -60,7 +60,7 @@ body{
 
 
 .card {
-    border: 1px solid ##F0F2F5;
+    border: 1px solid #F0F2F5;
     border-radius: 0.25rem;
 }
 
@@ -560,8 +560,7 @@ body{
 	background-size: cover;
 	position: relative;
 }
-.quote-from{
-}
+
 
 .heading-one{
 	position: relative;
@@ -1773,7 +1772,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 }
 
 /* oculto los elementos */
-input.i-text, textarea {
+  input.i-text, textarea {
 	display: none;
   }
   

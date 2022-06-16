@@ -1,7 +1,18 @@
 <?php
+session_start();
   include_once "php/Conexion.php";
   $database=new Conexion; 
   $db=new Conexion;
+  if(!isset($_SESSION['id_usuario'])){
+    //header("location: /index.php");
+    $html_cuenta = '<li class="nav-item"> <a class="nav-link" href="/Login.php">Login</a> </li>';
+   }elseif($_SESSION['tipoUser'] == '2'){  
+    if($_SESSION['tipoUser'] == '1'){
+      $html_cuenta = '<li class="nav-item"> <a class="nav-link" href="/PaginaprincipalDeTractoras.php">Cuenta</a> </li>';
+    }else{
+      $html_cuenta = '<li class="nav-item"> <a class="nav-link" href="/PaginaprincipalDeProveedores.php">Cuenta</a> </li>';
+    }
+  }
 ?>
 <!doctype html>
 <html lang="en">
@@ -78,7 +89,7 @@
     <div class="navication float-start w-100">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand" href="index.php">
             <img src="images/LOGO NAVBAR 2.png" class="d-none d-lg-block " alt="logo" />
           </a>
           <a class="navbar-toggler" data-bs-toggle="offcanvas" href="#mboile-show-menu" role="button"
@@ -90,10 +101,10 @@
 
               <li class="nav-item">
 
-              <li class="nav-item"> <a class="nav-link" href="index.html"> Inicio</a></li>
+              <li class="nav-item"> <a class="nav-link" href="index.php"> Inicio</a></li>
               <li class="nav-item"> <a class="nav-link" href="/VistaGeneral_Tractoras.php">Tractoras</a> </li>
-              <li class="nav-item"> <a class="nav-link" href="/Registrate.html">Registro</a> </li>
-              <li class="nav-item"> <a class="nav-link" href="/Login.html">Login</a> </li>
+              <li class="nav-item"> <a class="nav-link" href="/registrate.php">Registro</a> </li>
+              <?php echo $html_cuenta?>
               
             
               
@@ -324,7 +335,7 @@
   </div>
   <div class="offcanvas-body">
     <div class="head-contact">
-      <a href="index.html" class="logo-side">
+      <a href="index.php" class="logo-side">
       <img src="images/logo-main.png" alt="logo">
       </a>
      
@@ -332,7 +343,7 @@
          <ul class="list-unstyled">
 
          <li>
-                <a href="index.html"> Inicio </a>
+                <a href="index.php"> Inicio </a>
             </li>
             
             <li>
@@ -340,11 +351,11 @@
             </li>
             
             <li>
-                <a href="/Registrate.html"> Registro </a>
+                <a href="/registrate.php"> Registro </a>
             </li>
             
             <li>
-                <a href="/Login.html"> Login </a>
+                <a href="/Login.php"> Login </a>
             </li>
 
             

@@ -1,11 +1,11 @@
 <?php
 session_start();
 if (!isset($_SESSION['id_usuario'])) {
-    header("location: /Login.html");
+    header("location: /Login.php");
 } else {
     $id_usr = $_SESSION['id_usuario'];
     if($_SESSION['tipoUser'] != '2'){
-      header("location: /Login.html");
+      header("location: /Login.php");
     }
     include_once "php/Conexion.php";
     $obj = new Conexion;
@@ -94,7 +94,7 @@ if (!isset($_SESSION['id_usuario'])) {
     <div class="navication float-start w-100">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand" href="index.php">
             <img src="images/LOGO NAVBAR 2.png" class="d-none d-lg-block " alt="logo" />
           </a>
           <a class="navbar-toggler" data-bs-toggle="offcanvas" href="#mboile-show-menu" role="button"
@@ -107,10 +107,10 @@ if (!isset($_SESSION['id_usuario'])) {
 
             
 
-            <li class="nav-item"> <a class="nav-link" href="index.html"> Inicio</a></li>
+            <li class="nav-item"> <a class="nav-link" href="index.php"> Inicio</a></li>
             <li class="nav-item"> <a class="nav-link" href="/VistaGeneral_Tractoras.php">Tractoras</a> </li>
-            <li class="nav-item"> <a class="nav-link" href="/Registrate.html">Registro</a> </li>
-            <li class="nav-item"> <a class="nav-link" href="/Login.html">Login</a> </li>
+            <li class="nav-item"> <a class="nav-link" href="/registrate.php">Registro</a> </li>
+            <li class="nav-item"> <a class="nav-link" href="/Login.php">Login</a> </li>
             
             
             
@@ -529,7 +529,7 @@ if (!isset($_SESSION['id_usuario'])) {
     </div>
     <div class="offcanvas-body">
       <div class="head-contact">
-        <a href="index.html" class="logo-side">
+        <a href="index.php" class="logo-side">
           <img src="images/logo-main.png" alt="logo">
         </a>
 
@@ -537,7 +537,7 @@ if (!isset($_SESSION['id_usuario'])) {
           <ul class="list-unstyled">
 
             <li>
-              <a href="index.html"> Inicio </a>
+              <a href="index.php"> Inicio </a>
             </li>
 
             <li>
