@@ -117,7 +117,7 @@ if (!isset($_SESSION['id_usuario'])) {
             
             
             
-            <li class="nav-item accordion-item"> <a class="nav-link" id="logout" href="#">Cerrar sesión</a> </li>
+            <li class="nav-item accordion-item "> <a class="nav-link logout" >Cerrar sesión</a> </li>
              </li></ul>
              </div> </div> </nav> </nav> </div></div>  
 
@@ -585,7 +585,7 @@ if (!isset($_SESSION['id_usuario'])) {
             </li>
 
             <li>
-              <a href="#" id="logout"> Cerrar sesión </a>
+              <a class="logout"> Cerrar sesión </a>
             </li>
 
           </ul>

@@ -767,7 +767,7 @@ function changePassPerfilProveedor(e) {
       data = new FormData(document.getElementById("formPassword"));
       data.append("cambioPassword", 1);
       console.log(data.get("password"));
-      fetch("../php/Gestorcuenta.php", {
+      fetch("../php/gestorcuenta.php", {
         method: "POST",
         body: data,
       })
@@ -854,7 +854,7 @@ function updateDatosproveedor(e) {
     data.get("paginaweb") != "" &&
     data.get("txtnegocio") != ""
   ) {
-    fetch("../php/Gestorcuenta.php", {
+    fetch("../php/gestorcuenta.php", {
       method: "POST",
       body: data,
     })
