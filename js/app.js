@@ -158,6 +158,25 @@ function load() {
             divID.innerHTML='';
             divID.innerHTML=`<input type="hidden" id="idcontactoEditar"  value="${idContacto}">`;
           });
+      }
+      if(e.target.className.includes('btnEditarReq')){
+        let idReq=e.target.parentElement.previousElementSibling.value;
+        let data = new FormData();
+        data.append('editq',idReq);
+        fetch("../php/addRequ.php", {
+          method: "POST",
+          body: data,
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            //console.log(data);
+            document.getElementById('editmateriales').value=data[0]['Tipo_material'];
+            document.getElementById('editvol').value=data[0]['Volumen_anual'];
+            document.getElementById('editComents').innerText=data[0]['Comentarios'];
+            let divID =document.getElementById('idRequeri');
+            divID.innerHTML='';
+            divID.innerHTML=`<input type="hidden" id="idRequerimientoEditar"  value="${idReq}">`;
+          });
       }      
     });
     document.getElementById("comodity").addEventListener("change", getval);
@@ -183,7 +202,25 @@ function load() {
               creaNotificacion(document.getElementById('notificacionEditarC'),"Ocurrio un error")
             }
           });
-      })
+      });
+      document.getElementById('btneditReq').addEventListener("click",function(e){
+        e.preventDefault();
+        let data = new FormData(document.getElementById('editarRequerimientoModal'));      
+        data.append('ed_idr',document.getElementById('idRequerimientoEditar').value);
+        data.append('update2',1);
+        fetch("../php/addRequ.php", {
+          method: "POST",
+          body: data,
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if(data == '200'){
+              location.reload();
+            }else{
+              creaNotificacion(document.getElementById('notificarEditarRequ'),"Ocurrio un error")
+            }
+          });
+      });
   }
   if (ubi.includes("/contact.html")) {
     document
