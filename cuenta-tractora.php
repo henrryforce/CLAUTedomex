@@ -564,25 +564,21 @@ if (!isset($_SESSION['id_usuario'])) {
         <div class="mobile-menu-sec mt-3">
           <ul class="list-unstyled">
 
-            <li>
-              <a href="index.php"> Inicio </a>
-            </li>
+          <li>
+          <a href="index.php"> Inicio </a>
+       </li>
 
-            <li>
-              <a href="#"> Tractoras </a>
-            </li>
+       <li>
+          <a href="/VistaGeneral_Tractoras.php"> Tractoras </a>
+       </li>
 
-            <li>
-              <a href="#"> Registro </a>
-            </li>
+       <li>
+          <a href="/registrate.php"> Registro </a>
+       </li>
 
-            <li>
-              <a href="#"> Login </a>
-            </li>
-
-            <li>
-              <a href="#"> Costo </a>
-            </li>
+       <li>
+          <a href="/Login.php"> Login </a>
+       </li>
 
             <li>
               <a class="logout"> Cerrar sesión </a>
