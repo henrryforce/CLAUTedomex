@@ -1,11 +1,21 @@
 <?php
 session_start();
 if(!isset($_SESSION['id_usuario'])){
-  header("location: /Login.html");
+  header("location: /Login.php");
  }else{
   $id_usr=$_SESSION['id_usuario'];
   if($_SESSION['tipoUser'] != '2'){
-    header("location: /Login.html");
+    header("location: /Login.php");
+  }
+}
+if(!isset($_SESSION['id_usuario'])){
+  //header("location: /index.php");
+  $html_cuenta = '<li class="nav-item"> <a class="nav-link" href="/Login.php">Login</a> </li>';
+ }else{  
+  if($_SESSION['tipoUser'] == '1'){
+    $html_cuenta = '<li class="nav-item"> <a class="nav-link" href="/PaginaprincipalDeTractoras.php">Cuenta</a> </li>';
+  }elseif($_SESSION['tipoUser'] == '2'){
+    $html_cuenta = '<li class="nav-item"> <a class="nav-link" href="/PaginaprincipalDeProveedores.php">Cuenta</a> </li>';
   }
 }
   include_once "php/Conexion.php";
@@ -17,6 +27,8 @@ if(!isset($_SESSION['id_usuario'])){
   $res= $obj -> resultSet();
   $database-> query("SELECT * FROM contacto WHERE id_usuario=$id_usr");
   $rows = $database->resultSet();
+  $obj -> query("SELECT  `Estatus_pago` as pago FROM `usuario` WHERE `ID_usuario` = $id_usr");
+  $pago = $obj -> resultSet();
   ?>
 
 <!doctype html>
@@ -52,6 +64,7 @@ if(!isset($_SESSION['id_usuario'])){
    
   </head>
 <body>
+  
  <div class="main-menu-div float-start w-100">
     <div class="top-menu-sction float-start w-100 d-none d-md-none d-lg-block">      
         <div class="container">
@@ -83,7 +96,7 @@ if(!isset($_SESSION['id_usuario'])){
     <div class="navication float-start w-100">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand" href="index.php">
              <img src="images/logo-white.png" class="d-none d-lg-block " alt="logo"/>
              <img src="images/logo-main.png" class="d-block d-md-block d-lg-none" alt="logo"/>
           </a>
@@ -93,10 +106,10 @@ if(!isset($_SESSION['id_usuario'])){
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
   
-            <li class="nav-item"> <a class="nav-link" href="index.html"> Inicio</a></li>
+            <li class="nav-item"> <a class="nav-link" href="index.php"> Inicio</a></li>
             <li class="nav-item"> <a class="nav-link" href="/VistaGeneral_Tractoras.php">Tractoras</a> </li>
-            <li class="nav-item"> <a class="nav-link" href="/Registrate.html">Registro</a> </li>
-            <li class="nav-item"> <a class="nav-link" href="/Login.html">Login</a> </li>
+            <li class="nav-item"> <a class="nav-link" href="/registrate.php">Registro</a> </li>
+            <?php echo $html_cuenta ?>
             
             
             
@@ -166,61 +179,7 @@ if(!isset($_SESSION['id_usuario'])){
                 <div class="card mt-5 mb-5">
                   <div class="card-body">
 
-            <section id = "tabEditar" class="container mt-2 mb-2 p-2 ">
-              <form action="php/addContactos.php" method="POST">                
-                <div class="table-responsive">
-                  <div class="table-wrapper">
-                      <div class="table-title">
-                      <h4 class="text-center mt-2">Editar información</h4>                        
-                          <div class="row">
-                              <div class="col-xs-6">
-                                <?php if(isset($_SESSION['message'])): ?>              
-                                        <div class="alert alert-<?=$_SESSION['msg_type']?>"  role="alert">
-                                <?php 
-                                          echo $_SESSION['message'];
-                                          unset($_SESSION['message']);
-                                ?>
-                                        </div>
-                                <?php endif ?>
-                              </div>
-                              <!-- BOTONES DE LA TABLA--> 
-                                <div class="col-xs-6 mb-3">                                  
-                                  <?php if($update == true):?>
-                                    <button type="submit" class="btn btn-primary" name="update" style="display:show;">Actualizar</button>
-                                  <?php else:?>                                                                
-                                    <button type="submit" class="btn btn-primary" name="update" style="display:none;">Guardar</button>
-                                  <?php endif; ?>                                    
-                                </div>                                                          
-                          </div>
-                      </div>
-                      <!-- BOTONES DE LA TABLA--> 
-                      <table class="table table-hover table-hover text-center">
-                          <thead>
-                              <tr>                                                                                                   
-                                  <th>Nombre</th>
-                                  <th>Puesto</th>
-                                  <th>Email</th>
-                                  <th>Teléfono</th>
-                                  <th>Extensión</th>
-                                  <th>Celular</th>                                                                    
-                              </tr>
-                          </thead>                          
-                          <tbody>                                                            
-                              <tr>
-                                <input type="hidden" id="ed_id" name="ed_id" value="<?php echo $id_cont; ?>">
-                                <td><input class="form-control" type="text" id="ed_name" name="ed_name" value="<?php echo $name; ?>" placeholder="Nombre"></td>
-                                <td><input class="form-control" type="text" id="ed_job" name="ed_job" value="<?php echo $job; ?>" placeholder="Puesto"></td>
-                                <td><input class="form-control" type="text" id="ed_mail" name="ed_mail" value="<?php echo$mail; ?>" placeholder="Email"></td>
-                                <td><input class="form-control" type="text" id="ed_tel" name="ed_tel" value="<?php echo $tele; ?>" placeholder="Telefono"></td>
-                                <td><input class="form-control" type="text" id="ed_ext" name="ed_ext" value="<?php echo $exte; ?>" placeholder="Extensión"></td>
-                                <td><input class="form-control" ype="text" id="ed_cel" name="ed_cel" value="<?php echo $cel; ?>" placeholder="Celular"></td>                                  
-                              </tr>
-                          </tbody>
-                      </table>
-                    </div>
-                </div>             
-              </form>
-            </section>
+            
             <!--------------------------------- TABLA 1 --------------------------------->             
             <div class="container">
               <form action="php/addContactos.php" id="addContacts" name="adc" method="POST">
@@ -252,7 +211,8 @@ if(!isset($_SESSION['id_usuario'])){
                           </thead>                          
                           <tbody>      
                             <?php $database-> query("SELECT * FROM contacto WHERE ID_usuario=$id_usr");?>
-                            <?php $rows = $database->resultSet();?>
+                            <?php $rows = $database->resultSet();
+                            ?>
                               <?php foreach($rows as $row) :?>
                               <tr>                                                                    
                                 <td><?php echo $row['Nombre']?></td>
@@ -262,10 +222,12 @@ if(!isset($_SESSION['id_usuario'])){
                                 <td><?php echo $row['Ext']?></td>
                                 <td><?php echo $row['Cel']?></td>
                                 <input type="hidden" id="txt_usr" name="txt_usr" value="<?php echo $id_usr?>">
+                                
                                 <!-- OPCIONES--> 
                                 <td>
                                   <ul class="list-group list-group-horizontal">
-                                    <a href="PaginaprincipalDeProveedores.php?edit=<?php echo $row['ID_contacto']?>" class=" list-group-item"><i class="bi bi-pencil-square">Editar</a></i>
+                                  <input type="hidden" id="idcontacto" name="idcontacto" value="<?php echo $row['ID_contacto']?>">
+                                    <a  class=" list-group-item "><i data-bs-toggle="modal" data-bs-target="#tablaModalEditar" class="bi bi-pencil-square btneditarContacto" style="cursor:pointer;">Editar</a></i>
                                     <a href="php/addContactos.php?delete=<?php echo $row['ID_contacto'];?>" class=" list-group-item"><i class="bi bi-archive-fill">Borrar</a></i>
                                   </ul>                                    
                                 </td>
@@ -276,6 +238,62 @@ if(!isset($_SESSION['id_usuario'])){
                     </div>
                 </div>
               </form>
+   <!------------------------------------------ MODAL Editar  ------------------------------------------>  
+
+              <div class="modal fade" id="tablaModalEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">EDITAR CONTACTO</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+              <!-- ELEMENTOS CONTENIDOS EN EL MODAL -->         
+              <div class="modal-body">
+                <div id="idcontact"></div>
+                <div id="notificacionEditarC"></div>              
+                <form  id="EditContacts"  method="POST">
+                  <div class="form-group">
+                    <label for="exampleFormControlInput1">Nombre</label>
+                    <input type="text" class="form-control" id="nombreedit" name="nombreedit" placeholder="Ejemplo: Alejandro Lopez Lopez">
+                  </div>
+
+                  <div class="form-group mt-3">
+                    <label for="exampleFormControlInput2">Puesto</label>
+                    <input type="text" class="form-control" id="puestoedit" name="puestoedit"  placeholder="Ejemplo: IT Support">
+                  </div>
+
+                  <div class="form-group mt-3">
+                    <label for="exampleFormControlInput3">Email</label>
+                    <input type="email" class="form-control" id="mailedit" name="mailedit" placeholder="Ejemplo: ale2201@example.com">
+                  </div>
+
+                  <div class="form-group mt-3">
+                    <label for="exampleFormControlInput4">Teléfono</label>
+                    <input type="tel" class="form-control" id="teledit" name="teledit" placeholder="Ejemplo: 55-55-55-55">
+                  </div>
+
+                  <div class="form-group mt-3">
+                    <label for="exampleFormControlInput5">Extensión</label>
+                    <input type="number" class="form-control" id="extedit" name="extedit" placeholder="Ejemplo: 2201">
+                  </div>
+
+                  <div class="form-group mt-3">
+                    <label for="exampleFormControlInput6">Celular</label>
+                    <input type="tel" class="form-control" id="celedit" name = "celedit" placeholder="Ejemplo: 55-55-55-55">
+                    <input type="hidden" id="iduser" name="iduser" value="<?php echo $id_usr?>">                    
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>-
+                    <input type="submit" id="btnEditarContacto" class="btn btn-primary" value="Guardar">
+                  </div>
+                </form>                                                  
+              </div>
+              <!-- FIN ELEMENTOS CONTENIDOS EN EL MODAL -->
+              
+              </div>
+              </div>
+              </div>
+
               <!------------------------------------------ MODAL  ------------------------------------------>          
 
 <form action="php/addContactos.php" id="addContacts" name="adc" method="post">
@@ -362,9 +380,15 @@ if(!isset($_SESSION['id_usuario'])){
                               </div>
                               <!-- BOTONES DE LA TABLA--> 
                               <!-- BOTONES DE LA TABLA--> 
-                              <div class="col-xs-6 mb-3">
-                                  <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2"> <span>Agregar</span></a>				
-                              </div>
+                              <?php 
+                                if(intval($pago[0]['pago'])){
+                                  $btn = "<div class=\"col-xs-6 mb-3\"> 
+                                  <a href=\"#\" class=\"btn btn-primary\" data-bs-toggle=\"modal\" data-bs-target=\"#exampleModal2\"> <span>Agregar</span></a>				
+                              </div>";
+                              echo $btn;
+                                }
+                              ?>
+                              
                           </div>
                       </div>
                       <!-- BOTONES DE LA TABLA--> 
@@ -549,14 +573,14 @@ if(!isset($_SESSION['id_usuario'])){
   </div>
   <div class="offcanvas-body">
     <div class="head-contact">
-      <a href="index.html" class="logo-side">
+      <a href="index.php" class="logo-side">
       <img src="images/logo-main.png" alt="logo">
       </a>
      
       <div class="mobile-menu-sec mt-3">
          <ul class="list-unstyled">
             <li>
-               <a href="index.html"> Inicio </a>
+               <a href="index.php"> Inicio </a>
             </li>
             <li>
                <a href="#"> Tractoras </a>

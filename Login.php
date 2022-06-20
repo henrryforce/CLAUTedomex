@@ -1,3 +1,18 @@
+<?php
+$html_cuenta = '';
+session_start();
+if(!isset($_SESSION['id_usuario'])){
+  //header("location: /index.php");
+  $html_cuenta = '<li class="nav-item"> <a class="nav-link" href="/Login.php">Login</a> </li>';
+ }else{  
+  if($_SESSION['tipoUser'] == '1'){
+    $html_cuenta = '<li class="nav-item"> <a class="nav-link" href="/PaginaprincipalDeTractoras.php">Cuenta</a> </li>';
+  }elseif($_SESSION['tipoUser'] == '2'){
+    $html_cuenta = '<li class="nav-item"> <a class="nav-link" href="/PaginaprincipalDeProveedores.php">Cuenta</a> </li>';
+  }
+}
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -78,7 +93,7 @@
     <div class="navication float-start w-100">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand" href="index.php">
             <img src="images/LOGO NAVBAR 2.png" class="d-none d-lg-block " alt="logo"/>
           </a>
           <a class="navbar-toggler" data-bs-toggle="offcanvas" href="#mboile-show-menu" role="button"
@@ -88,12 +103,13 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
-              <li class="nav-item"> <a class="nav-link" href="index.html"> Inicio</a></li>
+              <li class="nav-item"> <a class="nav-link" href="index.php"> Inicio</a></li>
             <li class="nav-item"> <a class="nav-link" href="/VistaGeneral_Tractoras.php">Tractoras</a> </li>
-			   <li class="nav-item"> <a class="nav-link" href="/Registrate.html">Registro</a> </li>
-			   <li class="nav-item"> <a class="nav-link" href="/Login.html">Login</a> </li>
-              
-
+			   <li class="nav-item"> <a class="nav-link" href="/registrate.php">Registro</a> </li>
+         <?php
+         echo $html_cuenta;
+         ?>
+			   
 
          
               <li class="nav-item d-none">
@@ -181,7 +197,7 @@
               <div class="text-center px-lg-5 pt-lg-3 pb-lg-4 p-4 mt-auto w-100">
                 <p class="d-inline-block mb-0">¿Aún no estás registrado?</p>
                 <!--REGISTRARME -->
-                <a href="Registrate.html"
+                <a href="registrate.php"
                   class="text-dark font-weight-bold text-decoration-none text-decoration-underline">Registrarme</a>
               </div>
           </form>
@@ -245,14 +261,14 @@
   </div>
   <div class="offcanvas-body">
     <div class="head-contact">
-      <a href="index.html" class="logo-side">
+      <a href="index.php" class="logo-side">
       <img src="images/logo-main.png" alt="logo">
       </a>
      
       <div class="mobile-menu-sec mt-3">
          <ul class="list-unstyled">
           <li>
-            <a href="index.html"> Inicio </a>
+            <a href="index.php"> Inicio </a>
          </li>
 
          <li>
@@ -260,11 +276,11 @@
          </li>
 
          <li>
-            <a href="/Registrate.html"> Registro </a>
+            <a href="/registrate.php"> Registro </a>
          </li>
 
          <li>
-            <a href="/Login.html"> Login </a>
+            <a href="/Login.php"> Login </a>
          </li>
          </ul>
       </div>

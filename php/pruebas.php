@@ -37,7 +37,7 @@ where usuario.ID_usuario = $id");
   }
   
 
-    $mail = new enviarCorreo('luis15ago98@gmail.com','Contacto tractora a proveedor');
+    $mail = new enviarCorreo('administracion@bam247.mx','Contacto tractora a proveedor');
     try{
       $mail -> mailTtoP($datosTractora[0]['Empresa'],$datosProveedor[0]['Empresa'],$datosTractora[0]['usuario'],$datosProveedor[0]['usuario'],$table,$emailCC);
     }catch(Exception $e){
