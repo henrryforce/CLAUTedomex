@@ -103,9 +103,7 @@ if(!isset($_SESSION['id_usuario'])){
              
            </ul>
             </div> </div> </nav> </nav> </div></div> 
-            
-            
-
+                        
       <!-- NAVBAR FIN -->
       <!-- NAVBAR FIN -->
       <!-- NAVBAR FIN -->        

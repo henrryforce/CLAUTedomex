@@ -19,7 +19,7 @@
       include 'php/Conexion.php';
       include 'php/emailsender.php';
       $obj = new Conexion();
-      $obj->query("Select ID_usuario from usuario where ID_tipo_usr=2;");
+      $obj->query("Select ID_usuario from usuario where ID_tipo_usr=2 ;"); //agregar clausula and usuario.Estatus_pago = 1 para filtrar proveedores con pago vigente
       $idsProvedores = $obj->resultSet();
 ?>
 <!DOCTYPE html>
@@ -163,7 +163,7 @@
                 $obj->query("SELECT empresa.Empresa, archivos.Logo FROM empresa
                       INNER JOIN usuario on empresa.ID_empresa=usuario.ID_usuario
                       INNER JOIN archivos ON empresa.ID_dtl_empresa=archivos.ID_archivo
-                      WHERE ID_usuario=$id");
+                      WHERE ID_usuario=$id ");
                 $datacard = $obj->resultSet();
         
                 $htmlDiv = "

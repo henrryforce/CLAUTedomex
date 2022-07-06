@@ -55,31 +55,21 @@
         header("location: /PaginaprincipalDeProveedores.php");
     }
     //Validacion para poder enviar los datos que se quieran modificar a la tabla Editar contacto
-    if(isset($_GET['edit'])){
-        $id = $_GET['edit'];
+    if(isset($_POST['edit'])){
+        $id = $_POST['edit'];
         $database->query("SELECT * FROM contacto WHERE ID_contacto = $id");
         $rows = $database->resultSet();        
-        $update = true;
-
-        foreach ($rows as $row ) :
-            $id_cont= $row['ID_contacto'];           
-            $name = $row['Nombre'];            
-            $job = $row['Puesto'];
-            $mail = $row['Email'];
-            $tele= $row['Tel'];
-            $exte= $row['Ext'];
-            $cel= $row['Cel'];
-        endforeach;        
+       echo json_encode($rows);
     }
     //Validacion para modificar los datos de la tabla Contacto
     if(isset($_POST['update'])){
         $id_cont = $_POST['ed_id'] ? $_POST['ed_id']:'';    //Se obtienen las variables que contienen la nueva informacion 
-        $name = $_POST['ed_name'] ? $_POST['ed_name']: '';  //que se desea actualizar en la tabla
-        $job = $_POST['ed_job'] ? $_POST['ed_job']: '';     //contacto.
-        $mail = $_POST['ed_mail'] ? $_POST['ed_mail']: '';
-        $tele= $_POST['ed_tel'] ? $_POST['ed_tel']: '';
-        $exte= $_POST['ed_ext'] ? $_POST['ed_ext']: '';
-        $cel= $_POST['ed_cel'] ? $_POST['ed_cel']: ''; 
+        $name = $_POST['nombreedit'] ? $_POST['nombreedit']: '';  //que se desea actualizar en la tabla
+        $job = $_POST['puestoedit'] ? $_POST['puestoedit']: '';     //contacto.
+        $mail = $_POST['mailedit'] ? $_POST['mailedit']: '';
+        $tele= $_POST['teledit'] ? $_POST['teledit']: '';
+        $exte= $_POST['extedit'] ? $_POST['extedit']: '';
+        $cel= $_POST['celedit'] ? $_POST['celedit']: ''; 
         
         $_SESSION['message'] = "¡Se ha modificado con éxito el contacto!";
         $_SESSION['msg_type'] = "warning";
@@ -94,6 +84,6 @@
         $database->bind(7, $id_cont);
         $database->execute();
         
-        header("location: /PaginaprincipalDeProveedores.php");
+        echo json_encode('200');
     }
 ?>

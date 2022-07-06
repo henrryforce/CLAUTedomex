@@ -117,7 +117,7 @@ if (!isset($_SESSION['id_usuario'])) {
             
             
             
-            <li class="nav-item accordion-item"> <a class="nav-link" id="logout" href="#">Cerrar sesión</a> </li>
+            <li class="nav-item accordion-item "> <a class="nav-link logout" >Cerrar sesión</a> </li>
              </li></ul>
              </div> </div> </nav> </nav> </div></div>  
 
@@ -564,28 +564,24 @@ if (!isset($_SESSION['id_usuario'])) {
         <div class="mobile-menu-sec mt-3">
           <ul class="list-unstyled">
 
-            <li>
-              <a href="index.php"> Inicio </a>
-            </li>
+          <li>
+          <a href="index.php"> Inicio </a>
+       </li>
+
+       <li>
+          <a href="/VistaGeneral_Tractoras.php"> Tractoras </a>
+       </li>
+
+       <li>
+          <a href="/registrate.php"> Registro </a>
+       </li>
+
+       <li>
+          <a href="/Login.php"> Login </a>
+       </li>
 
             <li>
-              <a href="#"> Tractoras </a>
-            </li>
-
-            <li>
-              <a href="#"> Registro </a>
-            </li>
-
-            <li>
-              <a href="#"> Login </a>
-            </li>
-
-            <li>
-              <a href="#"> Costo </a>
-            </li>
-
-            <li>
-              <a href="#" id="logout"> Cerrar sesión </a>
+              <a class="logout"> Cerrar sesión </a>
             </li>
 
           </ul>

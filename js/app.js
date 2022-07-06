@@ -86,19 +86,140 @@ function load() {
     }, 1000);
   }
   if (ubi.includes("/PaginaprincipalDeProveedores.php")) {
+    document.addEventListener("click",function (e){
+      if(e.target.className.includes('btneditarContacto')){
+        let idContacto =e.target.parentElement.previousElementSibling.value;
+        let data = new FormData();
+        data.append('edit',idContacto);
+        fetch("../php/addContactos.php", {
+          method: "POST",
+          body: data,
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            //console.log(data[0]['Cel']);
+            document.getElementById('nombreedit').value=data[0]['Nombre'];
+            document.getElementById('puestoedit').value=data[0]['Puesto'];
+            document.getElementById('mailedit').value=data[0]['Email'];
+            document.getElementById('teledit').value=data[0]['Tel'];
+            document.getElementById('extedit').value=data[0]['Ext'];
+            document.getElementById('celedit').value=data[0]['Cel'];
+            let divID =document.getElementById('idcontact');
+            divID.innerHTML='';
+            divID.innerHTML=`<input type="hidden" id="idcontactoEditar"  value="${idContacto}">`;
+          });
+      }      
+    });
     document
       .getElementById("btnAdminPerfil")
       .addEventListener("click", AdminPerfilProveedor);
     document.getElementById("comodity").addEventListener("change", getval);
     document.getElementById("logout").addEventListener("click", logout);
     document.getElementById("logout2").addEventListener("click", logout);
+    document.getElementById("btnEditarContacto").addEventListener("click",function(e){
+      e.preventDefault();
+      let data = new FormData(document.getElementById('EditContacts'));      
+      data.append('ed_id',document.getElementById('idcontactoEditar').value);
+      data.append('update',1);
+      fetch("../php/addContactos.php", {
+        method: "POST",
+        body: data,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if(data == '200'){
+            location.reload();
+          }else{
+            creaNotificacion(document.getElementById('notificacionEditarC'),"Ocurrio un error")
+          }
+        });
+    })
   }
   if (ubi.includes("/PaginaprincipalDeTractoras.php")) {
+    document.addEventListener("click",function (e){
+      if(e.target.className.includes('btneditarContacto')){
+        let idContacto =e.target.parentElement.previousElementSibling.value;
+        let data = new FormData();
+        data.append('edit',idContacto);
+        fetch("../php/addContactos.php", {
+          method: "POST",
+          body: data,
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            //console.log(data[0]['Cel']);
+            document.getElementById('nombreedit').value=data[0]['Nombre'];
+            document.getElementById('puestoedit').value=data[0]['Puesto'];
+            document.getElementById('mailedit').value=data[0]['Email'];
+            document.getElementById('teledit').value=data[0]['Tel'];
+            document.getElementById('extedit').value=data[0]['Ext'];
+            document.getElementById('celedit').value=data[0]['Cel'];
+            let divID =document.getElementById('idcontact');
+            divID.innerHTML='';
+            divID.innerHTML=`<input type="hidden" id="idcontactoEditar"  value="${idContacto}">`;
+          });
+      }
+      if(e.target.className.includes('btnEditarReq')){
+        let idReq=e.target.parentElement.previousElementSibling.value;
+        let data = new FormData();
+        data.append('editq',idReq);
+        fetch("../php/addRequ.php", {
+          method: "POST",
+          body: data,
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            //console.log(data);
+            document.getElementById('editmateriales').value=data[0]['Tipo_material'];
+            document.getElementById('editvol').value=data[0]['Volumen_anual'];
+            document.getElementById('editComents').innerText=data[0]['Comentarios'];
+            let divID =document.getElementById('idRequeri');
+            divID.innerHTML='';
+            divID.innerHTML=`<input type="hidden" id="idRequerimientoEditar"  value="${idReq}">`;
+          });
+      }      
+    });
     document.getElementById("comodity").addEventListener("change", getval);
     document
       .getElementById("btnAdministrarcuenta")
       .addEventListener("click", (_) => {
         window.location.assign("/cuenta-tractora.php");
+      });
+      document.getElementById("btnEditarContacto").addEventListener("click",function(e){
+        e.preventDefault();
+        let data = new FormData(document.getElementById('EditContacts'));      
+        data.append('ed_id',document.getElementById('idcontactoEditar').value);
+        data.append('update',1);
+        fetch("../php/addContactos.php", {
+          method: "POST",
+          body: data,
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if(data == '200'){
+              location.reload();
+            }else{
+              creaNotificacion(document.getElementById('notificacionEditarC'),"Ocurrio un error")
+            }
+          });
+      });
+      document.getElementById('btneditReq').addEventListener("click",function(e){
+        e.preventDefault();
+        let data = new FormData(document.getElementById('editarRequerimientoModal'));      
+        data.append('ed_idr',document.getElementById('idRequerimientoEditar').value);
+        data.append('update2',1);
+        fetch("../php/addRequ.php", {
+          method: "POST",
+          body: data,
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if(data == '200'){
+              location.reload();
+            }else{
+              creaNotificacion(document.getElementById('notificarEditarRequ'),"Ocurrio un error")
+            }
+          });
       });
   }
   if (ubi.includes("/contact.html")) {
@@ -767,7 +888,7 @@ function changePassPerfilProveedor(e) {
       data = new FormData(document.getElementById("formPassword"));
       data.append("cambioPassword", 1);
       console.log(data.get("password"));
-      fetch("../php/Gestorcuenta.php", {
+      fetch("../php/gestorcuenta.php", {
         method: "POST",
         body: data,
       })
@@ -854,7 +975,7 @@ function updateDatosproveedor(e) {
     data.get("paginaweb") != "" &&
     data.get("txtnegocio") != ""
   ) {
-    fetch("../php/Gestorcuenta.php", {
+    fetch("../php/gestorcuenta.php", {
       method: "POST",
       body: data,
     })

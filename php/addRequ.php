@@ -261,24 +261,18 @@
         header("location: /PaginaprincipalDeTractoras.php");
     }
     //Validacion para poder enviar los datos que se quieran editar a la tabla Editar Requemimientos
-    if(isset($_GET['editq'])){
-        $id = $_GET['editq'];
+    if(isset($_POST['editq'])){
+        $id = $_POST['editq'];
         $database->query("SELECT * FROM requerimiento_producto WHERE ID_req_producto = $id");
         $rows = $database->resultSet();
-        $update3 = true;
-        foreach ($rows as $row ) :
-            $id_req= $row['ID_req_producto'];
-			$tMat= $row['Tipo_material'];
-			$vol= $row['Volumen_anual'];
-			$coment= $row['Comentarios'];
-        endforeach;        
+        echo json_encode($rows);
     }
     //Validacion para modificar los datos de la tabla Editar Requerimientos
     if(isset($_POST['update2'])){
         $id_req = $_POST['ed_idr'] ? $_POST['ed_idr']:'';
-        $tipo_m = $_POST['ed_typeM'] ? $_POST['ed_typeM']: '';            
-        $volm = $_POST['ed_vol'] ? $_POST['ed_vol']: '';
-        $comm= $_POST['ed_comm'] ? $_POST['ed_comm']: '';        
+        $tipo_m = $_POST['editmateriales'] ? $_POST['editmateriales']: '';            
+        $volm = $_POST['editvol'] ? $_POST['editvol']: '';
+        $comm= $_POST['editComents'] ? $_POST['editComents']: '';        
         
         $_SESSION['message'] = "¡Se ha modificado con éxito!";
         $_SESSION['msg_type'] = "warning";
@@ -290,7 +284,7 @@
         $database->bind(4, $id_req);
         $database->execute();
         
-        header("location: /PaginaprincipalDeTractoras.php");
+        echo json_encode('200');
     }
 
  ?>
