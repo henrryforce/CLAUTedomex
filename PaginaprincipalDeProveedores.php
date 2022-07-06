@@ -275,7 +275,7 @@ if(!isset($_SESSION['id_usuario'])){
                                 <!-- OPCIONES--> 
                                 <td>
                                   <ul class="list-group list-group-horizontal">
-                                    <a href="PaginaprincipalDeProveedores.php?edit=<?php echo $row['ID_contacto']?>" class=" list-group-item"><i class="bi bi-pencil-square">Editar</a></i>
+                                    <a href="PaginaprincipalDeProveedores.php?edit=<?php echo $row['ID_contacto']?>" class=" list-group-item" data-bs-toggle="modal" data-bs-target="#tablaModalEditar" ><i class="bi bi-pencil-square">Editar</a></i>
                                     <a href="php/addContactos.php?delete=<?php echo $row['ID_contacto'];?>" class=" list-group-item"><i class="bi bi-archive-fill">Borrar</a></i>
                                   </ul>                                    
                                 </td>
@@ -286,6 +286,62 @@ if(!isset($_SESSION['id_usuario'])){
                     </div>
                 </div>
               </form>
+                            <!------------------------------------------ MODAL EDITAR  ------------------------------------------>          
+
+<form action="php/addContactos.php" id="addContacts" name="adc" method="post">
+  <div class="modal fade" id="tablaModalEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">CONTACTO</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+              <!-- ELEMENTOS CONTENIDOS EN EL MODAL -->         
+              <div class="modal-body">              
+                <form action="php/addProducts.php" id="addContacts" name="apd" method="POST">
+                  <div class="form-group">
+                    <label for="exampleFormControlInput1">Nombre</label>
+                    <input class="form-control" type="text" id="ed_name" name="ed_name" value="<?php echo $name; ?>" placeholder="Nombre">
+                  </div>
+
+                  <div class="form-group mt-3">
+                    <label for="exampleFormControlInput2">Puesto</label>
+                    <input class="form-control" type="text" id="ed_job" name="ed_job" value="<?php echo $job; ?>" placeholder="Puesto">
+                  </div>
+
+                  <div class="form-group mt-3">
+                    <label for="exampleFormControlInput3">Email</label>
+                    <input class="form-control" type="text" id="ed_mail" name="ed_mail" value="<?php echo$mail; ?>" placeholder="Email">
+                  </div>
+
+                  <div class="form-group mt-3">
+                    <label for="exampleFormControlInput4">Teléfono</label>
+                    <input class="form-control" type="text" id="ed_tel" name="ed_tel" value="<?php echo $tele; ?>" placeholder="Telefono">
+                  </div>
+
+                  <div class="form-group mt-3">
+                    <label for="exampleFormControlInput5">Extensión</label>
+                    <input class="form-control" type="text" id="ed_ext" name="ed_ext" value="<?php echo $exte; ?>" placeholder="Extensión">
+                  </div>
+
+                  <div class="form-group mt-3">
+                    <label for="exampleFormControlInput6">Celular</label>
+                    <input class="form-control" ype="text" id="ed_cel" name="ed_cel" value="<?php echo $cel; ?>" placeholder="Celular">
+                    <input type="hidden" id="txt_usr" name="txt_usr" value="<?php echo $id_usr?>">
+                    <input type="hidden" id="txt_val" name="txt_val" value="1">
+                  </div>                  
+                </form>                                                  
+              </div>
+              <!-- FIN ELEMENTOS CONTENIDOS EN EL MODAL -->
+              <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>-
+              <input type="submit" name= "btnadd" class="btn btn-primary" value="Guardar">
+              </div>
+              </div>
+              </div>
+              </div>
+              </form>
+
               <!------------------------------------------ MODAL  ------------------------------------------>          
 
 <form action="php/addContactos.php" id="addContacts" name="adc" method="post">
@@ -335,7 +391,7 @@ if(!isset($_SESSION['id_usuario'])){
               <!-- FIN ELEMENTOS CONTENIDOS EN EL MODAL -->
               <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>-
-              <input href="PaginaprincipalDeProveedores.php?edit=<?php echo $row['ID_contacto'];?>" type="submit" name= "btnadd" class="btn btn-primary" value="Guardar">
+              <input type="submit" name= "btnadd" class="btn btn-primary" value="Guardar">
               </div>
               </div>
               </div>

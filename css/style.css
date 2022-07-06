@@ -1772,7 +1772,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 }
 
 /* oculto los elementos */
-  input.i-text, textarea {
+  input.i-text, textarea, section.i-text {
 	display: none;
   }
   
@@ -1783,6 +1783,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	margin-bottom: 20px;
   }
   input.i-radio[value="addRequerimiento"]:checked ~ input.i-text {
+	margin-top: 20px;
+	display: block;
+	margin-bottom: 20px;
+  }
+  input.i-radio[value="editarCont"]:checked ~ section.i-text{
 	margin-top: 20px;
 	display: block;
 	margin-bottom: 20px;

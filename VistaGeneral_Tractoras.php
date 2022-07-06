@@ -3,13 +3,12 @@ session_start();
   include_once "php/Conexion.php";
   $database=new Conexion; 
   $db=new Conexion;
-  if(!isset($_SESSION['id_usuario'])){
-    //header("location: /index.php");
+  if(!isset($_SESSION['id_usuario'])){  
     $html_cuenta = '<li class="nav-item"> <a class="nav-link" href="/Login.php">Login</a> </li>';
-   }elseif($_SESSION['tipoUser'] == '2'){  
+   }else{  
     if($_SESSION['tipoUser'] == '1'){
       $html_cuenta = '<li class="nav-item"> <a class="nav-link" href="/PaginaprincipalDeTractoras.php">Cuenta</a> </li>';
-    }else{
+    }elseif($_SESSION['tipoUser'] == '2'){
       $html_cuenta = '<li class="nav-item"> <a class="nav-link" href="/PaginaprincipalDeProveedores.php">Cuenta</a> </li>';
     }
   }
@@ -104,7 +103,7 @@ session_start();
               <li class="nav-item"> <a class="nav-link" href="index.php"> Inicio</a></li>
               <li class="nav-item"> <a class="nav-link" href="/VistaGeneral_Tractoras.php">Tractoras</a> </li>
               <li class="nav-item"> <a class="nav-link" href="/registrate.php">Registro</a> </li>
-              <?php echo $html_cuenta?>
+              <?php echo $html_cuenta ?>
               
             
               
